@@ -15,7 +15,7 @@
   <!-- Telegram Mini App -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Cairo Font -->
+  <!-- Cairo Arabic Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -25,7 +25,7 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
@@ -33,11 +33,45 @@
   <style>
 
     /* =====================================================
+       DESIGN SYSTEM
+    ===================================================== */
+
+    :root {
+
+      --primary: #5B35D5;
+      --primary-light: #F0ECFF;
+
+      --orange: #FF7A1A;
+      --orange-light: #FFF1E6;
+
+      --green: #12A87D;
+      --green-dark: #0D936D;
+
+      --background: #F8F8FC;
+
+      --white: #FFFFFF;
+
+      --text: #252337;
+      --text-light: #77758A;
+      --muted: #A3A1B0;
+
+      --border: #ECECF3;
+
+      --shadow:
+        0 8px 25px rgba(35, 32, 70, 0.07);
+
+      --radius: 18px;
+
+    }
+
+
+    /* =====================================================
        RESET
     ===================================================== */
 
     * {
       box-sizing: border-box;
+
       margin: 0;
       padding: 0;
     }
@@ -47,11 +81,18 @@
     }
 
     body {
+
       font-family: "Cairo", sans-serif;
-      background: #f6f7fb;
-      color: #171725;
+
+      background: var(--background);
+
+      color: var(--text);
+
       min-height: 100vh;
+
       -webkit-font-smoothing: antialiased;
+
+      text-rendering: optimizeLegibility;
     }
 
     button,
@@ -60,7 +101,22 @@
     }
 
     button {
-      border: none;
+      border: 0;
+    }
+
+
+    /* =====================================================
+       MAIN CONTAINER
+    ===================================================== */
+
+    .app-container {
+
+      width: 100%;
+
+      max-width: 720px;
+
+      margin: 0 auto;
+
     }
 
 
@@ -72,22 +128,26 @@
 
       position: relative;
 
+      width: 100%;
+
       background:
         linear-gradient(
           135deg,
-          #5b35d5 0%,
-          #713fe2 55%,
-          #8249e8 100%
+          #5631CB 0%,
+          #6639D9 50%,
+          #7644E4 100%
         );
 
-      color: #ffffff;
+      color: #FFFFFF;
 
-      padding: 23px 18px 27px;
+      padding: 21px 18px 24px;
 
       text-align: center;
 
       overflow: hidden;
+
     }
+
 
     .top-header::before {
 
@@ -95,16 +155,20 @@
 
       position: absolute;
 
-      width: 180px;
-      height: 180px;
+      width: 150px;
+      height: 150px;
 
       border-radius: 50%;
 
-      background: rgba(255,255,255,0.08);
+      background:
+        rgba(255,255,255,0.07);
 
-      top: -90px;
-      right: -50px;
+      top: -85px;
+
+      right: -45px;
+
     }
+
 
     .top-header::after {
 
@@ -112,16 +176,20 @@
 
       position: absolute;
 
-      width: 130px;
-      height: 130px;
+      width: 110px;
+      height: 110px;
 
       border-radius: 50%;
 
-      background: rgba(255,255,255,0.06);
+      background:
+        rgba(255,255,255,0.05);
 
-      bottom: -70px;
+      bottom: -65px;
+
       left: -30px;
+
     }
+
 
     .brand {
 
@@ -129,14 +197,16 @@
 
       z-index: 2;
 
-      font-size: 28px;
+      font-size: 27px;
 
-      font-weight: 900;
+      line-height: 1.3;
 
-      letter-spacing: -0.5px;
+      font-weight: 800;
 
-      margin-bottom: 4px;
+      letter-spacing: -0.4px;
+
     }
+
 
     .brand-subtitle {
 
@@ -144,11 +214,14 @@
 
       z-index: 2;
 
-      font-size: 13px;
+      margin-top: 4px;
+
+      font-size: 12px;
 
       font-weight: 500;
 
-      opacity: 0.88;
+      opacity: .88;
+
     }
 
 
@@ -157,8 +230,11 @@
     ===================================================== */
 
     #home {
+
       display: block;
-      padding-bottom: 30px;
+
+      padding-bottom: 28px;
+
     }
 
 
@@ -168,33 +244,40 @@
 
     .section-intro {
 
-      max-width: 650px;
-
-      margin: 0 auto;
-
-      padding: 21px 18px 10px;
-
       text-align: center;
+
+      padding:
+
+        20px
+        18px
+        9px;
+
     }
+
 
     .section-title {
 
-      font-size: 20px;
+      font-size: 19px;
+
+      line-height: 1.5;
 
       font-weight: 800;
 
-      color: #202033;
+      color: var(--text);
+
     }
+
 
     .section-description {
 
-      margin-top: 2px;
+      margin-top: 3px;
 
-      color: #858595;
+      color: var(--text-light);
 
-      font-size: 13px;
+      font-size: 12px;
 
       font-weight: 500;
+
     }
 
 
@@ -204,17 +287,21 @@
 
     .categories {
 
-      width: calc(100% - 28px);
+      width:
+        calc(100% - 28px);
 
-      max-width: 650px;
+      max-width: 680px;
 
-      margin: 8px auto 0;
+      margin:
+        8px auto 0;
 
       display: grid;
 
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:
+        repeat(2, 1fr);
 
-      gap: 12px;
+      gap: 11px;
+
     }
 
 
@@ -224,83 +311,161 @@
 
     .category {
 
-      position: relative;
-
       display: flex;
 
       align-items: center;
 
       gap: 10px;
 
-      min-height: 76px;
+      width: 100%;
 
-      padding: 12px;
+      min-height: 70px;
 
-      background: #ffffff;
+      padding: 10px 12px;
 
-      border: 1px solid #ececf3;
+      background: var(--white);
+
+      border: 1px solid var(--border);
 
       border-radius: 17px;
 
-      color: #242434;
-
-      cursor: pointer;
+      color: var(--text);
 
       text-align: right;
 
+      cursor: pointer;
+
       box-shadow:
-        0 5px 18px rgba(30, 30, 60, 0.055);
+        0 5px 17px
+        rgba(35,32,70,.045);
 
       transition:
         transform .15s ease,
         box-shadow .15s ease;
+
     }
+
 
     .category:active {
 
-      transform: scale(.97);
+      transform:
+        scale(.975);
 
       box-shadow:
-        0 3px 10px rgba(30, 30, 60, .08);
+        0 3px 10px
+        rgba(35,32,70,.07);
+
     }
+
+
+    /* =====================================================
+       CATEGORY ICON
+    ===================================================== */
 
     .category-icon {
 
-      width: 45px;
-      height: 45px;
+      width: 43px;
 
-      min-width: 45px;
+      height: 43px;
+
+      min-width: 43px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
-      border-radius: 14px;
+      border-radius: 13px;
 
-      font-size: 23px;
+      font-size: 21px;
 
-      background: #f1edff;
+      background:
+        var(--primary-light);
+
     }
+
+
+    /* Individual category colors */
+
+    .category:nth-child(1)
+    .category-icon {
+
+      background: #EAF3FF;
+
+    }
+
+
+    .category:nth-child(2)
+    .category-icon {
+
+      background: #FFF0F5;
+
+    }
+
+
+    .category:nth-child(3)
+    .category-icon {
+
+      background: #F1ECFF;
+
+    }
+
+
+    .category:nth-child(4)
+    .category-icon {
+
+      background: #FFF5E8;
+
+    }
+
+
+    .category:nth-child(5)
+    .category-icon {
+
+      background: #EEF1F7;
+
+    }
+
+
+    .category:nth-child(6)
+    .category-icon {
+
+      background: #E9F5FF;
+
+    }
+
+
+    .category:nth-child(7)
+    .category-icon {
+
+      background: #EAF8F1;
+
+    }
+
+
+    .category:nth-child(8)
+    .category-icon {
+
+      background: var(--orange-light);
+
+    }
+
+
+    /* =====================================================
+       CATEGORY NAME
+    ===================================================== */
 
     .category-name {
 
-      font-size: 15px;
+      font-size: 14px;
 
-      font-weight: 800;
-
-      line-height: 1.35;
-    }
-
-    .category-arrow {
-
-      margin-right: auto;
-
-      color: #aaaabd;
-
-      font-size: 18px;
+      line-height: 1.4;
 
       font-weight: 700;
+
+      color: var(--text);
+
     }
 
 
@@ -318,34 +483,51 @@
 
       justify-content: space-between;
 
-      width: calc(100% - 28px);
+      width:
+        calc(100% - 28px);
 
-      max-width: 650px;
+      max-width: 680px;
 
-      min-height: 86px;
+      min-height: 76px;
 
-      margin: 18px auto 0;
+      margin:
+        16px auto 0;
 
-      padding: 15px 18px;
+      padding:
+        12px 15px;
 
-      border-radius: 19px;
+      border-radius: 18px;
 
       overflow: hidden;
 
       background:
         linear-gradient(
           135deg,
-          #ff8a24,
-          #ff5b35
+          #FF8A24,
+          #FF6A35
         );
 
-      color: #ffffff;
+      color: #FFFFFF;
 
       cursor: pointer;
 
       box-shadow:
-        0 10px 25px rgba(255, 100, 45, .20);
+        0 9px 23px
+        rgba(255,105,45,.18);
+
+      transition:
+        transform .15s ease;
+
     }
+
+
+    .deals-banner:active {
+
+      transform:
+        scale(.985);
+
+    }
+
 
     .deals-banner::before {
 
@@ -353,41 +535,55 @@
 
       position: absolute;
 
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
 
       border-radius: 50%;
 
-      background: rgba(255,255,255,.10);
+      background:
+        rgba(255,255,255,.09);
 
-      left: -45px;
-      bottom: -75px;
+      left: -50px;
+
+      bottom: -72px;
+
     }
+
 
     .deals-content {
 
       position: relative;
 
       z-index: 2;
+
+      text-align: right;
+
     }
+
 
     .deals-small {
 
-      font-size: 11px;
+      font-size: 10px;
 
-      font-weight: 700;
+      font-weight: 600;
 
       opacity: .9;
+
     }
+
 
     .deals-title {
 
-      font-size: 19px;
-
-      font-weight: 900;
-
       margin-top: 1px;
+
+      font-size: 17px;
+
+      line-height: 1.5;
+
+      font-weight: 800;
+
     }
+
 
     .deals-icon {
 
@@ -395,19 +591,25 @@
 
       z-index: 2;
 
-      width: 49px;
-      height: 49px;
+      width: 45px;
+
+      height: 45px;
+
+      min-width: 45px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
-      border-radius: 15px;
+      border-radius: 14px;
 
-      background: rgba(255,255,255,.18);
+      background:
+        rgba(255,255,255,.18);
 
-      font-size: 25px;
+      font-size: 22px;
+
     }
 
 
@@ -422,15 +624,19 @@
       min-height: 100vh;
 
       padding-bottom: 35px;
+
     }
 
+
     #products.active {
+
       display: block;
+
     }
 
 
     /* =====================================================
-       PRODUCTS HEADER
+       PRODUCT HEADER
     ===================================================== */
 
     .products-header {
@@ -441,61 +647,82 @@
 
       gap: 10px;
 
-      max-width: 650px;
+      width:
+        calc(100% - 28px);
+
+      max-width: 680px;
 
       margin: 0 auto;
 
-      padding: 18px 16px 12px;
+      padding:
+        16px 0 11px;
+
     }
+
 
     .back {
 
-      width: 42px;
-      height: 42px;
+      width: 41px;
 
-      min-width: 42px;
+      height: 41px;
+
+      min-width: 41px;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
-      border-radius: 13px;
+      border-radius: 12px;
 
-      background: #ffffff;
+      background: #FFFFFF;
 
-      color: #29293a;
+      border: 1px solid var(--border);
 
-      font-size: 21px;
+      color: var(--text);
+
+      font-size: 20px;
 
       cursor: pointer;
 
       box-shadow:
-        0 4px 14px rgba(30,30,60,.06);
+        0 4px 13px
+        rgba(35,32,70,.05);
 
-      border: 1px solid #ededf3;
     }
+
 
     .products-title-wrap {
+
       flex: 1;
+
     }
+
 
     #categoryTitle {
 
-      font-size: 21px;
+      font-size: 20px;
 
-      font-weight: 900;
+      line-height: 1.4;
 
-      color: #202033;
+      font-weight: 800;
+
+      color: var(--text);
+
     }
+
 
     .products-count {
 
-      color: #9090a0;
+      margin-top: 1px;
+
+      color: var(--text-light);
 
       font-size: 11px;
 
-      font-weight: 600;
+      font-weight: 500;
+
     }
 
 
@@ -507,7 +734,8 @@
 
       width: 100%;
 
-      padding-top: 5px;
+      padding-top: 4px;
+
     }
 
 
@@ -517,87 +745,105 @@
 
     .product {
 
-      width: calc(100% - 32px);
+      width:
+        calc(100% - 32px);
 
       max-width: 390px;
 
-      margin: 0 auto 22px;
+      margin:
+        0 auto 22px;
 
-      background: #ffffff;
+      background:
+        var(--white);
 
-      border-radius: 22px;
+      border:
+        1px solid var(--border);
+
+      border-radius: 21px;
 
       overflow: hidden;
 
-      border: 1px solid #ededf3;
-
       box-shadow:
-        0 10px 30px rgba(32, 32, 65, 0.09);
+        0 9px 28px
+        rgba(35,32,70,.075);
+
     }
 
 
     /* =====================================================
        PRODUCT IMAGE
-       الصورة الآن مربعة ومتصلة بالبطاقة
+       مربع ومتصلة مباشرة بالبطاقة
     ===================================================== */
 
-   .product-image {
-  position: relative;
+    .product-image {
 
-  width: 100%;
+      position: relative;
 
-  aspect-ratio: 1 / 1;
+      width: 100%;
 
-  display: flex;
+      aspect-ratio: 1 / 1;
 
-  align-items: center;
-  justify-content: center;
+      display: flex;
 
-  background: #ffffff;
+      align-items: center;
 
-  overflow: hidden;
-}
+      justify-content: center;
 
-   .product-image img {
-  width: 100%;
-  height: 100%;
+      background: #FFFFFF;
 
-  display: block;
+      overflow: hidden;
 
-  object-fit: cover;
+    }
 
-  padding: 0;
-}
+
+    .product-image img {
+
+      width: 100%;
+
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      padding: 0;
+
+    }
 
 
     /* =====================================================
-       DISCOUNT BADGE
+       PRODUCT BADGE
     ===================================================== */
 
     .discount {
 
       position: absolute;
 
-      top: 13px;
+      top: 12px;
 
-      right: 13px;
+      right: 12px;
 
       z-index: 3;
 
-      padding: 5px 10px;
+      padding:
+        5px 9px;
 
-      border-radius: 9px;
+      border-radius: 8px;
 
-      background: #ff5a54;
+      background:
+        #FF5A54;
 
-      color: #ffffff;
+      color:
+        #FFFFFF;
 
-      font-size: 11px;
+      font-size: 10px;
 
-      font-weight: 800;
+      font-weight: 700;
 
       box-shadow:
-        0 3px 10px rgba(255,90,84,.20);
+        0 3px 9px
+        rgba(255,90,84,.18);
+
     }
 
 
@@ -607,78 +853,119 @@
 
     .product-info {
 
-      padding: 16px 17px 17px;
+      padding:
+        15px 16px 17px;
 
-      background: #ffffff;
-    }
+      background:
+        #FFFFFF;
 
-    .product-title {
-
-      color: #20202d;
-
-      font-size: 17px;
-
-      line-height: 1.6;
-
-      font-weight: 800;
-
-      margin-bottom: 10px;
     }
 
 
     /* =====================================================
-       PRICE ROW
+       PRODUCT TITLE
+    ===================================================== */
+
+    .product-title {
+
+      color:
+        var(--text);
+
+      font-size:
+        17px;
+
+      line-height:
+        1.6;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        9px;
+
+    }
+
+
+    /* =====================================================
+       PRICE
     ===================================================== */
 
     .price-row {
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
-      gap: 10px;
+      gap:
+        10px;
 
-      margin-bottom: 13px;
+      margin-bottom:
+        12px;
+
     }
+
 
     .current-price {
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: baseline;
+      align-items:
+        baseline;
 
-      gap: 4px;
+      gap:
+        4px;
 
-      color: #e74747;
+      color:
+        #E54848;
+
     }
+
 
     .price-number {
 
-      font-size: 27px;
+      font-size:
+        26px;
 
-      line-height: 1;
+      line-height:
+        1;
 
-      font-weight: 900;
+      font-weight:
+        800;
+
     }
+
 
     .price-currency {
 
-      font-size: 13px;
+      font-size:
+        12px;
 
-      font-weight: 800;
+      font-weight:
+        700;
+
     }
+
 
     .old-price {
 
-      color: #a1a1ad;
+      color:
+        #9D9BA8;
 
-      font-size: 13px;
+      font-size:
+        13px;
 
-      font-weight: 600;
+      font-weight:
+        500;
 
-      text-decoration: line-through;
+      text-decoration:
+        line-through;
+
     }
 
 
@@ -688,48 +975,69 @@
 
     .buy {
 
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      gap: 7px;
+      gap:
+        7px;
 
-      width: 100%;
+      width:
+        100%;
 
-      min-height: 52px;
+      min-height:
+        50px;
 
-      border-radius: 14px;
+      border-radius:
+        13px;
 
       background:
         linear-gradient(
           135deg,
-          #18b58d,
-          #0fa77f
+          var(--green),
+          var(--green-dark)
         );
 
-      color: #ffffff;
+      color:
+        #FFFFFF;
 
-      text-decoration: none;
+      text-decoration:
+        none;
 
-      font-size: 16px;
+      font-size:
+        16px;
 
-      font-weight: 900;
+      font-weight:
+        800;
 
       box-shadow:
-        0 7px 18px rgba(15, 167, 127, .17);
+        0 6px 16px
+        rgba(18,168,125,.16);
 
       transition:
         transform .15s ease;
+
     }
+
 
     .buy:active {
-      transform: scale(.98);
+
+      transform:
+        scale(.98);
+
     }
 
+
     .buy-icon {
-      font-size: 19px;
+
+      font-size:
+        18px;
+
     }
 
 
@@ -739,69 +1047,103 @@
 
     .empty {
 
-      width: calc(100% - 28px);
+      width:
+        calc(100% - 32px);
 
-      max-width: 390px;
+      max-width:
+        390px;
 
-      margin: 35px auto;
+      margin:
+        35px auto;
 
-      padding: 35px 20px;
+      padding:
+        32px 20px;
 
-      text-align: center;
+      text-align:
+        center;
 
-      background: #ffffff;
+      background:
+        #FFFFFF;
 
-      border-radius: 20px;
+      border:
+        1px solid var(--border);
 
-      border: 1px solid #ededf3;
+      border-radius:
+        20px;
 
       box-shadow:
-        0 7px 22px rgba(30,30,60,.06);
+        0 7px 22px
+        rgba(30,30,60,.05);
+
     }
+
 
     .empty-icon {
 
-      font-size: 38px;
+      font-size:
+        35px;
 
-      margin-bottom: 10px;
+      margin-bottom:
+        9px;
+
     }
+
 
     .empty-title {
 
-      color: #333344;
+      color:
+        var(--text);
 
-      font-size: 16px;
+      font-size:
+        15px;
 
-      font-weight: 800;
+      font-weight:
+        700;
+
     }
+
 
     .empty-text {
 
-      color: #9999a8;
+      color:
+        var(--text-light);
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      margin-top: 5px;
+      margin-top:
+        4px;
+
     }
 
 
     /* =====================================================
-       DESKTOP
+       TABLET / DESKTOP
     ===================================================== */
 
     @media (min-width: 700px) {
 
       .categories {
-        grid-template-columns: repeat(4, 1fr);
+
+        grid-template-columns:
+          repeat(4, 1fr);
+
       }
 
       .category {
-        min-height: 82px;
+
+        min-height:
+          72px;
+
       }
 
       .product {
-        max-width: 390px;
+
+        max-width:
+          390px;
+
       }
+
     }
 
 
@@ -812,44 +1154,76 @@
     @media (max-width: 380px) {
 
       .brand {
-        font-size: 25px;
+
+        font-size:
+          25px;
+
+      }
+
+      .section-title {
+
+        font-size:
+          18px;
+
       }
 
       .category {
-        min-height: 70px;
-        padding: 10px;
+
+        min-height:
+          66px;
+
+        padding:
+          9px;
+
       }
 
       .category-icon {
 
-        width: 40px;
-        height: 40px;
+        width:
+          39px;
 
-        min-width: 40px;
+        height:
+          39px;
 
-        font-size: 20px;
+        min-width:
+          39px;
+
+        font-size:
+          19px;
+
       }
 
       .category-name {
-        font-size: 13px;
+
+        font-size:
+          13px;
+
       }
 
       .product {
-        width: calc(100% - 24px);
-        border-radius: 19px;
+
+        width:
+          calc(100% - 24px);
+
+        border-radius:
+          19px;
+
       }
 
       .product-title {
-        font-size: 16px;
+
+        font-size:
+          16px;
+
       }
 
       .price-number {
-        font-size: 25px;
+
+        font-size:
+          25px;
+
       }
 
-      .product-info {
-        padding: 15px;
-      }
     }
 
   </style>
@@ -866,277 +1240,255 @@
 
   <div id="home">
 
+    <div class="app-container">
 
-    <!-- HEADER -->
 
-    <header class="top-header">
+      <!-- HEADER -->
 
-      <div class="brand">
-        🔥 وَفِّرْهَا صَحّ
+      <header class="top-header">
+
+        <div class="brand">
+          🔥 وَفِّرْهَا صَحّ
+        </div>
+
+        <div class="brand-subtitle">
+          عروض مختارة بعناية وأسعار تستاهل
+        </div>
+
+      </header>
+
+
+      <!-- SECTION INTRO -->
+
+      <section class="section-intro">
+
+        <div class="section-title">
+          تصفّح الأقسام
+        </div>
+
+        <div class="section-description">
+          اختر القسم الذي يناسبك
+        </div>
+
+      </section>
+
+
+      <!-- CATEGORIES -->
+
+      <div class="categories">
+
+
+        <button
+          class="category"
+          onclick="showCategory('shoes')"
+        >
+
+          <span class="category-icon">
+            👟
+          </span>
+
+          <span class="category-name">
+            الأحذية
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('dresses')"
+        >
+
+          <span class="category-icon">
+            👗
+          </span>
+
+          <span class="category-name">
+            الفساتين
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('accessories')"
+        >
+
+          <span class="category-icon">
+            💍
+          </span>
+
+          <span class="category-name">
+            الإكسسوارات
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('bags')"
+        >
+
+          <span class="category-icon">
+            👜
+          </span>
+
+          <span class="category-name">
+            الشنط
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('watches')"
+        >
+
+          <span class="category-icon">
+            ⌚
+          </span>
+
+          <span class="category-name">
+            الساعات
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('electronics')"
+        >
+
+          <span class="category-icon">
+            📱
+          </span>
+
+          <span class="category-name">
+            الإلكترونيات
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('home')"
+        >
+
+          <span class="category-icon">
+            🏠
+          </span>
+
+          <span class="category-name">
+            المنزل
+          </span>
+
+        </button>
+
+
+        <button
+          class="category"
+          onclick="showCategory('deals')"
+        >
+
+          <span class="category-icon">
+            🔥
+          </span>
+
+          <span class="category-name">
+            أقوى العروض
+          </span>
+
+        </button>
+
+
       </div>
 
-      <div class="brand-subtitle">
-        عروض مختارة بعناية وأسعار تستاهل
-      </div>
 
-    </header>
-
-
-    <!-- INTRO -->
-
-    <section class="section-intro">
-
-      <div class="section-title">
-        ماذا تبحث عنه؟
-      </div>
-
-      <div class="section-description">
-        اختر القسم وشاهد أفضل المنتجات
-      </div>
-
-    </section>
-
-
-    <!-- CATEGORIES -->
-
-    <div class="categories">
-
+      <!-- DEALS BANNER -->
 
       <button
-        class="category"
-        onclick="showCategory('shoes')"
-      >
-
-        <span class="category-icon">
-          👟
-        </span>
-
-        <span class="category-name">
-          الأحذية
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
-        onclick="showCategory('dresses')"
-      >
-
-        <span class="category-icon">
-          👗
-        </span>
-
-        <span class="category-name">
-          الفساتين
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
-        onclick="showCategory('accessories')"
-      >
-
-        <span class="category-icon">
-          💍
-        </span>
-
-        <span class="category-name">
-          الإكسسوارات
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
-        onclick="showCategory('bags')"
-      >
-
-        <span class="category-icon">
-          👜
-        </span>
-
-        <span class="category-name">
-          الشنط
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
-        onclick="showCategory('watches')"
-      >
-
-        <span class="category-icon">
-          ⌚
-        </span>
-
-        <span class="category-name">
-          الساعات
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
-        onclick="showCategory('electronics')"
-      >
-
-        <span class="category-icon">
-          📱
-        </span>
-
-        <span class="category-name">
-          الإلكترونيات
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
-        onclick="showCategory('home')"
-      >
-
-        <span class="category-icon">
-          🏠
-        </span>
-
-        <span class="category-name">
-          المنزل
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </button>
-
-
-      <button
-        class="category"
+        class="deals-banner"
         onclick="showCategory('deals')"
       >
 
-        <span
-          class="category-icon"
-          style="background:#fff1e8;"
-        >
-          🔥
-        </span>
+        <div class="deals-content">
 
-        <span class="category-name">
-          أقوى العروض
-        </span>
+          <div class="deals-small">
+            عروض تستاهل
+          </div>
 
-        <span class="category-arrow">
-          ‹
-        </span>
+          <div class="deals-title">
+            🔥 أقوى العروض اليوم
+          </div>
+
+        </div>
+
+
+        <div class="deals-icon">
+          ⚡
+        </div>
 
       </button>
 
 
     </div>
-
-
-    <!-- DEALS BANNER -->
-
-    <button
-      class="deals-banner"
-      onclick="showCategory('deals')"
-    >
-
-      <div class="deals-content">
-
-        <div class="deals-small">
-          لا تفوّت الفرصة
-        </div>
-
-        <div class="deals-title">
-          🔥 أقوى العروض اليوم
-        </div>
-
-      </div>
-
-      <div class="deals-icon">
-        ⚡
-      </div>
-
-    </button>
-
 
   </div>
 
 
 
   <!-- =====================================================
-       PRODUCTS
+       PRODUCTS PAGE
   ===================================================== -->
 
   <div id="products">
 
-
-    <div class="products-header">
-
-
-      <button
-        class="back"
-        onclick="goHome()"
-        aria-label="رجوع"
-      >
-        →
-      </button>
+    <div class="app-container">
 
 
-      <div class="products-title-wrap">
+      <!-- PRODUCTS HEADER -->
 
-        <h2 id="categoryTitle">
-        </h2>
+      <div class="products-header">
 
-        <div
-          id="productsCount"
-          class="products-count"
+
+        <button
+          class="back"
+          onclick="goHome()"
+          aria-label="رجوع"
         >
+          ←
+        </button>
+
+
+        <div class="products-title-wrap">
+
+          <h2 id="categoryTitle">
+          </h2>
+
+          <div
+            id="productsCount"
+            class="products-count"
+          >
+          </div>
+
         </div>
+
 
       </div>
 
 
+      <!-- PRODUCT LIST -->
+
+      <div id="productList">
+      </div>
+
+
     </div>
-
-
-    <div id="productList">
-    </div>
-
 
   </div>
 
@@ -1257,16 +1609,38 @@
         products[category] || [];
 
 
-      document
-        .getElementById("productsCount")
-        .textContent =
-        items.length === 1
-          ? "منتج واحد"
-          : `${items.length} منتجات`;
+      const count =
+        document.getElementById(
+          "productsCount"
+        );
+
+
+      if (items.length === 1) {
+
+        count.textContent =
+          "منتج واحد";
+
+      }
+
+      else if (items.length > 1) {
+
+        count.textContent =
+          `${items.length} منتجات`;
+
+      }
+
+      else {
+
+        count.textContent =
+          "لا توجد منتجات حاليًا";
+
+      }
 
 
       const productList =
-        document.getElementById("productList");
+        document.getElementById(
+          "productList"
+        );
 
 
       productList.innerHTML = "";
@@ -1288,7 +1662,7 @@
             </div>
 
             <div class="empty-title">
-              لا توجد منتجات هنا حالياً
+              لا توجد منتجات هنا حاليًا
             </div>
 
             <div class="empty-text">
@@ -1323,6 +1697,8 @@
           <article class="product">
 
 
+            <!-- PRODUCT IMAGE -->
+
             <div class="product-image">
 
 
@@ -1340,6 +1716,8 @@
             </div>
 
 
+            <!-- PRODUCT INFORMATION -->
+
             <div class="product-info">
 
 
@@ -1347,6 +1725,8 @@
                 ${product.title}
               </div>
 
+
+              <!-- PRICE -->
 
               <div class="price-row">
 
@@ -1371,6 +1751,8 @@
 
               </div>
 
+
+              <!-- BUY -->
 
               <a
                 class="buy"
@@ -1447,4 +1829,9 @@
     }
 
 
-  </script
+  </script>
+
+
+</body>
+
+</html>
