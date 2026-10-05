@@ -2,19 +2,42 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>وفرها صح</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <title>وَفِّرْهَا صَحّ</title>
 
   <!-- Telegram Mini App -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+  <!-- Arabic Font -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+
   <style>
 
-    /* =========================
-       GENERAL
-    ========================= */
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       box-sizing: border-box;
@@ -22,18 +45,22 @@
       padding: 0;
     }
 
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Tahoma,
-        Arial,
-        sans-serif;
+    html {
+      scroll-behavior: smooth;
+    }
 
-      background: #f5f7fb;
-      color: #222;
+    body {
+
+      font-family: "Cairo", sans-serif;
+
+      background: #f6f7fb;
+
+      color: #171725;
+
       min-height: 100vh;
+
+      -webkit-font-smoothing: antialiased;
+
     }
 
     button,
@@ -41,230 +68,504 @@
       font-family: inherit;
     }
 
+    button {
+      border: none;
+    }
 
-    /* =========================
+
+    /* =====================================================
        HEADER
-    ========================= */
+    ===================================================== */
 
-    .header {
-      background: linear-gradient(
-        135deg,
-        #ff7a00,
-        #ff4d4d
-      );
+    .top-header {
 
-      color: white;
+      position: relative;
+
+      background:
+        linear-gradient(
+          135deg,
+          #5b35d5 0%,
+          #713fe2 55%,
+          #8249e8 100%
+        );
+
+      color: #ffffff;
+
+      padding:
+        25px
+        18px
+        30px;
 
       text-align: center;
 
-      padding: 24px 16px 20px;
+      overflow: hidden;
+
+    }
+
+    .top-header::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.08);
+
+      top: -90px;
+      right: -50px;
+
+    }
+
+    .top-header::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.06);
+
+      bottom: -70px;
+      left: -30px;
+
+    }
+
+    .brand {
+
+      position: relative;
+
+      z-index: 2;
 
       font-size: 28px;
+
       font-weight: 900;
 
-      box-shadow:
-        0 5px 18px rgba(255, 92, 0, 0.20);
+      letter-spacing: -0.5px;
+
+      margin-bottom: 5px;
+
     }
 
-    .subtitle {
-      text-align: center;
+    .brand span {
+      display: inline-block;
+    }
 
-      background: white;
+    .brand-subtitle {
 
-      padding: 14px 10px;
+      position: relative;
 
-      color: #666;
+      z-index: 2;
 
-      font-size: 15px;
+      font-size: 13px;
 
-      border-bottom: 1px solid #eee;
+      font-weight: 500;
+
+      opacity: 0.88;
+
     }
 
 
-    /* =========================
+    /* =====================================================
        HOME
-    ========================= */
+    ===================================================== */
 
     #home {
+
       display: block;
 
-      padding-bottom: 25px;
+      padding-bottom: 30px;
+
     }
 
 
-    /* =========================
+    /* =====================================================
+       SECTION INTRO
+    ===================================================== */
+
+    .section-intro {
+
+      max-width: 650px;
+
+      margin: 0 auto;
+
+      padding:
+        22px
+        18px
+        10px;
+
+      text-align: center;
+
+    }
+
+    .section-title {
+
+      font-size: 20px;
+
+      font-weight: 800;
+
+      color: #202033;
+
+    }
+
+    .section-description {
+
+      margin-top: 2px;
+
+      color: #858595;
+
+      font-size: 13px;
+
+      font-weight: 500;
+
+    }
+
+
+    /* =====================================================
        CATEGORIES
-    ========================= */
+    ===================================================== */
 
     .categories {
+
+      width: calc(100% - 28px);
+
+      max-width: 650px;
+
+      margin: 8px auto 0;
+
       display: grid;
 
       grid-template-columns: repeat(2, 1fr);
 
       gap: 12px;
 
-      padding: 18px 14px 10px;
-
-      max-width: 600px;
-
-      margin: auto;
     }
+
+
+    /* =====================================================
+       CATEGORY CARD
+    ===================================================== */
 
     .category {
-      border: none;
 
-      background: white;
+      position: relative;
 
-      color: #222;
+      display: flex;
 
-      min-height: 70px;
+      align-items: center;
 
-      border-radius: 16px;
+      gap: 11px;
 
-      font-size: 17px;
-
-      font-weight: 800;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 4px 14px rgba(0, 0, 0, 0.07);
-
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-
-    .category:active {
-      transform: scale(0.96);
-
-      box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-
-    /* =========================
-       BEST DEALS BUTTON
-    ========================= */
-
-    .offers {
-      display: block;
-
-      width: calc(100% - 28px);
-
-      max-width: 600px;
-
-      margin: 12px auto 0;
-
-      padding: 17px 15px;
-
-      border: none;
-
-      border-radius: 16px;
-
-      background: linear-gradient(
-        135deg,
-        #ff8a00,
-        #ff3d3d
-      );
-
-      color: white;
-
-      font-size: 18px;
-
-      font-weight: 900;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 7px 18px rgba(255, 77, 61, 0.25);
-
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-
-    .offers:active {
-      transform: scale(0.97);
-
-      box-shadow:
-        0 4px 12px rgba(255, 77, 61, 0.20);
-    }
-
-
-    /* =========================
-       PRODUCTS PAGE
-    ========================= */
-
-    .products {
-      display: none;
-
-      padding: 15px 0 30px;
-    }
-
-    .products.active {
-      display: block;
-    }
-
-
-    /* =========================
-       BACK BUTTON
-    ========================= */
-
-    .back {
-      display: block;
-
-      width: calc(100% - 28px);
-
-      max-width: 600px;
-
-      margin: 0 auto 15px;
+      min-height: 76px;
 
       padding: 13px;
 
-      border: none;
+      background: #ffffff;
 
-      border-radius: 12px;
+      border: 1px solid #ececf3;
 
-      background: #e9eef5;
+      border-radius: 17px;
 
-      color: #333;
+      color: #242434;
+
+      cursor: pointer;
+
+      text-align: right;
+
+      box-shadow:
+        0 5px 18px rgba(30, 30, 60, 0.055);
+
+      transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+
+    }
+
+    .category:active {
+
+      transform: scale(.97);
+
+      box-shadow:
+        0 3px 10px rgba(30, 30, 60, .08);
+
+    }
+
+    .category-icon {
+
+      width: 45px;
+      height: 45px;
+
+      min-width: 45px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      font-size: 23px;
+
+      background: #f1edff;
+
+    }
+
+    .category-name {
 
       font-size: 15px;
 
       font-weight: 800;
 
+      line-height: 1.35;
+
+    }
+
+    .category-arrow {
+
+      margin-right: auto;
+
+      color: #aaaabd;
+
+      font-size: 18px;
+
+      font-weight: 700;
+
+    }
+
+
+    /* =====================================================
+       DEALS BANNER
+    ===================================================== */
+
+    .deals-banner {
+
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      width: calc(100% - 28px);
+
+      max-width: 650px;
+
+      min-height: 86px;
+
+      margin: 18px auto 0;
+
+      padding: 15px 18px;
+
+      border-radius: 19px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff8a24,
+          #ff5b35
+        );
+
+      color: #ffffff;
+
       cursor: pointer;
+
+      box-shadow:
+        0 10px 25px rgba(255, 100, 45, .20);
+
     }
 
-    .back:active {
-      transform: scale(0.98);
+    .deals-banner::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.10);
+
+      left: -45px;
+      bottom: -75px;
+
     }
 
+    .deals-content {
 
-    /* =========================
-       CATEGORY TITLE
-    ========================= */
+      position: relative;
 
-    #categoryTitle {
-      text-align: center;
+      z-index: 2;
 
-      font-size: 22px;
+    }
+
+    .deals-small {
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      opacity: .9;
+
+    }
+
+    .deals-title {
+
+      font-size: 19px;
 
       font-weight: 900;
 
-      color: #222;
+      margin-top: 1px;
 
-      margin: 10px 0 18px;
+    }
+
+    .deals-icon {
+
+      position: relative;
+
+      z-index: 2;
+
+      width: 49px;
+      height: 49px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 15px;
+
+      background: rgba(255,255,255,.18);
+
+      font-size: 25px;
+
     }
 
 
-    /* =========================
+    /* =====================================================
+       PRODUCTS PAGE
+    ===================================================== */
+
+    #products {
+
+      display: none;
+
+      min-height: 100vh;
+
+      padding-bottom: 35px;
+
+    }
+
+    #products.active {
+      display: block;
+    }
+
+
+    /* =====================================================
+       PRODUCT HEADER
+    ===================================================== */
+
+    .products-header {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      max-width: 650px;
+
+      margin: 0 auto;
+
+      padding: 18px 16px 10px;
+
+    }
+
+    .back {
+
+      width: 42px;
+      height: 42px;
+
+      min-width: 42px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background: #ffffff;
+
+      color: #29293a;
+
+      font-size: 21px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 4px 14px rgba(30,30,60,.06);
+
+      border: 1px solid #ededf3;
+
+    }
+
+    .products-title-wrap {
+
+      flex: 1;
+
+    }
+
+    #categoryTitle {
+
+      font-size: 21px;
+
+      font-weight: 900;
+
+      color: #202033;
+
+    }
+
+    .products-count {
+
+      color: #9090a0;
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+    }
+
+
+    /* =====================================================
+       PRODUCT LIST
+    ===================================================== */
+
+    #productList {
+
+      width: 100%;
+
+      padding-top: 6px;
+
+    }
+
+
+    /* =====================================================
        PRODUCT CARD
-    ========================= */
+    ===================================================== */
 
     .product {
-      background: white;
 
       width: calc(100% - 28px);
 
@@ -272,348 +573,710 @@
 
       margin: 0 auto 20px;
 
-      border-radius: 18px;
+      background: #ffffff;
+
+      border-radius: 21px;
 
       overflow: hidden;
 
-      box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #ededf2;
 
-      border: 1px solid #eee;
+      box-shadow:
+        0 8px 28px rgba(32, 32, 65, .08);
+
     }
 
 
-    /* =========================
-       PRODUCT IMAGE
-    ========================= */
+    /* =====================================================
+       PRODUCT IMAGE AREA
+    ===================================================== */
 
-    .product img {
+    .product-image {
+
+      position: relative;
+
       width: 100%;
 
-      height: 245px;
+      height: 285px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #fafafd;
+
+      overflow: hidden;
+
+    }
+
+    .product-image::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+
+      height: 1px;
+
+      background: #eeeeF3;
+
+    }
+
+    .product-image img {
+
+      width: 100%;
+
+      height: 100%;
 
       display: block;
 
       object-fit: contain;
 
-      background: #fafafa;
+      padding: 10px 18px;
 
-      padding: 12px;
     }
 
 
-    /* =========================
-       PRODUCT INFO
-    ========================= */
+    /* =====================================================
+       DISCOUNT BADGE
+    ===================================================== */
 
-    .product-info {
-      padding: 15px;
-    }
+    .discount {
 
+      position: absolute;
 
-    /* =========================
-       PRODUCT TITLE
-    ========================= */
+      top: 13px;
 
-    .product-title {
-      font-size: 17px;
+      right: 13px;
 
-      line-height: 1.7;
+      z-index: 3;
+
+      padding: 5px 9px;
+
+      border-radius: 9px;
+
+      background: #ff5a54;
+
+      color: #ffffff;
+
+      font-size: 11px;
 
       font-weight: 800;
 
-      color: #222;
-
-      margin-bottom: 8px;
     }
 
 
-    /* =========================
-       PRICE
-    ========================= */
+    /* =====================================================
+       PRODUCT INFO
+    ===================================================== */
 
-    .price {
+    .product-info {
+
+      padding: 16px 17px 17px;
+
+    }
+
+    .product-title {
+
+      color: #20202d;
+
+      font-size: 17px;
+
+      line-height: 1.65;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    /* =====================================================
+       PRICE ROW
+    ===================================================== */
+
+    .price-row {
+
       display: flex;
 
       align-items: center;
 
-      gap: 9px;
+      justify-content: space-between;
 
-      flex-wrap: wrap;
+      gap: 10px;
 
-      font-size: 22px;
+      margin-bottom: 13px;
+
+    }
+
+    .current-price {
+
+      display: flex;
+
+      align-items: baseline;
+
+      gap: 4px;
+
+      color: #e74747;
+
+    }
+
+    .price-number {
+
+      font-size: 27px;
+
+      line-height: 1;
 
       font-weight: 900;
 
-      color: #e53935;
     }
 
-    .old {
-      font-size: 14px;
+    .price-currency {
 
-      color: #999;
+      font-size: 13px;
+
+      font-weight: 800;
+
+    }
+
+    .old-price {
+
+      color: #a1a1ad;
+
+      font-size: 13px;
+
+      font-weight: 600;
 
       text-decoration: line-through;
 
-      font-weight: 600;
     }
 
 
-    /* =========================
+    /* =====================================================
        BUY BUTTON
-    ========================= */
+    ===================================================== */
 
     .buy {
-      display: block;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 7px;
 
       width: 100%;
 
-      text-align: center;
+      min-height: 52px;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #18b58d,
+          #0fa77f
+        );
+
+      color: #ffffff;
 
       text-decoration: none;
 
-      margin-top: 14px;
-
-      padding: 14px 12px;
-
-      border-radius: 12px;
-
-      background: linear-gradient(
-        135deg,
-        #00b894,
-        #00a884
-      );
-
-      color: white;
-
-      font-size: 17px;
+      font-size: 16px;
 
       font-weight: 900;
 
       box-shadow:
-        0 5px 14px rgba(0, 184, 148, 0.22);
+        0 7px 18px rgba(15, 167, 127, .17);
 
       transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
+        transform .15s ease;
+
     }
 
     .buy:active {
-      transform: scale(0.97);
 
-      box-shadow:
-        0 3px 9px rgba(0, 184, 148, 0.18);
+      transform: scale(.98);
+
+    }
+
+    .buy-icon {
+
+      font-size: 19px;
+
     }
 
 
-    /* =========================
-       EMPTY CATEGORY
-    ========================= */
+    /* =====================================================
+       EMPTY
+    ===================================================== */
 
     .empty {
+
       width: calc(100% - 28px);
 
       max-width: 430px;
 
-      margin: 30px auto;
+      margin: 35px auto;
 
-      background: white;
-
-      padding: 30px 20px;
+      padding: 35px 20px;
 
       text-align: center;
 
-      border-radius: 16px;
+      background: #ffffff;
 
-      color: #777;
+      border-radius: 20px;
+
+      border: 1px solid #ededf3;
+
+      box-shadow:
+        0 7px 22px rgba(30,30,60,.06);
+
+    }
+
+    .empty-icon {
+
+      font-size: 38px;
+
+      margin-bottom: 10px;
+
+    }
+
+    .empty-title {
+
+      color: #333344;
 
       font-size: 16px;
 
-      box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.06);
+      font-weight: 800;
+
+    }
+
+    .empty-text {
+
+      color: #9999a8;
+
+      font-size: 12px;
+
+      margin-top: 5px;
+
     }
 
 
-    /* =========================
+    /* =====================================================
        DESKTOP
-    ========================= */
+    ===================================================== */
 
     @media (min-width: 700px) {
 
       .categories {
-        grid-template-columns: repeat(4, 1fr);
+
+        grid-template-columns:
+          repeat(4, 1fr);
+
       }
 
       .category {
-        min-height: 80px;
+
+        min-height: 82px;
+
+      }
+
+      .product {
+
+        max-width: 450px;
+
       }
 
     }
 
 
-    /* =========================
+    /* =====================================================
        SMALL PHONES
-    ========================= */
+    ===================================================== */
 
     @media (max-width: 380px) {
 
-      .header {
-        font-size: 24px;
+      .brand {
+
+        font-size: 25px;
+
       }
 
       .category {
-        font-size: 15px;
+
+        min-height: 70px;
+
+        padding: 10px;
+
       }
 
-      .product img {
-        height: 220px;
+      .category-icon {
+
+        width: 40px;
+        height: 40px;
+
+        min-width: 40px;
+
+        font-size: 20px;
+
+      }
+
+      .category-name {
+
+        font-size: 13px;
+
+      }
+
+      .product-image {
+
+        height: 250px;
+
       }
 
       .product-title {
+
         font-size: 16px;
+
+      }
+
+      .price-number {
+
+        font-size: 25px;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
 
 
-  <!-- =========================
+  <!-- =====================================================
        HOME
-  ========================= -->
+  ===================================================== -->
 
   <div id="home">
 
-    <div class="header">
-      🔥 وَفِّرْهَا صَحّ 🔥
-    </div>
 
-    <div class="subtitle">
-      اختَر القسم الذي تبحث عنه 👇
-    </div>
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+      <div class="brand">
+        🔥 وَفِّرْهَا صَحّ
+      </div>
+
+      <div class="brand-subtitle">
+        عروض مختارة بعناية وأسعار تستاهل
+      </div>
+
+    </header>
+
+
+    <!-- INTRO -->
+
+    <section class="section-intro">
+
+      <div class="section-title">
+        ماذا تبحث عنه؟
+      </div>
+
+      <div class="section-description">
+        اختر القسم وشاهد أفضل المنتجات
+      </div>
+
+    </section>
 
 
     <!-- CATEGORIES -->
 
     <div class="categories">
 
-      <button
-        class="category"
-        onclick="showCategory('shoes')">
-        👟 الأحذية
-      </button>
 
       <button
         class="category"
-        onclick="showCategory('dresses')">
-        👗 الفساتين
+        onclick="showCategory('shoes')"
+      >
+
+        <span class="category-icon">
+          👟
+        </span>
+
+        <span class="category-name">
+          الأحذية
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
 
       <button
         class="category"
-        onclick="showCategory('accessories')">
-        💍 الإكسسوارات
+        onclick="showCategory('dresses')"
+      >
+
+        <span class="category-icon">
+          👗
+        </span>
+
+        <span class="category-name">
+          الفساتين
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
 
       <button
         class="category"
-        onclick="showCategory('bags')">
-        👜 الشنط
+        onclick="showCategory('accessories')"
+      >
+
+        <span class="category-icon">
+          💍
+        </span>
+
+        <span class="category-name">
+          الإكسسوارات
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
 
       <button
         class="category"
-        onclick="showCategory('watches')">
-        ⌚ الساعات
+        onclick="showCategory('bags')"
+      >
+
+        <span class="category-icon">
+          👜
+        </span>
+
+        <span class="category-name">
+          الشنط
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
 
       <button
         class="category"
-        onclick="showCategory('electronics')">
-        📱 الإلكترونيات
+        onclick="showCategory('watches')"
+      >
+
+        <span class="category-icon">
+          ⌚
+        </span>
+
+        <span class="category-name">
+          الساعات
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
 
       <button
         class="category"
-        onclick="showCategory('home')">
-        🏠 المنزل
+        onclick="showCategory('electronics')"
+      >
+
+        <span class="category-icon">
+          📱
+        </span>
+
+        <span class="category-name">
+          الإلكترونيات
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
 
       <button
         class="category"
-        onclick="showCategory('deals')">
-        🔥 أقوى العروض
+        onclick="showCategory('home')"
+      >
+
+        <span class="category-icon">
+          🏠
+        </span>
+
+        <span class="category-name">
+          المنزل
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
       </button>
+
+
+      <button
+        class="category"
+        onclick="showCategory('deals')"
+      >
+
+        <span
+          class="category-icon"
+          style="background:#fff1e8;"
+        >
+          🔥
+        </span>
+
+        <span class="category-name">
+          أقوى العروض
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </button>
+
 
     </div>
 
 
-    <!-- TODAY OFFERS -->
+    <!-- DEALS -->
 
     <button
-      class="offers"
-      onclick="showCategory('deals')">
+      class="deals-banner"
+      onclick="showCategory('deals')"
+    >
 
-      🔥 أقوى العروض اليوم 🔥
+      <div class="deals-content">
+
+        <div class="deals-small">
+          لا تفوّت الفرصة
+        </div>
+
+        <div class="deals-title">
+          🔥 أقوى العروض اليوم
+        </div>
+
+      </div>
+
+      <div class="deals-icon">
+        ⚡
+      </div>
 
     </button>
+
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- =====================================================
        PRODUCTS
-  ========================= -->
+  ===================================================== -->
 
-  <div id="products" class="products">
-
-    <button
-      class="back"
-      onclick="goHome()">
-
-      ← الأقسام
-
-    </button>
+  <div id="products">
 
 
-    <h2 id="categoryTitle"></h2>
+    <div class="products-header">
 
 
-    <div id="productList"></div>
+      <button
+        class="back"
+        onclick="goHome()"
+        aria-label="رجوع"
+      >
+        → 
+      </button>
+
+
+      <div class="products-title-wrap">
+
+        <h2 id="categoryTitle">
+        </h2>
+
+        <div
+          id="productsCount"
+          class="products-count"
+        >
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div id="productList">
+    </div>
+
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- =====================================================
        JAVASCRIPT
-  ========================= -->
+  ===================================================== -->
 
   <script>
 
-    /* =========================
+
+    /* =====================================================
        PRODUCTS
-    ========================= */
+    ===================================================== */
 
     const products = {
+
 
       bags: [
 
         {
-          title: "طقم حقائب نسائية مكون من 3 قطع",
 
-          price: "4.36 ر.س",
+          title:
+            "طقم حقائب نسائية مكون من 3 قطع",
 
-          old: "261.99 ر.س",
+          price:
+            "4.36",
 
-          image: "التقاط.JPG",
+          old:
+            "261.99",
 
-          link: "https://temu.to/k/eygm0ev5vxz"
+          image:
+            "التقاط.JPG",
+
+          link:
+            "https://temu.to/k/eygm0ev5vxz"
+
         }
 
       ],
@@ -636,47 +1299,72 @@
     };
 
 
-    /* =========================
+    /* =====================================================
        CATEGORY NAMES
-    ========================= */
+    ===================================================== */
 
     const categoryNames = {
 
-      shoes: "👟 الأحذية",
+      shoes:
+        "👟 الأحذية",
 
-      dresses: "👗 الفساتين",
+      dresses:
+        "👗 الفساتين",
 
-      accessories: "💍 الإكسسوارات",
+      accessories:
+        "💍 الإكسسوارات",
 
-      bags: "👜 الشنط",
+      bags:
+        "👜 الشنط",
 
-      watches: "⌚ الساعات",
+      watches:
+        "⌚ الساعات",
 
-      electronics: "📱 الإلكترونيات",
+      electronics:
+        "📱 الإلكترونيات",
 
-      home: "🏠 المنزل",
+      home:
+        "🏠 المنزل",
 
-      deals: "🔥 أقوى العروض"
+      deals:
+        "🔥 أقوى العروض"
 
     };
 
 
-    /* =========================
+    /* =====================================================
        SHOW CATEGORY
-    ========================= */
+    ===================================================== */
 
     function showCategory(category) {
 
-      document.getElementById("home").style.display = "none";
 
-      const productsPage =
-        document.getElementById("products");
-
-      productsPage.classList.add("active");
+      document
+        .getElementById("home")
+        .style.display = "none";
 
 
-      document.getElementById("categoryTitle").textContent =
+      document
+        .getElementById("products")
+        .classList.add("active");
+
+
+      document
+        .getElementById("categoryTitle")
+        .textContent =
         categoryNames[category];
+
+
+      const items =
+        products[category] || [];
+
+
+      document
+        .getElementById("productsCount")
+        .textContent =
+        items.length === 1
+          ? "منتج واحد"
+          : `${items.length} منتجات`;
 
 
       const productList =
@@ -686,28 +1374,40 @@
       productList.innerHTML = "";
 
 
-      const items = products[category] || [];
-
-
-      /* EMPTY CATEGORY */
+      /* EMPTY */
 
       if (items.length === 0) {
+
 
         productList.innerHTML = `
 
           <div class="empty">
 
-            😔 لا توجد منتجات في هذا القسم حالياً
+            <div class="empty-icon">
+              🛍️
+            </div>
 
-            <br><br>
+            <div class="empty-title">
+              لا توجد منتجات هنا حالياً
+            </div>
 
-            🔥 تابعنا، نضيف عروض جديدة باستمرار
+            <div class="empty-text">
+              نضيف منتجات وعروض جديدة باستمرار
+            </div>
 
           </div>
 
         `;
 
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+
         return;
+
       }
 
 
@@ -715,29 +1415,57 @@
 
       items.forEach(product => {
 
+
         productList.innerHTML += `
 
-          <div class="product">
+          <article class="product">
 
-            <img
-              src="${product.image}"
-              alt="${product.title}"
-            >
+
+            <div class="product-image">
+
+
+              <div class="discount">
+                عرض مميز
+              </div>
+
+
+              <img
+                src="${product.image}"
+                alt="${product.title}"
+              >
+
+
+            </div>
+
 
             <div class="product-info">
+
 
               <div class="product-title">
                 ${product.title}
               </div>
 
 
-              <div class="price">
+              <div class="price-row">
 
-                ${product.price}
 
-                <span class="old">
-                  ${product.old}
-                </span>
+                <div class="current-price">
+
+                  <span class="price-number">
+                    ${product.price}
+                  </span>
+
+                  <span class="price-currency">
+                    ر.س
+                  </span>
+
+                </div>
+
+
+                <div class="old-price">
+                  ${product.old} ر.س
+                </div>
+
 
               </div>
 
@@ -746,34 +1474,27 @@
                 class="buy"
                 href="${product.link}"
                 target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+              >
 
-                🛒 اشترِ الآن
+                <span class="buy-icon">
+                  🛒
+                </span>
+
+                اشترِ الآن
 
               </a>
 
+
             </div>
 
-          </div>
+
+          </article>
 
         `;
 
       });
 
-    }
-
-
-    /* =========================
-       GO HOME
-    ========================= */
-
-    function goHome() {
-
-      document.getElementById("products")
-        .classList.remove("active");
-
-      document.getElementById("home")
-        .style.display = "block";
 
       window.scrollTo({
         top: 0,
@@ -783,17 +1504,46 @@
     }
 
 
-    /* =========================
-       TELEGRAM MINI APP
-    ========================= */
+    /* =====================================================
+       HOME
+    ===================================================== */
 
-    if (window.Telegram && Telegram.WebApp) {
+    function goHome() {
+
+
+      document
+        .getElementById("products")
+        .classList.remove("active");
+
+
+      document
+        .getElementById("home")
+        .style.display = "block";
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =====================================================
+       TELEGRAM
+    ===================================================== */
+
+    if (
+      window.Telegram &&
+      Telegram.WebApp
+    ) {
 
       Telegram.WebApp.ready();
 
       Telegram.WebApp.expand();
 
     }
+
 
   </script>
 
