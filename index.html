@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,27 +8,24 @@
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-/>
+>
 
 <title>وَفِّرْهَا صَحّ</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
-/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link
   rel="preconnect"
   href="https://fonts.gstatic.com"
   crossorigin
-/>
+>
 
 <link
   href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
   rel="stylesheet"
-/>
+>
 
 <style>
 
@@ -145,22 +143,18 @@ a {
 .header-content {
   position: relative;
   z-index: 2;
-
   text-align: center;
 }
 
 .brand {
   margin: 0;
-
   font-size: 27px;
   font-weight: 900;
 }
 
 .tagline {
   margin: 6px 0 0;
-
   font-size: 13px;
-
   opacity: .92;
 }
 
@@ -175,16 +169,13 @@ a {
 
 .section-heading h2 {
   margin: 0;
-
   font-size: 20px;
   font-weight: 900;
 }
 
 .section-heading p {
   margin: 4px 0 0;
-
   color: #8d8a9d;
-
   font-size: 12px;
 }
 
@@ -195,9 +186,7 @@ a {
 
 .categories {
   display: grid;
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
   gap: 13px;
 }
 
@@ -209,7 +198,7 @@ a {
   padding: 0;
   margin: 0;
 
-  background: #ffffff;
+  background: #fff;
 
   border: 1px solid #ebeaf1;
 
@@ -234,7 +223,7 @@ a {
 
 /* =====================================================
    CATEGORY IMAGE
-   مهم: إصلاح الفراغ الأبيض أعلى الصورة
+   تم إصلاح الفراغ الأبيض داخل الصورة
 ===================================================== */
 
 .category-image {
@@ -248,42 +237,43 @@ a {
 
   overflow: hidden;
 
-  background: #eeeef4;
+  background: #f3f3f7;
 
   line-height: 0;
 }
 
 .category-image img {
-  display: block;
+  position: absolute;
+
+  /*
+     نكبر الصورة قليلًا حتى نقتطع
+     الحواف البيضاء الموجودة داخل
+     ملف الصورة الأصلي.
+  */
 
   width: 100%;
   height: 100%;
 
+  max-width: none;
+
   padding: 0;
   margin: 0;
 
-  border: 0;
+  display: block;
 
   object-fit: cover;
 
   /*
-    تكبير بسيط للصورة حتى نزيل
-    المساحة البيضاء الموجودة داخل
-    الصورة الأصلية نفسها.
+     أهم سطرين لحل المشكلة
   */
-  transform: scale(1.22);
 
-  /*
-    نرفع نقطة التركيز قليلًا
-    حتى لا يظهر الفراغ الأبيض العلوي.
-  */
-  object-position: center 58%;
+  object-position: center center;
 
-  transition: transform .25s ease;
-}
+  transform: scale(1.28);
 
-.category:hover .category-image img {
-  transform: scale(1.26);
+  transform-origin: center center;
+
+  border: 0;
 }
 
 
@@ -302,14 +292,12 @@ a {
 
   justify-content: space-between;
 
-  background: #ffffff;
+  background: #fff;
 }
 
 .category-name {
   font-size: 13px;
-
   font-weight: 900;
-
   color: #28243b;
 }
 
@@ -391,7 +379,6 @@ a {
   z-index: 2;
 
   font-size: 19px;
-
   font-weight: 900;
 }
 
@@ -412,7 +399,7 @@ a {
 
   transform: translateY(-50%);
 
-  background: white;
+  background: #fff;
 
   color: #f0522f;
 
@@ -461,7 +448,7 @@ a {
 
   border-radius: 13px;
 
-  background: white;
+  background: #fff;
 
   color: #5b35d5;
 
@@ -510,13 +497,13 @@ a {
 
 
 /* =====================================================
-   PRODUCT CARD
+   PRODUCT
 ===================================================== */
 
 .product {
   width: 100%;
 
-  background: white;
+  background: #fff;
 
   border-radius: 22px;
 
@@ -527,11 +514,6 @@ a {
   box-shadow:
     0 8px 28px rgba(32,32,65,.08);
 }
-
-
-/* =====================================================
-   PRODUCT IMAGE
-===================================================== */
 
 .product-image {
   position: relative;
@@ -548,16 +530,16 @@ a {
 }
 
 .product-image img {
-  display: block;
-
   width: 100%;
   height: 100%;
+
+  display: block;
+
+  object-fit: contain;
 
   padding: 12px;
 
   margin: 0;
-
-  object-fit: contain;
 }
 
 
@@ -575,7 +557,7 @@ a {
 
   background: #ff4e38;
 
-  color: white;
+  color: #fff;
 
   padding: 6px 10px;
 
@@ -678,7 +660,7 @@ a {
 
   background: #12a87d;
 
-  color: white;
+  color: #fff;
 
   font-size: 13px;
 
@@ -687,26 +669,20 @@ a {
   box-shadow:
     0 7px 18px rgba(18,168,125,.18);
 
-  transition:
-    transform .15s ease,
-    filter .15s ease;
+  transition: transform .15s ease;
 }
 
 .buy:active {
   transform: scale(.98);
 }
 
-.buy:hover {
-  filter: brightness(.96);
-}
-
 
 /* =====================================================
-   EMPTY
+   EMPTY CATEGORY
 ===================================================== */
 
 .empty {
-  background: white;
+  background: #fff;
 
   border: 1px solid #ebeaf1;
 
@@ -776,6 +752,7 @@ a {
 
     margin: auto;
   }
+
 }
 
 
@@ -805,6 +782,7 @@ a {
   .product-image {
     height: 235px;
   }
+
 }
 
 </style>
@@ -817,9 +795,9 @@ a {
 <div class="app">
 
 
-<!-- =================================================
+<!-- =====================================================
      HEADER
-================================================= -->
+===================================================== -->
 
 <header class="header">
 
@@ -838,9 +816,9 @@ a {
 </header>
 
 
-<!-- =================================================
+<!-- =====================================================
      HOME
-================================================= -->
+===================================================== -->
 
 <main id="homePage" class="page active">
 
@@ -874,7 +852,7 @@ a {
       <div class="category-image">
 
         <img
-          src="shoes.jpg?v=2"
+          src="shoes.jpg?v=3"
           alt="الأحذية"
         >
 
@@ -906,7 +884,7 @@ a {
       <div class="category-image">
 
         <img
-          src="dresses.jpg?v=2"
+          src="dresses.jpg?v=3"
           alt="الفساتين"
         >
 
@@ -938,7 +916,7 @@ a {
       <div class="category-image">
 
         <img
-          src="accessories.jpg?v=2"
+          src="accessories.jpg?v=3"
           alt="الإكسسوارات"
         >
 
@@ -970,7 +948,7 @@ a {
       <div class="category-image">
 
         <img
-          src="bags.jpg?v=2"
+          src="bags.jpg?v=3"
           alt="الشنط"
         >
 
@@ -1002,7 +980,7 @@ a {
       <div class="category-image">
 
         <img
-          src="watches.jpg?v=2"
+          src="watches.jpg?v=3"
           alt="الساعات"
         >
 
@@ -1034,7 +1012,7 @@ a {
       <div class="category-image">
 
         <img
-          src="electronics.jpg?v=2"
+          src="electronics.jpg?v=3"
           alt="الإلكترونيات"
         >
 
@@ -1066,7 +1044,7 @@ a {
       <div class="category-image">
 
         <img
-          src="home.jpg?v=2"
+          src="home.jpg?v=3"
           alt="المنزل"
         >
 
@@ -1098,7 +1076,7 @@ a {
       <div class="category-image">
 
         <img
-          src="deals.jpg?v=2"
+          src="deals.jpg?v=3"
           alt="أقوى العروض"
         >
 
@@ -1160,9 +1138,9 @@ a {
 </main>
 
 
-<!-- =================================================
+<!-- =====================================================
      PRODUCTS
-================================================= -->
+===================================================== -->
 
 <main id="productsPage" class="page">
 
@@ -1262,12 +1240,11 @@ const products = {
       title: "طقم حقائب نسائية مكون من 3 قطع",
       price: "4.36",
       old: "261.99",
-      image: "النقاط.JPG?v=2",
+      image: "النقاط.JPG?v=3",
       link: "https://temu.to/k/eygm0ev5vxz"
     }
 
   ],
-
 
   shoes: [],
 
@@ -1281,14 +1258,13 @@ const products = {
 
   home: [],
 
-
   deals: [
 
     {
       title: "طقم حقائب نسائية مكون من 3 قطع",
       price: "4.36",
       old: "261.99",
-      image: "النقاط.JPG?v=2",
+      image: "النقاط.JPG?v=3",
       link: "https://temu.to/k/eygm0ev5vxz"
     }
 
@@ -1415,7 +1391,6 @@ function showCategory(category) {
       </div>
 
     `;
-
 
     window.scrollTo({
       top: 0,
