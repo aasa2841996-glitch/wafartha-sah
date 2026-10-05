@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+/>
 
 <title>وَفِّرْهَا صَحّ</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+/>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+/>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
 
 <style>
-* {
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
@@ -43,6 +67,11 @@ a {
   text-decoration: none;
 }
 
+
+/* =====================================================
+   APP
+===================================================== */
+
 .app {
   min-height: 100vh;
 }
@@ -55,38 +84,60 @@ a {
 }
 
 
-/* =========================
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 .header {
-  background: linear-gradient(135deg, #5b35d5, #7047e8, #815bf0);
-  color: white;
-  padding: 25px 18px 28px;
-  border-radius: 0 0 28px 28px;
-  box-shadow: 0 10px 30px rgba(91,53,213,.20);
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5b35d5 0%,
+      #7047e8 50%,
+      #815bf0 100%
+    );
+
+  color: white;
+
+  padding: 25px 18px 28px;
+
+  border-radius: 0 0 28px 28px;
+
+  box-shadow:
+    0 10px 30px rgba(91,53,213,.20);
 }
 
 .header::before {
   content: "";
+
   position: absolute;
+
   width: 180px;
   height: 180px;
+
   border-radius: 50%;
+
   background: rgba(255,255,255,.08);
+
   top: -90px;
   left: -50px;
 }
 
 .header::after {
   content: "";
+
   position: absolute;
+
   width: 150px;
   height: 150px;
+
   border-radius: 50%;
+
   background: rgba(255,255,255,.07);
+
   bottom: -100px;
   right: -30px;
 }
@@ -94,25 +145,29 @@ a {
 .header-content {
   position: relative;
   z-index: 2;
+
   text-align: center;
 }
 
 .brand {
   margin: 0;
+
   font-size: 27px;
   font-weight: 900;
 }
 
 .tagline {
   margin: 6px 0 0;
+
   font-size: 13px;
+
   opacity: .92;
 }
 
 
-/* =========================
-   SECTION
-========================= */
+/* =====================================================
+   SECTION HEADING
+===================================================== */
 
 .section-heading {
   padding: 25px 4px 14px;
@@ -120,36 +175,56 @@ a {
 
 .section-heading h2 {
   margin: 0;
+
   font-size: 20px;
   font-weight: 900;
 }
 
 .section-heading p {
   margin: 4px 0 0;
+
   color: #8d8a9d;
+
   font-size: 12px;
 }
 
 
-/* =========================
+/* =====================================================
    CATEGORIES
-========================= */
+===================================================== */
 
 .categories {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 13px;
 }
 
 .category {
+  display: block;
+
+  width: 100%;
+
   padding: 0;
-  background: white;
+  margin: 0;
+
+  background: #ffffff;
+
   border: 1px solid #ebeaf1;
+
   border-radius: 21px;
+
   overflow: hidden;
-  box-shadow: 0 7px 22px rgba(35,31,62,.07);
+
+  box-shadow:
+    0 7px 22px rgba(35,31,62,.07);
+
   text-align: right;
-  transition: transform .15s ease;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
 }
 
 .category:active {
@@ -157,83 +232,156 @@ a {
 }
 
 
-/*
-  هنا يتم إخفاء الجزء السفلي من الصور
-  الذي يحتوي على اسم القسم داخل الصورة
-*/
+/* =====================================================
+   CATEGORY IMAGE
+   مهم: إصلاح الفراغ الأبيض أعلى الصورة
+===================================================== */
 
 .category-image {
+  position: relative;
+
   width: 100%;
   height: 108px;
-  overflow: hidden;
-  background: #f3f3f7;
-  position: relative;
-  margin: 0;
+
   padding: 0;
+  margin: 0;
+
+  overflow: hidden;
+
+  background: #eeeef4;
+
+  line-height: 0;
 }
 
 .category-image img {
-  width: 100%;
-  height: 145%;
   display: block;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+
   object-fit: cover;
-  object-position: center top;
+
+  /*
+    تكبير بسيط للصورة حتى نزيل
+    المساحة البيضاء الموجودة داخل
+    الصورة الأصلية نفسها.
+  */
+  transform: scale(1.22);
+
+  /*
+    نرفع نقطة التركيز قليلًا
+    حتى لا يظهر الفراغ الأبيض العلوي.
+  */
+  object-position: center 58%;
+
+  transition: transform .25s ease;
+}
+
+.category:hover .category-image img {
+  transform: scale(1.26);
 }
 
 
+/* =====================================================
+   CATEGORY BOTTOM
+===================================================== */
+
 .category-bottom {
   min-height: 48px;
+
   padding: 7px 12px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
-  background: white;
+
+  background: #ffffff;
 }
 
 .category-name {
   font-size: 13px;
+
   font-weight: 900;
+
   color: #28243b;
 }
 
 .category-arrow {
   width: 27px;
   height: 27px;
+
+  flex-shrink: 0;
+
   border-radius: 50%;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   background: #f0edff;
+
   color: #5b35d5;
+
   font-size: 18px;
+
   font-weight: 900;
+
+  line-height: 1;
 }
 
 
-/* =========================
-   DEALS
-========================= */
+/* =====================================================
+   DEALS BANNER
+===================================================== */
 
 .deals-banner {
-  margin-top: 15px;
-  min-height: 108px;
-  padding: 20px;
-  border-radius: 22px;
-  background: linear-gradient(135deg,#ff7a1a,#ff4535);
-  color: white;
   position: relative;
+
+  margin-top: 15px;
+
+  min-height: 108px;
+
+  padding: 20px;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7a1a,
+      #ff4535
+    );
+
+  color: white;
+
   overflow: hidden;
+
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(255,85,35,.20);
+
+  box-shadow:
+    0 10px 25px rgba(255,85,35,.20);
 }
 
 .deals-banner::before {
   content: "";
+
   position: absolute;
+
   width: 160px;
   height: 160px;
+
   border-radius: 50%;
+
   background: rgba(255,255,255,.10);
+
   left: -50px;
   top: -75px;
 }
@@ -241,34 +389,46 @@ a {
 .deals-title {
   position: relative;
   z-index: 2;
+
   font-size: 19px;
+
   font-weight: 900;
 }
 
 .deals-text {
   position: relative;
   z-index: 2;
+
   font-size: 11px;
+
   margin-top: 3px;
 }
 
 .deals-button {
   position: absolute;
+
   left: 18px;
   top: 50%;
+
   transform: translateY(-50%);
+
   background: white;
+
   color: #f0522f;
+
   padding: 9px 13px;
+
   border-radius: 12px;
+
   font-size: 11px;
+
   font-weight: 900;
 }
 
 
-/* =========================
+/* =====================================================
    PAGES
-========================= */
+===================================================== */
 
 .page {
   display: none;
@@ -279,27 +439,39 @@ a {
 }
 
 
-/* =========================
+/* =====================================================
    PRODUCTS HEADER
-========================= */
+===================================================== */
 
 .products-header {
   display: flex;
+
   align-items: center;
+
   gap: 10px;
+
   padding: 21px 2px 15px;
 }
 
 .back-button {
   width: 42px;
   height: 42px;
+
   flex-shrink: 0;
+
   border-radius: 13px;
+
   background: white;
+
   color: #5b35d5;
+
   border: 1px solid #ebeaf1;
-  box-shadow: 0 5px 15px rgba(35,31,62,.06);
+
+  box-shadow:
+    0 5px 15px rgba(35,31,62,.06);
+
   font-size: 22px;
+
   font-weight: 900;
 }
 
@@ -309,64 +481,115 @@ a {
 
 .products-heading h2 {
   margin: 0;
+
   font-size: 19px;
+
   font-weight: 900;
 }
 
 .products-heading p {
   margin: 2px 0 0;
+
   color: #9491a1;
+
   font-size: 11px;
 }
 
 
-/* =========================
-   PRODUCT
-========================= */
+/* =====================================================
+   PRODUCTS LIST
+===================================================== */
 
 .products-list {
   display: flex;
+
   flex-direction: column;
+
   gap: 16px;
 }
 
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
 .product {
   width: 100%;
+
   background: white;
+
   border-radius: 22px;
+
   overflow: hidden;
+
   border: 1px solid #ebeaf1;
-  box-shadow: 0 8px 28px rgba(32,32,65,.08);
+
+  box-shadow:
+    0 8px 28px rgba(32,32,65,.08);
 }
+
+
+/* =====================================================
+   PRODUCT IMAGE
+===================================================== */
 
 .product-image {
   position: relative;
+
   width: 100%;
+
   height: 270px;
+
   background: #fafafd;
+
   overflow: hidden;
+
+  line-height: 0;
 }
 
 .product-image img {
+  display: block;
+
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: contain;
+
   padding: 12px;
+
+  margin: 0;
+
+  object-fit: contain;
 }
+
+
+/* =====================================================
+   DISCOUNT
+===================================================== */
 
 .discount {
   position: absolute;
+
   top: 13px;
   right: 13px;
+
   z-index: 3;
+
   background: #ff4e38;
+
   color: white;
+
   padding: 6px 10px;
+
   border-radius: 10px;
+
   font-size: 10px;
+
   font-weight: 800;
 }
+
+
+/* =====================================================
+   PRODUCT INFO
+===================================================== */
 
 .product-info {
   padding: 15px 16px 17px;
@@ -374,68 +597,123 @@ a {
 
 .product-title {
   font-size: 15px;
+
   line-height: 1.7;
+
   font-weight: 800;
+
   color: #29263c;
+
   margin-bottom: 10px;
 }
 
+
+/* =====================================================
+   PRICE
+===================================================== */
+
 .price-row {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
+  gap: 10px;
+
   margin-bottom: 13px;
 }
 
 .current-price {
   display: flex;
+
   align-items: baseline;
+
   gap: 4px;
 }
 
 .price-number {
   font-size: 25px;
+
   font-weight: 900;
+
   color: #5b35d5;
 }
 
 .price-currency {
   font-size: 11px;
+
   font-weight: 800;
+
   color: #5b35d5;
 }
 
 .old-price {
   color: #aaa8b3;
+
   font-size: 12px;
+
   text-decoration: line-through;
 }
 
+
+/* =====================================================
+   BUY BUTTON
+===================================================== */
+
 .buy {
   width: 100%;
+
   min-height: 47px;
+
   border-radius: 14px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 8px;
+
   background: #12a87d;
+
   color: white;
+
   font-size: 13px;
+
   font-weight: 800;
-  box-shadow: 0 7px 18px rgba(18,168,125,.18);
+
+  box-shadow:
+    0 7px 18px rgba(18,168,125,.18);
+
+  transition:
+    transform .15s ease,
+    filter .15s ease;
+}
+
+.buy:active {
+  transform: scale(.98);
+}
+
+.buy:hover {
+  filter: brightness(.96);
 }
 
 
-/* =========================
+/* =====================================================
    EMPTY
-========================= */
+===================================================== */
 
 .empty {
   background: white;
+
   border: 1px solid #ebeaf1;
+
   border-radius: 20px;
+
   padding: 40px 20px;
+
   text-align: center;
 }
 
@@ -445,25 +723,32 @@ a {
 
 .empty h3 {
   margin: 10px 0 0;
+
   font-size: 16px;
 }
 
 .empty p {
   margin: 7px 0 0;
+
   color: #92909e;
+
   font-size: 12px;
+
   line-height: 1.7;
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 .footer {
   text-align: center;
+
   padding: 28px 10px 10px;
+
   color: #aaa7b5;
+
   font-size: 10px;
 }
 
@@ -472,9 +757,9 @@ a {
 }
 
 
-/* =========================
+/* =====================================================
    DESKTOP
-========================= */
+===================================================== */
 
 @media (min-width: 600px) {
 
@@ -488,14 +773,15 @@ a {
 
   .product {
     max-width: 560px;
+
     margin: auto;
   }
 }
 
 
-/* =========================
+/* =====================================================
    SMALL PHONES
-========================= */
+===================================================== */
 
 @media (max-width: 360px) {
 
@@ -522,6 +808,7 @@ a {
 }
 
 </style>
+
 </head>
 
 
@@ -530,7 +817,9 @@ a {
 <div class="app">
 
 
-<!-- HEADER -->
+<!-- =================================================
+     HEADER
+================================================= -->
 
 <header class="header">
 
@@ -549,8 +838,9 @@ a {
 </header>
 
 
-
-<!-- HOME -->
+<!-- =================================================
+     HOME
+================================================= -->
 
 <main id="homePage" class="page active">
 
@@ -570,16 +860,24 @@ a {
   </div>
 
 
-
   <div class="categories">
 
 
     <!-- SHOES -->
 
-    <button class="category" onclick="showCategory('shoes')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('shoes')"
+    >
 
       <div class="category-image">
-        <img src="shoes.jpg" alt="الأحذية">
+
+        <img
+          src="shoes.jpg?v=2"
+          alt="الأحذية"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -597,13 +895,21 @@ a {
     </button>
 
 
-
     <!-- DRESSES -->
 
-    <button class="category" onclick="showCategory('dresses')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('dresses')"
+    >
 
       <div class="category-image">
-        <img src="dresses.jpg" alt="الفساتين">
+
+        <img
+          src="dresses.jpg?v=2"
+          alt="الفساتين"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -621,13 +927,21 @@ a {
     </button>
 
 
-
     <!-- ACCESSORIES -->
 
-    <button class="category" onclick="showCategory('accessories')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('accessories')"
+    >
 
       <div class="category-image">
-        <img src="accessories.jpg" alt="الإكسسوارات">
+
+        <img
+          src="accessories.jpg?v=2"
+          alt="الإكسسوارات"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -645,13 +959,21 @@ a {
     </button>
 
 
-
     <!-- BAGS -->
 
-    <button class="category" onclick="showCategory('bags')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('bags')"
+    >
 
       <div class="category-image">
-        <img src="bags.jpg" alt="الشنط">
+
+        <img
+          src="bags.jpg?v=2"
+          alt="الشنط"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -669,13 +991,21 @@ a {
     </button>
 
 
-
     <!-- WATCHES -->
 
-    <button class="category" onclick="showCategory('watches')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('watches')"
+    >
 
       <div class="category-image">
-        <img src="watches.jpg" alt="الساعات">
+
+        <img
+          src="watches.jpg?v=2"
+          alt="الساعات"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -693,13 +1023,21 @@ a {
     </button>
 
 
-
     <!-- ELECTRONICS -->
 
-    <button class="category" onclick="showCategory('electronics')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('electronics')"
+    >
 
       <div class="category-image">
-        <img src="electronics.jpg" alt="الإلكترونيات">
+
+        <img
+          src="electronics.jpg?v=2"
+          alt="الإلكترونيات"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -717,13 +1055,21 @@ a {
     </button>
 
 
-
     <!-- HOME -->
 
-    <button class="category" onclick="showCategory('home')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('home')"
+    >
 
       <div class="category-image">
-        <img src="home.jpg" alt="المنزل">
+
+        <img
+          src="home.jpg?v=2"
+          alt="المنزل"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -741,13 +1087,21 @@ a {
     </button>
 
 
-
     <!-- DEALS -->
 
-    <button class="category" onclick="showCategory('deals')">
+    <button
+      class="category"
+      type="button"
+      onclick="showCategory('deals')"
+    >
 
       <div class="category-image">
-        <img src="deals.jpg" alt="أقوى العروض">
+
+        <img
+          src="deals.jpg?v=2"
+          alt="أقوى العروض"
+        >
+
       </div>
 
       <div class="category-bottom">
@@ -766,7 +1120,6 @@ a {
 
 
   </div>
-
 
 
   <!-- DEALS BANNER -->
@@ -791,7 +1144,6 @@ a {
   </div>
 
 
-
   <div class="footer">
 
     <strong>
@@ -808,8 +1160,9 @@ a {
 </main>
 
 
-
-<!-- PRODUCTS -->
+<!-- =================================================
+     PRODUCTS
+================================================= -->
 
 <main id="productsPage" class="page">
 
@@ -820,7 +1173,9 @@ a {
 
     <button
       class="back-button"
+      type="button"
       onclick="goHome()"
+      aria-label="العودة"
     >
       →
     </button>
@@ -862,13 +1217,15 @@ a {
 
 </main>
 
-</div>
 
+</div>
 
 
 <script>
 
-/* TELEGRAM */
+/* =====================================================
+   TELEGRAM
+===================================================== */
 
 const tg =
   window.Telegram &&
@@ -893,8 +1250,9 @@ if (tg) {
 }
 
 
-
-/* PRODUCTS */
+/* =====================================================
+   PRODUCTS
+===================================================== */
 
 const products = {
 
@@ -904,11 +1262,12 @@ const products = {
       title: "طقم حقائب نسائية مكون من 3 قطع",
       price: "4.36",
       old: "261.99",
-      image: "النقاط.JPG",
+      image: "النقاط.JPG?v=2",
       link: "https://temu.to/k/eygm0ev5vxz"
     }
 
   ],
+
 
   shoes: [],
 
@@ -922,13 +1281,14 @@ const products = {
 
   home: [],
 
+
   deals: [
 
     {
       title: "طقم حقائب نسائية مكون من 3 قطع",
       price: "4.36",
       old: "261.99",
-      image: "النقاط.JPG",
+      image: "النقاط.JPG?v=2",
       link: "https://temu.to/k/eygm0ev5vxz"
     }
 
@@ -937,8 +1297,9 @@ const products = {
 };
 
 
-
-/* CATEGORY NAMES */
+/* =====================================================
+   CATEGORY NAMES
+===================================================== */
 
 const categoryNames = {
 
@@ -985,8 +1346,9 @@ const categoryNames = {
 };
 
 
-
-/* SHOW CATEGORY */
+/* =====================================================
+   SHOW CATEGORY
+===================================================== */
 
 function showCategory(category) {
 
@@ -1054,6 +1416,7 @@ function showCategory(category) {
 
     `;
 
+
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -1083,7 +1446,7 @@ function showCategory(category) {
         </div>
 
         <img
-          src="${product.image}"
+          src="${escapeHtml(product.image)}"
           alt="${escapeHtml(product.title)}"
           loading="lazy"
         >
@@ -1103,7 +1466,7 @@ function showCategory(category) {
           <div class="current-price">
 
             <span class="price-number">
-              ${product.price}
+              ${escapeHtml(product.price)}
             </span>
 
             <span class="price-currency">
@@ -1114,7 +1477,7 @@ function showCategory(category) {
 
 
           <div class="old-price">
-            ${product.old} ر.س
+            ${escapeHtml(product.old)} ر.س
           </div>
 
         </div>
@@ -1122,7 +1485,7 @@ function showCategory(category) {
 
         <a
           class="buy"
-          href="${product.link}"
+          href="${escapeHtml(product.link)}"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -1153,8 +1516,9 @@ function showCategory(category) {
 }
 
 
-
-/* HOME */
+/* =====================================================
+   HOME
+===================================================== */
 
 function goHome() {
 
@@ -1162,9 +1526,11 @@ function goHome() {
     .getElementById("productsPage")
     .classList.remove("active");
 
+
   document
     .getElementById("homePage")
     .classList.add("active");
+
 
   window.scrollTo({
     top: 0,
@@ -1174,17 +1540,22 @@ function goHome() {
 }
 
 
-
-/* SECURITY */
+/* =====================================================
+   SECURITY
+===================================================== */
 
 function escapeHtml(value) {
 
   return String(value)
 
     .replace(/&/g, "&amp;")
+
     .replace(/</g, "&lt;")
+
     .replace(/>/g, "&gt;")
+
     .replace(/"/g, "&quot;")
+
     .replace(/'/g, "&#039;");
 
 }
