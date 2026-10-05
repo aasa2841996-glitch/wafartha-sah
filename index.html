@@ -541,23 +541,22 @@
        الصورة الآن مربعة ومتصلة بالبطاقة
     ===================================================== */
 
-    .product-image {
+   .product-image {
+  position: relative;
 
-      position: relative;
+  width: 100%;
 
-      width: 100%;
+  aspect-ratio: 1 / 1;
 
-      aspect-ratio: 1 / 1;
+  display: flex;
 
-      display: flex;
+  align-items: center;
+  justify-content: center;
 
-      align-items: center;
-      justify-content: center;
+  background: #ffffff;
 
-      background: #ffffff;
-
-      overflow: hidden;
-    }
+  overflow: hidden;
+}
 
     .product-image img {
 
