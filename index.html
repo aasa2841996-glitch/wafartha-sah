@@ -1,1336 +1,1193 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <title>وَفِّرْهَا صَحّ</title>
-
-  <!-- Telegram Mini App -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <!-- Arabic Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-
-    /* =========================
-       GENERAL
-    ========================= */
-
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background: #f7f7fb;
-      color: #252337;
-      font-family: "Cairo", sans-serif;
-      min-height: 100vh;
-    }
-
-    button,
-    a {
-      font-family: inherit;
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .app {
-      width: 100%;
-      min-height: 100vh;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 16px 35px;
-    }
-
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    .header {
-      position: relative;
-      background: linear-gradient(135deg, #5b35d5 0%, #7047e8 55%, #815bf0 100%);
-      color: white;
-      padding: 25px 18px 30px;
-      border-radius: 0 0 28px 28px;
-      box-shadow: 0 10px 30px rgba(91, 53, 213, 0.20);
-      overflow: hidden;
-    }
-
-    .header::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.08);
-      top: -90px;
-      left: -50px;
-    }
-
-    .header::after {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.07);
-      bottom: -80px;
-      right: -30px;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .brand {
-      font-size: 25px;
-      font-weight: 900;
-      margin: 0;
-      letter-spacing: -.5px;
-    }
-
-    .brand span {
-      display: inline-block;
-      margin-left: 4px;
-    }
-
-    .tagline {
-      margin: 7px 0 0;
-      font-size: 13px;
-      font-weight: 500;
-      opacity: .92;
-    }
-
-
-    /* =========================
-       PAGE TITLE
-    ========================= */
-
-    .section-heading {
-      padding: 25px 4px 14px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 800;
-      color: #27233b;
-    }
-
-    .section-heading p {
-      margin: 5px 0 0;
-      color: #88869a;
-      font-size: 12px;
-    }
-
-
-    /* =========================
-       CATEGORIES
-    ========================= */
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 13px;
-    }
-
-    .category {
-      position: relative;
-      min-height: 145px;
-      padding: 0;
-      background: white;
-      border: 1px solid #ecebf2;
-      border-radius: 20px;
-      overflow: hidden;
-      text-align: right;
-      box-shadow: 0 6px 20px rgba(35, 31, 62, .06);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-
-    .category:active {
-      transform: scale(.98);
-    }
-
-    .category-image {
-      width: 100%;
-      height: 105px;
-      overflow: hidden;
-      background: #f1f1f5;
-    }
-
-    .category-image img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      transition: transform .25s ease;
-    }
-
-    .category:hover .category-image img {
-      transform: scale(1.04);
-    }
-
-    .category-bottom {
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 7px 12px;
-      background: white;
-    }
-
-    .category-name {
-      color: #29263c;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .category-arrow {
-      width: 23px;
-      height: 23px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #f0edff;
-      color: #5b35d5;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-
-    /* =========================
-       DEALS BANNER
-    ========================= */
-
-    .deals-banner {
-      position: relative;
-      margin-top: 15px;
-      min-height: 100px;
-      padding: 18px 20px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #ff6b16, #ff3f30);
-      color: white;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(255, 85, 35, .20);
-      text-align: right;
-      cursor: pointer;
-    }
-
-    .deals-banner::before {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.10);
-      left: -45px;
-      top: -70px;
-    }
-
-    .deals-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .deals-title {
-      font-size: 18px;
-      font-weight: 900;
-      margin: 0;
-    }
-
-    .deals-text {
-      font-size: 11px;
-      margin-top: 3px;
-      opacity: .93;
-    }
-
-    .deals-button {
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: white;
-      color: #f34d28;
-      border-radius: 12px;
-      padding: 8px 12px;
-      font-size: 11px;
-      font-weight: 800;
-      z-index: 3;
-    }
-
-
-    /* =========================
-       PRODUCTS PAGE
-    ========================= */
-
-    .page {
-      display: none;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    .products-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 21px 2px 15px;
-    }
-
-    .back-button {
-      width: 42px;
-      height: 42px;
-      flex-shrink: 0;
-      border-radius: 13px;
-      background: white;
-      color: #5b35d5;
-      border: 1px solid #ebeaf1;
-      box-shadow: 0 5px 15px rgba(35,31,62,.06);
-      font-size: 23px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .products-heading {
-      flex: 1;
-    }
-
-    .products-heading h2 {
-      margin: 0;
-      font-size: 19px;
-      font-weight: 900;
-      color: #28243b;
-    }
-
-    .products-heading p {
-      margin: 2px 0 0;
-      color: #9491a1;
-      font-size: 11px;
-    }
-
-
-    /* =========================
-       PRODUCT CARD
-    ========================= */
-
-    .products-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .product {
-      width: 100%;
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid #ebeaf1;
-      box-shadow: 0 8px 28px rgba(32, 32, 65, .08);
-    }
-
-    .product-image {
-      position: relative;
-      width: 100%;
-      height: 270px;
-      background: #fafafd;
-      overflow: hidden;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-      padding: 12px;
-    }
-
-    .discount {
-      position: absolute;
-      top: 13px;
-      right: 13px;
-      z-index: 3;
-      background: #ff4e38;
-      color: white;
-      padding: 6px 10px;
-      border-radius: 10px;
-      font-size: 10px;
-      font-weight: 800;
-      box-shadow: 0 5px 12px rgba(255, 78, 56, .22);
-    }
-
-    .product-info {
-      padding: 15px 16px 17px;
-    }
-
-    .product-title {
-      font-size: 15px;
-      line-height: 1.7;
-      font-weight: 800;
-      color: #29263c;
-      margin-bottom: 10px;
-    }
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 13px;
-    }
-
-    .current-price {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-    }
-
-    .price-number {
-      font-size: 25px;
-      line-height: 1;
-      font-weight: 900;
-      color: #5b35d5;
-    }
-
-    .price-currency {
-      font-size: 11px;
-      font-weight: 800;
-      color: #5b35d5;
-    }
-
-    .old-price {
-      color: #aaa8b3;
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: line-through;
-    }
-
-    .buy {
-      width: 100%;
-      min-height: 47px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #12a87d;
-      color: white;
-      font-size: 13px;
-      font-weight: 800;
-      box-shadow: 0 7px 18px rgba(18, 168, 125, .18);
-      transition: transform .15s ease, background .15s ease;
-    }
-
-    .buy:active {
-      transform: scale(.98);
-    }
-
-    .buy-icon {
-      font-size: 16px;
-    }
-
-
-    /* =========================
-       EMPTY CATEGORY
-    ========================= */
-
-    .empty {
-      background: white;
-      border: 1px solid #ebeaf1;
-      border-radius: 20px;
-      padding: 40px 20px;
-      text-align: center;
-      box-shadow: 0 7px 22px rgba(35,31,62,.05);
-    }
-
-    .empty-icon {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .empty h3 {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .empty p {
-      margin: 7px 0 0;
-      color: #92909e;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    .footer {
-      text-align: center;
-      padding: 28px 10px 10px;
-      color: #aaa7b5;
-      font-size: 10px;
-    }
-
-    .footer strong {
-      color: #5b35d5;
-    }
-
-
-    /* =========================
-       DESKTOP
-    ========================= */
-
-    @media (min-width: 600px) {
-
-      .header {
-        margin: 0 auto;
-        border-radius: 0 0 32px 32px;
-      }
-
-      .categories {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .category {
-        min-height: 160px;
-      }
-
-      .category-image {
-        height: 118px;
-      }
-
-      .product {
-        max-width: 560px;
-        margin: 0 auto;
-      }
-
-    }
-
-
-    /* =========================
-       SMALL PHONES
-    ========================= */
-
-    @media (max-width: 360px) {
-
-      .container {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .categories {
-        gap: 9px;
-      }
-
-      .category {
-        min-height: 132px;
-      }
-
-      .category-image {
-        height: 94px;
-      }
-
-      .category-name {
-        font-size: 12px;
-      }
-
-      .product-image {
-        height: 235px;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>وَفِّرْهَا صَحّ</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f7f7fb;
+  color: #252337;
+  font-family: "Cairo", sans-serif;
+}
+
+button,
+a {
+  font-family: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  padding: 0 16px 35px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  background: linear-gradient(135deg, #5b35d5, #7047e8, #815bf0);
+  color: white;
+  padding: 25px 18px 28px;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 10px 30px rgba(91,53,213,.20);
+  overflow: hidden;
+  position: relative;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  top: -90px;
+  left: -50px;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  bottom: -100px;
+  right: -30px;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.brand {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.tagline {
+  margin: 6px 0 0;
+  font-size: 13px;
+  opacity: .92;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section-heading {
+  padding: 25px 4px 14px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+  color: #8d8a9d;
+  font-size: 12px;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+
+.category {
+  padding: 0;
+  background: white;
+  border: 1px solid #ebeaf1;
+  border-radius: 21px;
+  overflow: hidden;
+  box-shadow: 0 7px 22px rgba(35,31,62,.07);
+  text-align: right;
+  transition: transform .15s ease;
+}
+
+.category:active {
+  transform: scale(.98);
+}
+
+
+/*
+  هنا يتم إخفاء الجزء السفلي من الصور
+  الذي يحتوي على اسم القسم داخل الصورة
+*/
+
+.category-image {
+  width: 100%;
+  height: 108px;
+  overflow: hidden;
+  background: #f3f3f7;
+  position: relative;
+}
+
+.category-image img {
+  width: 100%;
+  height: 145%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
+
+.category-bottom {
+  min-height: 48px;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.category-name {
+  font-size: 13px;
+  font-weight: 900;
+  color: #28243b;
+}
+
+.category-arrow {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0edff;
+  color: #5b35d5;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   DEALS
+========================= */
+
+.deals-banner {
+  margin-top: 15px;
+  min-height: 108px;
+  padding: 20px;
+  border-radius: 22px;
+  background: linear-gradient(135deg,#ff7a1a,#ff4535);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255,85,35,.20);
+}
+
+.deals-banner::before {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.10);
+  left: -50px;
+  top: -75px;
+}
+
+.deals-title {
+  position: relative;
+  z-index: 2;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.deals-text {
+  position: relative;
+  z-index: 2;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.deals-button {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  color: #f0522f;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   PAGES
+========================= */
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+
+/* =========================
+   PRODUCTS HEADER
+========================= */
+
+.products-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 21px 2px 15px;
+}
+
+.back-button {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: white;
+  color: #5b35d5;
+  border: 1px solid #ebeaf1;
+  box-shadow: 0 5px 15px rgba(35,31,62,.06);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.products-heading {
+  flex: 1;
+}
+
+.products-heading h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.products-heading p {
+  margin: 2px 0 0;
+  color: #9491a1;
+  font-size: 11px;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product {
+  width: 100%;
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid #ebeaf1;
+  box-shadow: 0 8px 28px rgba(32,32,65,.08);
+}
+
+.product-image {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  background: #fafafd;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  padding: 12px;
+}
+
+.discount {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  z-index: 3;
+  background: #ff4e38;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.product-info {
+  padding: 15px 16px 17px;
+}
+
+.product-title {
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 800;
+  color: #29263c;
+  margin-bottom: 10px;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.current-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.price-number {
+  font-size: 25px;
+  font-weight: 900;
+  color: #5b35d5;
+}
+
+.price-currency {
+  font-size: 11px;
+  font-weight: 800;
+  color: #5b35d5;
+}
+
+.old-price {
+  color: #aaa8b3;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.buy {
+  width: 100%;
+  min-height: 47px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #12a87d;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 7px 18px rgba(18,168,125,.18);
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+  background: white;
+  border: 1px solid #ebeaf1;
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 38px;
+}
+
+.empty h3 {
+  margin: 10px 0 0;
+  font-size: 16px;
+}
+
+.empty p {
+  margin: 7px 0 0;
+  color: #92909e;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  text-align: center;
+  padding: 28px 10px 10px;
+  color: #aaa7b5;
+  font-size: 10px;
+}
+
+.footer strong {
+  color: #5b35d5;
+}
+
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 600px) {
+
+  .categories {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .category-image {
+    height: 118px;
+  }
+
+  .product {
+    max-width: 560px;
+    margin: auto;
+  }
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 360px) {
+
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .categories {
+    gap: 9px;
+  }
+
+  .category-image {
+    height: 94px;
+  }
+
+  .category-bottom {
+    min-height: 44px;
+  }
+
+  .product-image {
+    height: 235px;
+  }
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <!-- =========================
-         HEADER
-    ========================= -->
 
-    <header class="header">
-      <div class="header-content">
+<!-- HEADER -->
 
-        <h1 class="brand">
-          🔥 وَفِّرْهَا صَحّ 🔥
-        </h1>
+<header class="header">
 
-        <p class="tagline">
-          لقيناها لك… ووفرنا عليك البحث 💜
-        </p>
+  <div class="header-content">
 
-      </div>
-    </header>
+    <h1 class="brand">
+      🔥 وَفِّرْهَا صَحّ 🔥
+    </h1>
 
+    <p class="tagline">
+      لقيناها لك… ووفرنا عليك البحث 💜
+    </p>
 
-    <!-- =========================
-         HOME PAGE
-    ========================= -->
+  </div>
 
-    <main id="homePage" class="page active">
+</header>
 
-      <div class="container">
 
-        <div class="section-heading">
 
-          <h2>
-            تسوّق حسب القسم
-          </h2>
+<!-- HOME -->
 
-          <p>
-            اختر القسم واكتشف أفضل المنتجات والعروض
-          </p>
+<main id="homePage" class="page active">
 
-        </div>
+<div class="container">
 
 
-        <div class="categories">
+  <div class="section-heading">
 
+    <h2>
+      تسوّق حسب القسم
+    </h2>
 
-          <!-- SHOES -->
-
-          <button
-            class="category"
-            onclick="showCategory('shoes')"
-          >
-
-            <div class="category-image">
-              <img
-                src="shoes.jpg"
-                alt="الأحذية"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                الأحذية
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- DRESSES -->
-
-          <button
-            class="category"
-            onclick="showCategory('dresses')"
-          >
-
-            <div class="category-image">
-              <img
-                src="dresses.jpg"
-                alt="الفساتين"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                الفساتين
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- ACCESSORIES -->
-
-          <button
-            class="category"
-            onclick="showCategory('accessories')"
-          >
-
-            <div class="category-image">
-              <img
-                src="accessories.jpg"
-                alt="الإكسسوارات"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                الإكسسوارات
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- BAGS -->
-
-          <button
-            class="category"
-            onclick="showCategory('bags')"
-          >
-
-            <div class="category-image">
-              <img
-                src="bags.jpg"
-                alt="الشنط"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                الشنط
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- WATCHES -->
-
-          <button
-            class="category"
-            onclick="showCategory('watches')"
-          >
-
-            <div class="category-image">
-              <img
-                src="watches.jpg"
-                alt="الساعات"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                الساعات
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- ELECTRONICS -->
-
-          <button
-            class="category"
-            onclick="showCategory('electronics')"
-          >
-
-            <div class="category-image">
-              <img
-                src="electronics.jpg"
-                alt="الإلكترونيات"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                الإلكترونيات
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- HOME -->
-
-          <button
-            class="category"
-            onclick="showCategory('home')"
-          >
-
-            <div class="category-image">
-              <img
-                src="home.jpg"
-                alt="المنزل"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                المنزل
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-
-          <!-- BEST DEALS -->
-
-          <button
-            class="category"
-            onclick="showCategory('deals')"
-          >
-
-            <div class="category-image">
-              <img
-                src="deals.jpg"
-                alt="أقوى العروض"
-              >
-            </div>
-
-            <div class="category-bottom">
-
-              <span class="category-name">
-                أقوى العروض
-              </span>
-
-              <span class="category-arrow">
-                ‹
-              </span>
-
-            </div>
-
-          </button>
-
-        </div>
-
-
-        <!-- DEALS BANNER -->
-
-        <div
-          class="deals-banner"
-          onclick="showCategory('deals')"
-        >
-
-          <div class="deals-content">
-
-            <div class="deals-title">
-              🔥 أقوى العروض
-            </div>
-
-            <div class="deals-text">
-              عروض مختارة بأسعار تستاهل
-            </div>
-
-          </div>
-
-          <div class="deals-button">
-            اكتشف الآن
-          </div>
-
-        </div>
-
-
-        <div class="footer">
-          <strong>وَفِّرْهَا صَحّ</strong>
-          — لقيناها لك 🇸🇦
-        </div>
-
-      </div>
-
-    </main>
-
-
-    <!-- =========================
-         PRODUCTS PAGE
-    ========================= -->
-
-    <main id="productsPage" class="page">
-
-      <div class="container">
-
-        <div class="products-header">
-
-          <button
-            class="back-button"
-            onclick="goHome()"
-            aria-label="رجوع"
-          >
-            →
-          </button>
-
-          <div class="products-heading">
-
-            <h2 id="categoryTitle">
-              المنتجات
-            </h2>
-
-            <p id="categorySubtitle">
-              أفضل المنتجات المختارة لك
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div
-          id="productsList"
-          class="products-list"
-        ></div>
-
-
-        <div class="footer">
-          <strong>وَفِّرْهَا صَحّ</strong>
-          — عروض ومنتجات مختارة لك
-        </div>
-
-      </div>
-
-    </main>
+    <p>
+      اختر القسم واكتشف أفضل المنتجات والعروض
+    </p>
 
   </div>
 
 
-  <script>
 
-    /* ==========================================
-       TELEGRAM
-    ========================================== */
+  <div class="categories">
 
-    const tg =
-      window.Telegram &&
-      window.Telegram.WebApp
-        ? window.Telegram.WebApp
-        : null;
 
-    if (tg) {
+    <!-- SHOES -->
 
-      tg.ready();
+    <button class="category" onclick="showCategory('shoes')">
 
-      tg.expand();
+      <div class="category-image">
+        <img src="shoes.jpg" alt="الأحذية">
+      </div>
 
-      try {
-        tg.setHeaderColor("#5b35d5");
-        tg.setBackgroundColor("#f7f7fb");
-      } catch (e) {}
+      <div class="category-bottom">
 
+        <span class="category-name">
+          الأحذية
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- DRESSES -->
+
+    <button class="category" onclick="showCategory('dresses')">
+
+      <div class="category-image">
+        <img src="dresses.jpg" alt="الفساتين">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          الفساتين
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- ACCESSORIES -->
+
+    <button class="category" onclick="showCategory('accessories')">
+
+      <div class="category-image">
+        <img src="accessories.jpg" alt="الإكسسوارات">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          الإكسسوارات
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- BAGS -->
+
+    <button class="category" onclick="showCategory('bags')">
+
+      <div class="category-image">
+        <img src="bags.jpg" alt="الشنط">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          الشنط
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- WATCHES -->
+
+    <button class="category" onclick="showCategory('watches')">
+
+      <div class="category-image">
+        <img src="watches.jpg" alt="الساعات">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          الساعات
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- ELECTRONICS -->
+
+    <button class="category" onclick="showCategory('electronics')">
+
+      <div class="category-image">
+        <img src="electronics.jpg" alt="الإلكترونيات">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          الإلكترونيات
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- HOME -->
+
+    <button class="category" onclick="showCategory('home')">
+
+      <div class="category-image">
+        <img src="home.jpg" alt="المنزل">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          المنزل
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+
+    <!-- DEALS -->
+
+    <button class="category" onclick="showCategory('deals')">
+
+      <div class="category-image">
+        <img src="deals.jpg" alt="أقوى العروض">
+      </div>
+
+      <div class="category-bottom">
+
+        <span class="category-name">
+          أقوى العروض
+        </span>
+
+        <span class="category-arrow">
+          ‹
+        </span>
+
+      </div>
+
+    </button>
+
+
+  </div>
+
+
+
+  <!-- DEALS BANNER -->
+
+  <div
+    class="deals-banner"
+    onclick="showCategory('deals')"
+  >
+
+    <div class="deals-title">
+      🔥 أقوى العروض
+    </div>
+
+    <div class="deals-text">
+      عروض مختارة بأسعار تستاهل
+    </div>
+
+    <div class="deals-button">
+      اكتشف الآن
+    </div>
+
+  </div>
+
+
+
+  <div class="footer">
+
+    <strong>
+      وَفِّرْهَا صَحّ
+    </strong>
+
+    — لقيناها لك 🇸🇦
+
+  </div>
+
+
+</div>
+
+</main>
+
+
+
+<!-- PRODUCTS -->
+
+<main id="productsPage" class="page">
+
+<div class="container">
+
+
+  <div class="products-header">
+
+    <button
+      class="back-button"
+      onclick="goHome()"
+    >
+      →
+    </button>
+
+
+    <div class="products-heading">
+
+      <h2 id="categoryTitle">
+        المنتجات
+      </h2>
+
+      <p id="categorySubtitle">
+        أفضل المنتجات المختارة لك
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="productsList"
+    class="products-list"
+  ></div>
+
+
+  <div class="footer">
+
+    <strong>
+      وَفِّرْهَا صَحّ
+    </strong>
+
+    — عروض ومنتجات مختارة لك
+
+  </div>
+
+
+</div>
+
+</main>
+
+</div>
+
+
+
+<script>
+
+/* TELEGRAM */
+
+const tg =
+  window.Telegram &&
+  window.Telegram.WebApp
+    ? window.Telegram.WebApp
+    : null;
+
+if (tg) {
+
+  tg.ready();
+
+  tg.expand();
+
+  try {
+
+    tg.setHeaderColor("#5b35d5");
+
+    tg.setBackgroundColor("#f7f7fb");
+
+  } catch (e) {}
+
+}
+
+
+
+/* PRODUCTS */
+
+const products = {
+
+  bags: [
+
+    {
+      title: "طقم حقائب نسائية مكون من 3 قطع",
+      price: "4.36",
+      old: "261.99",
+      image: "النقاط.JPG",
+      link: "https://temu.to/k/eygm0ev5vxz"
     }
 
+  ],
 
-    /* ==========================================
-       PRODUCTS
-    ========================================== */
+  shoes: [],
 
-    const products = {
+  dresses: [],
 
-      bags: [
+  accessories: [],
 
-        {
-          title: "طقم حقائب نسائية مكون من 3 قطع",
-          price: "4.36",
-          old: "261.99",
-          image: "النقاط.JPG",
-          link: "https://temu.to/k/eygm0ev5vxz"
-        }
+  watches: [],
 
-      ],
+  electronics: [],
 
-      shoes: [],
+  home: [],
 
-      dresses: [],
+  deals: [
 
-      accessories: [],
+    {
+      title: "طقم حقائب نسائية مكون من 3 قطع",
+      price: "4.36",
+      old: "261.99",
+      image: "النقاط.JPG",
+      link: "https://temu.to/k/eygm0ev5vxz"
+    }
 
-      watches: [],
+  ]
 
-      electronics: [],
-
-      home: [],
-
-      deals: [
-
-        {
-          title: "طقم حقائب نسائية مكون من 3 قطع",
-          price: "4.36",
-          old: "261.99",
-          image: "النقاط.JPG",
-          link: "https://temu.to/k/eygm0ev5vxz"
-        }
-
-      ]
-
-    };
+};
 
 
-    /* ==========================================
-       CATEGORY NAMES
-    ========================================== */
 
-    const categoryNames = {
+/* CATEGORY NAMES */
 
-      shoes: {
-        title: "👟 الأحذية",
-        subtitle: "أفضل الأحذية المختارة لك"
-      },
+const categoryNames = {
 
-      dresses: {
-        title: "👗 الفساتين",
-        subtitle: "فساتين مختارة بأسعار مميزة"
-      },
+  shoes: {
+    title: "👟 الأحذية",
+    subtitle: "أفضل الأحذية المختارة لك"
+  },
 
-      accessories: {
-        title: "💍 الإكسسوارات",
-        subtitle: "إكسسوارات تضيف لمستك"
-      },
+  dresses: {
+    title: "👗 الفساتين",
+    subtitle: "فساتين مختارة بأسعار مميزة"
+  },
 
-      bags: {
-        title: "👜 الشنط",
-        subtitle: "شنط مختارة بأسعار مميزة"
-      },
+  accessories: {
+    title: "💍 الإكسسوارات",
+    subtitle: "إكسسوارات تضيف لمستك"
+  },
 
-      watches: {
-        title: "⌚ الساعات",
-        subtitle: "ساعات بتصاميم وأسعار مميزة"
-      },
+  bags: {
+    title: "👜 الشنط",
+    subtitle: "شنط مختارة بأسعار مميزة"
+  },
 
-      electronics: {
-        title: "📱 الإلكترونيات",
-        subtitle: "منتجات إلكترونية تستاهل"
-      },
+  watches: {
+    title: "⌚ الساعات",
+    subtitle: "ساعات بتصاميم وأسعار مميزة"
+  },
 
-      home: {
-        title: "🏠 المنزل",
-        subtitle: "منتجات مفيدة للمنزل"
-      },
+  electronics: {
+    title: "📱 الإلكترونيات",
+    subtitle: "منتجات إلكترونية تستاهل"
+  },
 
-      deals: {
-        title: "🔥 أقوى العروض",
-        subtitle: "أفضل العروض التي لقيناها لك"
-      }
+  home: {
+    title: "🏠 المنزل",
+    subtitle: "منتجات مفيدة للمنزل"
+  },
 
-    };
+  deals: {
+    title: "🔥 أقوى العروض",
+    subtitle: "أفضل العروض التي لقيناها لك"
+  }
 
-
-    /* ==========================================
-       SHOW CATEGORY
-    ========================================== */
-
-    function showCategory(category) {
-
-      const homePage =
-        document.getElementById("homePage");
-
-      const productsPage =
-        document.getElementById("productsPage");
-
-      const productsList =
-        document.getElementById("productsList");
-
-      const categoryTitle =
-        document.getElementById("categoryTitle");
-
-      const categorySubtitle =
-        document.getElementById("categorySubtitle");
+};
 
 
-      const info =
-        categoryNames[category] || {
-          title: "المنتجات",
-          subtitle: ""
-        };
+
+/* SHOW CATEGORY */
+
+function showCategory(category) {
+
+  const home =
+    document.getElementById("homePage");
+
+  const productsPage =
+    document.getElementById("productsPage");
+
+  const list =
+    document.getElementById("productsList");
+
+  const title =
+    document.getElementById("categoryTitle");
+
+  const subtitle =
+    document.getElementById("categorySubtitle");
 
 
-      const items =
-        products[category] || [];
+  const info =
+    categoryNames[category];
+
+  const items =
+    products[category] || [];
 
 
-      homePage.classList.remove("active");
+  home.classList.remove("active");
 
-      productsPage.classList.add("active");
-
-
-      categoryTitle.textContent =
-        info.title;
-
-      categorySubtitle.textContent =
-        info.subtitle;
+  productsPage.classList.add("active");
 
 
-      productsList.innerHTML = "";
+  title.textContent =
+    info.title;
+
+  subtitle.textContent =
+    info.subtitle;
 
 
-      /* EMPTY */
+  list.innerHTML = "";
 
-      if (!items.length) {
 
-        productsList.innerHTML = `
+  /* EMPTY CATEGORY */
 
-          <div class="empty">
+  if (!items.length) {
 
-            <div class="empty-icon">
-              🛍️
-            </div>
+    list.innerHTML = `
 
-            <h3>
-              قريبًا!
-            </h3>
+      <div class="empty">
 
-            <p>
-              نعمل على إضافة منتجات مميزة
-              لهذا القسم.<br>
-              تابعنا ليصلك كل جديد 🔥
-            </p>
+        <div class="empty-icon">
+          🛍️
+        </div>
+
+        <h3>
+          قريبًا!
+        </h3>
+
+        <p>
+          نعمل على إضافة منتجات مميزة
+          لهذا القسم.<br>
+          تابعنا ليصلك كل جديد 🔥
+        </p>
+
+      </div>
+
+    `;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    return;
+  }
+
+
+  /* PRODUCTS */
+
+  items.forEach(product => {
+
+    const article =
+      document.createElement("article");
+
+    article.className =
+      "product";
+
+
+    article.innerHTML = `
+
+      <div class="product-image">
+
+        <div class="discount">
+          🔥 عرض مميز
+        </div>
+
+        <img
+          src="${product.image}"
+          alt="${escapeHtml(product.title)}"
+          loading="lazy"
+        >
+
+      </div>
+
+
+      <div class="product-info">
+
+        <div class="product-title">
+          ${escapeHtml(product.title)}
+        </div>
+
+
+        <div class="price-row">
+
+          <div class="current-price">
+
+            <span class="price-number">
+              ${product.price}
+            </span>
+
+            <span class="price-currency">
+              ر.س
+            </span>
 
           </div>
 
-        `;
 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-
-        return;
-      }
-
-
-      /* PRODUCTS */
-
-      items.forEach(product => {
-
-        const article =
-          document.createElement("article");
-
-        article.className = "product";
-
-
-        article.innerHTML = `
-
-          <div class="product-image">
-
-            <div class="discount">
-              🔥 عرض مميز
-            </div>
-
-            <img
-              src="${product.image}"
-              alt="${escapeHtml(product.title)}"
-              loading="lazy"
-            >
-
+          <div class="old-price">
+            ${product.old} ر.س
           </div>
 
-
-          <div class="product-info">
-
-            <div class="product-title">
-              ${escapeHtml(product.title)}
-            </div>
+        </div>
 
 
-            <div class="price-row">
+        <a
+          class="buy"
+          href="${product.link}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
 
-              <div class="current-price">
+          <span>
+            🛒
+          </span>
 
-                <span class="price-number">
-                  ${product.price}
-                </span>
+          اشترِ الآن
 
-                <span class="price-currency">
-                  ر.س
-                </span>
+        </a>
 
-              </div>
+      </div>
 
-
-              <div class="old-price">
-                ${product.old} ر.س
-              </div>
-
-            </div>
+    `;
 
 
-            <a
-              class="buy"
-              href="${product.link}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+    list.appendChild(article);
 
-              <span class="buy-icon">
-                🛒
-              </span>
-
-              <span>
-                اشترِ الآن
-              </span>
-
-            </a>
-
-          </div>
-
-        `;
+  });
 
 
-        productsList.appendChild(article);
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
-      });
-
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
+}
 
 
-    /* ==========================================
-       GO HOME
-    ========================================== */
 
-    function goHome() {
+/* HOME */
 
-      document
-        .getElementById("productsPage")
-        .classList.remove("active");
+function goHome() {
 
-      document
-        .getElementById("homePage")
-        .classList.add("active");
+  document
+    .getElementById("productsPage")
+    .classList.remove("active");
 
+  document
+    .getElementById("homePage")
+    .classList.add("active");
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
-    }
+}
 
 
-    /* ==========================================
-       ESCAPE HTML
-    ========================================== */
 
-    function escapeHtml(value) {
+/* SECURITY */
 
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+function escapeHtml(value) {
 
-    }
+  return String(value)
 
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
-    /* ==========================================
-       BROWSER BACK BUTTON
-    ========================================== */
+}
 
-    window.addEventListener(
-      "popstate",
-      function() {
-        goHome();
-      }
-    );
-
-
-    /* ==========================================
-       PREVENT TELEGRAM PAGE ISSUES
-    ========================================== */
-
-    document.addEventListener(
-      "click",
-      function(event) {
-
-        const link =
-          event.target.closest("a");
-
-        if (!link) return;
-
-        const href =
-          link.getAttribute("href");
-
-        if (!href) return;
-
-        if (
-          href.startsWith("http") &&
-          tg
-        ) {
-
-          try {
-
-            tg.openLink(href);
-
-          } catch (e) {
-
-            window.open(
-              href,
-              "_blank"
-            );
-
-          }
-
-        }
-
-      },
-      true
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
