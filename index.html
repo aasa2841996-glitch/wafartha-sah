@@ -1,243 +1,803 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>وفرها صح</title>
+
+  <!-- Telegram Mini App -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
-    * { box-sizing: border-box; }
 
-    body {
+    /* =========================
+       GENERAL
+    ========================= */
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #222;
+      padding: 0;
     }
 
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      background: #f5f7fb;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    button,
+    a {
+      font-family: inherit;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
     .header {
-      padding: 22px 16px 12px;
+      background: linear-gradient(
+        135deg,
+        #ff7a00,
+        #ff4d4d
+      );
+
+      color: white;
+
       text-align: center;
-      font-size: 24px;
-      font-weight: 800;
+
+      padding: 24px 16px 20px;
+
+      font-size: 28px;
+      font-weight: 900;
+
+      box-shadow:
+        0 5px 18px rgba(255, 92, 0, 0.20);
     }
 
     .subtitle {
       text-align: center;
-      color: #777;
-      margin-bottom: 18px;
+
+      background: white;
+
+      padding: 14px 10px;
+
+      color: #666;
+
+      font-size: 15px;
+
+      border-bottom: 1px solid #eee;
     }
+
+
+    /* =========================
+       HOME
+    ========================= */
+
+    #home {
+      display: block;
+
+      padding-bottom: 25px;
+    }
+
+
+    /* =========================
+       CATEGORIES
+    ========================= */
 
     .categories {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 0 14px;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 12px;
+
+      padding: 18px 14px 10px;
+
+      max-width: 600px;
+
+      margin: auto;
     }
 
     .category {
-      border: 0;
-      border-radius: 14px;
-      padding: 18px 8px;
+      border: none;
+
       background: white;
-      font-size: 16px;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+
+      color: #222;
+
+      min-height: 70px;
+
+      border-radius: 16px;
+
+      font-size: 17px;
+
+      font-weight: 800;
+
       cursor: pointer;
+
+      box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.07);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
     }
 
     .category:active {
-      transform: scale(.97);
+      transform: scale(0.96);
+
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
+
+    /* =========================
+       BEST DEALS BUTTON
+    ========================= */
+
     .offers {
-      margin: 18px 14px;
+      display: block;
+
       width: calc(100% - 28px);
-      padding: 16px;
-      border: 0;
-      border-radius: 14px;
-      background: #111;
+
+      max-width: 600px;
+
+      margin: 12px auto 0;
+
+      padding: 17px 15px;
+
+      border: none;
+
+      border-radius: 16px;
+
+      background: linear-gradient(
+        135deg,
+        #ff8a00,
+        #ff3d3d
+      );
+
       color: white;
-      font-size: 17px;
-      font-weight: 800;
+
+      font-size: 18px;
+
+      font-weight: 900;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 18px rgba(255, 77, 61, 0.25);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
     }
+
+    .offers:active {
+      transform: scale(0.97);
+
+      box-shadow:
+        0 4px 12px rgba(255, 77, 61, 0.20);
+    }
+
+
+    /* =========================
+       PRODUCTS PAGE
+    ========================= */
 
     .products {
       display: none;
-      padding: 14px;
+
+      padding: 15px 0 30px;
     }
 
     .products.active {
       display: block;
     }
 
+
+    /* =========================
+       BACK BUTTON
+    ========================= */
+
     .back {
-      border: 0;
-      background: transparent;
-      font-size: 16px;
-      margin-bottom: 12px;
+      display: block;
+
+      width: calc(100% - 28px);
+
+      max-width: 600px;
+
+      margin: 0 auto 15px;
+
+      padding: 13px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #e9eef5;
+
+      color: #333;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
       cursor: pointer;
     }
 
-   .product {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  margin: 0 auto 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.07);
-  width: 420px;
-  max-width: calc(100% - 32px);
-}
-
-.product img {
-  width: 100%;
-  height: 280px;
-  object-fit: contain;
-  display: block;
-  background: #f7f7f7;
-  padding: 10px;
-}
-
-.product-info {
-  padding: 14px 16px 16px;
-}
-
-.product-title {
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.5;
-  margin-bottom: 6px;
-}
-
-.price {
-  margin-top: 5px;
-  font-size: 21px;
-  font-weight: 800;
-}
-
-.old {
-  color: #999;
-  text-decoration: line-through;
-  font-size: 14px;
-  margin-left: 7px;
-}
-
-.buy {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  background: #111;
-  color: white;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 10px;
-  font-weight: 800;
-}
-
-    <div class="categories">
-      <button class="category" onclick="showCategory('shoes')">👟 الأحذية</button>
-      <button class="category" onclick="showCategory('dresses')">👗 الفساتين</button>
-      <button class="category" onclick="showCategory('accessories')">💍 الإكسسوارات</button>
-      <button class="category" onclick="showCategory('bags')">👜 الشنط</button>
-      <button class="category" onclick="showCategory('watches')">⌚ الساعات</button>
-      <button class="category" onclick="showCategory('electronics')">📱 الإلكترونيات</button>
-      <button class="category" onclick="showCategory('home')">🏠 المنزل</button>
-      <button class="category" onclick="showCategory('deals')">🔥 أقوى العروض</button>
-    </div>
-
-    <button class="offers" onclick="showCategory('deals')">
-      🔥 عروض اليوم 🔥
-    </button>
-  </div>
-
-  <div id="products" class="products">
-    <button class="back" onclick="goHome()">← الأقسام</button>
-    <h2 id="categoryTitle"></h2>
-    <div id="productList"></div>
-  </div>
-
-<script>
-  const products = {
-
-    bags: [
-      {
-        title: "طقم حقائب نسائية مكون من 3 قطع",
-        price: "4.36 ر.س",
-        old: "261.99 ر.س",
-        image: "التقاط.JPG",
-        link: "https://temu.to/k/eygm0ev5vxz"
-      }
-    ],
-
-    shoes: [],
-    dresses: [],
-    accessories: [],
-    watches: [],
-    electronics: [],
-    home: [],
-    deals: []
-  };
-
-  const names = {
-    shoes: "👟 الأحذية",
-    dresses: "👗 الفساتين",
-    accessories: "💍 الإكسسوارات",
-    bags: "👜 الشنط",
-    watches: "⌚ الساعات",
-    electronics: "📱 الإلكترونيات",
-    home: "🏠 المنزل",
-    deals: "🔥 أقوى العروض"
-  };
-
-  function showCategory(category) {
-    document.getElementById("home").style.display = "none";
-    document.getElementById("products").classList.add("active");
-
-    document.getElementById("categoryTitle").textContent = names[category];
-
-    const list = document.getElementById("productList");
-    list.innerHTML = "";
-
-    if (!products[category] || products[category].length === 0) {
-      list.innerHTML =
-        '<p style="text-align:center;color:#777;padding:40px 10px;">لا توجد منتجات في هذا القسم حاليًا.</p>';
-      return;
+    .back:active {
+      transform: scale(0.98);
     }
 
-    products[category].forEach(product => {
-      list.innerHTML += `
-        <div class="product">
-          <img src="${product.image}" alt="${product.title}">
-          <div class="product-info">
-            <div class="product-title">${product.title}</div>
 
-            <div class="price">
-              ${product.price}
-              <span class="old">${product.old}</span>
+    /* =========================
+       CATEGORY TITLE
+    ========================= */
+
+    #categoryTitle {
+      text-align: center;
+
+      font-size: 22px;
+
+      font-weight: 900;
+
+      color: #222;
+
+      margin: 10px 0 18px;
+    }
+
+
+    /* =========================
+       PRODUCT CARD
+    ========================= */
+
+    .product {
+      background: white;
+
+      width: calc(100% - 28px);
+
+      max-width: 430px;
+
+      margin: 0 auto 20px;
+
+      border-radius: 18px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+      border: 1px solid #eee;
+    }
+
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
+
+    .product img {
+      width: 100%;
+
+      height: 245px;
+
+      display: block;
+
+      object-fit: contain;
+
+      background: #fafafa;
+
+      padding: 12px;
+    }
+
+
+    /* =========================
+       PRODUCT INFO
+    ========================= */
+
+    .product-info {
+      padding: 15px;
+    }
+
+
+    /* =========================
+       PRODUCT TITLE
+    ========================= */
+
+    .product-title {
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      font-weight: 800;
+
+      color: #222;
+
+      margin-bottom: 8px;
+    }
+
+
+    /* =========================
+       PRICE
+    ========================= */
+
+    .price {
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      flex-wrap: wrap;
+
+      font-size: 22px;
+
+      font-weight: 900;
+
+      color: #e53935;
+    }
+
+    .old {
+      font-size: 14px;
+
+      color: #999;
+
+      text-decoration: line-through;
+
+      font-weight: 600;
+    }
+
+
+    /* =========================
+       BUY BUTTON
+    ========================= */
+
+    .buy {
+      display: block;
+
+      width: 100%;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      margin-top: 14px;
+
+      padding: 14px 12px;
+
+      border-radius: 12px;
+
+      background: linear-gradient(
+        135deg,
+        #00b894,
+        #00a884
+      );
+
+      color: white;
+
+      font-size: 17px;
+
+      font-weight: 900;
+
+      box-shadow:
+        0 5px 14px rgba(0, 184, 148, 0.22);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .buy:active {
+      transform: scale(0.97);
+
+      box-shadow:
+        0 3px 9px rgba(0, 184, 148, 0.18);
+    }
+
+
+    /* =========================
+       EMPTY CATEGORY
+    ========================= */
+
+    .empty {
+      width: calc(100% - 28px);
+
+      max-width: 430px;
+
+      margin: 30px auto;
+
+      background: white;
+
+      padding: 30px 20px;
+
+      text-align: center;
+
+      border-radius: 16px;
+
+      color: #777;
+
+      font-size: 16px;
+
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+
+    /* =========================
+       DESKTOP
+    ========================= */
+
+    @media (min-width: 700px) {
+
+      .categories {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .category {
+        min-height: 80px;
+      }
+
+    }
+
+
+    /* =========================
+       SMALL PHONES
+    ========================= */
+
+    @media (max-width: 380px) {
+
+      .header {
+        font-size: 24px;
+      }
+
+      .category {
+        font-size: 15px;
+      }
+
+      .product img {
+        height: 220px;
+      }
+
+      .product-title {
+        font-size: 16px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HOME
+  ========================= -->
+
+  <div id="home">
+
+    <div class="header">
+      🔥 وَفِّرْهَا صَحّ 🔥
+    </div>
+
+    <div class="subtitle">
+      اختَر القسم الذي تبحث عنه 👇
+    </div>
+
+
+    <!-- CATEGORIES -->
+
+    <div class="categories">
+
+      <button
+        class="category"
+        onclick="showCategory('shoes')">
+        👟 الأحذية
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('dresses')">
+        👗 الفساتين
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('accessories')">
+        💍 الإكسسوارات
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('bags')">
+        👜 الشنط
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('watches')">
+        ⌚ الساعات
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('electronics')">
+        📱 الإلكترونيات
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('home')">
+        🏠 المنزل
+      </button>
+
+      <button
+        class="category"
+        onclick="showCategory('deals')">
+        🔥 أقوى العروض
+      </button>
+
+    </div>
+
+
+    <!-- TODAY OFFERS -->
+
+    <button
+      class="offers"
+      onclick="showCategory('deals')">
+
+      🔥 أقوى العروض اليوم 🔥
+
+    </button>
+
+  </div>
+
+
+
+  <!-- =========================
+       PRODUCTS
+  ========================= -->
+
+  <div id="products" class="products">
+
+    <button
+      class="back"
+      onclick="goHome()">
+
+      ← الأقسام
+
+    </button>
+
+
+    <h2 id="categoryTitle"></h2>
+
+
+    <div id="productList"></div>
+
+  </div>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    const products = {
+
+      bags: [
+
+        {
+          title: "طقم حقائب نسائية مكون من 3 قطع",
+
+          price: "4.36 ر.س",
+
+          old: "261.99 ر.س",
+
+          image: "التقاط.JPG",
+
+          link: "https://temu.to/k/eygm0ev5vxz"
+        }
+
+      ],
+
+
+      shoes: [],
+
+      dresses: [],
+
+      accessories: [],
+
+      watches: [],
+
+      electronics: [],
+
+      home: [],
+
+      deals: []
+
+    };
+
+
+    /* =========================
+       CATEGORY NAMES
+    ========================= */
+
+    const categoryNames = {
+
+      shoes: "👟 الأحذية",
+
+      dresses: "👗 الفساتين",
+
+      accessories: "💍 الإكسسوارات",
+
+      bags: "👜 الشنط",
+
+      watches: "⌚ الساعات",
+
+      electronics: "📱 الإلكترونيات",
+
+      home: "🏠 المنزل",
+
+      deals: "🔥 أقوى العروض"
+
+    };
+
+
+    /* =========================
+       SHOW CATEGORY
+    ========================= */
+
+    function showCategory(category) {
+
+      document.getElementById("home").style.display = "none";
+
+      const productsPage =
+        document.getElementById("products");
+
+      productsPage.classList.add("active");
+
+
+      document.getElementById("categoryTitle").textContent =
+        categoryNames[category];
+
+
+      const productList =
+        document.getElementById("productList");
+
+
+      productList.innerHTML = "";
+
+
+      const items = products[category] || [];
+
+
+      /* EMPTY CATEGORY */
+
+      if (items.length === 0) {
+
+        productList.innerHTML = `
+
+          <div class="empty">
+
+            😔 لا توجد منتجات في هذا القسم حالياً
+
+            <br><br>
+
+            🔥 تابعنا، نضيف عروض جديدة باستمرار
+
+          </div>
+
+        `;
+
+        return;
+      }
+
+
+      /* PRODUCTS */
+
+      items.forEach(product => {
+
+        productList.innerHTML += `
+
+          <div class="product">
+
+            <img
+              src="${product.image}"
+              alt="${product.title}"
+            >
+
+            <div class="product-info">
+
+              <div class="product-title">
+                ${product.title}
+              </div>
+
+
+              <div class="price">
+
+                ${product.price}
+
+                <span class="old">
+                  ${product.old}
+                </span>
+
+              </div>
+
+
+              <a
+                class="buy"
+                href="${product.link}"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                🛒 اشترِ الآن
+
+              </a>
+
             </div>
 
-            <a class="buy"
-               href="${product.link}"
-               target="_blank">
-               🛒 اشترِ الآن
-            </a>
           </div>
-        </div>
-      `;
-    });
-  }
 
-  function goHome() {
-    document.getElementById("products").classList.remove("active");
-    document.getElementById("home").style.display = "block";
-  }
+        `;
 
-  if (window.Telegram && Telegram.WebApp) {
-    Telegram.WebApp.ready();
-    Telegram.WebApp.expand();
-  }
-</script>
+      });
+
+    }
+
+
+    /* =========================
+       GO HOME
+    ========================= */
+
+    function goHome() {
+
+      document.getElementById("products")
+        .classList.remove("active");
+
+      document.getElementById("home")
+        .style.display = "block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =========================
+       TELEGRAM MINI APP
+    ========================= */
+
+    if (window.Telegram && Telegram.WebApp) {
+
+      Telegram.WebApp.ready();
+
+      Telegram.WebApp.expand();
+
+    }
+
+  </script>
+
 
 </body>
+
 </html>
