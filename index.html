@@ -80,64 +80,59 @@
       cursor: pointer;
     }
 
-    .product {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
-    }
-
-.product img {
-  width: 180px;
-  height: 180px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
+   .product {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 auto 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  max-width: 420px;
 }
 
-    .product-info {
-      padding: 12px;
-    }
+.product img {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  display: block;
+  background: #f7f7f7;
+  padding: 10px;
+}
 
-    .product-title {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1.5;
-    }
+.product-info {
+  padding: 14px 16px 16px;
+}
 
-    .price {
-      margin-top: 7px;
-      font-size: 20px;
-      font-weight: 800;
-    }
+.product-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
 
-    .old {
-      color: #999;
-      text-decoration: line-through;
-      font-size: 14px;
-      margin-left: 7px;
-    }
+.price {
+  margin-top: 5px;
+  font-size: 21px;
+  font-weight: 800;
+}
 
-    .buy {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      background: #111;
-      color: white;
-      padding: 13px;
-      margin-top: 10px;
-      border-radius: 10px;
-      font-weight: 800;
-    }
-  </style>
-</head>
+.old {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 14px;
+  margin-left: 7px;
+}
 
-<body>
-
-  <div id="home">
-    <div class="header">🔥 وَفِّرْهَا صَحّ 🔥</div>
-    <div class="subtitle">اختَر القسم الذي تبحث عنه 👇</div>
+.buy {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: #111;
+  color: white;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 10px;
+  font-weight: 800;
+}
 
     <div class="categories">
       <button class="category" onclick="showCategory('shoes')">👟 الأحذية</button>
