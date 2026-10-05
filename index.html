@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وفرها صح</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    .header {
+      padding: 22px 16px 12px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 0 14px;
+    }
+
+    .category {
+      border: 0;
+      border-radius: 14px;
+      padding: 18px 8px;
+      background: white;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      cursor: pointer;
+    }
+
+    .category:active {
+      transform: scale(.97);
+    }
+
+    .offers {
+      margin: 18px 14px;
+      width: calc(100% - 28px);
+      padding: 16px;
+      border: 0;
+      border-radius: 14px;
+      background: #111;
+      color: white;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .products {
+      display: none;
+      padding: 14px;
+    }
+
+    .products.active {
+      display: block;
+    }
+
+    .back {
+      border: 0;
+      background: transparent;
+      font-size: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .product {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    }
+
+    .product img {
+      width: 100%;
+      display: block;
+    }
+
+    .product-info {
+      padding: 12px;
+    }
+
+    .product-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .price {
+      margin-top: 7px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .old {
+      color: #999;
+      text-decoration: line-through;
+      font-size: 14px;
+      margin-left: 7px;
+    }
+
+    .buy {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #111;
+      color: white;
+      padding: 13px;
+      margin-top: 10px;
+      border-radius: 10px;
+      font-weight: 800;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="home">
+    <div class="header">🔥 وَفِّرْهَا صَحّ 🔥</div>
+    <div class="subtitle">اختَر القسم الذي تبحث عنه 👇</div>
+
+    <div class="categories">
+      <button class="category" onclick="showCategory('shoes')">👟 الأحذية</button>
+      <button class="category" onclick="showCategory('dresses')">👗 الفساتين</button>
+      <button class="category" onclick="showCategory('accessories')">💍 الإكسسوارات</button>
+      <button class="category" onclick="showCategory('bags')">👜 الشنط</button>
+      <button class="category" onclick="showCategory('watches')">⌚ الساعات</button>
+      <button class="category" onclick="showCategory('electronics')">📱 الإلكترونيات</button>
+      <button class="category" onclick="showCategory('home')">🏠 المنزل</button>
+      <button class="category" onclick="showCategory('deals')">🔥 أقوى العروض</button>
+    </div>
+
+    <button class="offers" onclick="showCategory('deals')">
+      🔥 عروض اليوم 🔥
+    </button>
+  </div>
+
+  <div id="products" class="products">
+    <button class="back" onclick="goHome()">← الأقسام</button>
+    <h2 id="categoryTitle"></h2>
+    <div id="productList"></div>
+  </div>
+
+<script>
+  const products = {
+
+    bags: [
+      {
+        title: "طقم حقائب نسائية مكون من 3 قطع",
+        price: "4.36 ر.س",
+        old: "261.99 ر.س",
+        image: "https://placehold.co/600x600?text=Bag",
+        link: "https://temu.to/k/eygm0ev5vxz"
+      }
+    ],
+
+    shoes: [],
+    dresses: [],
+    accessories: [],
+    watches: [],
+    electronics: [],
+    home: [],
+    deals: []
+  };
+
+  const names = {
+    shoes: "👟 الأحذية",
+    dresses: "👗 الفساتين",
+    accessories: "💍 الإكسسوارات",
+    bags: "👜 الشنط",
+    watches: "⌚ الساعات",
+    electronics: "📱 الإلكترونيات",
+    home: "🏠 المنزل",
+    deals: "🔥 أقوى العروض"
+  };
+
+  function showCategory(category) {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("products").classList.add("active");
+
+    document.getElementById("categoryTitle").textContent = names[category];
+
+    const list = document.getElementById("productList");
+    list.innerHTML = "";
+
+    if (!products[category] || products[category].length === 0) {
+      list.innerHTML =
+        '<p style="text-align:center;color:#777;padding:40px 10px;">لا توجد منتجات في هذا القسم حاليًا.</p>';
+      return;
+    }
+
+    products[category].forEach(product => {
+      list.innerHTML += `
+        <div class="product">
+          <img src="${product.image}" alt="${product.title}">
+          <div class="product-info">
+            <div class="product-title">${product.title}</div>
+
+            <div class="price">
+              ${product.price}
+              <span class="old">${product.old}</span>
+            </div>
+
+            <a class="buy"
+               href="${product.link}"
+               target="_blank">
+               🛒 اشترِ الآن
+            </a>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function goHome() {
+    document.getElementById("products").classList.remove("active");
+    document.getElementById("home").style.display = "block";
+  }
+
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+  }
+</script>
+
+</body>
+</html>
