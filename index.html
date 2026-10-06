@@ -1232,45 +1232,55 @@ if (tg) {
    PRODUCTS
 ===================================================== */
 
-const products = {
+/* =====================================================
+   PRODUCTS - LOAD FROM GITHUB
+===================================================== */
 
-  bags: [
-
-    {
-      title: "طقم حقائب نسائية مكون من 3 قطع",
-      price: "4.36",
-      old: "261.99",
-      image: "النقاط.JPG?v=3",
-      link: "https://temu.to/k/eygm0ev5vxz"
-    }
-
-  ],
-
+let products = {
   shoes: [],
-
   dresses: [],
-
   accessories: [],
-
+  bags: [],
   watches: [],
-
   electronics: [],
-
   home: [],
+  deals: []
+};
 
-  deals: [
+async function loadProducts() {
+  try {
+    const response = await fetch(
+      "products.json?v=" + Date.now(),
+      {
+        cache: "no-store"
+      }
+    );
 
-    {
-      title: "طقم حقائب نسائية مكون من 3 قطع",
-      price: "4.36",
-      old: "261.99",
-      image: "النقاط.JPG?v=3",
-      link: "https://temu.to/k/eygm0ev5vxz"
+    if (!response.ok) {
+      throw new Error("Failed to load products");
     }
 
-  ]
+    const data = await response.json();
 
-};
+    products = {
+      shoes: Array.isArray(data.shoes) ? data.shoes : [],
+      dresses: Array.isArray(data.dresses) ? data.dresses : [],
+      accessories: Array.isArray(data.accessories) ? data.accessories : [],
+      bags: Array.isArray(data.bags) ? data.bags : [],
+      watches: Array.isArray(data.watches) ? data.watches : [],
+      electronics: Array.isArray(data.electronics) ? data.electronics : [],
+      home: Array.isArray(data.home) ? data.home : [],
+      deals: Array.isArray(data.deals) ? data.deals : []
+    };
+
+    console.log("Products loaded successfully:", products);
+
+  } catch (error) {
+    console.error("Could not load products.json:", error);
+  }
+}
+
+const productsReady = loadProducts();
 
 
 /* =====================================================
