@@ -1202,7 +1202,7 @@ a {
 <script>
 
 /* =====================================================
-   TELEGRAM
+   TELEGRAM WEB APP
 ===================================================== */
 
 const tg =
@@ -1212,28 +1212,19 @@ const tg =
     : null;
 
 if (tg) {
-
   tg.ready();
-
   tg.expand();
 
   try {
-
     tg.setHeaderColor("#5b35d5");
-
     tg.setBackgroundColor("#f7f7fb");
-
   } catch (e) {}
-
 }
 
 
 /* =====================================================
    PRODUCTS
-===================================================== */
-
-/* =====================================================
-   PRODUCTS - LOAD FROM GITHUB
+   المنتجات تأتي تلقائيًا من products.json
 ===================================================== */
 
 let products = {
@@ -1246,41 +1237,6 @@ let products = {
   home: [],
   deals: []
 };
-
-async function loadProducts() {
-  try {
-    const response = await fetch(
-      "products.json?v=" + Date.now(),
-      {
-        cache: "no-store"
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to load products");
-    }
-
-    const data = await response.json();
-
-    products = {
-      shoes: Array.isArray(data.shoes) ? data.shoes : [],
-      dresses: Array.isArray(data.dresses) ? data.dresses : [],
-      accessories: Array.isArray(data.accessories) ? data.accessories : [],
-      bags: Array.isArray(data.bags) ? data.bags : [],
-      watches: Array.isArray(data.watches) ? data.watches : [],
-      electronics: Array.isArray(data.electronics) ? data.electronics : [],
-      home: Array.isArray(data.home) ? data.home : [],
-      deals: Array.isArray(data.deals) ? data.deals : []
-    };
-
-    console.log("Products loaded successfully:", products);
-
-  } catch (error) {
-    console.error("Could not load products.json:", error);
-  }
-}
-
-const productsReady = loadProducts();
 
 
 /* =====================================================
@@ -1333,10 +1289,84 @@ const categoryNames = {
 
 
 /* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+async function loadProducts() {
+
+  try {
+
+    const response = await fetch(
+      "products.json?v=" + Date.now(),
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("products.json not found");
+    }
+
+    const data = await response.json();
+
+    products = {
+      shoes: Array.isArray(data.shoes)
+        ? data.shoes
+        : [],
+
+      dresses: Array.isArray(data.dresses)
+        ? data.dresses
+        : [],
+
+      accessories: Array.isArray(data.accessories)
+        ? data.accessories
+        : [],
+
+      bags: Array.isArray(data.bags)
+        ? data.bags
+        : [],
+
+      watches: Array.isArray(data.watches)
+        ? data.watches
+        : [],
+
+      electronics: Array.isArray(data.electronics)
+        ? data.electronics
+        : [],
+
+      home: Array.isArray(data.home)
+        ? data.home
+        : [],
+
+      deals: Array.isArray(data.deals)
+        ? data.deals
+        : []
+    };
+
+    console.log(
+      "Wafartha Sah products loaded:",
+      products
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "Wafartha Sah products error:",
+      error
+    );
+
+    return false;
+  }
+}
+
+
+/* =====================================================
    SHOW CATEGORY
 ===================================================== */
 
-function showCategory(category) {
+async function showCategory(category) {
 
   const home =
     document.getElementById("homePage");
@@ -1353,13 +1383,13 @@ function showCategory(category) {
   const subtitle =
     document.getElementById("categorySubtitle");
 
-
   const info =
     categoryNames[category];
 
-  const items =
-    products[category] || [];
 
+  /* ---------------------------------------------------
+     الانتقال لصفحة المنتجات
+  --------------------------------------------------- */
 
   home.classList.remove("active");
 
@@ -1373,10 +1403,78 @@ function showCategory(category) {
     info.subtitle;
 
 
-  list.innerHTML = "";
+  /* ---------------------------------------------------
+     شاشة التحميل
+  --------------------------------------------------- */
+
+  list.innerHTML = `
+
+    <div class="empty">
+
+      <div class="empty-icon">
+        ⏳
+      </div>
+
+      <h3>
+        جاري تحميل المنتجات...
+      </h3>
+
+      <p>
+        لحظة واحدة
+      </p>
+
+    </div>
+
+  `;
 
 
-  /* EMPTY CATEGORY */
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  /* ---------------------------------------------------
+     جلب أحدث المنتجات
+  --------------------------------------------------- */
+
+  const loaded =
+    await loadProducts();
+
+
+  if (!loaded) {
+
+    list.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          ⚠️
+        </div>
+
+        <h3>
+          تعذر تحميل المنتجات
+        </h3>
+
+        <p>
+          حاول مرة أخرى بعد قليل.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  const items =
+    products[category] || [];
+
+
+  /* ===================================================
+     القسم فارغ
+  =================================================== */
 
   if (!items.length) {
 
@@ -1402,16 +1500,16 @@ function showCategory(category) {
 
     `;
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
     return;
   }
 
 
-  /* PRODUCTS */
+  /* ===================================================
+     عرض المنتجات
+  =================================================== */
+
+  list.innerHTML = "";
+
 
   items.forEach(product => {
 
@@ -1422,17 +1520,61 @@ function showCategory(category) {
       "product";
 
 
+    /* -------------------------------------------------
+       حساب الخصم
+    ------------------------------------------------- */
+
+    let discountText =
+      "🔥 عرض مميز";
+
+    const current =
+      parseFloat(product.price);
+
+    const old =
+      parseFloat(product.old);
+
+
+    if (
+      !isNaN(current) &&
+      !isNaN(old) &&
+      old > current
+    ) {
+
+      const discount =
+        Math.round(
+          ((old - current) / old) * 100
+        );
+
+      discountText =
+        `🔥 خصم ${discount}%`;
+    }
+
+
+    /* -------------------------------------------------
+       رابط الصورة
+    ------------------------------------------------- */
+
+    const image =
+      product.image || "";
+
+
+    /* -------------------------------------------------
+       بناء بطاقة المنتج
+    ------------------------------------------------- */
+
     article.innerHTML = `
 
       <div class="product-image">
 
         <div class="discount">
-          🔥 عرض مميز
+          ${escapeHtml(discountText)}
         </div>
 
         <img
-          src="${escapeHtml(product.image)}"
-          alt="${escapeHtml(product.title)}"
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(
+            product.title || "منتج"
+          )}"
           loading="lazy"
         >
 
@@ -1442,7 +1584,9 @@ function showCategory(category) {
       <div class="product-info">
 
         <div class="product-title">
-          ${escapeHtml(product.title)}
+          ${escapeHtml(
+            product.title || "منتج"
+          )}
         </div>
 
 
@@ -1451,7 +1595,9 @@ function showCategory(category) {
           <div class="current-price">
 
             <span class="price-number">
-              ${escapeHtml(product.price)}
+              ${escapeHtml(
+                product.price || "0"
+              )}
             </span>
 
             <span class="price-currency">
@@ -1461,16 +1607,24 @@ function showCategory(category) {
           </div>
 
 
-          <div class="old-price">
-            ${escapeHtml(product.old)} ر.س
-          </div>
+          ${
+            product.old
+              ? `
+                <div class="old-price">
+                  ${escapeHtml(product.old)} ر.س
+                </div>
+              `
+              : ""
+          }
 
         </div>
 
 
         <a
           class="buy"
-          href="${escapeHtml(product.link)}"
+          href="${escapeHtml(
+            product.link || "#"
+          )}"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -1545,7 +1699,14 @@ function escapeHtml(value) {
 
 }
 
-</script>
 
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+loadProducts();
+
+
+</script>
 </body>
 </html>
