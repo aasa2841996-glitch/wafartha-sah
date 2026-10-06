@@ -1,0 +1,19 @@
+{
+  "shoes": [],
+  "dresses": [],
+  "accessories": [],
+  "bags": [],
+  "watches": [],
+  "electronics": [],
+  "home": [],
+  "deals": [
+    {
+      "title": "حفاضات أطفال من بيبي جوي، 840 قطعة، مقاس 3 وسط (6-12 كغ)",
+      "price": "69.00",
+      "old": "103.00",
+      "link": "https://link.amazon/B0ibqkxUC",
+      "id": "f680ce7c-fb31-4f61-bea6-858eac0700e4",
+      "image": "products/product-1791271497957-jjzndt.jpg"
+    }
+  ]
+}
