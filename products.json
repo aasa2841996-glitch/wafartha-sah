@@ -1,7 +1,16 @@
 {
   "shoes": [],
   "dresses": [],
-  "accessories": [],
+  "accessories": [
+    {
+      "title": "العربية للعود عطر ماداوي جولد 100 مل",
+      "price": "700.00",
+      "old": "900.00",
+      "link": "https://link.amazon/B0gCu3IYz",
+      "id": "78f31ef8-41ba-4a76-a23c-8490ad61f41c",
+      "image": "products/product-1791301596472-vhzeyl.jpg"
+    }
+  ],
   "bags": [],
   "watches": [],
   "electronics": [],
@@ -13,14 +22,6 @@
       "link": "https://temu.to/k/e16qsi6yw9e",
       "id": "f680ce7c-fb31-4f61-bea6-858eac0700e4",
       "image": "products/product-1791271497957-jjzndt.jpg"
-    },
-    {
-      "title": "العربية للعود عطر ماداوي جولد 100 مل",
-      "price": "700.00",
-      "old": "900.00",
-      "link": "https://link.amazon/B0gCu3IYz",
-      "id": "78f31ef8-41ba-4a76-a23c-8490ad61f41c",
-      "image": "products/product-1791301596472-vhzeyl.jpg"
     }
   ],
   "deals": []
