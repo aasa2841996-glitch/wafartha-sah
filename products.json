@@ -17,7 +17,9 @@
       "image": "products/product-1791361827168-tbdduo.jpg"
     }
   ],
-  "dresses": [
+  "dresses": [],
+  "perfumes": [],
+  "bags": [
     {
       "title": "FGHJGHJ",
       "price": "564.00",
@@ -27,8 +29,6 @@
       "image": "products/product-1791371719160-dzmkpp.jpg"
     }
   ],
-  "perfumes": [],
-  "bags": [],
   "watches": [],
   "home": [],
   "deals": []
