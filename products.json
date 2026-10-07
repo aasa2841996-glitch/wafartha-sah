@@ -20,7 +20,9 @@
   "dresses": [],
   "perfumes": [],
   "bags": [],
-  "watches": [
+  "watches": [],
+  "home": [],
+  "deals": [
     {
       "title": "FGHJGHJ",
       "price": "564.00",
@@ -29,7 +31,5 @@
       "id": "0e2e77f2-5da4-4d28-9daf-d7711f36d934",
       "image": "products/product-1791371719160-dzmkpp.jpg"
     }
-  ],
-  "home": [],
-  "deals": []
+  ]
 }
