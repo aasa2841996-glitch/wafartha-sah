@@ -18,7 +18,16 @@
     }
   ],
   "dresses": [],
-  "accessories": [],
+  "accessories": [
+    {
+      "title": "ننتنن",
+      "price": "25.00",
+      "old": "55.00",
+      "link": "https://link.amazon/B0d4TpnqL",
+      "id": "2facfb24-12cd-4287-9019-8b958721d533",
+      "image": "products/product-1791379544559-zbytti.jpg"
+    }
+  ],
   "perfumes": [
     {
       "title": "FGHJGHJ",
