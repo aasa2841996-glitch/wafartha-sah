@@ -18,22 +18,14 @@
     }
   ],
   "dresses": [],
-  "accessories": [
+  "perfumes": [
     {
-      "title": "العربية للعود عطر ماداوي جولد 100 مل",
-      "price": "700.00",
-      "old": "900.00",
-      "link": "https://link.amazon/B0gCu3IYz",
-      "id": "78f31ef8-41ba-4a76-a23c-8490ad61f41c",
-      "image": "products/product-1791301596472-vhzeyl.jpg"
-    },
-    {
-      "title": "يباللل",
-      "price": "56.00",
-      "old": "55.00",
-      "link": "https://amzn.to/4hKvxmi",
-      "id": "ef3d2c85-bde7-4701-be4e-bcb13de874e8",
-      "image": "products/product-1791366952796-a4o3w7.jpg"
+      "title": "FGHJGHJ",
+      "price": "564.00",
+      "old": "4664.00",
+      "link": "https://amzn.to/3VnkqIO",
+      "id": "0e2e77f2-5da4-4d28-9daf-d7711f36d934",
+      "image": "products/product-1791371719160-dzmkpp.jpg"
     }
   ],
   "bags": [],
@@ -50,14 +42,14 @@
   ],
   "home": [],
   "deals": [],
-  "perfumes": [
+  "accessories": [
     {
-      "title": "FGHJGHJ",
-      "price": "564.00",
-      "old": "4664.00",
-      "link": "https://amzn.to/3VnkqIO",
-      "id": "0e2e77f2-5da4-4d28-9daf-d7711f36d934",
-      "image": "products/product-1791371719160-dzmkpp.jpg"
+      "title": "FHDHGFD",
+      "price": "55.00",
+      "old": "5656.00",
+      "link": "https://amzn.to/4rVNZNQ",
+      "id": "00c26ee4-9a7e-4b79-93c5-ef5052d10785",
+      "image": "products/product-1791372982718-wkyro0.jpg"
     }
   ]
 }
