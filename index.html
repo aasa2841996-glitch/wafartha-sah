@@ -52,7 +52,8 @@ body {
 }
 
 button,
-a {
+a,
+input {
   font-family: inherit;
 }
 
@@ -156,6 +157,99 @@ a {
   margin: 6px 0 0;
   font-size: 13px;
   opacity: .92;
+}
+
+
+/* =====================================================
+   TOP TOOLS
+===================================================== */
+
+.top-tools {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.tool-button {
+  flex: 1;
+
+  min-height: 42px;
+
+  border-radius: 13px;
+
+  background: rgba(255,255,255,.14);
+
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  border: 1px solid rgba(255,255,255,.16);
+
+  backdrop-filter: blur(8px);
+
+  transition: .15s ease;
+}
+
+.tool-button:active {
+  transform: scale(.97);
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box {
+  margin-top: 14px;
+
+  display: flex;
+
+  gap: 8px;
+}
+
+.search-input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 45px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  padding: 0 15px;
+
+  outline: none;
+
+  background: #fff;
+
+  color: #29263c;
+
+  font-size: 13px;
+
+  box-shadow:
+    0 7px 18px rgba(35,31,62,.10);
+}
+
+.search-button {
+  width: 48px;
+
+  height: 45px;
+
+  border-radius: 14px;
+
+  background: #fff;
+
+  color: #5b35d5;
+
+  font-size: 19px;
+
+  font-weight: 900;
+
+  box-shadow:
+    0 7px 18px rgba(35,31,62,.10);
 }
 
 
@@ -312,6 +406,58 @@ a {
   font-weight: 900;
 
   line-height: 1;
+}
+
+
+/* =====================================================
+   QUICK FEATURES
+===================================================== */
+
+.quick-features {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+
+  margin-top: 15px;
+}
+
+.quick-feature {
+  background: #fff;
+
+  border: 1px solid #ebeaf1;
+
+  border-radius: 17px;
+
+  padding: 12px 7px;
+
+  text-align: center;
+
+  box-shadow:
+    0 5px 18px rgba(35,31,62,.05);
+}
+
+.quick-feature-icon {
+  font-size: 22px;
+}
+
+.quick-feature-title {
+  margin-top: 5px;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.quick-feature-text {
+  margin-top: 2px;
+
+  color: #92909e;
+
+  font-size: 8px;
+
+  line-height: 1.5;
 }
 
 
@@ -533,17 +679,27 @@ a {
 
 
 /* =====================================================
-   DISCOUNT
+   PRODUCT BADGES
 ===================================================== */
 
-.discount {
+.product-badges {
   position: absolute;
 
-  top: 13px;
-  right: 13px;
+  top: 12px;
+  right: 12px;
 
-  z-index: 3;
+  z-index: 4;
 
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  align-items: flex-end;
+}
+
+.discount {
   background: #ff4e38;
 
   color: #fff;
@@ -557,6 +713,52 @@ a {
   font-weight: 800;
 }
 
+.best-deal {
+  background: #5b35d5;
+
+  color: #fff;
+
+  padding: 5px 9px;
+
+  border-radius: 9px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   SAVE BUTTON
+===================================================== */
+
+.save-product {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  z-index: 5;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.94);
+
+  color: #777386;
+
+  font-size: 19px;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.10);
+}
+
+.save-product.saved {
+  color: #ff4567;
+}
+
 
 /* =====================================================
    PRODUCT INFO
@@ -564,38 +766,6 @@ a {
 
 .product-info {
   padding: 15px 16px 17px;
-}
-
-.product-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 9px;
-  flex-wrap: wrap;
-}
-
-.store-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #f2efff;
-  color: #5b35d5;
-  border-radius: 9px;
-  padding: 5px 8px;
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.deal-badge {
-  display: inline-flex;
-  align-items: center;
-  background: #fff1ec;
-  color: #e84e2d;
-  border-radius: 9px;
-  padding: 5px 8px;
-  font-size: 10px;
-  font-weight: 900;
 }
 
 .product-title {
@@ -607,7 +777,34 @@ a {
 
   color: #29263c;
 
+  margin-bottom: 8px;
+}
+
+
+/* =====================================================
+   STORE
+===================================================== */
+
+.product-store {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  background: #f2efff;
+
+  color: #5b35d5;
+
+  border-radius: 8px;
+
+  padding: 4px 8px;
+
   margin-bottom: 10px;
+
+  font-size: 9px;
+
+  font-weight: 800;
 }
 
 
@@ -661,8 +858,31 @@ a {
 
 
 /* =====================================================
-   BUY BUTTON
+   DEAL STATUS
 ===================================================== */
+
+.deal-status {
+  font-size: 9px;
+
+  color: #12a87d;
+
+  font-weight: 800;
+
+  margin-bottom: 10px;
+}
+
+
+/* =====================================================
+   PRODUCT ACTIONS
+===================================================== */
+
+.product-actions {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+}
 
 .buy {
   width: 100%;
@@ -677,13 +897,13 @@ a {
 
   justify-content: center;
 
-  gap: 8px;
+  gap: 7px;
 
   background: #12a87d;
 
   color: #fff;
 
-  font-size: 13px;
+  font-size: 12px;
 
   font-weight: 800;
 
@@ -697,401 +917,77 @@ a {
   transform: scale(.98);
 }
 
+.watch-price {
+  width: 100%;
 
-/* =====================================================
-   PRODUCT ACTIONS
-===================================================== */
+  min-height: 47px;
 
-.product-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 9px;
-}
+  border-radius: 14px;
 
-.secondary-action {
-  min-height: 43px;
-  border-radius: 13px;
-  background: #f5f3fb;
+  background: #f0edff;
+
   color: #5b35d5;
+
   font-size: 11px;
-  font-weight: 900;
-  border: 1px solid #ebe8f5;
-}
 
-.secondary-action.active {
-  background: #eee9ff;
-  border-color: #dcd3ff;
-}
-
-.alert-action {
-  background: #fff5e8;
-  color: #c56b00;
-  border-color: #ffe2b6;
+  font-weight: 800;
 }
 
 
 /* =====================================================
-   COMPARE
+   COMPARISON
 ===================================================== */
 
 .compare-box {
-  margin-top: 12px;
-  padding: 12px;
-  background: #faf9fe;
-  border: 1px solid #ebeaf4;
+  margin-top: 10px;
+
+  background: #faf9ff;
+
+  border: 1px solid #ebe7ff;
+
   border-radius: 15px;
+
+  padding: 10px;
 }
 
 .compare-title {
-  font-size: 11px;
-  font-weight: 900;
-  margin-bottom: 8px;
-  color: #39354c;
-}
+  font-size: 10px;
 
-.compare-list {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+  font-weight: 900;
+
+  margin-bottom: 8px;
 }
 
 .compare-row {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
-  gap: 8px;
-  font-size: 10px;
+
+  padding: 6px 0;
+
+  border-bottom: 1px solid #eeeef5;
+
+  font-size: 9px;
 }
 
-.compare-row strong {
-  color: #29263c;
+.compare-row:last-child {
+  border-bottom: 0;
+}
+
+.compare-store {
+  font-weight: 800;
 }
 
 .compare-price {
   font-weight: 900;
-  color: #12a87d;
 }
 
-.compare-buy {
+.compare-link {
   color: #5b35d5;
+
   font-weight: 900;
-}
-
-
-/* =====================================================
-   SMART HOME TOOLS
-===================================================== */
-
-.home-tools {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.tool-card {
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  border-radius: 17px;
-  padding: 13px;
-  text-align: right;
-  box-shadow: 0 6px 20px rgba(35,31,62,.06);
-  cursor: pointer;
-  transition: transform .15s ease;
-}
-
-.tool-card:active {
-  transform: scale(.98);
-}
-
-.tool-icon {
-  font-size: 22px;
-  margin-bottom: 4px;
-}
-
-.tool-title {
-  font-size: 12px;
-  font-weight: 900;
-  color: #29263c;
-}
-
-.tool-text {
-  font-size: 10px;
-  color: #92909e;
-  margin-top: 2px;
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-wrap {
-  margin-top: 14px;
-  position: relative;
-}
-
-.search-input {
-  width: 100%;
-  min-height: 46px;
-  padding: 0 15px;
-  border-radius: 14px;
-  border: 1px solid #ebeaf1;
-  background: #fff;
-  outline: none;
-  font-family: inherit;
-  font-size: 12px;
-  color: #252337;
-}
-
-.search-input:focus {
-  border-color: #cfc2ff;
-  box-shadow: 0 0 0 3px rgba(91,53,213,.08);
-}
-
-.search-results {
-  margin-top: 10px;
-  display: none;
-}
-
-.search-results.show {
-  display: block;
-}
-
-.search-result {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  border-radius: 14px;
-  padding: 9px;
-  margin-bottom: 8px;
-  cursor: pointer;
-}
-
-.search-result img {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: #fafafd;
-}
-
-.search-result-info {
-  flex: 1;
-}
-
-.search-result-title {
-  font-size: 10px;
-  font-weight: 900;
-  line-height: 1.5;
-}
-
-.search-result-price {
-  font-size: 10px;
-  color: #5b35d5;
-  font-weight: 900;
-  margin-top: 2px;
-}
-
-
-/* =====================================================
-   MODALS
-===================================================== */
-
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 9000;
-  display: none;
-  align-items: flex-end;
-  justify-content: center;
-  background: rgba(22,19,39,.55);
-  padding: 14px;
-}
-
-.modal-backdrop.show {
-  display: flex;
-}
-
-.modal {
-  width: 100%;
-  max-width: 560px;
-  max-height: 85vh;
-  overflow: auto;
-  background: #fff;
-  border-radius: 24px 24px 18px 18px;
-  padding: 18px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.modal-head h3 {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 900;
-}
-
-.modal-close {
-  width: 35px;
-  height: 35px;
-  border-radius: 11px;
-  background: #f3f1f8;
-  color: #5b35d5;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   SAVED
-===================================================== */
-
-.saved-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.saved-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background: #faf9fe;
-  border: 1px solid #ebeaf1;
-  border-radius: 14px;
-}
-
-.saved-item img {
-  width: 60px;
-  height: 60px;
-  border-radius: 11px;
-  object-fit: contain;
-  background: #fff;
-}
-
-.saved-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.saved-title {
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1.6;
-}
-
-.saved-price {
-  margin-top: 3px;
-  color: #5b35d5;
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.saved-open {
-  padding: 8px 9px;
-  border-radius: 10px;
-  background: #5b35d5;
-  color: #fff;
-  font-size: 9px;
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   PREFERENCES
-===================================================== */
-
-.preference-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 9px;
-}
-
-.preference-chip {
-  min-height: 43px;
-  padding: 8px 10px;
-  border-radius: 13px;
-  background: #f7f6fa;
-  border: 1px solid #ebeaf1;
-  color: #403c51;
-  font-size: 11px;
-  font-weight: 800;
-  text-align: right;
-}
-
-.preference-chip.selected {
-  background: #eee9ff;
-  border-color: #cfc2ff;
-  color: #5b35d5;
-}
-
-.primary-modal-button {
-  width: 100%;
-  min-height: 47px;
-  margin-top: 15px;
-  border-radius: 14px;
-  background: #5b35d5;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   NOTICE
-===================================================== */
-
-.notice {
-  margin-top: 10px;
-  padding: 11px 12px;
-  border-radius: 13px;
-  background: #fff8e8;
-  color: #7a5b18;
-  font-size: 10px;
-  line-height: 1.7;
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.app-toast {
-  position: fixed;
-  right: 16px;
-  left: 16px;
-  bottom: 18px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 13px 16px;
-  border-radius: 15px;
-  background: #252337;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-  box-shadow: 0 12px 35px rgba(0,0,0,.22);
-  opacity: 0;
-  transform: translateY(15px);
-  pointer-events: none;
-  transition: .2s ease;
-}
-
-.app-toast.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 
@@ -1133,6 +1029,352 @@ a {
 
 
 /* =====================================================
+   MODALS
+===================================================== */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(23,20,38,.48);
+
+  z-index: 100;
+
+  display: none;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  padding: 0;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  width: 100%;
+
+  max-width: 720px;
+
+  background: #fff;
+
+  border-radius: 26px 26px 0 0;
+
+  padding: 22px 18px 28px;
+
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  animation: modalUp .2s ease;
+}
+
+@keyframes modalUp {
+
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+}
+
+.modal-head {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+}
+
+.modal-title {
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 900;
+}
+
+.modal-close {
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  background: #f2f1f6;
+
+  color: #555064;
+
+  font-size: 18px;
+}
+
+
+/* =====================================================
+   SAVED PRODUCTS
+===================================================== */
+
+.saved-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid #eeeef3;
+}
+
+.saved-item:last-child {
+  border-bottom: 0;
+}
+
+.saved-item img {
+  width: 62px;
+  height: 62px;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  background: #f7f7fa;
+}
+
+.saved-item-info {
+  flex: 1;
+}
+
+.saved-item-title {
+  font-size: 11px;
+
+  font-weight: 800;
+
+  line-height: 1.6;
+}
+
+.saved-item-price {
+  margin-top: 3px;
+
+  color: #5b35d5;
+
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+.saved-item-button {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 11px;
+
+  background: #f0edff;
+
+  color: #5b35d5;
+}
+
+
+/* =====================================================
+   PREFERENCES
+===================================================== */
+
+.preference-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 9px;
+}
+
+.preference {
+  background: #faf9ff;
+
+  border: 1px solid #ebe7ff;
+
+  border-radius: 13px;
+
+  padding: 12px 8px;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  color: #4b4659;
+}
+
+.preference.selected {
+  background: #5b35d5;
+
+  color: #fff;
+
+  border-color: #5b35d5;
+}
+
+.save-preferences {
+  width: 100%;
+
+  margin-top: 15px;
+
+  min-height: 47px;
+
+  border-radius: 14px;
+
+  background: #12a87d;
+
+  color: #fff;
+
+  font-size: 12px;
+
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   PRICE ALERT
+===================================================== */
+
+.alert-product {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+
+  padding: 10px;
+
+  background: #faf9ff;
+
+  border-radius: 14px;
+}
+
+.alert-product img {
+  width: 65px;
+  height: 65px;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+
+  background: #fff;
+}
+
+.alert-product-info {
+  flex: 1;
+}
+
+.alert-product-title {
+  font-size: 11px;
+
+  font-weight: 800;
+
+  line-height: 1.6;
+}
+
+.alert-current {
+  margin-top: 4px;
+
+  color: #5b35d5;
+
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+.alert-input {
+  width: 100%;
+
+  height: 47px;
+
+  border: 1px solid #e5e3eb;
+
+  border-radius: 13px;
+
+  outline: none;
+
+  padding: 0 13px;
+
+  font-size: 12px;
+}
+
+.alert-submit {
+  width: 100%;
+
+  min-height: 47px;
+
+  margin-top: 10px;
+
+  border-radius: 14px;
+
+  background: #5b35d5;
+
+  color: #fff;
+
+  font-size: 12px;
+
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+  position: fixed;
+
+  right: 16px;
+  left: 16px;
+
+  bottom: 18px;
+
+  z-index: 200;
+
+  background: #252337;
+
+  color: #fff;
+
+  border-radius: 14px;
+
+  padding: 12px 15px;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  opacity: 0;
+
+  transform: translateY(15px);
+
+  pointer-events: none;
+
+  transition: .25s ease;
+}
+
+.toast.show {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =====================================================
    FOOTER
 ===================================================== */
 
@@ -1150,6 +1392,307 @@ a {
   color: #5b35d5;
 }
 
+
+
+
+/* =====================================================
+   STORE STRIP
+===================================================== */
+
+.store-strip {
+  margin-top: 18px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #ebeaf1;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(35,31,62,.06);
+}
+
+.store-strip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.store-strip-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: #29263c;
+}
+
+.store-strip-subtitle {
+  color: #9995a6;
+  font-size: 9px;
+}
+
+.store-logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+}
+
+.store-logo {
+  min-height: 58px;
+  border-radius: 14px;
+  border: 1px solid #eeeef4;
+  background: #fafafd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 4px;
+  color: #373246;
+  transition: .15s ease;
+}
+
+.store-logo:active {
+  transform: scale(.96);
+}
+
+.store-logo img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.store-logo span {
+  font-size: 8px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   DISCOVERY SECTIONS
+===================================================== */
+
+.discovery-section {
+  margin-top: 20px;
+}
+
+.discovery-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 0 3px;
+}
+
+.discovery-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.discovery-head p {
+  margin: 3px 0 0;
+  color: #9793a4;
+  font-size: 9px;
+}
+
+.discovery-link {
+  color: #5b35d5;
+  font-size: 9px;
+  font-weight: 900;
+  background: #f0edff;
+  padding: 7px 9px;
+  border-radius: 10px;
+}
+
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+}
+
+.discovery-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 190px;
+  background: #fff;
+  border: 1px solid #ebeaf1;
+  border-radius: 20px;
+  box-shadow: 0 7px 22px rgba(35,31,62,.07);
+}
+
+.discovery-image {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  display: block;
+  background: #f2f1f7;
+}
+
+.discovery-info {
+  padding: 9px 10px 11px;
+}
+
+.discovery-store {
+  color: #8e8a9b;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.discovery-title {
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.55;
+  min-height: 31px;
+}
+
+.discovery-price {
+  margin-top: 5px;
+  color: #5b35d5;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.discovery-empty {
+  grid-column: 1 / -1;
+  padding: 20px;
+  border-radius: 17px;
+  background: #fff;
+  border: 1px solid #ebeaf1;
+  color: #92909e;
+  text-align: center;
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   CATEGORY EXTENDED
+===================================================== */
+
+.category-extended {
+  margin-top: 14px;
+}
+
+.category-extended .category-image img {
+  transform: scale(1.05);
+}
+
+.category-extended .category-image {
+  height: 118px;
+}
+
+
+/* =====================================================
+   SOCIAL FOOTER
+===================================================== */
+
+.social-section {
+  margin-top: 24px;
+  padding: 20px 15px 18px;
+  background: #fff;
+  border: 1px solid #ebeaf1;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 7px 22px rgba(35,31,62,.06);
+}
+
+.social-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.social-subtitle {
+  margin: 4px 0 14px;
+  color: #9692a2;
+  font-size: 9px;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.social-link {
+  min-height: 64px;
+  border-radius: 15px;
+  background: #fafafd;
+  border: 1px solid #eeeef4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #373246;
+  transition: .15s ease;
+}
+
+.social-link:active {
+  transform: scale(.95);
+}
+
+.social-link img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.social-link span {
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.social-note {
+  margin-top: 12px;
+  padding: 9px 10px;
+  border-radius: 11px;
+  background: #f7f5ff;
+  color: #777386;
+  font-size: 8px;
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   FEATURED BANNER
+===================================================== */
+
+.featured-banner {
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
+  min-height: 105px;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(135deg,#5b35d5,#8a68f2);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(91,53,213,.20);
+  cursor: pointer;
+}
+
+.featured-banner::after {
+  content: "⭐";
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 52px;
+  opacity: .18;
+}
+
+.featured-banner-title {
+  position: relative;
+  z-index: 2;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.featured-banner-text {
+  position: relative;
+  z-index: 2;
+  margin-top: 3px;
+  font-size: 10px;
+  opacity: .9;
+}
 
 /* =====================================================
    DESKTOP
@@ -1201,25 +1744,24 @@ a {
     height: 235px;
   }
 
-}
-
-
-/* =====================================================
-   SMART FEATURES MOBILE
-===================================================== */
-
-@media (max-width: 420px) {
-
-  .home-tools {
-    grid-template-columns: 1fr 1fr;
+  .quick-feature-text {
+    display: none;
   }
 
-  .product-actions {
-    grid-template-columns: 1fr 1fr;
+  .store-logos {
+    gap: 5px;
   }
 
-  .compare-row {
-    flex-wrap: wrap;
+  .store-logo span {
+    font-size: 7px;
+  }
+
+  .social-links {
+    gap: 5px;
+  }
+
+  .social-link span {
+    font-size: 7px;
   }
 
 }
@@ -1249,6 +1791,98 @@ a {
     <p class="tagline">
       لقيناها لك… ووفرنا عليك البحث 💜
     </p>
+
+
+    <!-- TOOLS -->
+
+    <div class="top-tools">
+
+      <button
+        class="tool-button"
+        type="button"
+        onclick="openSaved()"
+      >
+        ❤️ المحفوظات
+      </button>
+
+      <button
+        class="tool-button"
+        type="button"
+        onclick="openPreferences()"
+      >
+        🎯 اهتماماتي
+      </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+      <input
+        id="searchInput"
+        class="search-input"
+        type="search"
+        placeholder="ابحث عن منتج..."
+        autocomplete="off"
+      >
+
+      <button
+        class="search-button"
+        type="button"
+        onclick="searchProducts()"
+      >
+        🔎
+      </button>
+
+    </div>
+
+
+    <!-- STORE STRIP -->
+
+    <div class="store-strip">
+
+      <div class="store-strip-head">
+
+        <div>
+          <div class="store-strip-title">🛍️ نبحث لك في أشهر المتاجر</div>
+          <div class="store-strip-subtitle">اختر العرض المناسب لك ثم انتقل برابط الشراء</div>
+        </div>
+
+      </div>
+
+      <div class="store-logos">
+
+        <a class="store-logo" href="#" onclick="return false">
+          <img src="https://www.google.com/s2/favicons?domain=noon.com&sz=128" alt="نون">
+          <span>نون</span>
+        </a>
+
+        <a class="store-logo" href="#" onclick="return false">
+          <img src="https://cdn.simpleicons.org/temu/111111" alt="Temu">
+          <span>Temu</span>
+        </a>
+
+        <a class="store-logo" href="#" onclick="return false">
+          <img src="https://cdn.simpleicons.org/aliexpress/FF4747" alt="AliExpress">
+          <span>AliExpress</span>
+        </a>
+
+        <a class="store-logo" href="#" onclick="return false">
+          <img src="https://cdn.simpleicons.org/amazon/FF9900" alt="Amazon">
+          <span>Amazon</span>
+        </a>
+
+        <a class="store-logo" href="#" onclick="return false">
+          <img src="https://cdn.simpleicons.org/trendyol/F27A1A" alt="Trendyol">
+          <span>Trendyol</span>
+        </a>
+
+      </div>
+
+    </div>
+
 
   </div>
 
@@ -1539,6 +2173,130 @@ a {
   </div>
 
 
+  <!-- EXTENDED CATEGORIES -->
+
+  <div class="categories category-extended">
+
+    <button class="category" type="button" onclick="showCategory('perfumes')">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85" alt="العطور">
+      </div>
+      <div class="category-bottom">
+        <span class="category-name">🌸 العطور</span>
+        <span class="category-arrow">‹</span>
+      </div>
+    </button>
+
+    <button class="category" type="button" onclick="showCategory('beauty')">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85" alt="العناية والجمال">
+      </div>
+      <div class="category-bottom">
+        <span class="category-name">💄 العناية والجمال</span>
+        <span class="category-arrow">‹</span>
+      </div>
+    </button>
+
+    <button class="category" type="button" onclick="showCategory('men')">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85" alt="أزياء الرجال">
+      </div>
+      <div class="category-bottom">
+        <span class="category-name">👔 أزياء الرجال</span>
+        <span class="category-arrow">‹</span>
+      </div>
+    </button>
+
+    <button class="category" type="button" onclick="showCategory('kids')">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=900&q=85" alt="الأطفال">
+      </div>
+      <div class="category-bottom">
+        <span class="category-name">🧸 الأطفال</span>
+        <span class="category-arrow">‹</span>
+      </div>
+    </button>
+
+    <button class="category" type="button" onclick="showCategory('sports')">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85" alt="الرياضة">
+      </div>
+      <div class="category-bottom">
+        <span class="category-name">🏋️ الرياضة</span>
+        <span class="category-arrow">‹</span>
+      </div>
+    </button>
+
+    <button class="category" type="button" onclick="showCategory('gifts')">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=85" alt="الهدايا">
+      </div>
+      <div class="category-bottom">
+        <span class="category-name">🎁 الهدايا</span>
+        <span class="category-arrow">‹</span>
+      </div>
+    </button>
+
+  </div>
+
+
+  <!-- QUICK FEATURES -->
+
+  <div class="quick-features">
+
+    <div class="quick-feature">
+
+      <div class="quick-feature-icon">
+        🔎
+      </div>
+
+      <div class="quick-feature-title">
+        نقارن لك
+      </div>
+
+      <div class="quick-feature-text">
+        نبحث عن أفضل عرض
+      </div>
+
+    </div>
+
+
+    <div class="quick-feature">
+
+      <div class="quick-feature-icon">
+        🔔
+      </div>
+
+      <div class="quick-feature-title">
+        راقب السعر
+      </div>
+
+      <div class="quick-feature-text">
+        اطلب تنبيه السعر
+      </div>
+
+    </div>
+
+
+    <div class="quick-feature">
+
+      <div class="quick-feature-icon">
+        ❤️
+      </div>
+
+      <div class="quick-feature-title">
+        احفظ منتجاتك
+      </div>
+
+      <div class="quick-feature-text">
+        ارجع لها لاحقًا
+      </div>
+
+    </div>
+
+  </div>
+
+
   <!-- DEALS BANNER -->
 
   <div
@@ -1561,73 +2319,119 @@ a {
   </div>
 
 
-  <!-- SMART SHOPPING TOOLS -->
+  <!-- FEATURED BANNER -->
 
-  <div class="home-tools">
+  <div
+    class="featured-banner"
+    onclick="showFeaturedProducts()"
+  >
 
-    <button
-      class="tool-card"
-      type="button"
-      onclick="openSavedModal()"
-    >
-
-      <div class="tool-icon">
-        ❤️
-      </div>
-
-      <div class="tool-title">
-        منتجاتي المحفوظة
-      </div>
-
-      <div class="tool-text">
-        ارجع للعروض التي أعجبتك
-      </div>
-
-    </button>
-
-
-    <button
-      class="tool-card"
-      type="button"
-      onclick="openPreferencesModal()"
-    >
-
-      <div class="tool-icon">
-        🎯
-      </div>
-
-      <div class="tool-title">
-        اهتماماتي
-      </div>
-
-      <div class="tool-text">
-        خلّ العروض تناسبك أكثر
-      </div>
-
-    </button>
+    <div class="featured-banner-title">⭐ المنتجات المميزة</div>
+    <div class="featured-banner-text">اختياراتنا الأقوى — منتجات تستاهل تشوفها</div>
 
   </div>
 
 
-  <!-- SEARCH -->
+  <!-- TODAY DEALS -->
 
-  <div class="search-wrap">
+  <section class="discovery-section">
 
-    <input
-      id="searchInput"
-      class="search-input"
-      type="search"
-      placeholder="🔎 ابحث عن منتج..."
-      autocomplete="off"
-      oninput="searchProducts(this.value)"
-    >
+    <div class="discovery-head">
+      <div>
+        <h3>🔥 عروض اليوم</h3>
+        <p>أفضل الخصومات التي تستحق نظرة سريعة</p>
+      </div>
+      <button class="discovery-link" type="button" onclick="showCategory('deals')">عرض الكل</button>
+    </div>
 
-    <div
-      id="searchResults"
-      class="search-results"
-    ></div>
+    <div id="todayDealsGrid" class="discovery-grid">
+      <div class="discovery-empty">جاري تجهيز أفضل العروض...</div>
+    </div>
 
-  </div>
+  </section>
+
+
+  <!-- FEATURED PRODUCTS -->
+
+  <section class="discovery-section">
+
+    <div class="discovery-head">
+      <div>
+        <h3>⭐ مميزة لك</h3>
+        <p>منتجات اخترناها بعناية</p>
+      </div>
+      <button class="discovery-link" type="button" onclick="showFeaturedProducts()">عرض الكل</button>
+    </div>
+
+    <div id="featuredGrid" class="discovery-grid">
+      <div class="discovery-empty">جاري تحميل المنتجات المميزة...</div>
+    </div>
+
+  </section>
+
+
+  <!-- PERSONALIZED -->
+
+  <section class="discovery-section" id="personalizedSection">
+
+    <div class="discovery-head">
+      <div>
+        <h3>🎯 مقترحة لك</h3>
+        <p>اختيارات حسب اهتماماتك</p>
+      </div>
+      <button class="discovery-link" type="button" onclick="openPreferences()">تخصيص</button>
+    </div>
+
+    <div id="personalizedGrid" class="discovery-grid">
+      <div class="discovery-empty">اختر اهتماماتك وسنقترح لك منتجات أقرب لذوقك.</div>
+    </div>
+
+  </section>
+
+
+  <!-- SOCIAL -->
+
+  <section class="social-section">
+
+    <h3 class="social-title">تابع وَفِّرْهَا صَحّ 💜</h3>
+
+    <p class="social-subtitle">العروض الجديدة والخصومات توصلك أولًا</p>
+
+    <div class="social-links">
+
+      <!-- ضع رابطك بدل # -->
+      <a class="social-link" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp">
+        <span>واتساب</span>
+      </a>
+
+      <a class="social-link" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.simpleicons.org/telegram/229ED9" alt="Telegram">
+        <span>تلجرام</span>
+      </a>
+
+      <a class="social-link" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.simpleicons.org/x/111111" alt="X">
+        <span>تويتر / X</span>
+      </a>
+
+      <a class="social-link" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
+        <span>إنستغرام</span>
+      </a>
+
+      <a class="social-link" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.simpleicons.org/tiktok/111111" alt="TikTok">
+        <span>تيك توك</span>
+      </a>
+
+    </div>
+
+    <div class="social-note">
+      💡 الأفضل أن يكون زر المتجر دائمًا رابط Affiliate، بينما روابط التواصل تعيد العميل إلى وَفِّرْهَا صَحّ بدل أن يضيع بعد الشراء.
+    </div>
+
+  </section>
 
 
   <div class="footer">
@@ -1704,6 +2508,34 @@ a {
 </main>
 
 
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+  id="modalOverlay"
+  class="modal-overlay"
+  onclick="closeModalOutside(event)"
+>
+
+  <div
+    id="modal"
+    class="modal"
+  ></div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
+
 </div>
 
 
@@ -1743,20 +2575,19 @@ if (tg) {
 let products = {
 
   shoes: [],
-
   dresses: [],
-
   accessories: [],
-
+  perfumes: [],
   bags: [],
-
   watches: [],
-
   electronics: [],
-
   home: [],
-
-  deals: []
+  deals: [],
+  beauty: [],
+  men: [],
+  kids: [],
+  sports: [],
+  gifts: []
 
 };
 
@@ -1782,6 +2613,11 @@ const categoryNames = {
     subtitle: "إكسسوارات تضيف لمستك"
   },
 
+  perfumes: {
+    title: "🌸 العطور",
+    subtitle: "عطور مختارة بروائح وأسعار مميزة"
+  },
+
   bags: {
     title: "👜 الشنط",
     subtitle: "شنط مختارة بأسعار مميزة"
@@ -1805,9 +2641,238 @@ const categoryNames = {
   deals: {
     title: "🔥 أقوى العروض",
     subtitle: "أفضل العروض التي لقيناها لك"
+  },
+
+  beauty: {
+    title: "💄 العناية والجمال",
+    subtitle: "منتجات العناية والجمال المختارة لك"
+  },
+
+  men: {
+    title: "👔 أزياء الرجال",
+    subtitle: "اختيارات للرجال بأسعار مميزة"
+  },
+
+  kids: {
+    title: "🧸 الأطفال",
+    subtitle: "منتجات مختارة للأطفال"
+  },
+
+  sports: {
+    title: "🏋️ الرياضة",
+    subtitle: "معدات وملابس رياضية تستاهل"
+  },
+
+  gifts: {
+    title: "🎁 الهدايا",
+    subtitle: "أفكار هدايا مميزة"
   }
 
 };
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+const STORAGE_SAVED =
+  "wafartha_sah_saved_v1";
+
+const STORAGE_PREFS =
+  "wafartha_sah_preferences_v1";
+
+const STORAGE_ALERTS =
+  "wafartha_sah_alerts_v1";
+
+const STORAGE_CLICKS =
+  "wafartha_sah_clicks_v1";
+
+
+function getSavedProducts() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(STORAGE_SAVED) || "[]"
+    );
+
+  } catch (e) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveSavedProducts(items) {
+
+  localStorage.setItem(
+    STORAGE_SAVED,
+    JSON.stringify(items)
+  );
+
+}
+
+
+function getPreferences() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(STORAGE_PREFS) || "[]"
+    );
+
+  } catch (e) {
+
+    return [];
+
+  }
+
+}
+
+
+function savePreferences(items) {
+
+  localStorage.setItem(
+    STORAGE_PREFS,
+    JSON.stringify(items)
+  );
+
+}
+
+
+function getAlerts() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(STORAGE_ALERTS) || "[]"
+    );
+
+  } catch (e) {
+
+    return [];
+
+  }
+
+}
+
+
+function saveAlerts(items) {
+
+  localStorage.setItem(
+    STORAGE_ALERTS,
+    JSON.stringify(items)
+  );
+
+}
+
+
+/* =====================================================
+   PRODUCT ID
+===================================================== */
+
+function getProductId(product) {
+
+  if (product.id) {
+
+    return String(product.id);
+
+  }
+
+  return [
+
+    product.title || "",
+
+    product.store || "",
+
+    product.price || ""
+
+  ].join("|");
+
+}
+
+
+/* =====================================================
+   TELEGRAM USER
+===================================================== */
+
+function getTelegramUser() {
+
+  if (
+    tg &&
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user
+  ) {
+
+    return tg.initDataUnsafe.user;
+
+  }
+
+  return null;
+
+}
+
+
+/* =====================================================
+   ANALYTICS
+===================================================== */
+
+function recordClick(product) {
+
+  const clicks = JSON.parse(
+    localStorage.getItem(STORAGE_CLICKS) || "[]"
+  );
+
+  clicks.push({
+
+    productId: getProductId(product),
+
+    title: product.title || "",
+
+    store: product.store || "",
+
+    timestamp: new Date().toISOString(),
+
+    telegramUserId:
+      getTelegramUser()?.id || null
+
+  });
+
+  localStorage.setItem(
+    STORAGE_CLICKS,
+    JSON.stringify(clicks)
+  );
+
+}
+
+
+/* =====================================================
+   OPEN AFFILIATE LINK
+===================================================== */
+
+function openProduct(product) {
+
+  if (!product.link) {
+
+    showToast(
+      "رابط الشراء غير متوفر حاليًا"
+    );
+
+    return;
+
+  }
+
+  recordClick(product);
+
+  window.open(
+    product.link,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
 
 
 /* =====================================================
@@ -1854,6 +2919,11 @@ async function loadProducts() {
           ? data.accessories
           : [],
 
+      perfumes:
+        Array.isArray(data.perfumes)
+          ? data.perfumes
+          : [],
+
       bags:
         Array.isArray(data.bags)
           ? data.bags
@@ -1877,6 +2947,31 @@ async function loadProducts() {
       deals:
         Array.isArray(data.deals)
           ? data.deals
+          : [],
+
+      beauty:
+        Array.isArray(data.beauty)
+          ? data.beauty
+          : [],
+
+      men:
+        Array.isArray(data.men)
+          ? data.men
+          : [],
+
+      kids:
+        Array.isArray(data.kids)
+          ? data.kids
+          : [],
+
+      sports:
+        Array.isArray(data.sports)
+          ? data.sports
+          : [],
+
+      gifts:
+        Array.isArray(data.gifts)
+          ? data.gifts
           : []
 
     };
@@ -1906,1353 +3001,210 @@ async function loadProducts() {
 
 
 /* =====================================================
-   STORAGE
+   HOME DISCOVERY
 ===================================================== */
 
-const STORAGE_KEYS = {
+function flattenProducts() {
 
-  saved:
-    "wafartha_sah_saved_v1",
+  const all = [];
 
-  preferences:
-    "wafartha_sah_preferences_v1",
+  Object.keys(products).forEach(category => {
 
-  alerts:
-    "wafartha_sah_alerts_v1",
+    (products[category] || []).forEach(product => {
 
-  clicks:
-    "wafartha_sah_clicks_v1"
+      all.push({
+        ...product,
+        category: product.category || category
+      });
 
-};
+    });
 
+  });
 
-function readStorage(
-  key,
-  fallback
-) {
-
-  try {
-
-    const value =
-      localStorage.getItem(key);
-
-    return value
-      ? JSON.parse(value)
-      : fallback;
-
-  } catch (e) {
-
-    return fallback;
-
-  }
+  return all;
 
 }
 
 
-function writeStorage(
-  key,
-  value
-) {
+function getDiscountPercent(product) {
 
-  try {
-
-    localStorage.setItem(
-      key,
-      JSON.stringify(value)
-    );
-
-    return true;
-
-  } catch (e) {
-
-    return false;
-
-  }
-
-}
-
-
-/* =====================================================
-   PRODUCT HELPERS
-===================================================== */
-
-function productId(product) {
+  const current = parseFloat(product.price);
+  const old = parseFloat(product.old);
 
   if (
-    product &&
-    product.id
+    !isNaN(current) &&
+    !isNaN(old) &&
+    old > current
   ) {
 
-    return String(
-      product.id
-    );
+    return Math.round(((old - current) / old) * 100);
 
   }
 
-
-  return [
-
-    product?.store || "",
-
-    product?.title || "",
-
-    product?.link || ""
-
-  ]
-
-    .join("|")
-
-    .toLowerCase();
+  return 0;
 
 }
 
 
-function normalizeProduct(
-  product
-) {
+function renderDiscoveryCard(product) {
 
-  return {
+  const item = product || {};
 
-    id:
-      productId(product),
-
-    title:
-      product?.title ||
-      "منتج",
-
-    price:
-      product?.price ||
-      "0",
-
-    old:
-      product?.old ||
-      "",
-
-    image:
-      product?.image ||
-      "",
-
-    link:
-      product?.link ||
-      "#",
-
-    store:
-      product?.store ||
-      "",
-
-    category:
-      product?.category ||
-      "",
-
-    badge:
-      product?.badge ||
-      "",
-
-    stores:
-      Array.isArray(
-        product?.stores
-      )
-        ? product.stores
-        : []
-
-  };
-
-}
-
-
-function safeProductJson(
-  product
-) {
-
-  const json =
-    JSON.stringify(
-      normalizeProduct(product)
-    );
-
-  return json
-
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-
-    .replace(
-      /'/g,
-      "\\'"
-    )
-
-    .replace(
-      /</g,
-      "\\u003c"
-    )
-
-    .replace(
-      />/g,
-      "\\u003e"
-    )
-
-    .replace(
-      /&/g,
-      "\\u0026"
-    );
-
-}
-
-
-/* =====================================================
-   SAVED PRODUCTS
-===================================================== */
-
-function getSavedProducts() {
-
-  return readStorage(
-    STORAGE_KEYS.saved,
-    []
-  );
-
-}
-
-
-function isSaved(product) {
-
-  const id =
-    productId(product);
-
-  return getSavedProducts()
-    .some(
-      item =>
-        item.id === id
-    );
-
-}
-
-
-function toggleSaved(
-  product
-) {
-
-  const normalized =
-    normalizeProduct(product);
-
-  let saved =
-    getSavedProducts();
-
-  const exists =
-    saved.some(
-      item =>
-        item.id ===
-        normalized.id
-    );
-
-
-  if (exists) {
-
-    saved =
-      saved.filter(
-        item =>
-          item.id !==
-          normalized.id
-      );
-
-    showToast(
-      "تمت إزالة المنتج من المحفوظات"
-    );
-
-  } else {
-
-    saved.unshift(
-      normalized
-    );
-
-    showToast(
-      "❤️ تم حفظ المنتج"
-    );
-
-  }
-
-
-  writeStorage(
-    STORAGE_KEYS.saved,
-    saved
-  );
-
-
-  sendBotEvent(
-    "save_product",
-    normalized
-  );
-
-
-  const activePage =
-    document.getElementById(
-      "productsPage"
-    );
-
-
-  if (
-    activePage &&
-    activePage.classList.contains(
-      "active"
-    )
-  ) {
-
-    const currentTitle =
-      document.getElementById(
-        "categoryTitle"
-      ).textContent;
-
-
-    const category =
-      Object.keys(
-        categoryNames
-      ).find(
-        key =>
-          categoryNames[key]
-            .title ===
-          currentTitle
-      );
-
-
-    if (category) {
-
-      renderProducts(
-        category
-      );
-
-    }
-
-  }
-
-}
-
-
-/* =====================================================
-   SAVED MODAL
-===================================================== */
-
-function openSavedModal() {
-
-  const saved =
-    getSavedProducts();
-
-  const list =
-    document.getElementById(
-      "savedList"
-    );
-
-
-  if (!saved.length) {
-
-    list.innerHTML = `
-
-      <div class="empty">
-
-        <div class="empty-icon">
-          ❤️
-        </div>
-
-        <h3>
-          لا توجد منتجات محفوظة
-        </h3>
-
-        <p>
-          اضغط «♡ حفظ المنتج»
-          على أي منتج يعجبك.
-        </p>
-
-      </div>
-
-    `;
-
-  } else {
-
-    list.innerHTML =
-      saved.map(
-        product => `
-
-        <div class="saved-item">
-
-          <img
-            src="${escapeHtml(
-              product.image
-            )}"
-            alt="${escapeHtml(
-              product.title
-            )}"
-          >
-
-          <div class="saved-info">
-
-            <div class="saved-title">
-
-              ${escapeHtml(
-                product.title
-              )}
-
-            </div>
-
-            <div class="saved-price">
-
-              ${escapeHtml(
-                product.price
-              )}
-              ر.س
-
-            </div>
-
-          </div>
-
-          <button
-            class="saved-open"
-            type="button"
-            onclick='openSavedProduct(
-              ${safeProductJson(product)}
-            )'
-          >
-            عرض
-          </button>
-
-        </div>
-
-      `
-      ).join("");
-
-  }
-
-
-  openModal(
-    "savedModal"
-  );
-
-}
-
-
-function openSavedProduct(
-  product
-) {
-
-  closeModal();
-
-
-  if (
-    product.category &&
-    categoryNames[
-      product.category
-    ]
-  ) {
-
-    showCategory(
-      product.category
-    ).then(
-      () => {
-
-        setTimeout(
-          () => {
-
-            const cards =
-              document.querySelectorAll(
-                ".product"
-              );
-
-
-            const target =
-              Array.from(
-                cards
-              ).find(
-                card =>
-                  card.dataset
-                    .productId ===
-                  product.id
-              );
-
-
-            if (target) {
-
-              target.scrollIntoView({
-                behavior:
-                  "smooth",
-
-                block:
-                  "center"
-              });
-
-            }
-
-          },
-          350
-        );
-
-      }
-    );
-
-  } else if (
-    product.link &&
-    product.link !== "#"
-  ) {
-
-    window.open(
-      product.link,
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   PRICE ALERT
-===================================================== */
-
-function openPriceAlert(
-  product
-) {
-
-  const normalized =
-    normalizeProduct(
-      product
-    );
-
-
-  const box =
-    document.getElementById(
-      "alertProductInfo"
-    );
-
-
-  box.innerHTML = `
-
-    <div
-      style="
-        background:#faf9fe;
-        border:1px solid #ebeaf1;
-        border-radius:15px;
-        padding:12px;
-      "
-    >
-
-      <div
-        style="
-          font-size:12px;
-          font-weight:900;
-          line-height:1.7;
-        "
-      >
-
-        ${escapeHtml(
-          normalized.title
-        )}
-
-      </div>
-
-      <div
-        style="
-          margin-top:4px;
-          color:#5b35d5;
-          font-size:12px;
-          font-weight:900;
-        "
-      >
-
-        السعر الحالي:
-        ${escapeHtml(
-          normalized.price
-        )}
-        ر.س
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  document.getElementById(
-    "confirmAlertButton"
-  ).onclick =
-    function () {
-
-      const alerts =
-        readStorage(
-          STORAGE_KEYS.alerts,
-          []
-        );
-
-
-      if (
-        !alerts.some(
-          item =>
-            item.id ===
-            normalized.id
-        )
-      ) {
-
-        alerts.push({
-
-          ...normalized,
-
-          createdAt:
-            new Date()
-              .toISOString()
-
-        });
-
-
-        writeStorage(
-          STORAGE_KEYS.alerts,
-          alerts
-        );
-
-      }
-
-
-      sendBotEvent(
-        "price_alert_request",
-        normalized
-      );
-
-
-      closeModal();
-
-
-      showToast(
-        "🔔 تم تسجيل طلب مراقبة السعر"
-      );
-
-    };
-
-
-  openModal(
-    "alertModal"
-  );
-
-}
-
-
-/* =====================================================
-   PREFERENCES
-===================================================== */
-
-const preferenceOptions = [
-
-  [
-    "electronics",
-    "📱 الإلكترونيات"
-  ],
-
-  [
-    "accessories",
-    "💍 الإكسسوارات"
-  ],
-
-  [
-    "shoes",
-    "👟 الأحذية"
-  ],
-
-  [
-    "dresses",
-    "👗 الفساتين"
-  ],
-
-  [
-    "bags",
-    "👜 الشنط"
-  ],
-
-  [
-    "watches",
-    "⌚ الساعات"
-  ],
-
-  [
-    "home",
-    "🏠 المنزل"
-  ],
-
-  [
-    "deals",
-    "🔥 أقوى العروض"
-  ]
-
-];
-
-
-function getPreferences() {
-
-  return readStorage(
-    STORAGE_KEYS.preferences,
-    []
-  );
-
-}
-
-
-function openPreferencesModal() {
-
-  const selected =
-    getPreferences();
-
-
-  const grid =
-    document.getElementById(
-      "preferenceGrid"
-    );
-
-
-  grid.innerHTML =
-    preferenceOptions
-      .map(
-        ([key,label]) => `
-
-          <button
-            type="button"
-            class="
-              preference-chip
-              ${
-                selected.includes(
-                  key
-                )
-                  ? "selected"
-                  : ""
-              }
-            "
-            onclick="
-              togglePreference(
-                '${key}'
-              )
-            "
-          >
-
-            ${label}
-
-          </button>
-
-        `
-      )
-      .join("");
-
-
-  openModal(
-    "preferencesModal"
-  );
-
-}
-
-
-function togglePreference(
-  key
-) {
-
-  const selected =
-    getPreferences();
-
-
-  const index =
-    selected.indexOf(key);
-
-
-  if (index >= 0) {
-
-    selected.splice(
-      index,
-      1
-    );
-
-  } else {
-
-    selected.push(
-      key
-    );
-
-  }
-
-
-  writeStorage(
-    STORAGE_KEYS.preferences,
-    selected
-  );
-
-
-  openPreferencesModal();
-
-}
-
-
-function savePreferences() {
-
-  sendBotEvent(
-    "save_preferences",
-    {
-      preferences:
-        getPreferences()
-    }
-  );
-
-
-  closeModal();
-
-
-  if (
-    getPreferences()
-      .length
-  ) {
-
-    showToast(
-      "🎯 تم حفظ اهتماماتك"
-    );
-
-  } else {
-
-    showToast(
-      "تم حفظ الإعدادات"
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   PRICE COMPARISON
-===================================================== */
-
-function renderCompareBox(
-  product
-) {
-
-  const stores =
-    Array.isArray(
-      product.stores
-    )
-      ? product.stores.filter(
-          store =>
-            store &&
-            store.link
-        )
-      : [];
-
-
-  if (!stores.length) {
-
-    return "";
-
-  }
-
-
-  const sorted =
-    [...stores].sort(
-      (a,b) => {
-
-        const pa =
-          parseFloat(
-            a.price
-          );
-
-        const pb =
-          parseFloat(
-            b.price
-          );
-
-
-        if (
-          isNaN(pa) ||
-          isNaN(pb)
-        ) {
-
-          return 0;
-
-        }
-
-
-        return pa - pb;
-
-      }
-    );
-
+  const discount = getDiscountPercent(item);
 
   return `
 
-    <div class="compare-box">
+    <article class="discovery-card">
 
-      <div class="compare-title">
+      <img
+        class="discovery-image"
+        src="${escapeHtml(item.image || "") }"
+        alt="${escapeHtml(item.title || "منتج") }"
+        loading="lazy"
+      >
 
-        🔎 قارن الأسعار قبل الشراء
+      <div class="discovery-info">
 
-      </div>
+        <div class="discovery-store">
+          ${escapeHtml(item.store || "متجر موصى به")}
+        </div>
 
+        <div class="discovery-title">
+          ${escapeHtml(item.title || "منتج")}
+        </div>
 
-      <div class="compare-list">
-
-        ${
-          sorted.map(
-            (
-              store,
-              index
-            ) => `
-
-            <div class="compare-row">
-
-              <strong>
-
-                ${
-                  index === 0
-                    ? "👑 "
-                    : ""
-                }
-
-                ${escapeHtml(
-                  store.name ||
-                  "المتجر"
-                )}
-
-              </strong>
-
-
-              <span class="compare-price">
-
-                ${escapeHtml(
-                  store.price ||
-                  "—"
-                )}
-                ر.س
-
-              </span>
-
-
-              <a
-                class="compare-buy"
-                href="${escapeHtml(
-                  store.link
-                )}"
-                target="_blank"
-                rel="noopener noreferrer"
-                onclick='trackStoreClick(
-                  event,
-                  ${safeProductJson(product)},
-                  ${JSON.stringify(
-                    store.name ||
-                    "المتجر"
-                  )}
-                )'
-              >
-
-                شراء
-
-              </a>
-
-            </div>
-
-          `
-          ).join("")
-        }
+        <div class="discovery-price">
+          ${escapeHtml(item.price || "0")} ر.س
+          ${discount ? ` • خصم ${discount}%` : ""}
+        </div>
 
       </div>
 
-    </div>
+    </article>
 
   `;
 
 }
 
 
-/* =====================================================
-   ANALYTICS
-===================================================== */
-
-function trackProductClick(
-  event,
-  product
+function renderDiscoveryGrid(
+  elementId,
+  items,
+  emptyText
 ) {
 
-  const normalized =
-    normalizeProduct(
-      product
-    );
+  const grid = document.getElementById(elementId);
 
+  if (!grid) return;
 
-  trackClick({
+  if (!items.length) {
 
-    type:
-      "affiliate_click",
-
-    productId:
-      normalized.id,
-
-    title:
-      normalized.title,
-
-    store:
-      normalized.store,
-
-    link:
-      normalized.link,
-
-    time:
-      new Date()
-        .toISOString()
-
-  });
-
-}
-
-
-function trackStoreClick(
-  event,
-  product,
-  storeName
-) {
-
-  const normalized =
-    normalizeProduct(
-      product
-    );
-
-
-  trackClick({
-
-    type:
-      "affiliate_click",
-
-    productId:
-      normalized.id,
-
-    title:
-      normalized.title,
-
-    store:
-      storeName,
-
-    link:
-      normalized.link,
-
-    time:
-      new Date()
-        .toISOString()
-
-  });
-
-}
-
-
-function trackClick(
-  event
-) {
-
-  const clicks =
-    readStorage(
-      STORAGE_KEYS.clicks,
-      []
-    );
-
-
-  clicks.push(
-    event
-  );
-
-
-  const trimmed =
-    clicks.slice(
-      -300
-    );
-
-
-  writeStorage(
-    STORAGE_KEYS.clicks,
-    trimmed
-  );
-
-
-  sendBotEvent(
-    "affiliate_click",
-    event
-  );
-
-}
-
-
-function sendBotEvent(
-  type,
-  payload
-) {
-
-  /*
-    جاهز للربط مع Backend لاحقًا.
-
-    عند تجهيز استقبال الأحداث:
-
-    tg.sendData(
-      JSON.stringify({
-        type,
-        payload
-      })
-    );
-
-    لا يتم تفعيله الآن حتى لا
-    يغلق Telegram الـWeb App
-    عند كل نقرة.
-  */
-
-  return {
-    type,
-    payload
-  };
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function searchProducts(
-  query
-) {
-
-  const results =
-    document.getElementById(
-      "searchResults"
-    );
-
-
-  const q =
-    String(
-      query || ""
-    )
-      .trim()
-      .toLowerCase();
-
-
-  if (!q) {
-
-    results.innerHTML =
-      "";
-
-    results.classList.remove(
-      "show"
-    );
+    grid.innerHTML = `
+      <div class="discovery-empty">
+        ${emptyText}
+      </div>
+    `;
 
     return;
 
   }
 
+  grid.innerHTML = items
+    .slice(0, 4)
+    .map(renderDiscoveryCard)
+    .join("");
 
-  const allProducts = [];
+}
 
 
-  Object.keys(
-    products
-  ).forEach(
-    category => {
+function prepareHomeSections() {
 
-      (
-        products[
-          category
-        ] || []
-      ).forEach(
-        product => {
+  const all = flattenProducts();
 
-          allProducts.push({
-
-            ...product,
-
-            category:
-              product.category ||
-              category
-
-          });
-
-        }
+  const deals = all
+    .filter(product => {
+      return (
+        product.category === "deals" ||
+        product.dealText ||
+        getDiscountPercent(product) >= 20
       );
+    })
+    .sort(
+      (a,b) =>
+        getDiscountPercent(b) -
+        getDiscountPercent(a)
+    );
 
-    }
+  renderDiscoveryGrid(
+    "todayDealsGrid",
+    deals,
+    "لا توجد عروض اليوم حاليًا — نبحث لك عن الأفضل 🔥"
   );
 
 
-  const matches =
-    allProducts
-
-      .filter(
-        product =>
-
-          String(
-            product.title ||
-            ""
-          )
-            .toLowerCase()
-            .includes(q)
-
-          ||
-
-          String(
-            product.store ||
-            ""
-          )
-            .toLowerCase()
-            .includes(q)
-      )
-
-      .slice(
-        0,
-        8
+  const featured = all
+    .filter(product => {
+      return (
+        product.featured === true ||
+        product.featured === "true" ||
+        product.bestDeal === true
       );
+    });
+
+  renderDiscoveryGrid(
+    "featuredGrid",
+    featured,
+    "لم تتم إضافة منتجات مميزة بعد. يمكنك تحديدها من البوت."
+  );
 
 
-  if (!matches.length) {
+  const prefs = getPreferences();
 
-    results.innerHTML = `
+  const personalized = prefs.length
+    ? all.filter(product =>
+        prefs.includes(
+          product.category
+        )
+      )
+    : [];
 
-      <div class="empty">
-
-        <div class="empty-icon">
-          🔎
-        </div>
-
-        <h3>
-          ما لقينا المنتج
-        </h3>
-
-        <p>
-          جرّب كلمة أخرى
-          أو تصفح الأقسام.
-        </p>
-
-      </div>
-
-    `;
-
-  } else {
-
-    results.innerHTML =
-      matches.map(
-        product => `
-
-          <div
-            class="search-result"
-            onclick='openSearchProduct(
-              ${safeProductJson(product)}
-            )'
-          >
-
-            <img
-              src="${escapeHtml(
-                product.image ||
-                ""
-              )}"
-              alt="${escapeHtml(
-                product.title ||
-                "منتج"
-              )}"
-            >
-
-
-            <div class="search-result-info">
-
-              <div class="search-result-title">
-
-                ${escapeHtml(
-                  product.title ||
-                  "منتج"
-                )}
-
-              </div>
-
-
-              <div class="search-result-price">
-
-                ${escapeHtml(
-                  product.price ||
-                  "0"
-                )}
-                ر.س
-
-                ${
-                  product.store
-                    ? " • " +
-                      escapeHtml(
-                        product.store
-                      )
-                    : ""
-                }
-
-              </div>
-
-            </div>
-
-          </div>
-
-        `
-      ).join("");
-
-  }
-
-
-  results.classList.add(
-    "show"
+  renderDiscoveryGrid(
+    "personalizedGrid",
+    personalized,
+    "اختر اهتماماتك من زر «تخصيص» لتظهر لك منتجات أقرب لذوقك."
   );
 
 }
 
 
-function openSearchProduct(
-  product
-) {
+function showFeaturedProducts() {
 
-  const searchInput =
-    document.getElementById(
-      "searchInput"
-    );
+  const featured = flattenProducts()
+    .filter(product => {
+      return (
+        product.featured === true ||
+        product.featured === "true" ||
+        product.bestDeal === true
+      );
+    });
 
-  const searchResults =
-    document.getElementById(
-      "searchResults"
-    );
+  document
+    .getElementById("homePage")
+    .classList.remove("active");
 
+  document
+    .getElementById("productsPage")
+    .classList.add("active");
 
-  if (searchInput) {
+  document
+    .getElementById("categoryTitle")
+    .textContent = "⭐ المنتجات المميزة";
 
-    searchInput.value =
-      "";
+  document
+    .getElementById("categorySubtitle")
+    .textContent = "اختياراتنا الأقوى لك";
 
-  }
-
-
-  if (searchResults) {
-
-    searchResults.innerHTML =
-      "";
-
-    searchResults.classList.remove(
-      "show"
-    );
-
-  }
-
-
-  if (
-    product.category &&
-    categoryNames[
-      product.category
-    ]
-  ) {
-
-    showCategory(
-      product.category
-    );
-
-  } else if (
-    product.link &&
-    product.link !== "#"
-  ) {
-
-    window.open(
-      product.link,
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-  }
+  renderProducts(featured);
 
 }
 
@@ -3261,38 +3213,25 @@ function openSearchProduct(
    SHOW CATEGORY
 ===================================================== */
 
-async function showCategory(
-  category
-) {
+async function showCategory(category) {
 
   const home =
-    document.getElementById(
-      "homePage"
-    );
-
+    document.getElementById("homePage");
 
   const productsPage =
-    document.getElementById(
-      "productsPage"
-    );
+    document.getElementById("productsPage");
 
+  const list =
+    document.getElementById("productsList");
 
   const title =
-    document.getElementById(
-      "categoryTitle"
-    );
-
+    document.getElementById("categoryTitle");
 
   const subtitle =
-    document.getElementById(
-      "categorySubtitle"
-    );
-
+    document.getElementById("categorySubtitle");
 
   const info =
-    categoryNames[
-      category
-    ];
+    categoryNames[category];
 
 
   if (!info) {
@@ -3302,28 +3241,16 @@ async function showCategory(
   }
 
 
-  home.classList.remove(
-    "active"
-  );
+  home.classList.remove("active");
 
-
-  productsPage.classList.add(
-    "active"
-  );
+  productsPage.classList.add("active");
 
 
   title.textContent =
     info.title;
 
-
   subtitle.textContent =
     info.subtitle;
-
-
-  const list =
-    document.getElementById(
-      "productsList"
-    );
 
 
   list.innerHTML = `
@@ -3349,11 +3276,9 @@ async function showCategory(
 
   window.scrollTo({
 
-    top:
-      0,
+    top: 0,
 
-    behavior:
-      "smooth"
+    behavior: "smooth"
 
   });
 
@@ -3377,57 +3302,21 @@ async function showCategory(
         </h3>
 
         <p>
-          حاول مرة أخرى بعد قليل.
+          تأكد من وجود products.json
+          ثم حاول مرة أخرى.
         </p>
 
       </div>
 
     `;
 
-
     return;
 
   }
 
 
-  renderProducts(
-    category
-  );
-
-}
-
-
-/* =====================================================
-   RENDER PRODUCTS
-===================================================== */
-
-function renderProducts(
-  category
-) {
-
-  const list =
-    document.getElementById(
-      "productsList"
-    );
-
-
   const items =
-    (
-      products[
-        category
-      ] || []
-    )
-      .map(
-        product => ({
-
-          ...product,
-
-          category:
-            product.category ||
-            category
-
-        })
-      );
+    products[category] || [];
 
 
   if (!items.length) {
@@ -3445,334 +3334,1226 @@ function renderProducts(
         </h3>
 
         <p>
-
-          نعمل على إضافة
-          منتجات مميزة
-          لهذا القسم.
-
-          <br>
-
-          تابعنا ليصلك
-          كل جديد 🔥
-
+          نعمل على إضافة منتجات مميزة
+          لهذا القسم.<br>
+          تابعنا ليصلك كل جديد 🔥
         </p>
 
       </div>
 
     `;
 
-
     return;
 
   }
 
 
-  list.innerHTML =
-    "";
+  renderProducts(items);
+
+}
 
 
-  items.forEach(
-    product => {
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
 
-      const normalized =
-        normalizeProduct(
-          product
+function renderProducts(items) {
+
+  const list =
+    document.getElementById("productsList");
+
+
+  list.innerHTML = "";
+
+
+  items.forEach(product => {
+
+    const article =
+      document.createElement("article");
+
+    article.className =
+      "product";
+
+
+    const current =
+      parseFloat(product.price);
+
+    const old =
+      parseFloat(product.old);
+
+
+    let discountText =
+      "🔥 عرض مميز";
+
+
+    if (
+      !isNaN(current) &&
+      !isNaN(old) &&
+      old > current
+    ) {
+
+      const discount =
+        Math.round(
+          ((old - current) / old) * 100
         );
 
+      discountText =
+        `🔥 خصم ${discount}%`;
 
-      const article =
-        document.createElement(
-          "article"
-        );
-
-
-      article.className =
-        "product";
+    }
 
 
-      article.dataset.productId =
-        normalized.id;
+    const image =
+      product.image || "";
 
 
-      let discountText =
-        "🔥 عرض مميز";
+    const store =
+      product.store ||
+      "متجر موصى به";
 
 
-      const current =
-        parseFloat(
-          normalized.price
-        );
+    const saved =
+      getSavedProducts().some(
+        item =>
+          item.id === getProductId(product)
+      );
 
 
-      const old =
-        parseFloat(
-          normalized.old
-        );
+    const bestDeal =
+      product.bestDeal === true;
 
 
-      if (
-        !isNaN(current) &&
-        !isNaN(old) &&
-        old > current
-      ) {
-
-        const discount =
-          Math.round(
-            (
-              (old - current) /
-              old
-            ) * 100
-          );
+    const comparison =
+      Array.isArray(product.comparison)
+        ? product.comparison
+        : [];
 
 
-        discountText =
-          `🔥 خصم ${discount}%`;
+    article.innerHTML = `
 
-      }
+      <div class="product-image">
 
 
-      article.innerHTML = `
-
-        <div class="product-image">
+        <div class="product-badges">
 
           <div class="discount">
-
-            ${escapeHtml(
-              discountText
-            )}
-
+            ${escapeHtml(discountText)}
           </div>
 
-
-          <img
-            src="${escapeHtml(
-              normalized.image
-            )}"
-            alt="${escapeHtml(
-              normalized.title
-            )}"
-            loading="lazy"
-          >
+          ${
+            bestDeal
+              ? `
+                <div class="best-deal">
+                  👑 أفضل سعر
+                </div>
+              `
+              : ""
+          }
 
         </div>
 
 
-        <div class="product-info">
+        <button
+          class="save-product ${saved ? "saved" : ""}"
+          type="button"
+          aria-label="حفظ المنتج"
+        >
+          ${saved ? "♥" : "♡"}
+        </button>
 
 
-          <div class="product-meta">
+        <img
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(
+            product.title || "منتج"
+          )}"
+          loading="lazy"
+        >
 
-            ${
-              normalized.store
-                ? `
-
-                  <span class="store-badge">
-
-                    🏪
-
-                    ${escapeHtml(
-                      normalized.store
-                    )}
-
-                  </span>
-
-                `
-                : ""
-            }
+      </div>
 
 
-            ${
-              normalized.badge
-                ? `
-
-                  <span class="deal-badge">
-
-                    ${escapeHtml(
-                      normalized.badge
-                    )}
-
-                  </span>
-
-                `
-                : ""
-            }
-
-          </div>
+      <div class="product-info">
 
 
-          <div class="product-title">
+        <div class="product-title">
 
-            ${escapeHtml(
-              normalized.title
-            )}
+          ${escapeHtml(
+            product.title || "منتج"
+          )}
 
-          </div>
-
-
-          <div class="price-row">
-
-            <div class="current-price">
-
-              <span class="price-number">
-
-                ${escapeHtml(
-                  normalized.price
-                )}
-
-              </span>
+        </div>
 
 
-              <span class="price-currency">
+        <div class="product-store">
 
-                ر.س
+          🏪
 
-              </span>
+          ${escapeHtml(store)}
 
-            </div>
-
-
-            ${
-              normalized.old
-                ? `
-
-                  <div class="old-price">
-
-                    ${escapeHtml(
-                      normalized.old
-                    )}
-                    ر.س
-
-                  </div>
-
-                `
-                : ""
-            }
-
-          </div>
+        </div>
 
 
-          <a
-            class="buy"
-            href="${escapeHtml(
-              normalized.link ||
-              "#"
-            )}"
-            target="_blank"
-            rel="noopener noreferrer"
-            onclick='trackProductClick(
-              event,
-              ${safeProductJson(
-                normalized
+        <div class="price-row">
+
+
+          <div class="current-price">
+
+            <span class="price-number">
+
+              ${escapeHtml(
+                product.price || "0"
               )}
-            )'
-          >
 
-            <span>
-              🛒
             </span>
 
-            اشترِ من
-
-            ${escapeHtml(
-              normalized.store ||
-              "المتجر"
-            )}
-
-          </a>
-
-
-          <div class="product-actions">
-
-
-            <button
-              class="
-                secondary-action
-                ${
-                  isSaved(
-                    normalized
-                  )
-                    ? "active"
-                    : ""
-                }
-              "
-              type="button"
-              onclick='toggleSaved(
-                ${safeProductJson(
-                  normalized
-                )}
-              )'
-            >
-
-              ${
-                isSaved(
-                  normalized
-                )
-                  ? "❤️ محفوظ"
-                  : "♡ حفظ المنتج"
-              }
-
-            </button>
-
-
-            <button
-              class="
-                secondary-action
-                alert-action
-              "
-              type="button"
-              onclick='openPriceAlert(
-                ${safeProductJson(
-                  normalized
-                )}
-              )'
-            >
-
-              🔔 راقب السعر
-
-            </button>
-
+            <span class="price-currency">
+              ر.س
+            </span>
 
           </div>
 
 
           ${
-            Array.isArray(
-              normalized.stores
-            ) &&
-            normalized.stores.length
-
-              ? renderCompareBox(
-                  normalized
-                )
-
+            product.old
+              ? `
+                <div class="old-price">
+                  ${escapeHtml(product.old)} ر.س
+                </div>
+              `
               : ""
           }
 
 
         </div>
 
-      `;
+
+        ${
+          product.dealText
+            ? `
+              <div class="deal-status">
+                🔥 ${escapeHtml(product.dealText)}
+              </div>
+            `
+            : ""
+        }
 
 
-      list.appendChild(
-        article
+        <div class="product-actions">
+
+
+          <button
+            class="buy"
+            type="button"
+          >
+
+            🛒
+
+            شراء من
+            ${escapeHtml(store)}
+
+          </button>
+
+
+          <button
+            class="watch-price"
+            type="button"
+          >
+
+            🔔 راقب السعر
+
+          </button>
+
+
+        </div>
+
+
+        ${
+          comparison.length
+            ? buildComparison(comparison)
+            : ""
+        }
+
+
+      </div>
+
+    `;
+
+
+    /* SAVE */
+
+    const saveButton =
+      article.querySelector(
+        ".save-product"
       );
 
-    }
-  );
+
+    saveButton.addEventListener(
+      "click",
+      function(event) {
+
+        event.stopPropagation();
+
+        toggleSavedProduct(
+          product,
+          saveButton
+        );
+
+      }
+    );
+
+
+    /* BUY */
+
+    const buyButton =
+      article.querySelector(
+        ".buy"
+      );
+
+
+    buyButton.addEventListener(
+      "click",
+      function() {
+
+        openProduct(product);
+
+      }
+    );
+
+
+    /* WATCH PRICE */
+
+    const watchButton =
+      article.querySelector(
+        ".watch-price"
+      );
+
+
+    watchButton.addEventListener(
+      "click",
+      function() {
+
+        openPriceAlert(product);
+
+      }
+    );
+
+
+    list.appendChild(article);
+
+  });
 
 
   window.scrollTo({
 
-    top:
-      0,
+    top: 0,
 
-    behavior:
-      "smooth"
+    behavior: "smooth"
 
   });
 
 }
+
+
+/* =====================================================
+   COMPARISON
+===================================================== */
+
+function buildComparison(comparison) {
+
+  if (!comparison.length) {
+
+    return "";
+
+  }
+
+
+  return `
+
+    <div class="compare-box">
+
+      <div class="compare-title">
+
+        🔎 مقارنة المتاجر
+
+      </div>
+
+      ${
+        comparison
+          .slice(0, 5)
+          .map(item => `
+
+            <div class="compare-row">
+
+              <span class="compare-store">
+
+                ${escapeHtml(
+                  item.store || "متجر"
+                )}
+
+              </span>
+
+              <span class="compare-price">
+
+                ${
+                  item.price
+                    ? escapeHtml(
+                        item.price
+                      ) + " ر.س"
+                    : "—"
+                }
+
+              </span>
+
+              ${
+                item.link
+                  ? `
+                    <button
+                      class="compare-link"
+                      type="button"
+                      onclick='openComparisonLink(${JSON.stringify(
+                        item.link
+                      )})'
+                    >
+                      عرض
+                    </button>
+                  `
+                  : ""
+              }
+
+            </div>
+
+          `)
+          .join("")
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   COMPARISON LINK
+===================================================== */
+
+function openComparisonLink(link) {
+
+  if (!link) {
+
+    return;
+
+  }
+
+  window.open(
+    link,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+/* =====================================================
+   SAVE PRODUCT
+===================================================== */
+
+function toggleSavedProduct(
+  product,
+  button
+) {
+
+  let saved =
+    getSavedProducts();
+
+
+  const id =
+    getProductId(product);
+
+
+  const index =
+    saved.findIndex(
+      item =>
+        item.id === id
+    );
+
+
+  if (index >= 0) {
+
+    saved.splice(
+      index,
+      1
+    );
+
+    button.classList.remove(
+      "saved"
+    );
+
+    button.textContent =
+      "♡";
+
+
+    showToast(
+      "تمت إزالة المنتج من المحفوظات"
+    );
+
+
+  } else {
+
+    saved.push({
+
+      id,
+
+      title:
+        product.title || "",
+
+      price:
+        product.price || "",
+
+      image:
+        product.image || "",
+
+      link:
+        product.link || "",
+
+      store:
+        product.store || "",
+
+      savedAt:
+        new Date().toISOString()
+
+    });
+
+
+    button.classList.add(
+      "saved"
+    );
+
+    button.textContent =
+      "♥";
+
+
+    showToast(
+      "❤️ تم حفظ المنتج"
+    );
+
+  }
+
+
+  saveSavedProducts(
+    saved
+  );
+
+}
+
+
+/* =====================================================
+   OPEN SAVED
+===================================================== */
+
+function openSaved() {
+
+  const saved =
+    getSavedProducts();
+
+
+  let content = `
+
+    <div class="modal-head">
+
+      <h3 class="modal-title">
+        ❤️ المنتجات المحفوظة
+      </h3>
+
+      <button
+        class="modal-close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+  `;
+
+
+  if (!saved.length) {
+
+    content += `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          ❤️
+        </div>
+
+        <h3>
+          لا توجد منتجات محفوظة
+        </h3>
+
+        <p>
+          احفظ المنتجات التي تعجبك
+          لتعود إليها لاحقًا.
+        </p>
+
+      </div>
+
+    `;
+
+  } else {
+
+    content += saved
+      .map(item => `
+
+        <div class="saved-item">
+
+          <img
+            src="${escapeHtml(
+              item.image || ""
+            )}"
+            alt=""
+          >
+
+          <div class="saved-item-info">
+
+            <div class="saved-item-title">
+
+              ${escapeHtml(
+                item.title || "منتج"
+              )}
+
+            </div>
+
+            <div class="saved-item-price">
+
+              ${escapeHtml(
+                item.price || "0"
+              )}
+              ر.س
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="saved-item-button"
+            onclick='openSavedProduct(${JSON.stringify(
+              item
+            )})'
+          >
+            🛒
+          </button>
+
+        </div>
+
+      `)
+      .join("");
+
+  }
+
+
+  openModal(
+    content
+  );
+
+}
+
+
+/* =====================================================
+   OPEN SAVED PRODUCT
+===================================================== */
+
+function openSavedProduct(
+  product
+) {
+
+  openProduct(
+    product
+  );
+
+}
+
+
+/* =====================================================
+   PRICE ALERT
+===================================================== */
+
+function openPriceAlert(
+  product
+) {
+
+  const content = `
+
+    <div class="modal-head">
+
+      <h3 class="modal-title">
+        🔔 راقب سعر المنتج
+      </h3>
+
+      <button
+        class="modal-close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="alert-product">
+
+      <img
+        src="${escapeHtml(
+          product.image || ""
+        )}"
+        alt=""
+      >
+
+      <div class="alert-product-info">
+
+        <div class="alert-product-title">
+
+          ${escapeHtml(
+            product.title || "منتج"
+          )}
+
+        </div>
+
+        <div class="alert-current">
+
+          السعر الحالي:
+          ${escapeHtml(
+            product.price || "0"
+          )}
+          ر.س
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <p
+      style="
+        font-size:11px;
+        color:#777386;
+        line-height:1.8;
+        margin:0 0 10px;
+      "
+    >
+      حدد السعر الذي تريد الوصول إليه،
+      وسنجهز هذا الطلب للتنبيه عند ربط
+      نظام التنبيهات الحقيقي بالبوت.
+    </p>
+
+
+    <input
+      id="alertPrice"
+      class="alert-input"
+      type="number"
+      min="1"
+      placeholder="مثلاً: 99"
+    >
+
+
+    <button
+      class="alert-submit"
+      onclick='savePriceAlert(${JSON.stringify(
+        product
+      )})'
+    >
+      🔔 حفظ تنبيه السعر
+    </button>
+
+  `;
+
+
+  openModal(
+    content
+  );
+
+}
+
+
+/* =====================================================
+   SAVE PRICE ALERT
+===================================================== */
+
+function savePriceAlert(
+  product
+) {
+
+  const input =
+    document.getElementById(
+      "alertPrice"
+    );
+
+
+  const target =
+    parseFloat(
+      input?.value
+    );
+
+
+  if (
+    !target ||
+    target <= 0
+  ) {
+
+    showToast(
+      "أدخل السعر المطلوب أولًا"
+    );
+
+    return;
+
+  }
+
+
+  const alerts =
+    getAlerts();
+
+
+  alerts.push({
+
+    id:
+      getProductId(product),
+
+    title:
+      product.title || "",
+
+    currentPrice:
+      product.price || "",
+
+    targetPrice:
+      target,
+
+    link:
+      product.link || "",
+
+    store:
+      product.store || "",
+
+    createdAt:
+      new Date().toISOString(),
+
+    telegramUserId:
+      getTelegramUser()?.id || null
+
+  });
+
+
+  saveAlerts(
+    alerts
+  );
+
+
+  closeModal();
+
+
+  showToast(
+    "🔔 تم حفظ طلب مراقبة السعر"
+  );
+
+
+  /*
+    المرحلة القادمة:
+    إرسال هذه البيانات إلى Backend
+    لكي يتم فحص السعر وإرسال رسالة
+    Telegram للمستخدم عند تحقق الشرط.
+  */
+
+}
+
+
+/* =====================================================
+   PREFERENCES
+===================================================== */
+
+const preferenceOptions = [
+
+  {
+    id: "electronics",
+    label: "📱 إلكترونيات"
+  },
+
+  {
+    id: "accessories",
+    label: "💍 إكسسوارات"
+  },
+
+  {
+    id: "perfumes",
+    label: "🌸 عطور"
+  },
+
+  {
+    id: "beauty",
+    label: "💄 عناية وجمال"
+  },
+
+  {
+    id: "men",
+    label: "👔 رجال"
+  },
+
+  {
+    id: "kids",
+    label: "🧸 أطفال"
+  },
+
+  {
+    id: "sports",
+    label: "🏋️ رياضة"
+  },
+
+  {
+    id: "gifts",
+    label: "🎁 هدايا"
+  },
+
+  {
+    id: "shoes",
+    label: "👟 أحذية"
+  },
+
+  {
+    id: "dresses",
+    label: "👗 فساتين"
+  },
+
+  {
+    id: "bags",
+    label: "👜 شنط"
+  },
+
+  {
+    id: "watches",
+    label: "⌚ ساعات"
+  },
+
+  {
+    id: "home",
+    label: "🏠 منزل"
+  },
+
+  {
+    id: "deals",
+    label: "🔥 عروض قوية"
+  }
+
+];
+
+
+function openPreferences() {
+
+  const selected =
+    getPreferences();
+
+
+  const content = `
+
+    <div class="modal-head">
+
+      <h3 class="modal-title">
+        🎯 اهتماماتي
+      </h3>
+
+      <button
+        class="modal-close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <p
+      style="
+        font-size:11px;
+        color:#777386;
+        line-height:1.8;
+        margin-top:0;
+      "
+    >
+      اختر الأشياء التي تهتم بها حتى
+      نستطيع تخصيص العروض لك لاحقًا.
+    </p>
+
+
+    <div class="preference-grid">
+
+      ${
+        preferenceOptions
+          .map(option => `
+
+            <button
+              type="button"
+              class="preference ${
+                selected.includes(
+                  option.id
+                )
+                  ? "selected"
+                  : ""
+              }"
+              data-preference="${option.id}"
+              onclick="togglePreference(this)"
+            >
+
+              ${option.label}
+
+            </button>
+
+          `)
+          .join("")
+      }
+
+    </div>
+
+
+    <button
+      class="save-preferences"
+      onclick="saveUserPreferences()"
+    >
+      💾 حفظ اهتماماتي
+    </button>
+
+  `;
+
+
+  openModal(
+    content
+  );
+
+}
+
+
+/* =====================================================
+   TOGGLE PREFERENCE
+===================================================== */
+
+function togglePreference(
+  button
+) {
+
+  button.classList.toggle(
+    "selected"
+  );
+
+}
+
+
+/* =====================================================
+   SAVE PREFERENCES
+===================================================== */
+
+function saveUserPreferences() {
+
+  const selected =
+    Array.from(
+      document.querySelectorAll(
+        ".preference.selected"
+      )
+    )
+    .map(
+      button =>
+        button.dataset.preference
+    );
+
+
+  savePreferences(
+    selected
+  );
+
+
+  prepareHomeSections();
+
+
+  closeModal();
+
+
+  showToast(
+    "🎯 تم حفظ اهتماماتك"
+  );
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+async function searchProducts() {
+
+  const input =
+    document.getElementById(
+      "searchInput"
+    );
+
+
+  const query =
+    (input.value || "")
+      .trim()
+      .toLowerCase();
+
+
+  if (!query) {
+
+    showToast(
+      "اكتب اسم المنتج الذي تبحث عنه"
+    );
+
+    return;
+
+  }
+
+
+  const loaded =
+    await loadProducts();
+
+
+  if (!loaded) {
+
+    showToast(
+      "تعذر تحميل المنتجات"
+    );
+
+    return;
+
+  }
+
+
+  const allProducts = [];
+
+
+  Object.keys(products)
+    .forEach(category => {
+
+      products[category]
+        .forEach(product => {
+
+          allProducts.push({
+
+            ...product,
+
+            category
+
+          });
+
+        });
+
+    });
+
+
+  const results =
+    allProducts.filter(
+      product => {
+
+        const text = [
+
+          product.title || "",
+
+          product.store || "",
+
+          product.category || "",
+
+          product.description || ""
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+
+        return text.includes(
+          query
+        );
+
+      }
+    );
+
+
+  document
+    .getElementById("homePage")
+    .classList.remove("active");
+
+
+  document
+    .getElementById("productsPage")
+    .classList.add("active");
+
+
+  document
+    .getElementById("categoryTitle")
+    .textContent =
+      `🔎 نتائج البحث`;
+
+
+  document
+    .getElementById("categorySubtitle")
+    .textContent =
+      `${results.length} منتج مناسب لبحثك`;
+
+
+  if (!results.length) {
+
+    document
+      .getElementById("productsList")
+      .innerHTML = `
+
+        <div class="empty">
+
+          <div class="empty-icon">
+            🔎
+          </div>
+
+          <h3>
+            لم نجد المنتج
+          </h3>
+
+          <p>
+            جرّب كلمة أخرى أو تصفح
+            الأقسام والعروض.
+          </p>
+
+        </div>
+
+      `;
+
+    return;
+
+  }
+
+
+  renderProducts(
+    results
+  );
+
+}
+
+
+/* =====================================================
+   ENTER SEARCH
+===================================================== */
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Enter"
+      ) {
+
+        searchProducts();
+
+      }
+
+    }
+  );
 
 
 /* =====================================================
@@ -3799,13 +4580,13 @@ function goHome() {
     );
 
 
+  prepareHomeSections();
+
   window.scrollTo({
 
-    top:
-      0,
+    top: 0,
 
-    behavior:
-      "smooth"
+    behavior: "smooth"
 
   });
 
@@ -3813,108 +4594,55 @@ function goHome() {
 
 
 /* =====================================================
-   MODALS
+   MODAL
 ===================================================== */
 
 function openModal(
-  id
+  html
 ) {
 
-  const backdrop =
+  const overlay =
     document.getElementById(
-      "modalBackdrop"
+      "modalOverlay"
+    );
+
+  const modal =
+    document.getElementById(
+      "modal"
     );
 
 
-  [
-    "savedModal",
-    "preferencesModal",
-    "alertModal"
-  ]
-    .forEach(
-      modalId => {
-
-        const element =
-          document.getElementById(
-            modalId
-          );
+  modal.innerHTML =
+    html;
 
 
-        if (element) {
-
-          element.style.display =
-            modalId === id
-              ? "block"
-              : "none";
-
-        }
-
-      }
-    );
-
-
-  backdrop.classList.add(
-    "show"
+  overlay.classList.add(
+    "active"
   );
-
-
-  document.body.style.overflow =
-    "hidden";
 
 }
 
 
 function closeModal() {
 
-  const backdrop =
-    document.getElementById(
-      "modalBackdrop"
-    );
-
-
-  backdrop.classList.remove(
-    "show"
-  );
-
-
-  document.body.style.overflow =
-    "";
-
-
-  [
-    "savedModal",
-    "preferencesModal",
-    "alertModal"
-  ]
-    .forEach(
-      modalId => {
-
-        const element =
-          document.getElementById(
-            modalId
-          );
-
-
-        if (element) {
-
-          element.style.display =
-            "none";
-
-        }
-
-      }
+  document
+    .getElementById(
+      "modalOverlay"
+    )
+    .classList.remove(
+      "active"
     );
 
 }
 
 
-function closeModalOnBackdrop(
+function closeModalOutside(
   event
 ) {
 
   if (
     event.target.id ===
-    "modalBackdrop"
+    "modalOverlay"
   ) {
 
     closeModal();
@@ -3928,21 +4656,17 @@ function closeModalOnBackdrop(
    TOAST
 ===================================================== */
 
+let toastTimer = null;
+
+
 function showToast(
   message
 ) {
 
   const toast =
     document.getElementById(
-      "appToast"
+      "toast"
     );
-
-
-  if (!toast) {
-
-    return;
-
-  }
 
 
   toast.textContent =
@@ -3955,20 +4679,20 @@ function showToast(
 
 
   clearTimeout(
-    window.__toastTimer
+    toastTimer
   );
 
 
-  window.__toastTimer =
+  toastTimer =
     setTimeout(
-      () => {
+      function() {
 
         toast.classList.remove(
           "show"
         );
 
       },
-      2200
+      2500
     );
 
 }
@@ -3983,7 +4707,7 @@ function escapeHtml(
 ) {
 
   return String(
-    value
+    value ?? ""
   )
 
     .replace(
@@ -4018,196 +4742,11 @@ function escapeHtml(
    INITIAL LOAD
 ===================================================== */
 
-loadProducts();
+loadProducts().then(function() {
+  prepareHomeSections();
+});
 
 </script>
-
-
-<!-- =====================================================
-     SMART COMMERCE MODALS
-===================================================== -->
-
-<div
-  id="modalBackdrop"
-  class="modal-backdrop"
-  onclick="closeModalOnBackdrop(event)"
->
-
-
-  <!-- SAVED -->
-
-  <div
-    id="savedModal"
-    class="modal"
-    style="display:none;"
-  >
-
-    <div class="modal-head">
-
-      <h3>
-        ❤️ منتجاتي المحفوظة
-      </h3>
-
-      <button
-        class="modal-close"
-        type="button"
-        onclick="closeModal()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      id="savedList"
-      class="saved-list"
-    ></div>
-
-
-    <div class="notice">
-
-      احفظ المنتجات التي تهمك،
-      ثم ارجع إليها في أي وقت.
-
-      <br>
-
-      بيانات الحفظ محفوظة
-      على جهازك.
-
-    </div>
-
-  </div>
-
-
-  <!-- PREFERENCES -->
-
-  <div
-    id="preferencesModal"
-    class="modal"
-    style="display:none;"
-  >
-
-    <div class="modal-head">
-
-      <h3>
-        🎯 اختر اهتماماتك
-      </h3>
-
-      <button
-        class="modal-close"
-        type="button"
-        onclick="closeModal()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <p
-      style="
-        font-size:11px;
-        color:#8d8a9d;
-        margin:0 0 12px;
-      "
-    >
-
-      اختر الأقسام التي تهتم بها
-      لتسهيل تخصيص العروض لك.
-
-    </p>
-
-
-    <div
-      id="preferenceGrid"
-      class="preference-grid"
-    ></div>
-
-
-    <button
-      class="primary-modal-button"
-      type="button"
-      onclick="savePreferences()"
-    >
-
-      حفظ اهتماماتي
-
-    </button>
-
-  </div>
-
-
-  <!-- PRICE ALERT -->
-
-  <div
-    id="alertModal"
-    class="modal"
-    style="display:none;"
-  >
-
-    <div class="modal-head">
-
-      <h3>
-        🔔 تنبيه انخفاض السعر
-      </h3>
-
-      <button
-        class="modal-close"
-        type="button"
-        onclick="closeModal()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      id="alertProductInfo"
-    ></div>
-
-
-    <div class="notice">
-
-      سنسجل طلب التنبيه لهذا المنتج.
-
-      <br>
-
-      <strong>
-        الإشعار التلقائي عبر Telegram
-        يحتاج ربط Web App مع Backend.
-      </strong>
-
-      <br>
-
-      حاليًا يتم حفظ الطلب
-      على جهاز المستخدم.
-
-    </div>
-
-
-    <button
-      id="confirmAlertButton"
-      class="primary-modal-button"
-      type="button"
-    >
-
-      🔔 أريد تنبيهًا عند انخفاض السعر
-
-    </button>
-
-  </div>
-
-
-</div>
-
-
-<div
-  id="appToast"
-  class="app-toast"
-></div>
-
 
 </body>
 
