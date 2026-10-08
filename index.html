@@ -223,7 +223,6 @@ a {
 
 /* =====================================================
    CATEGORY IMAGE
-   تم إصلاح الفراغ الأبيض داخل الصورة
 ===================================================== */
 
 .category-image {
@@ -245,12 +244,6 @@ a {
 .category-image img {
   position: absolute;
 
-  /*
-     نكبر الصورة قليلًا حتى نقتطع
-     الحواف البيضاء الموجودة داخل
-     ملف الصورة الأصلي.
-  */
-
   width: 100%;
   height: 100%;
 
@@ -262,10 +255,6 @@ a {
   display: block;
 
   object-fit: cover;
-
-  /*
-     أهم سطرين لحل المشكلة
-  */
 
   object-position: center center;
 
@@ -577,6 +566,38 @@ a {
   padding: 15px 16px 17px;
 }
 
+.product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 9px;
+  flex-wrap: wrap;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f2efff;
+  color: #5b35d5;
+  border-radius: 9px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.deal-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #fff1ec;
+  color: #e84e2d;
+  border-radius: 9px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
 .product-title {
   font-size: 15px;
 
@@ -678,7 +699,404 @@ a {
 
 
 /* =====================================================
-   EMPTY CATEGORY
+   PRODUCT ACTIONS
+===================================================== */
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 9px;
+}
+
+.secondary-action {
+  min-height: 43px;
+  border-radius: 13px;
+  background: #f5f3fb;
+  color: #5b35d5;
+  font-size: 11px;
+  font-weight: 900;
+  border: 1px solid #ebe8f5;
+}
+
+.secondary-action.active {
+  background: #eee9ff;
+  border-color: #dcd3ff;
+}
+
+.alert-action {
+  background: #fff5e8;
+  color: #c56b00;
+  border-color: #ffe2b6;
+}
+
+
+/* =====================================================
+   COMPARE
+===================================================== */
+
+.compare-box {
+  margin-top: 12px;
+  padding: 12px;
+  background: #faf9fe;
+  border: 1px solid #ebeaf4;
+  border-radius: 15px;
+}
+
+.compare-title {
+  font-size: 11px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  color: #39354c;
+}
+
+.compare-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.compare-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 10px;
+}
+
+.compare-row strong {
+  color: #29263c;
+}
+
+.compare-price {
+  font-weight: 900;
+  color: #12a87d;
+}
+
+.compare-buy {
+  color: #5b35d5;
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   SMART HOME TOOLS
+===================================================== */
+
+.home-tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tool-card {
+  background: #fff;
+  border: 1px solid #ebeaf1;
+  border-radius: 17px;
+  padding: 13px;
+  text-align: right;
+  box-shadow: 0 6px 20px rgba(35,31,62,.06);
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+
+.tool-card:active {
+  transform: scale(.98);
+}
+
+.tool-icon {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.tool-title {
+  font-size: 12px;
+  font-weight: 900;
+  color: #29263c;
+}
+
+.tool-text {
+  font-size: 10px;
+  color: #92909e;
+  margin-top: 2px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-wrap {
+  margin-top: 14px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 15px;
+  border-radius: 14px;
+  border: 1px solid #ebeaf1;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: #252337;
+}
+
+.search-input:focus {
+  border-color: #cfc2ff;
+  box-shadow: 0 0 0 3px rgba(91,53,213,.08);
+}
+
+.search-results {
+  margin-top: 10px;
+  display: none;
+}
+
+.search-results.show {
+  display: block;
+}
+
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #ebeaf1;
+  border-radius: 14px;
+  padding: 9px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.search-result img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fafafd;
+}
+
+.search-result-info {
+  flex: 1;
+}
+
+.search-result-title {
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.search-result-price {
+  font-size: 10px;
+  color: #5b35d5;
+  font-weight: 900;
+  margin-top: 2px;
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(22,19,39,.55);
+  padding: 14px;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+.modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 24px 24px 18px 18px;
+  padding: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-head h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.modal-close {
+  width: 35px;
+  height: 35px;
+  border-radius: 11px;
+  background: #f3f1f8;
+  color: #5b35d5;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   SAVED
+===================================================== */
+
+.saved-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saved-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #faf9fe;
+  border: 1px solid #ebeaf1;
+  border-radius: 14px;
+}
+
+.saved-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 11px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.saved-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.saved-title {
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.saved-price {
+  margin-top: 3px;
+  color: #5b35d5;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.saved-open {
+  padding: 8px 9px;
+  border-radius: 10px;
+  background: #5b35d5;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   PREFERENCES
+===================================================== */
+
+.preference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 9px;
+}
+
+.preference-chip {
+  min-height: 43px;
+  padding: 8px 10px;
+  border-radius: 13px;
+  background: #f7f6fa;
+  border: 1px solid #ebeaf1;
+  color: #403c51;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.preference-chip.selected {
+  background: #eee9ff;
+  border-color: #cfc2ff;
+  color: #5b35d5;
+}
+
+.primary-modal-button {
+  width: 100%;
+  min-height: 47px;
+  margin-top: 15px;
+  border-radius: 14px;
+  background: #5b35d5;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice {
+  margin-top: 10px;
+  padding: 11px 12px;
+  border-radius: 13px;
+  background: #fff8e8;
+  color: #7a5b18;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.app-toast {
+  position: fixed;
+  right: 16px;
+  left: 16px;
+  bottom: 18px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 16px;
+  border-radius: 15px;
+  background: #252337;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 12px 35px rgba(0,0,0,.22);
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  transition: .2s ease;
+}
+
+.app-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   EMPTY
 ===================================================== */
 
 .empty {
@@ -781,6 +1199,27 @@ a {
 
   .product-image {
     height: 235px;
+  }
+
+}
+
+
+/* =====================================================
+   SMART FEATURES MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+  .home-tools {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .compare-row {
+    flex-wrap: wrap;
   }
 
 }
@@ -1122,6 +1561,75 @@ a {
   </div>
 
 
+  <!-- SMART SHOPPING TOOLS -->
+
+  <div class="home-tools">
+
+    <button
+      class="tool-card"
+      type="button"
+      onclick="openSavedModal()"
+    >
+
+      <div class="tool-icon">
+        ❤️
+      </div>
+
+      <div class="tool-title">
+        منتجاتي المحفوظة
+      </div>
+
+      <div class="tool-text">
+        ارجع للعروض التي أعجبتك
+      </div>
+
+    </button>
+
+
+    <button
+      class="tool-card"
+      type="button"
+      onclick="openPreferencesModal()"
+    >
+
+      <div class="tool-icon">
+        🎯
+      </div>
+
+      <div class="tool-title">
+        اهتماماتي
+      </div>
+
+      <div class="tool-text">
+        خلّ العروض تناسبك أكثر
+      </div>
+
+    </button>
+
+  </div>
+
+
+  <!-- SEARCH -->
+
+  <div class="search-wrap">
+
+    <input
+      id="searchInput"
+      class="search-input"
+      type="search"
+      placeholder="🔎 ابحث عن منتج..."
+      autocomplete="off"
+      oninput="searchProducts(this.value)"
+    >
+
+    <div
+      id="searchResults"
+      class="search-results"
+    ></div>
+
+  </div>
+
+
   <div class="footer">
 
     <strong>
@@ -1212,30 +1720,44 @@ const tg =
     : null;
 
 if (tg) {
+
   tg.ready();
+
   tg.expand();
 
   try {
+
     tg.setHeaderColor("#5b35d5");
+
     tg.setBackgroundColor("#f7f7fb");
+
   } catch (e) {}
+
 }
 
 
 /* =====================================================
    PRODUCTS
-   المنتجات تأتي تلقائيًا من products.json
 ===================================================== */
 
 let products = {
+
   shoes: [],
+
   dresses: [],
+
   accessories: [],
+
   bags: [],
+
   watches: [],
+
   electronics: [],
+
   home: [],
+
   deals: []
+
 };
 
 
@@ -1304,51 +1826,70 @@ async function loadProducts() {
     );
 
     if (!response.ok) {
-      throw new Error("products.json not found");
+
+      throw new Error(
+        "products.json not found"
+      );
+
     }
 
-    const data = await response.json();
+    const data =
+      await response.json();
+
 
     products = {
-      shoes: Array.isArray(data.shoes)
-        ? data.shoes
-        : [],
 
-      dresses: Array.isArray(data.dresses)
-        ? data.dresses
-        : [],
+      shoes:
+        Array.isArray(data.shoes)
+          ? data.shoes
+          : [],
 
-      accessories: Array.isArray(data.accessories)
-        ? data.accessories
-        : [],
+      dresses:
+        Array.isArray(data.dresses)
+          ? data.dresses
+          : [],
 
-      bags: Array.isArray(data.bags)
-        ? data.bags
-        : [],
+      accessories:
+        Array.isArray(data.accessories)
+          ? data.accessories
+          : [],
 
-      watches: Array.isArray(data.watches)
-        ? data.watches
-        : [],
+      bags:
+        Array.isArray(data.bags)
+          ? data.bags
+          : [],
 
-      electronics: Array.isArray(data.electronics)
-        ? data.electronics
-        : [],
+      watches:
+        Array.isArray(data.watches)
+          ? data.watches
+          : [],
 
-      home: Array.isArray(data.home)
-        ? data.home
-        : [],
+      electronics:
+        Array.isArray(data.electronics)
+          ? data.electronics
+          : [],
 
-      deals: Array.isArray(data.deals)
-        ? data.deals
-        : []
+      home:
+        Array.isArray(data.home)
+          ? data.home
+          : [],
+
+      deals:
+        Array.isArray(data.deals)
+          ? data.deals
+          : []
+
     };
+
 
     console.log(
       "Wafartha Sah products loaded:",
       products
     );
 
+
     return true;
+
 
   } catch (error) {
 
@@ -1358,7 +1899,1361 @@ async function loadProducts() {
     );
 
     return false;
+
   }
+
+}
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const STORAGE_KEYS = {
+
+  saved:
+    "wafartha_sah_saved_v1",
+
+  preferences:
+    "wafartha_sah_preferences_v1",
+
+  alerts:
+    "wafartha_sah_alerts_v1",
+
+  clicks:
+    "wafartha_sah_clicks_v1"
+
+};
+
+
+function readStorage(
+  key,
+  fallback
+) {
+
+  try {
+
+    const value =
+      localStorage.getItem(key);
+
+    return value
+      ? JSON.parse(value)
+      : fallback;
+
+  } catch (e) {
+
+    return fallback;
+
+  }
+
+}
+
+
+function writeStorage(
+  key,
+  value
+) {
+
+  try {
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(value)
+    );
+
+    return true;
+
+  } catch (e) {
+
+    return false;
+
+  }
+
+}
+
+
+/* =====================================================
+   PRODUCT HELPERS
+===================================================== */
+
+function productId(product) {
+
+  if (
+    product &&
+    product.id
+  ) {
+
+    return String(
+      product.id
+    );
+
+  }
+
+
+  return [
+
+    product?.store || "",
+
+    product?.title || "",
+
+    product?.link || ""
+
+  ]
+
+    .join("|")
+
+    .toLowerCase();
+
+}
+
+
+function normalizeProduct(
+  product
+) {
+
+  return {
+
+    id:
+      productId(product),
+
+    title:
+      product?.title ||
+      "منتج",
+
+    price:
+      product?.price ||
+      "0",
+
+    old:
+      product?.old ||
+      "",
+
+    image:
+      product?.image ||
+      "",
+
+    link:
+      product?.link ||
+      "#",
+
+    store:
+      product?.store ||
+      "",
+
+    category:
+      product?.category ||
+      "",
+
+    badge:
+      product?.badge ||
+      "",
+
+    stores:
+      Array.isArray(
+        product?.stores
+      )
+        ? product.stores
+        : []
+
+  };
+
+}
+
+
+function safeProductJson(
+  product
+) {
+
+  const json =
+    JSON.stringify(
+      normalizeProduct(product)
+    );
+
+  return json
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    )
+
+    .replace(
+      /</g,
+      "\\u003c"
+    )
+
+    .replace(
+      />/g,
+      "\\u003e"
+    )
+
+    .replace(
+      /&/g,
+      "\\u0026"
+    );
+
+}
+
+
+/* =====================================================
+   SAVED PRODUCTS
+===================================================== */
+
+function getSavedProducts() {
+
+  return readStorage(
+    STORAGE_KEYS.saved,
+    []
+  );
+
+}
+
+
+function isSaved(product) {
+
+  const id =
+    productId(product);
+
+  return getSavedProducts()
+    .some(
+      item =>
+        item.id === id
+    );
+
+}
+
+
+function toggleSaved(
+  product
+) {
+
+  const normalized =
+    normalizeProduct(product);
+
+  let saved =
+    getSavedProducts();
+
+  const exists =
+    saved.some(
+      item =>
+        item.id ===
+        normalized.id
+    );
+
+
+  if (exists) {
+
+    saved =
+      saved.filter(
+        item =>
+          item.id !==
+          normalized.id
+      );
+
+    showToast(
+      "تمت إزالة المنتج من المحفوظات"
+    );
+
+  } else {
+
+    saved.unshift(
+      normalized
+    );
+
+    showToast(
+      "❤️ تم حفظ المنتج"
+    );
+
+  }
+
+
+  writeStorage(
+    STORAGE_KEYS.saved,
+    saved
+  );
+
+
+  sendBotEvent(
+    "save_product",
+    normalized
+  );
+
+
+  const activePage =
+    document.getElementById(
+      "productsPage"
+    );
+
+
+  if (
+    activePage &&
+    activePage.classList.contains(
+      "active"
+    )
+  ) {
+
+    const currentTitle =
+      document.getElementById(
+        "categoryTitle"
+      ).textContent;
+
+
+    const category =
+      Object.keys(
+        categoryNames
+      ).find(
+        key =>
+          categoryNames[key]
+            .title ===
+          currentTitle
+      );
+
+
+    if (category) {
+
+      renderProducts(
+        category
+      );
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   SAVED MODAL
+===================================================== */
+
+function openSavedModal() {
+
+  const saved =
+    getSavedProducts();
+
+  const list =
+    document.getElementById(
+      "savedList"
+    );
+
+
+  if (!saved.length) {
+
+    list.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          ❤️
+        </div>
+
+        <h3>
+          لا توجد منتجات محفوظة
+        </h3>
+
+        <p>
+          اضغط «♡ حفظ المنتج»
+          على أي منتج يعجبك.
+        </p>
+
+      </div>
+
+    `;
+
+  } else {
+
+    list.innerHTML =
+      saved.map(
+        product => `
+
+        <div class="saved-item">
+
+          <img
+            src="${escapeHtml(
+              product.image
+            )}"
+            alt="${escapeHtml(
+              product.title
+            )}"
+          >
+
+          <div class="saved-info">
+
+            <div class="saved-title">
+
+              ${escapeHtml(
+                product.title
+              )}
+
+            </div>
+
+            <div class="saved-price">
+
+              ${escapeHtml(
+                product.price
+              )}
+              ر.س
+
+            </div>
+
+          </div>
+
+          <button
+            class="saved-open"
+            type="button"
+            onclick='openSavedProduct(
+              ${safeProductJson(product)}
+            )'
+          >
+            عرض
+          </button>
+
+        </div>
+
+      `
+      ).join("");
+
+  }
+
+
+  openModal(
+    "savedModal"
+  );
+
+}
+
+
+function openSavedProduct(
+  product
+) {
+
+  closeModal();
+
+
+  if (
+    product.category &&
+    categoryNames[
+      product.category
+    ]
+  ) {
+
+    showCategory(
+      product.category
+    ).then(
+      () => {
+
+        setTimeout(
+          () => {
+
+            const cards =
+              document.querySelectorAll(
+                ".product"
+              );
+
+
+            const target =
+              Array.from(
+                cards
+              ).find(
+                card =>
+                  card.dataset
+                    .productId ===
+                  product.id
+              );
+
+
+            if (target) {
+
+              target.scrollIntoView({
+                behavior:
+                  "smooth",
+
+                block:
+                  "center"
+              });
+
+            }
+
+          },
+          350
+        );
+
+      }
+    );
+
+  } else if (
+    product.link &&
+    product.link !== "#"
+  ) {
+
+    window.open(
+      product.link,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PRICE ALERT
+===================================================== */
+
+function openPriceAlert(
+  product
+) {
+
+  const normalized =
+    normalizeProduct(
+      product
+    );
+
+
+  const box =
+    document.getElementById(
+      "alertProductInfo"
+    );
+
+
+  box.innerHTML = `
+
+    <div
+      style="
+        background:#faf9fe;
+        border:1px solid #ebeaf1;
+        border-radius:15px;
+        padding:12px;
+      "
+    >
+
+      <div
+        style="
+          font-size:12px;
+          font-weight:900;
+          line-height:1.7;
+        "
+      >
+
+        ${escapeHtml(
+          normalized.title
+        )}
+
+      </div>
+
+      <div
+        style="
+          margin-top:4px;
+          color:#5b35d5;
+          font-size:12px;
+          font-weight:900;
+        "
+      >
+
+        السعر الحالي:
+        ${escapeHtml(
+          normalized.price
+        )}
+        ر.س
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.getElementById(
+    "confirmAlertButton"
+  ).onclick =
+    function () {
+
+      const alerts =
+        readStorage(
+          STORAGE_KEYS.alerts,
+          []
+        );
+
+
+      if (
+        !alerts.some(
+          item =>
+            item.id ===
+            normalized.id
+        )
+      ) {
+
+        alerts.push({
+
+          ...normalized,
+
+          createdAt:
+            new Date()
+              .toISOString()
+
+        });
+
+
+        writeStorage(
+          STORAGE_KEYS.alerts,
+          alerts
+        );
+
+      }
+
+
+      sendBotEvent(
+        "price_alert_request",
+        normalized
+      );
+
+
+      closeModal();
+
+
+      showToast(
+        "🔔 تم تسجيل طلب مراقبة السعر"
+      );
+
+    };
+
+
+  openModal(
+    "alertModal"
+  );
+
+}
+
+
+/* =====================================================
+   PREFERENCES
+===================================================== */
+
+const preferenceOptions = [
+
+  [
+    "electronics",
+    "📱 الإلكترونيات"
+  ],
+
+  [
+    "accessories",
+    "💍 الإكسسوارات"
+  ],
+
+  [
+    "shoes",
+    "👟 الأحذية"
+  ],
+
+  [
+    "dresses",
+    "👗 الفساتين"
+  ],
+
+  [
+    "bags",
+    "👜 الشنط"
+  ],
+
+  [
+    "watches",
+    "⌚ الساعات"
+  ],
+
+  [
+    "home",
+    "🏠 المنزل"
+  ],
+
+  [
+    "deals",
+    "🔥 أقوى العروض"
+  ]
+
+];
+
+
+function getPreferences() {
+
+  return readStorage(
+    STORAGE_KEYS.preferences,
+    []
+  );
+
+}
+
+
+function openPreferencesModal() {
+
+  const selected =
+    getPreferences();
+
+
+  const grid =
+    document.getElementById(
+      "preferenceGrid"
+    );
+
+
+  grid.innerHTML =
+    preferenceOptions
+      .map(
+        ([key,label]) => `
+
+          <button
+            type="button"
+            class="
+              preference-chip
+              ${
+                selected.includes(
+                  key
+                )
+                  ? "selected"
+                  : ""
+              }
+            "
+            onclick="
+              togglePreference(
+                '${key}'
+              )
+            "
+          >
+
+            ${label}
+
+          </button>
+
+        `
+      )
+      .join("");
+
+
+  openModal(
+    "preferencesModal"
+  );
+
+}
+
+
+function togglePreference(
+  key
+) {
+
+  const selected =
+    getPreferences();
+
+
+  const index =
+    selected.indexOf(key);
+
+
+  if (index >= 0) {
+
+    selected.splice(
+      index,
+      1
+    );
+
+  } else {
+
+    selected.push(
+      key
+    );
+
+  }
+
+
+  writeStorage(
+    STORAGE_KEYS.preferences,
+    selected
+  );
+
+
+  openPreferencesModal();
+
+}
+
+
+function savePreferences() {
+
+  sendBotEvent(
+    "save_preferences",
+    {
+      preferences:
+        getPreferences()
+    }
+  );
+
+
+  closeModal();
+
+
+  if (
+    getPreferences()
+      .length
+  ) {
+
+    showToast(
+      "🎯 تم حفظ اهتماماتك"
+    );
+
+  } else {
+
+    showToast(
+      "تم حفظ الإعدادات"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PRICE COMPARISON
+===================================================== */
+
+function renderCompareBox(
+  product
+) {
+
+  const stores =
+    Array.isArray(
+      product.stores
+    )
+      ? product.stores.filter(
+          store =>
+            store &&
+            store.link
+        )
+      : [];
+
+
+  if (!stores.length) {
+
+    return "";
+
+  }
+
+
+  const sorted =
+    [...stores].sort(
+      (a,b) => {
+
+        const pa =
+          parseFloat(
+            a.price
+          );
+
+        const pb =
+          parseFloat(
+            b.price
+          );
+
+
+        if (
+          isNaN(pa) ||
+          isNaN(pb)
+        ) {
+
+          return 0;
+
+        }
+
+
+        return pa - pb;
+
+      }
+    );
+
+
+  return `
+
+    <div class="compare-box">
+
+      <div class="compare-title">
+
+        🔎 قارن الأسعار قبل الشراء
+
+      </div>
+
+
+      <div class="compare-list">
+
+        ${
+          sorted.map(
+            (
+              store,
+              index
+            ) => `
+
+            <div class="compare-row">
+
+              <strong>
+
+                ${
+                  index === 0
+                    ? "👑 "
+                    : ""
+                }
+
+                ${escapeHtml(
+                  store.name ||
+                  "المتجر"
+                )}
+
+              </strong>
+
+
+              <span class="compare-price">
+
+                ${escapeHtml(
+                  store.price ||
+                  "—"
+                )}
+                ر.س
+
+              </span>
+
+
+              <a
+                class="compare-buy"
+                href="${escapeHtml(
+                  store.link
+                )}"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick='trackStoreClick(
+                  event,
+                  ${safeProductJson(product)},
+                  ${JSON.stringify(
+                    store.name ||
+                    "المتجر"
+                  )}
+                )'
+              >
+
+                شراء
+
+              </a>
+
+            </div>
+
+          `
+          ).join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ANALYTICS
+===================================================== */
+
+function trackProductClick(
+  event,
+  product
+) {
+
+  const normalized =
+    normalizeProduct(
+      product
+    );
+
+
+  trackClick({
+
+    type:
+      "affiliate_click",
+
+    productId:
+      normalized.id,
+
+    title:
+      normalized.title,
+
+    store:
+      normalized.store,
+
+    link:
+      normalized.link,
+
+    time:
+      new Date()
+        .toISOString()
+
+  });
+
+}
+
+
+function trackStoreClick(
+  event,
+  product,
+  storeName
+) {
+
+  const normalized =
+    normalizeProduct(
+      product
+    );
+
+
+  trackClick({
+
+    type:
+      "affiliate_click",
+
+    productId:
+      normalized.id,
+
+    title:
+      normalized.title,
+
+    store:
+      storeName,
+
+    link:
+      normalized.link,
+
+    time:
+      new Date()
+        .toISOString()
+
+  });
+
+}
+
+
+function trackClick(
+  event
+) {
+
+  const clicks =
+    readStorage(
+      STORAGE_KEYS.clicks,
+      []
+    );
+
+
+  clicks.push(
+    event
+  );
+
+
+  const trimmed =
+    clicks.slice(
+      -300
+    );
+
+
+  writeStorage(
+    STORAGE_KEYS.clicks,
+    trimmed
+  );
+
+
+  sendBotEvent(
+    "affiliate_click",
+    event
+  );
+
+}
+
+
+function sendBotEvent(
+  type,
+  payload
+) {
+
+  /*
+    جاهز للربط مع Backend لاحقًا.
+
+    عند تجهيز استقبال الأحداث:
+
+    tg.sendData(
+      JSON.stringify({
+        type,
+        payload
+      })
+    );
+
+    لا يتم تفعيله الآن حتى لا
+    يغلق Telegram الـWeb App
+    عند كل نقرة.
+  */
+
+  return {
+    type,
+    payload
+  };
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchProducts(
+  query
+) {
+
+  const results =
+    document.getElementById(
+      "searchResults"
+    );
+
+
+  const q =
+    String(
+      query || ""
+    )
+      .trim()
+      .toLowerCase();
+
+
+  if (!q) {
+
+    results.innerHTML =
+      "";
+
+    results.classList.remove(
+      "show"
+    );
+
+    return;
+
+  }
+
+
+  const allProducts = [];
+
+
+  Object.keys(
+    products
+  ).forEach(
+    category => {
+
+      (
+        products[
+          category
+        ] || []
+      ).forEach(
+        product => {
+
+          allProducts.push({
+
+            ...product,
+
+            category:
+              product.category ||
+              category
+
+          });
+
+        }
+      );
+
+    }
+  );
+
+
+  const matches =
+    allProducts
+
+      .filter(
+        product =>
+
+          String(
+            product.title ||
+            ""
+          )
+            .toLowerCase()
+            .includes(q)
+
+          ||
+
+          String(
+            product.store ||
+            ""
+          )
+            .toLowerCase()
+            .includes(q)
+      )
+
+      .slice(
+        0,
+        8
+      );
+
+
+  if (!matches.length) {
+
+    results.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          🔎
+        </div>
+
+        <h3>
+          ما لقينا المنتج
+        </h3>
+
+        <p>
+          جرّب كلمة أخرى
+          أو تصفح الأقسام.
+        </p>
+
+      </div>
+
+    `;
+
+  } else {
+
+    results.innerHTML =
+      matches.map(
+        product => `
+
+          <div
+            class="search-result"
+            onclick='openSearchProduct(
+              ${safeProductJson(product)}
+            )'
+          >
+
+            <img
+              src="${escapeHtml(
+                product.image ||
+                ""
+              )}"
+              alt="${escapeHtml(
+                product.title ||
+                "منتج"
+              )}"
+            >
+
+
+            <div class="search-result-info">
+
+              <div class="search-result-title">
+
+                ${escapeHtml(
+                  product.title ||
+                  "منتج"
+                )}
+
+              </div>
+
+
+              <div class="search-result-price">
+
+                ${escapeHtml(
+                  product.price ||
+                  "0"
+                )}
+                ر.س
+
+                ${
+                  product.store
+                    ? " • " +
+                      escapeHtml(
+                        product.store
+                      )
+                    : ""
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `
+      ).join("");
+
+  }
+
+
+  results.classList.add(
+    "show"
+  );
+
+}
+
+
+function openSearchProduct(
+  product
+) {
+
+  const searchInput =
+    document.getElementById(
+      "searchInput"
+    );
+
+  const searchResults =
+    document.getElementById(
+      "searchResults"
+    );
+
+
+  if (searchInput) {
+
+    searchInput.value =
+      "";
+
+  }
+
+
+  if (searchResults) {
+
+    searchResults.innerHTML =
+      "";
+
+    searchResults.classList.remove(
+      "show"
+    );
+
+  }
+
+
+  if (
+    product.category &&
+    categoryNames[
+      product.category
+    ]
+  ) {
+
+    showCategory(
+      product.category
+    );
+
+  } else if (
+    product.link &&
+    product.link !== "#"
+  ) {
+
+    window.open(
+      product.link,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  }
+
 }
 
 
@@ -1366,46 +3261,70 @@ async function loadProducts() {
    SHOW CATEGORY
 ===================================================== */
 
-async function showCategory(category) {
+async function showCategory(
+  category
+) {
 
   const home =
-    document.getElementById("homePage");
+    document.getElementById(
+      "homePage"
+    );
+
 
   const productsPage =
-    document.getElementById("productsPage");
+    document.getElementById(
+      "productsPage"
+    );
 
-  const list =
-    document.getElementById("productsList");
 
   const title =
-    document.getElementById("categoryTitle");
+    document.getElementById(
+      "categoryTitle"
+    );
+
 
   const subtitle =
-    document.getElementById("categorySubtitle");
+    document.getElementById(
+      "categorySubtitle"
+    );
+
 
   const info =
-    categoryNames[category];
+    categoryNames[
+      category
+    ];
 
 
-  /* ---------------------------------------------------
-     الانتقال لصفحة المنتجات
-  --------------------------------------------------- */
+  if (!info) {
 
-  home.classList.remove("active");
+    return;
 
-  productsPage.classList.add("active");
+  }
+
+
+  home.classList.remove(
+    "active"
+  );
+
+
+  productsPage.classList.add(
+    "active"
+  );
 
 
   title.textContent =
     info.title;
 
+
   subtitle.textContent =
     info.subtitle;
 
 
-  /* ---------------------------------------------------
-     شاشة التحميل
-  --------------------------------------------------- */
+  const list =
+    document.getElementById(
+      "productsList"
+    );
+
 
   list.innerHTML = `
 
@@ -1429,14 +3348,15 @@ async function showCategory(category) {
 
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+
+    top:
+      0,
+
+    behavior:
+      "smooth"
+
   });
 
-
-  /* ---------------------------------------------------
-     جلب أحدث المنتجات
-  --------------------------------------------------- */
 
   const loaded =
     await loadProducts();
@@ -1464,17 +3384,51 @@ async function showCategory(category) {
 
     `;
 
+
     return;
+
   }
 
 
+  renderProducts(
+    category
+  );
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(
+  category
+) {
+
+  const list =
+    document.getElementById(
+      "productsList"
+    );
+
+
   const items =
-    products[category] || [];
+    (
+      products[
+        category
+      ] || []
+    )
+      .map(
+        product => ({
 
+          ...product,
 
-  /* ===================================================
-     القسم فارغ
-  =================================================== */
+          category:
+            product.category ||
+            category
+
+        })
+      );
+
 
   if (!items.length) {
 
@@ -1491,165 +3445,331 @@ async function showCategory(category) {
         </h3>
 
         <p>
-          نعمل على إضافة منتجات مميزة
-          لهذا القسم.<br>
-          تابعنا ليصلك كل جديد 🔥
+
+          نعمل على إضافة
+          منتجات مميزة
+          لهذا القسم.
+
+          <br>
+
+          تابعنا ليصلك
+          كل جديد 🔥
+
         </p>
 
       </div>
 
     `;
 
+
     return;
+
   }
 
 
-  /* ===================================================
-     عرض المنتجات
-  =================================================== */
-
-  list.innerHTML = "";
+  list.innerHTML =
+    "";
 
 
-  items.forEach(product => {
+  items.forEach(
+    product => {
 
-    const article =
-      document.createElement("article");
-
-    article.className =
-      "product";
-
-
-    /* -------------------------------------------------
-       حساب الخصم
-    ------------------------------------------------- */
-
-    let discountText =
-      "🔥 عرض مميز";
-
-    const current =
-      parseFloat(product.price);
-
-    const old =
-      parseFloat(product.old);
-
-
-    if (
-      !isNaN(current) &&
-      !isNaN(old) &&
-      old > current
-    ) {
-
-      const discount =
-        Math.round(
-          ((old - current) / old) * 100
+      const normalized =
+        normalizeProduct(
+          product
         );
 
-      discountText =
-        `🔥 خصم ${discount}%`;
-    }
+
+      const article =
+        document.createElement(
+          "article"
+        );
 
 
-    /* -------------------------------------------------
-       رابط الصورة
-    ------------------------------------------------- */
-
-    const image =
-      product.image || "";
+      article.className =
+        "product";
 
 
-    /* -------------------------------------------------
-       بناء بطاقة المنتج
-    ------------------------------------------------- */
+      article.dataset.productId =
+        normalized.id;
 
-    article.innerHTML = `
 
-      <div class="product-image">
+      let discountText =
+        "🔥 عرض مميز";
 
-        <div class="discount">
-          ${escapeHtml(discountText)}
+
+      const current =
+        parseFloat(
+          normalized.price
+        );
+
+
+      const old =
+        parseFloat(
+          normalized.old
+        );
+
+
+      if (
+        !isNaN(current) &&
+        !isNaN(old) &&
+        old > current
+      ) {
+
+        const discount =
+          Math.round(
+            (
+              (old - current) /
+              old
+            ) * 100
+          );
+
+
+        discountText =
+          `🔥 خصم ${discount}%`;
+
+      }
+
+
+      article.innerHTML = `
+
+        <div class="product-image">
+
+          <div class="discount">
+
+            ${escapeHtml(
+              discountText
+            )}
+
+          </div>
+
+
+          <img
+            src="${escapeHtml(
+              normalized.image
+            )}"
+            alt="${escapeHtml(
+              normalized.title
+            )}"
+            loading="lazy"
+          >
+
         </div>
 
-        <img
-          src="${escapeHtml(image)}"
-          alt="${escapeHtml(
-            product.title || "منتج"
-          )}"
-          loading="lazy"
-        >
 
-      </div>
+        <div class="product-info">
 
 
-      <div class="product-info">
+          <div class="product-meta">
 
-        <div class="product-title">
-          ${escapeHtml(
-            product.title || "منتج"
-          )}
-        </div>
+            ${
+              normalized.store
+                ? `
+
+                  <span class="store-badge">
+
+                    🏪
+
+                    ${escapeHtml(
+                      normalized.store
+                    )}
+
+                  </span>
+
+                `
+                : ""
+            }
 
 
-        <div class="price-row">
+            ${
+              normalized.badge
+                ? `
 
-          <div class="current-price">
+                  <span class="deal-badge">
 
-            <span class="price-number">
-              ${escapeHtml(
-                product.price || "0"
+                    ${escapeHtml(
+                      normalized.badge
+                    )}
+
+                  </span>
+
+                `
+                : ""
+            }
+
+          </div>
+
+
+          <div class="product-title">
+
+            ${escapeHtml(
+              normalized.title
+            )}
+
+          </div>
+
+
+          <div class="price-row">
+
+            <div class="current-price">
+
+              <span class="price-number">
+
+                ${escapeHtml(
+                  normalized.price
+                )}
+
+              </span>
+
+
+              <span class="price-currency">
+
+                ر.س
+
+              </span>
+
+            </div>
+
+
+            ${
+              normalized.old
+                ? `
+
+                  <div class="old-price">
+
+                    ${escapeHtml(
+                      normalized.old
+                    )}
+                    ر.س
+
+                  </div>
+
+                `
+                : ""
+            }
+
+          </div>
+
+
+          <a
+            class="buy"
+            href="${escapeHtml(
+              normalized.link ||
+              "#"
+            )}"
+            target="_blank"
+            rel="noopener noreferrer"
+            onclick='trackProductClick(
+              event,
+              ${safeProductJson(
+                normalized
               )}
+            )'
+          >
+
+            <span>
+              🛒
             </span>
 
-            <span class="price-currency">
-              ر.س
-            </span>
+            اشترِ من
+
+            ${escapeHtml(
+              normalized.store ||
+              "المتجر"
+            )}
+
+          </a>
+
+
+          <div class="product-actions">
+
+
+            <button
+              class="
+                secondary-action
+                ${
+                  isSaved(
+                    normalized
+                  )
+                    ? "active"
+                    : ""
+                }
+              "
+              type="button"
+              onclick='toggleSaved(
+                ${safeProductJson(
+                  normalized
+                )}
+              )'
+            >
+
+              ${
+                isSaved(
+                  normalized
+                )
+                  ? "❤️ محفوظ"
+                  : "♡ حفظ المنتج"
+              }
+
+            </button>
+
+
+            <button
+              class="
+                secondary-action
+                alert-action
+              "
+              type="button"
+              onclick='openPriceAlert(
+                ${safeProductJson(
+                  normalized
+                )}
+              )'
+            >
+
+              🔔 راقب السعر
+
+            </button>
+
 
           </div>
 
 
           ${
-            product.old
-              ? `
-                <div class="old-price">
-                  ${escapeHtml(product.old)} ر.س
-                </div>
-              `
+            Array.isArray(
+              normalized.stores
+            ) &&
+            normalized.stores.length
+
+              ? renderCompareBox(
+                  normalized
+                )
+
               : ""
           }
 
+
         </div>
 
-
-        <a
-          class="buy"
-          href="${escapeHtml(
-            product.link || "#"
-          )}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <span>
-            🛒
-          </span>
-
-          اشترِ الآن
-
-        </a>
-
-      </div>
-
-    `;
+      `;
 
 
-    list.appendChild(article);
+      list.appendChild(
+        article
+      );
 
-  });
+    }
+  );
 
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+
+    top:
+      0,
+
+    behavior:
+      "smooth"
+
   });
 
 }
@@ -1662,19 +3782,194 @@ async function showCategory(category) {
 function goHome() {
 
   document
-    .getElementById("productsPage")
-    .classList.remove("active");
+    .getElementById(
+      "productsPage"
+    )
+    .classList.remove(
+      "active"
+    );
 
 
   document
-    .getElementById("homePage")
-    .classList.add("active");
+    .getElementById(
+      "homePage"
+    )
+    .classList.add(
+      "active"
+    );
 
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+
+    top:
+      0,
+
+    behavior:
+      "smooth"
+
   });
+
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+function openModal(
+  id
+) {
+
+  const backdrop =
+    document.getElementById(
+      "modalBackdrop"
+    );
+
+
+  [
+    "savedModal",
+    "preferencesModal",
+    "alertModal"
+  ]
+    .forEach(
+      modalId => {
+
+        const element =
+          document.getElementById(
+            modalId
+          );
+
+
+        if (element) {
+
+          element.style.display =
+            modalId === id
+              ? "block"
+              : "none";
+
+        }
+
+      }
+    );
+
+
+  backdrop.classList.add(
+    "show"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+function closeModal() {
+
+  const backdrop =
+    document.getElementById(
+      "modalBackdrop"
+    );
+
+
+  backdrop.classList.remove(
+    "show"
+  );
+
+
+  document.body.style.overflow =
+    "";
+
+
+  [
+    "savedModal",
+    "preferencesModal",
+    "alertModal"
+  ]
+    .forEach(
+      modalId => {
+
+        const element =
+          document.getElementById(
+            modalId
+          );
+
+
+        if (element) {
+
+          element.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+}
+
+
+function closeModalOnBackdrop(
+  event
+) {
+
+  if (
+    event.target.id ===
+    "modalBackdrop"
+  ) {
+
+    closeModal();
+
+  }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(
+  message
+) {
+
+  const toast =
+    document.getElementById(
+      "appToast"
+    );
+
+
+  if (!toast) {
+
+    return;
+
+  }
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    window.__toastTimer
+  );
+
+
+  window.__toastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
 
 }
 
@@ -1683,19 +3978,38 @@ function goHome() {
    SECURITY
 ===================================================== */
 
-function escapeHtml(value) {
+function escapeHtml(
+  value
+) {
 
-  return String(value)
+  return String(
+    value
+  )
 
-    .replace(/&/g, "&amp;")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-    .replace(/</g, "&lt;")
+    .replace(
+      /</g,
+      "&lt;"
+    )
 
-    .replace(/>/g, "&gt;")
+    .replace(
+      />/g,
+      "&gt;"
+    )
 
-    .replace(/"/g, "&quot;")
+    .replace(
+      /"/g,
+      "&quot;"
+    )
 
-    .replace(/'/g, "&#039;");
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -1706,7 +4020,195 @@ function escapeHtml(value) {
 
 loadProducts();
 
-
 </script>
+
+
+<!-- =====================================================
+     SMART COMMERCE MODALS
+===================================================== -->
+
+<div
+  id="modalBackdrop"
+  class="modal-backdrop"
+  onclick="closeModalOnBackdrop(event)"
+>
+
+
+  <!-- SAVED -->
+
+  <div
+    id="savedModal"
+    class="modal"
+    style="display:none;"
+  >
+
+    <div class="modal-head">
+
+      <h3>
+        ❤️ منتجاتي المحفوظة
+      </h3>
+
+      <button
+        class="modal-close"
+        type="button"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="savedList"
+      class="saved-list"
+    ></div>
+
+
+    <div class="notice">
+
+      احفظ المنتجات التي تهمك،
+      ثم ارجع إليها في أي وقت.
+
+      <br>
+
+      بيانات الحفظ محفوظة
+      على جهازك.
+
+    </div>
+
+  </div>
+
+
+  <!-- PREFERENCES -->
+
+  <div
+    id="preferencesModal"
+    class="modal"
+    style="display:none;"
+  >
+
+    <div class="modal-head">
+
+      <h3>
+        🎯 اختر اهتماماتك
+      </h3>
+
+      <button
+        class="modal-close"
+        type="button"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <p
+      style="
+        font-size:11px;
+        color:#8d8a9d;
+        margin:0 0 12px;
+      "
+    >
+
+      اختر الأقسام التي تهتم بها
+      لتسهيل تخصيص العروض لك.
+
+    </p>
+
+
+    <div
+      id="preferenceGrid"
+      class="preference-grid"
+    ></div>
+
+
+    <button
+      class="primary-modal-button"
+      type="button"
+      onclick="savePreferences()"
+    >
+
+      حفظ اهتماماتي
+
+    </button>
+
+  </div>
+
+
+  <!-- PRICE ALERT -->
+
+  <div
+    id="alertModal"
+    class="modal"
+    style="display:none;"
+  >
+
+    <div class="modal-head">
+
+      <h3>
+        🔔 تنبيه انخفاض السعر
+      </h3>
+
+      <button
+        class="modal-close"
+        type="button"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="alertProductInfo"
+    ></div>
+
+
+    <div class="notice">
+
+      سنسجل طلب التنبيه لهذا المنتج.
+
+      <br>
+
+      <strong>
+        الإشعار التلقائي عبر Telegram
+        يحتاج ربط Web App مع Backend.
+      </strong>
+
+      <br>
+
+      حاليًا يتم حفظ الطلب
+      على جهاز المستخدم.
+
+    </div>
+
+
+    <button
+      id="confirmAlertButton"
+      class="primary-modal-button"
+      type="button"
+    >
+
+      🔔 أريد تنبيهًا عند انخفاض السعر
+
+    </button>
+
+  </div>
+
+
+</div>
+
+
+<div
+  id="appToast"
+  class="app-toast"
+></div>
+
+
 </body>
+
 </html>
