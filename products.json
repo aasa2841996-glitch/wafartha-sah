@@ -55,7 +55,21 @@
   "deals": [],
   "accessories": [],
   "electronics": [],
-  "beauty": [],
+  "beauty": [
+    {
+      "id": "5c050e8a",
+      "title": "فرشاة مكياج من جيساب بشكل فرشاة مصنوعة من خشب وشعر صناعي للمكياج بلون C-T215",
+      "price": "175",
+      "old": "220",
+      "discount": 20,
+      "link": "https://link.amazon/B02gc23XB",
+      "store": "",
+      "image": "products/product-1791625884018-f3b251cd.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-10T09:51:25.396Z"
+    }
+  ],
   "men": [
     {
       "id": "018909bc",
