@@ -2,5783 +2,774 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
->
-<title>وَفِّرْهَا صَحّ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>وَفِّرْهَا صَحّ</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-<link
-  href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
-  rel="stylesheet"
->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: #f7f7fb;
-  color: #252337;
-  font-family: "Cairo", sans-serif;
-}
-
-button,
-a,
-input {
-  font-family: inherit;
-}
-
-button {
-  border: 0;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-}
-
-
-/* =====================================================
-   APP
-===================================================== */
-
-.app {
-  min-height: 100vh;
-}
-
-.container {
-  width: 100%;
-  max-width: 720px;
-  margin: auto;
-  padding: 0 16px 35px;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-  position: relative;
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      #5b35d5 0%,
-      #7047e8 50%,
-      #815bf0 100%
-    );
-
-  color: white;
-
-  padding: 25px 18px 28px;
-
-  border-radius: 0 0 28px 28px;
-
-  box-shadow:
-    0 10px 30px rgba(91,53,213,.20);
-}
-
-.header::before {
-  content: "";
-
-  position: absolute;
-
-  width: 180px;
-  height: 180px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.08);
-
-  top: -90px;
-  left: -50px;
-}
-
-.header::after {
-  content: "";
-
-  position: absolute;
-
-  width: 150px;
-  height: 150px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.07);
-
-  bottom: -100px;
-  right: -30px;
-}
-
-.header-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.brand {
-  margin: 0;
-  font-size: 27px;
-  font-weight: 900;
-}
-
-.tagline {
-  margin: 6px 0 0;
-  font-size: 13px;
-  opacity: .92;
-}
-
-
-/* =====================================================
-   TOP TOOLS
-===================================================== */
-
-.top-tools {
-  display: flex;
-  gap: 8px;
-  margin-top: 18px;
-}
-
-.tool-button {
-  flex: 1;
-
-  min-height: 42px;
-
-  border-radius: 13px;
-
-  background: rgba(255,255,255,.14);
-
-  color: #fff;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  border: 1px solid rgba(255,255,255,.16);
-
-  backdrop-filter: blur(8px);
-
-  transition: .15s ease;
-}
-
-.tool-button:active {
-  transform: scale(.97);
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-box {
-  margin-top: 14px;
-
-  display: flex;
-
-  gap: 8px;
-}
-
-.search-input {
-  flex: 1;
-
-  min-width: 0;
-
-  height: 45px;
-
-  border: 0;
-
-  border-radius: 14px;
-
-  padding: 0 15px;
-
-  outline: none;
-
-  background: #fff;
-
-  color: #29263c;
-
-  font-size: 13px;
-
-  box-shadow:
-    0 7px 18px rgba(35,31,62,.10);
-}
-
-.search-button {
-  width: 48px;
-
-  height: 45px;
-
-  border-radius: 14px;
-
-  background: #fff;
-
-  color: #5b35d5;
-
-  font-size: 19px;
-
-  font-weight: 900;
-
-  box-shadow:
-    0 7px 18px rgba(35,31,62,.10);
-}
-
-
-/* =====================================================
-   SECTION HEADING
-===================================================== */
-
-.section-heading {
-  padding: 25px 4px 14px;
-}
-
-.section-heading h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.section-heading p {
-  margin: 4px 0 0;
-  color: #8d8a9d;
-  font-size: 12px;
-}
-
-
-/* =====================================================
-   CATEGORIES
-===================================================== */
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 13px;
-}
-
-.category {
-  display: block;
-
-  width: 100%;
-
-  padding: 0;
-  margin: 0;
-
-  background: #fff;
-
-  border: 1px solid #ebeaf1;
-
-  border-radius: 21px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 7px 22px rgba(35,31,62,.07);
-
-  text-align: right;
-
-  transition:
-    transform .15s ease,
-    box-shadow .15s ease;
-}
-
-.category:active {
-  transform: scale(.98);
-}
-
-
-/* =====================================================
-   CATEGORY IMAGE
-===================================================== */
-
-.category-image {
-  position: relative;
-
-  width: 100%;
-  height: 108px;
-
-  padding: 0;
-  margin: 0;
-
-  overflow: hidden;
-
-  background: #f3f3f7;
-
-  line-height: 0;
-}
-
-.category-image img {
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-
-  max-width: none;
-
-  padding: 0;
-  margin: 0;
-
-  display: block;
-
-  object-fit: cover;
-
-  object-position: center center;
-
-  transform: scale(1.28);
-
-  transform-origin: center center;
-
-  border: 0;
-}
-
-
-/* =====================================================
-   CATEGORY BOTTOM
-===================================================== */
-
-.category-bottom {
-  min-height: 48px;
-
-  padding: 7px 12px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  background: #fff;
-}
-
-.category-name {
-  font-size: 13px;
-  font-weight: 900;
-  color: #28243b;
-}
-
-.category-arrow {
-  width: 27px;
-  height: 27px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  background: #f0edff;
-
-  color: #5b35d5;
-
-  font-size: 18px;
-
-  font-weight: 900;
-
-  line-height: 1;
-}
-
-
-/* =====================================================
-   QUICK FEATURES
-===================================================== */
-
-.quick-features {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 8px;
-
-  margin-top: 15px;
-}
-
-.quick-feature {
-  background: #fff;
-
-  border: 1px solid #ebeaf1;
-
-  border-radius: 17px;
-
-  padding: 12px 7px;
-
-  text-align: center;
-
-  box-shadow:
-    0 5px 18px rgba(35,31,62,.05);
-}
-
-.quick-feature-icon {
-  font-size: 22px;
-}
-
-.quick-feature-title {
-  margin-top: 5px;
-
-  font-size: 10px;
-
-  font-weight: 900;
-}
-
-.quick-feature-text {
-  margin-top: 2px;
-
-  color: #92909e;
-
-  font-size: 8px;
-
-  line-height: 1.5;
-}
-
-
-/* =====================================================
-   DEALS BANNER
-===================================================== */
-
-.deals-banner {
-  position: relative;
-
-  margin-top: 15px;
-
-  min-height: 108px;
-
-  padding: 20px;
-
-  border-radius: 22px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff7a1a,
-      #ff4535
-    );
-
-  color: white;
-
-  overflow: hidden;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 10px 25px rgba(255,85,35,.20);
-}
-
-.deals-banner::before {
-  content: "";
-
-  position: absolute;
-
-  width: 160px;
-  height: 160px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.10);
-
-  left: -50px;
-  top: -75px;
-}
-
-.deals-title {
-  position: relative;
-  z-index: 2;
-
-  font-size: 19px;
-  font-weight: 900;
-}
-
-.deals-text {
-  position: relative;
-  z-index: 2;
-
-  font-size: 11px;
-
-  margin-top: 3px;
-}
-
-.deals-button {
-  position: absolute;
-
-  left: 18px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  background: #fff;
-
-  color: #f0522f;
-
-  padding: 9px 13px;
-
-  border-radius: 12px;
-
-  font-size: 11px;
-
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   PAGES
-===================================================== */
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-
-/* =====================================================
-   PRODUCTS HEADER
-===================================================== */
-
-.products-header {
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 21px 2px 15px;
-}
-
-.back-button {
-  width: 42px;
-  height: 42px;
-
-  flex-shrink: 0;
-
-  border-radius: 13px;
-
-  background: #fff;
-
-  color: #5b35d5;
-
-  border: 1px solid #ebeaf1;
-
-  box-shadow:
-    0 5px 15px rgba(35,31,62,.06);
-
-  font-size: 22px;
-
-  font-weight: 900;
-}
-
-.products-heading {
-  flex: 1;
-}
-
-.products-heading h2 {
-  margin: 0;
-
-  font-size: 19px;
-
-  font-weight: 900;
-}
-
-.products-heading p {
-  margin: 2px 0 0;
-
-  color: #9491a1;
-
-  font-size: 11px;
-}
-
-
-/* =====================================================
-   PRODUCTS LIST
-===================================================== */
-
-.products-list {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 16px;
-}
-
-
-/* =====================================================
-   PRODUCT
-===================================================== */
-
-.product {
-  width: 100%;
-
-  background: #fff;
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  border: 1px solid #ebeaf1;
-
-  box-shadow:
-    0 8px 28px rgba(32,32,65,.08);
-}
-
-.product-image {
-  position: relative;
-
-  width: 100%;
-
-  height: 270px;
-
-  background: #fafafd;
-
-  overflow: hidden;
-
-  line-height: 0;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-
-  object-fit: contain;
-
-  padding: 12px;
-
-  margin: 0;
-}
-
-
-/* =====================================================
-   PRODUCT BADGES
-===================================================== */
-
-.product-badges {
-  position: absolute;
-
-  top: 12px;
-  right: 12px;
-
-  z-index: 4;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 5px;
-
-  align-items: flex-end;
-}
-
-.discount {
-  background: #ff4e38;
-
-  color: #fff;
-
-  padding: 6px 10px;
-
-  border-radius: 10px;
-
-  font-size: 10px;
-
-  font-weight: 800;
-}
-
-.best-deal {
-  background: #5b35d5;
-
-  color: #fff;
-
-  padding: 5px 9px;
-
-  border-radius: 9px;
-
-  font-size: 9px;
-
-  font-weight: 800;
-}
-
-
-/* =====================================================
-   SAVE BUTTON
-===================================================== */
-
-.save-product {
-  position: absolute;
-
-  top: 12px;
-  left: 12px;
-
-  z-index: 5;
-
-  width: 40px;
-  height: 40px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.94);
-
-  color: #777386;
-
-  font-size: 19px;
-
-  box-shadow:
-    0 5px 15px rgba(0,0,0,.10);
-}
-
-.save-product.saved {
-  color: #ff4567;
-}
-
-
-/* =====================================================
-   PRODUCT INFO
-===================================================== */
-
-.product-info {
-  padding: 15px 16px 17px;
-}
-
-.product-title {
-  font-size: 15px;
-  line-height: 1.7;
-  font-weight: 800;
-  color: #29263c;
-  margin-bottom: 8px;
-}
-
-
-/* =====================================================
-   STORE
-===================================================== */
-
-.product-store {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #f2efff;
-  color: #5b35d5;
-  border-radius: 8px;
-  padding: 4px 8px;
-  margin-bottom: 10px;
-  font-size: 9px;
-  font-weight: 800;
-}
-
-
-/* =====================================================
-   PRICE
-===================================================== */
-
-.price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 13px;
-}
-
-.current-price {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
-
-.price-number {
-  font-size: 25px;
-  font-weight: 900;
-  color: #5b35d5;
-}
-
-.price-currency {
-  font-size: 11px;
-  font-weight: 800;
-  color: #5b35d5;
-}
-
-.old-price {
-  color: #aaa8b3;
-  font-size: 12px;
-  text-decoration: line-through;
-}
-
-
-/* =====================================================
-   DEAL STATUS
-===================================================== */
-
-.deal-status {
-  font-size: 9px;
-  color: #12a87d;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-
-/* =====================================================
-   PRODUCT ACTIONS
-===================================================== */
-
-.product-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.buy {
-  width: 100%;
-  min-height: 47px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  background: #12a87d;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-  box-shadow:
-    0 7px 18px rgba(18,168,125,.18);
-  transition: transform .15s ease;
-}
-
-.buy:active {
-  transform: scale(.98);
-}
-
-.watch-price {
-  width: 100%;
-  min-height: 47px;
-  border-radius: 14px;
-  background: #f0edff;
-  color: #5b35d5;
-  font-size: 11px;
-  font-weight: 800;
-}
-
-
-/* =====================================================
-   COMPARISON
-===================================================== */
-
-.compare-box {
-  margin-top: 10px;
-  background: #faf9ff;
-  border: 1px solid #ebe7ff;
-  border-radius: 15px;
-  padding: 10px;
-}
-
-.compare-title {
-  font-size: 10px;
-  font-weight: 900;
-  margin-bottom: 8px;
-}
-
-.compare-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 1px solid #eeeef5;
-  font-size: 9px;
-}
-
-.compare-row:last-child {
-  border-bottom: 0;
-}
-
-.compare-store {
-  font-weight: 800;
-}
-
-.compare-price {
-  font-weight: 900;
-}
-
-.compare-link {
-  color: #5b35d5;
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   EMPTY
-===================================================== */
-
-.empty {
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  border-radius: 20px;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.empty-icon {
-  font-size: 38px;
-}
-
-.empty h3 {
-  margin: 10px 0 0;
-  font-size: 16px;
-}
-
-.empty p {
-  margin: 7px 0 0;
-  color: #92909e;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-
-/* =====================================================
-   MODALS
-===================================================== */
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(23,20,38,.48);
-  z-index: 100;
-  display: none;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0;
-}
-
-.modal-overlay.active {
-  display: flex;
-}
-
-.modal {
-  width: 100%;
-  max-width: 720px;
-  background: #fff;
-  border-radius: 26px 26px 0 0;
-  padding: 22px 18px 28px;
-  max-height: 88vh;
-  overflow-y: auto;
-  animation: modalUp .2s ease;
-}
-
-@keyframes modalUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.modal-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.modal-close {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #f2f1f6;
-  color: #555064;
-  font-size: 18px;
-}
-
-
-/* =====================================================
-   SAVED PRODUCTS
-===================================================== */
-
-.saved-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid #eeeef3;
-}
-
-.saved-item:last-child {
-  border-bottom: 0;
-}
-
-.saved-item img {
-  width: 62px;
-  height: 62px;
-  object-fit: contain;
-  border-radius: 12px;
-  background: #f7f7fa;
-}
-
-.saved-item-info {
-  flex: 1;
-}
-
-.saved-item-title {
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1.6;
-}
-
-.saved-item-price {
-  margin-top: 3px;
-  color: #5b35d5;
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.saved-item-button {
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  background: #f0edff;
-  color: #5b35d5;
-}
-
-
-/* =====================================================
-   PREFERENCES
-===================================================== */
-
-.preference-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
-}
-
-.preference {
-  background: #faf9ff;
-  border: 1px solid #ebe7ff;
-  border-radius: 13px;
-  padding: 12px 8px;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 800;
-  color: #4b4659;
-}
-
-.preference.selected {
-  background: #5b35d5;
-  color: #fff;
-  border-color: #5b35d5;
-}
-
-.save-preferences {
-  width: 100%;
-  margin-top: 15px;
-  min-height: 47px;
-  border-radius: 14px;
-  background: #12a87d;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   PRICE ALERT
-===================================================== */
-
-.alert-product {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  padding: 10px;
-  background: #faf9ff;
-  border-radius: 14px;
-}
-
-.alert-product img {
-  width: 65px;
-  height: 65px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: #fff;
-}
-
-.alert-product-info {
-  flex: 1;
-}
-
-.alert-product-title {
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1.6;
-}
-
-.alert-current {
-  margin-top: 4px;
-  color: #5b35d5;
-  font-size: 11px;
-  font-weight: 900;
-}
-
-.alert-input {
-  width: 100%;
-  height: 47px;
-  border: 1px solid #e5e3eb;
-  border-radius: 13px;
-  outline: none;
-  padding: 0 13px;
-  font-size: 12px;
-}
-
-.alert-submit {
-  width: 100%;
-  min-height: 47px;
-  margin-top: 10px;
-  border-radius: 14px;
-  background: #5b35d5;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast {
-  position: fixed;
-  right: 16px;
-  left: 16px;
-  bottom: 18px;
-  z-index: 200;
-  background: #252337;
-  color: #fff;
-  border-radius: 14px;
-  padding: 12px 15px;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 800;
-  opacity: 0;
-  transform: translateY(15px);
-  pointer-events: none;
-  transition: .25s ease;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer {
-  text-align: center;
-  padding: 28px 10px 10px;
-  color: #aaa7b5;
-  font-size: 10px;
-}
-
-.footer strong {
-  color: #5b35d5;
-}
-
-
-/* =====================================================
-   STORE STRIP
-===================================================== */
-
-.store-strip {
-  margin-top: 18px;
-  padding: 14px;
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(35,31,62,.06);
-}
-
-.store-strip-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 11px;
-}
-
-.store-strip-title {
-  font-size: 13px;
-  font-weight: 900;
-  color: #29263c;
-}
-
-.store-strip-subtitle {
-  color: #9995a6;
-  font-size: 9px;
-}
-
-.store-logos {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 7px;
-}
-
-.store-logo {
-  min-height: 78px;
-  border-radius: 16px;
-  border: 1px solid #eeeef4;
-  background: linear-gradient(180deg,#fff 0%,#fafafd 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 5px;
-  color: #373246;
-  text-decoration: none;
-  transition: .18s ease;
-  overflow: hidden;
-}
-
-.store-logo:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(35,31,62,.08);
-  border-color: #ddd8f5;
-}
-
-.store-logo:active {
-  transform: scale(.96);
-}
-
-.store-logo-image {
-  width: 48px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #fff;
-}
-
-.store-logo-image svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.store-logo span {
-  font-size: 8px;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.store-noon .store-logo-image {
-  width: 40px;
-  height: 40px;
-}
-
-.store-temu .store-logo-image {
-  width: 58px;
-}
-
-.store-aliexpress .store-logo-image,
-.store-trendyol .store-logo-image {
-  width: 70px;
-}
-
-.store-amazon .store-logo-image {
-  width: 66px;
-}
-
-
-/* =====================================================
-   DISCOVERY SECTIONS
-===================================================== */
-
-.discovery-section {
-  margin-top: 20px;
-}
-
-.discovery-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
-  padding: 0 3px;
-}
-
-.discovery-head h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.discovery-head p {
-  margin: 3px 0 0;
-  color: #9793a4;
-  font-size: 9px;
-}
-
-.discovery-link {
-  color: #5b35d5;
-  font-size: 9px;
-  font-weight: 900;
-  background: #f0edff;
-  padding: 7px 9px;
-  border-radius: 10px;
-}
-
-.discovery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 10px;
-}
-
-.discovery-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 190px;
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  border-radius: 20px;
-  box-shadow: 0 7px 22px rgba(35,31,62,.07);
-}
-
-.discovery-image {
-  width: 100%;
-  height: 125px;
-  object-fit: cover;
-  display: block;
-  background: #f2f1f7;
-}
-
-.discovery-info {
-  padding: 9px 10px 11px;
-}
-
-.discovery-store {
-  color: #8e8a9b;
-  font-size: 8px;
-  font-weight: 800;
-}
-
-.discovery-title {
-  margin-top: 3px;
-  font-size: 10px;
-  font-weight: 900;
-  line-height: 1.55;
-  min-height: 31px;
-}
-
-.discovery-price {
-  margin-top: 5px;
-  color: #5b35d5;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.discovery-empty {
-  grid-column: 1 / -1;
-  padding: 20px;
-  border-radius: 17px;
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  color: #92909e;
-  text-align: center;
-  font-size: 10px;
-}
-
-
-/* =====================================================
-   CATEGORY EXTENDED
-===================================================== */
-
-.category-extended {
-  margin-top: 14px;
-}
-
-.category-extended .category-image img {
-  transform: scale(1.05);
-}
-
-.category-extended .category-image {
-  height: 118px;
-}
-
-
-/* =====================================================
-   SOCIAL FOOTER
-===================================================== */
-
-.social-section {
-  margin-top: 24px;
-  padding: 20px 15px 18px;
-  background: #fff;
-  border: 1px solid #ebeaf1;
-  border-radius: 22px;
-  text-align: center;
-  box-shadow: 0 7px 22px rgba(35,31,62,.06);
-}
-
-.social-title {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 900;
-}
-
-.social-subtitle {
-  margin: 4px 0 14px;
-  color: #9692a2;
-  font-size: 9px;
-}
-
-.social-links {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-}
-
-.social-link {
-  min-height: 64px;
-  border-radius: 15px;
-  background: #fafafd;
-  border: 1px solid #eeeef4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  color: #373246;
-  transition: .15s ease;
-}
-
-.social-link:active {
-  transform: scale(.95);
-}
-
-.social-link img {
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
-}
-
-.social-link span {
-  font-size: 8px;
-  font-weight: 900;
-}
-
-.social-note {
-  margin-top: 12px;
-  padding: 9px 10px;
-  border-radius: 11px;
-  background: #f7f5ff;
-  color: #777386;
-  font-size: 8px;
-  line-height: 1.7;
-}
-
-
-/* =====================================================
-   FEATURED BANNER
-===================================================== */
-
-.featured-banner {
-  position: relative;
-  overflow: hidden;
-  margin-top: 18px;
-  min-height: 105px;
-  padding: 18px;
-  border-radius: 22px;
-  background: linear-gradient(135deg,#5b35d5,#8a68f2);
-  color: #fff;
-  box-shadow: 0 10px 25px rgba(91,53,213,.20);
-  cursor: pointer;
-}
-
-.featured-banner::after {
-  content: "⭐";
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  font-size: 52px;
-  opacity: .18;
-}
-
-.featured-banner-title {
-  position: relative;
-  z-index: 2;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.featured-banner-text {
-  position: relative;
-  z-index: 2;
-  margin-top: 3px;
-  font-size: 10px;
-  opacity: .9;
-}
-
-
-/* =====================================================
-   DESKTOP
-===================================================== */
-
-@media (min-width: 600px) {
-
-  .categories {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .category-image {
-    height: 118px;
-  }
-
-  .product {
-    max-width: 560px;
-    margin: auto;
-  }
-
-}
-
-
-/* =====================================================
-   SMALL PHONES
-===================================================== */
-
-@media (max-width: 360px) {
-
-  .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .categories {
-    gap: 9px;
-  }
-
-  .category-image {
-    height: 94px;
-  }
-
-  .category-bottom {
-    min-height: 44px;
-  }
-
-  .product-image {
-    height: 235px;
-  }
-
-  .quick-feature-text {
-    display: none;
-  }
-
-  .store-logos {
-    gap: 5px;
-  }
-
-  .store-logo span {
-    font-size: 7px;
-  }
-
-  .social-links {
-    gap: 5px;
-  }
-
-  .social-link span {
-    font-size: 7px;
-  }
-
-}
-
+:root{
+  --brand:#5b35d5; --brand-2:#7a55ee; --brand-soft:#f0edff;
+  --ink:#1f1b33; --muted:#8d89a0; --line:#ebe9f2; --bg:#f6f5fa; --card:#fff;
+  --green:#0f9d6e; --hot:#ff4e38;
+  --r:18px;
+}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cairo",system-ui,sans-serif;
+  padding-bottom:env(safe-area-inset-bottom,0)}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer;padding:0}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 14px}
+
+/* ---------- header ---------- */
+.header{background:linear-gradient(135deg,#4b27c4,#6e49e6 60%,#8260f2);color:#fff;
+  padding:20px 14px 18px;border-radius:0 0 26px 26px;position:relative;overflow:hidden}
+.header .wrap{position:relative;z-index:1;padding:0}
+.brand{margin:0;font-size:26px;font-weight:900;text-align:center}
+.tagline{margin:4px 0 0;text-align:center;font-size:12.5px;opacity:.92}
+.tools{display:flex;gap:8px;margin-top:14px}
+.tool{flex:1;min-height:40px;border-radius:12px;background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:800;color:#fff}
+.search{display:flex;gap:8px;margin-top:10px}
+.search input{flex:1;min-width:0;height:44px;border:0;border-radius:13px;padding:0 14px;outline:none;background:#fff;color:var(--ink);font-size:13px}
+.search button{width:48px;height:44px;border-radius:13px;background:#fff;font-size:18px}
+
+/* ---------- store strip ---------- */
+.stores{display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.stores::-webkit-scrollbar{display:none}
+.store-btn{flex:0 0 auto;min-width:74px;background:#fff;border-radius:14px;padding:8px 6px 6px;
+  display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--ink)}
+.store-btn small{font-size:10px;font-weight:800}
+
+/* ---------- store chip (logo) ---------- */
+.chip{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-weight:900;
+  letter-spacing:.2px;line-height:1;white-space:nowrap;overflow:hidden;font-family:Arial,sans-serif}
+.chip img{height:100%;width:auto;max-width:100%;object-fit:contain}
+.chip.md{height:30px;min-width:64px;padding:0 10px;font-size:13px}
+.chip.sm{height:22px;min-width:46px;padding:0 8px;font-size:10.5px}
+.chip.xs{height:16px;min-width:16px;padding:0 5px;font-size:8px;border-radius:5px}
+
+/* ---------- sections ---------- */
+.sec{margin-top:22px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
+.sec-head h2{margin:0;font-size:18px;font-weight:900}
+.sec-head p{margin:2px 0 0;font-size:11px;color:var(--muted)}
+.more{font-size:11px;font-weight:800;color:var(--brand);background:var(--brand-soft);padding:6px 10px;border-radius:10px}
+
+/* ---------- categories ---------- */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-align:right;
+  box-shadow:0 5px 18px rgba(35,31,62,.06)}
+.cat:active{transform:scale(.98)}
+.cat-img{height:96px;background:#efedf6;position:relative;overflow:hidden}
+.cat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cat-row{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;gap:6px}
+.cat-name{font-size:13px;font-weight:900}
+.cat-n{font-size:10px;font-weight:800;color:var(--brand);background:var(--brand-soft);border-radius:8px;padding:2px 7px}
+
+/* ---------- product grid & card ---------- */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hrow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 14px 8px;margin:0 -14px;scrollbar-width:none}
+.hrow::-webkit-scrollbar{display:none}
+.hrow .card{flex:0 0 158px;scroll-snap-align:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;
+  box-shadow:0 5px 18px rgba(35,31,62,.06);display:flex;flex-direction:column;min-width:0}
+.card:active{transform:scale(.985)}
+.media{position:relative;aspect-ratio:1/1;background:#fafafd}
+.media>img{width:100%;height:100%;object-fit:contain;padding:10px}
+.store-tag{position:absolute;top:8px;inset-inline-start:8px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.disc{position:absolute;top:8px;inset-inline-end:8px;z-index:2;background:var(--hot);color:#fff;font-size:10px;font-weight:900;padding:4px 7px;border-radius:8px}
+.best{position:absolute;bottom:8px;inset-inline-start:8px;z-index:2;background:var(--brand);color:#fff;font-size:9px;font-weight:800;padding:3px 7px;border-radius:7px}
+.heart{position:absolute;bottom:6px;inset-inline-end:6px;z-index:3;width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.95);font-size:17px;color:#7d7990;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.heart.on{color:#ff3d63}
+.body{padding:9px 10px 11px;display:flex;flex-direction:column;gap:5px;flex:1}
+.ttl{font-size:12px;font-weight:800;line-height:1.55;min-height:37px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.price b{font-size:18px;font-weight:900;color:var(--brand)}
+.price i{font-style:normal;font-size:10px;font-weight:800;color:var(--brand)}
+.price s{font-size:10.5px;color:#aaa7b6}
+.cmp{display:flex;align-items:center;justify-content:space-between;gap:6px;background:var(--brand-soft);border-radius:9px;padding:5px 7px;font-size:10px;font-weight:800;color:var(--brand);margin-top:auto}
+.cmp-logos{display:flex;gap:3px}
+
+/* ---------- skeleton ---------- */
+.sk{background:linear-gradient(90deg,#ecebf3 25%,#f6f5fa 37%,#ecebf3 63%);background-size:400% 100%;animation:sk 1.3s infinite;border-radius:var(--r);min-height:230px}
+@keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}html{scroll-behavior:auto}}
+
+/* ---------- promo ---------- */
+.promo{margin-top:16px;border-radius:20px;padding:16px;color:#fff;background:linear-gradient(135deg,#ff7a1a,#ff4535);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.promo b{font-size:16px;font-weight:900;display:block}
+.promo span{font-size:11px;opacity:.95}
+.promo button{background:#fff;color:#f0522f;font-weight:900;font-size:11px;padding:9px 13px;border-radius:11px;white-space:nowrap}
+
+/* ---------- list page ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:var(--bg);padding:calc(env(safe-area-inset-top,0px) + 10px) 0 8px}
+.topline{display:flex;align-items:center;gap:10px}
+.back{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid var(--line);color:var(--brand);font-size:20px;font-weight:900;flex-shrink:0}
+.topline h2{margin:0;font-size:17px;font-weight:900}
+.topline p{margin:0;font-size:11px;color:var(--muted)}
+.filters{display:flex;gap:8px;margin-top:10px}
+.filters input{flex:1;min-width:0;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:0 12px;outline:none;font-size:12.5px}
+.filters select{height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:0 8px;font-size:12px;font-weight:700}
+.chips{display:flex;gap:7px;overflow-x:auto;margin-top:9px;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.fchip{flex:0 0 auto;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px 5px 8px;font-size:11.5px;font-weight:800}
+.fchip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.fchip em{font-style:normal;font-size:10px;opacity:.75}
+.list-body{padding-top:8px;padding-bottom:30px}
+
+/* ---------- empty ---------- */
+.empty{grid-column:1/-1;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:34px 18px;text-align:center}
+.empty b{display:block;font-size:15px;margin-bottom:5px}
+.empty span{font-size:12px;color:var(--muted);line-height:1.8}
+
+/* ---------- sheet ---------- */
+.overlay{position:fixed;inset:0;background:rgba(23,20,38,.5);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex}
+.sheet{width:100%;max-width:640px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:24px 24px 0 0;padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));animation:up .2s ease}
+@keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.sh-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sh-head h3{margin:0;font-size:17px;font-weight:900}
+.x{width:34px;height:34px;border-radius:50%;background:#f2f1f6;font-size:18px;color:#555064}
+.pimg{position:relative;aspect-ratio:4/3;background:#fafafd;border-radius:16px;overflow:hidden}
+.pimg>img{width:100%;height:100%;object-fit:contain;padding:12px}
+.pimg .store-tag{top:10px;inset-inline-start:10px}
+.p-title{font-size:15px;font-weight:800;line-height:1.7;margin:12px 0 4px}
+.p-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.p-price b{font-size:28px;font-weight:900;color:var(--brand)}
+.p-price s{font-size:13px;color:#aaa7b6}
+.p-price .pct{background:var(--hot);color:#fff;font-size:11px;font-weight:900;padding:3px 8px;border-radius:8px}
+.offers{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.offers h4{margin:0;padding:10px 12px;font-size:12px;font-weight:900;background:#faf9ff;border-bottom:1px solid var(--line)}
+.offer{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.offer:last-child{border-bottom:0}
+.offer.top{background:#f4fbf8}
+.offer .nm{flex:1;min-width:0;font-size:12px;font-weight:800}
+.offer .nm small{display:block;font-size:10px;font-weight:700;color:var(--green)}
+.offer .nm small.up{color:var(--muted)}
+.offer .pr{font-size:14px;font-weight:900}
+.offer button{background:var(--brand);color:#fff;font-size:11px;font-weight:900;border-radius:10px;padding:8px 12px}
+.hist{margin-top:14px;padding:10px 12px;border:1px solid var(--line);border-radius:16px;color:var(--brand)}
+.hist-h{display:flex;justify-content:space-between;font-size:12px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.hist-h small{font-size:10px;color:var(--muted);font-weight:700}
+.hist svg{width:100%;height:46px;display:block}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.btn{min-height:46px;border-radius:14px;font-size:12.5px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px}
+.btn.buy{grid-column:1/-1;background:var(--green);color:#fff;box-shadow:0 7px 18px rgba(15,157,110,.2)}
+.btn.soft{background:var(--brand-soft);color:var(--brand)}
+.btn.main{background:var(--brand);color:#fff;width:100%;margin-top:10px}
+.note{font-size:10.5px;color:var(--muted);line-height:1.8;margin:12px 0 0}
+.fieldin{width:100%;height:46px;border:1px solid #e3e0ec;border-radius:13px;padding:0 13px;outline:none;font-size:13px}
+.mini{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.mini:last-child{border-bottom:0}
+.mini img{width:58px;height:58px;object-fit:contain;background:#fafafd;border-radius:12px}
+.mini .i{flex:1;min-width:0;font-size:11.5px;font-weight:800;line-height:1.55}
+.mini .i b{display:block;color:var(--brand);font-size:12px}
+.mini .sq{width:36px;height:36px;border-radius:11px;background:var(--brand-soft);color:var(--brand)}
+.prefs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.pref{background:#faf9ff;border:1px solid #ebe7ff;border-radius:13px;padding:11px 6px;font-size:12px;font-weight:800;color:#4b4659}
+.pref.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ---------- misc ---------- */
+.social{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;text-align:center}
+.social h3{margin:0;font-size:15px;font-weight:900}
+.social p{margin:3px 0 12px;font-size:11px;color:var(--muted)}
+.soc-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.soc-row a{width:54px;height:54px;border-radius:15px;background:#fafafd;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.soc-row img{width:24px;height:24px}
+.footer{text-align:center;padding:22px 10px 28px;color:#aaa7b5;font-size:10.5px;line-height:1.9}
+.footer strong{color:var(--brand)}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:200;background:#252337;color:#fff;border-radius:14px;padding:12px 14px;text-align:center;font-size:12px;font-weight:800;opacity:0;transform:translateY(14px);pointer-events:none;transition:.25s}
+.toast.on{opacity:1;transform:none}
+
+@media (min-width:640px){
+  .cats{grid-template-columns:repeat(4,1fr)}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hrow .card{flex-basis:190px}
+}
+@media (min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
-
 <body>
 
-<div class="app">
+<!-- ======================= HOME ======================= -->
+<div id="home">
+  <header class="header">
+    <div class="wrap">
+      <h1 class="brand">🔥 وَفِّرْهَا صَحّ 🔥</h1>
+      <p class="tagline">لقيناها لك… وقارنّا لك الأسعار بين المتاجر 💜</p>
 
+      <div class="tools">
+        <button class="tool" data-act="saved">❤️ المحفوظات</button>
+        <button class="tool" data-act="prefs">🎯 اهتماماتي</button>
+      </div>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+      <div class="search">
+        <input id="q" type="search" placeholder="ابحث عن منتج..." autocomplete="off" enterkeyhint="search">
+        <button data-act="search" aria-label="بحث">🔎</button>
+      </div>
 
-<header class="header">
+      <div class="stores" id="storeStrip"></div>
+    </div>
+  </header>
 
-  <div class="header-content">
+  <main class="wrap">
+    <section class="sec">
+      <div class="sec-head"><div><h2>تسوّق حسب القسم</h2><p>اختر القسم واكتشف أفضل العروض</p></div></div>
+      <div class="cats" id="cats"></div>
+    </section>
 
-    <h1 class="brand">
-      🔥 وَفِّرْهَا صَحّ 🔥
-    </h1>
-
-    <p class="tagline">
-      لقيناها لك… ووفرنا عليك البحث 💜
-    </p>
-
-
-    <!-- TOOLS -->
-
-    <div class="top-tools">
-
-      <button
-        class="tool-button"
-        type="button"
-        onclick="openSaved()"
-      >
-        ❤️ المحفوظات
-      </button>
-
-      <button
-        class="tool-button"
-        type="button"
-        onclick="openPreferences()"
-      >
-        🎯 اهتماماتي
-      </button>
-
+    <div class="promo">
+      <div><b>🔎 نقارن لك الأسعار</b><span>نفس المنتج في أكثر من متجر؟ نعرض لك الأرخص أولًا</span></div>
+      <button data-act="cat" data-id="deals">أقوى العروض</button>
     </div>
 
+    <section class="sec" id="secDeals" hidden>
+      <div class="sec-head"><div><h2>🔥 عروض اليوم</h2><p>أعلى الخصومات الآن</p></div><button class="more" data-act="cat" data-id="deals">عرض الكل</button></div>
+      <div class="hrow" id="rowDeals"></div>
+    </section>
 
-    <!-- SEARCH -->
+    <section class="sec" id="secHot" hidden>
+      <div class="sec-head"><div><h2>📈 الأكثر طلبًا</h2><p>ما يفتحه الناس الآن</p></div></div>
+      <div class="hrow" id="rowHot"></div>
+    </section>
 
-    <div class="search-box">
+    <section class="sec" id="secFeat" hidden>
+      <div class="sec-head"><div><h2>⭐ مميزة لك</h2><p>اختياراتنا الأقوى</p></div><button class="more" data-act="featured">عرض الكل</button></div>
+      <div class="hrow" id="rowFeat"></div>
+    </section>
 
-      <input
-        id="searchInput"
-        class="search-input"
-        type="search"
-        placeholder="ابحث عن منتج..."
-        autocomplete="off"
-      >
+    <section class="sec" id="secPers" hidden>
+      <div class="sec-head"><div><h2>🎯 مقترحة لك</h2><p>حسب اهتماماتك</p></div><button class="more" data-act="prefs">تخصيص</button></div>
+      <div class="hrow" id="rowPers"></div>
+    </section>
 
-      <button
-        class="search-button"
-        type="button"
-        onclick="searchProducts()"
-      >
-        🔎
-      </button>
+    <section class="sec" id="secAll">
+      <div class="sec-head"><div><h2>🆕 وصل حديثًا</h2><p>آخر ما أضفناه</p></div><button class="more" data-act="all">عرض الكل</button></div>
+      <div class="grid" id="gridNew"></div>
+    </section>
 
+    <section class="social" id="social" hidden>
+      <h3>تابع وَفِّرْهَا صَحّ 💜</h3>
+      <p>العروض الجديدة والخصومات توصلك أولًا</p>
+      <div class="soc-row" id="socRow"></div>
+    </section>
+
+    <div class="footer">
+      <strong>وَفِّرْهَا صَحّ</strong> — لقيناها لك 🇸🇦<br>
+      قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.
     </div>
-
-
-    <!-- STORE STRIP -->
-
-    <div class="store-strip">
-
-      <div class="store-strip-head">
-
-        <div>
-
-          <div class="store-strip-title">
-            🛍️ نبحث لك في أشهر المتاجر
-          </div>
-
-          <div class="store-strip-subtitle">
-            اختر العرض المناسب لك ثم انتقل برابط الشراء
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="store-logos">
-
-
-        <!-- NOON -->
-
-        <a
-          class="store-logo store-noon"
-          href="#"
-          onclick="return false"
-        >
-
-          <div class="store-logo-image">
-
-            <svg
-              viewBox="0 0 64 64"
-              aria-hidden="true"
-            >
-
-              <circle
-                cx="32"
-                cy="32"
-                r="25"
-                fill="#ffe800"
-              />
-
-              <path
-                d="M22 40V24h7l6 8v-8h7v16h-7l-6-8v8z"
-                fill="#111"
-              />
-
-            </svg>
-
-          </div>
-
-          <span>
-            نون
-          </span>
-
-        </a>
-
-
-        <!-- TEMU -->
-
-        <a
-          class="store-logo store-temu"
-          href="#"
-          onclick="return false"
-        >
-
-          <div class="store-logo-image">
-
-            <svg
-              viewBox="0 0 120 64"
-              aria-hidden="true"
-            >
-
-              <rect
-                x="4"
-                y="8"
-                width="112"
-                height="48"
-                rx="15"
-                fill="#ff6a00"
-              />
-
-              <text
-                x="60"
-                y="42"
-                text-anchor="middle"
-                font-family="Arial,sans-serif"
-                font-size="27"
-                font-weight="900"
-                fill="#fff"
-              >
-                TEMU
-              </text>
-
-            </svg>
-
-          </div>
-
-          <span>
-            Temu
-          </span>
-
-        </a>
-
-
-        <!-- ALIEXPRESS -->
-
-        <a
-          class="store-logo store-aliexpress"
-          href="#"
-          onclick="return false"
-        >
-
-          <div class="store-logo-image">
-
-            <svg
-              viewBox="0 0 150 64"
-              aria-hidden="true"
-            >
-
-              <text
-                x="75"
-                y="39"
-                text-anchor="middle"
-                font-family="Arial,sans-serif"
-                font-size="18"
-                font-weight="900"
-                fill="#ff4747"
-              >
-                AliExpress
-              </text>
-
-            </svg>
-
-          </div>
-
-          <span>
-            AliExpress
-          </span>
-
-        </a>
-
-
-        <!-- AMAZON -->
-
-        <a
-          class="store-logo store-amazon"
-          href="#"
-          onclick="return false"
-        >
-
-          <div class="store-logo-image">
-
-            <svg
-              viewBox="0 0 120 64"
-              aria-hidden="true"
-            >
-
-              <text
-                x="60"
-                y="38"
-                text-anchor="middle"
-                font-family="Arial,sans-serif"
-                font-size="24"
-                font-weight="900"
-                fill="#111"
-              >
-                amazon
-              </text>
-
-              <path
-                d="M27 45c18 9 42 9 66-1"
-                fill="none"
-                stroke="#ff9900"
-                stroke-width="3.5"
-                stroke-linecap="round"
-              />
-
-            </svg>
-
-          </div>
-
-          <span>
-            Amazon
-          </span>
-
-        </a>
-
-
-        <!-- TRENDYOL -->
-
-        <a
-          class="store-logo store-trendyol"
-          href="#"
-          onclick="return false"
-        >
-
-          <div class="store-logo-image">
-
-            <svg
-              viewBox="0 0 150 64"
-              aria-hidden="true"
-            >
-
-              <text
-                x="75"
-                y="40"
-                text-anchor="middle"
-                font-family="Arial,sans-serif"
-                font-size="18"
-                font-weight="900"
-                fill="#f27a1a"
-              >
-                Trendyol
-              </text>
-
-            </svg>
-
-          </div>
-
-          <span>
-            Trendyol
-          </span>
-
-        </a>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-</header>
-
-
-<!-- =====================================================
-     HOME
-===================================================== -->
-
-<main
-  id="homePage"
-  class="page active"
->
-
-<div class="container">
-
-
-  <div class="section-heading">
-
-    <h2>
-      تسوّق حسب القسم
-    </h2>
-
-    <p>
-      اختر القسم واكتشف أفضل المنتجات والعروض
-    </p>
-
-  </div>
-
-
-  <div class="categories">
-
-
-    <!-- SHOES -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('shoes')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="shoes.jpg?v=3"
-          alt="الأحذية"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          الأحذية
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- DRESSES -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('dresses')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="dresses.jpg?v=3"
-          alt="الفساتين"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          الفساتين
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- ACCESSORIES -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('accessories')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="accessories.jpg?v=3"
-          alt="الإكسسوارات"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          الإكسسوارات
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- BAGS -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('bags')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="bags.jpg?v=3"
-          alt="الشنط"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          الشنط
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- WATCHES -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('watches')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="watches.jpg?v=3"
-          alt="الساعات"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          الساعات
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- ELECTRONICS -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('electronics')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="electronics.jpg?v=3"
-          alt="الإلكترونيات"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          الإلكترونيات
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- HOME -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('home')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="home.jpg?v=3"
-          alt="المنزل"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          المنزل
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <!-- DEALS -->
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('deals')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="deals.jpg?v=3"
-          alt="أقوى العروض"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          أقوى العروض
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-  </div>
-
-
-  <!-- EXTENDED CATEGORIES -->
-
-  <div class="categories category-extended">
-
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('perfumes')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85"
-          alt="العطور"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          🌸 العطور
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('beauty')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=85"
-          alt="العناية والجمال"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          💄 العناية والجمال
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('men')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
-          alt="أزياء الرجال"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          👔 أزياء الرجال
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('kids')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=900&q=85"
-          alt="الأطفال"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          🧸 الأطفال
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('sports')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=85"
-          alt="الرياضة"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          🏋️ الرياضة
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-    <button
-      class="category"
-      type="button"
-      onclick="showCategory('gifts')"
-    >
-
-      <div class="category-image">
-
-        <img
-          src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=85"
-          alt="الهدايا"
-        >
-
-      </div>
-
-      <div class="category-bottom">
-
-        <span class="category-name">
-          🎁 الهدايا
-        </span>
-
-        <span class="category-arrow">
-          ‹
-        </span>
-
-      </div>
-
-    </button>
-
-
-  </div>
-
-
-  <!-- QUICK FEATURES -->
-
-  <div class="quick-features">
-
-
-    <div class="quick-feature">
-
-      <div class="quick-feature-icon">
-        🔎
-      </div>
-
-      <div class="quick-feature-title">
-        نقارن لك
-      </div>
-
-      <div class="quick-feature-text">
-        نبحث عن أفضل عرض
-      </div>
-
-    </div>
-
-
-    <div class="quick-feature">
-
-      <div class="quick-feature-icon">
-        🔔
-      </div>
-
-      <div class="quick-feature-title">
-        راقب السعر
-      </div>
-
-      <div class="quick-feature-text">
-        اطلب تنبيه السعر
-      </div>
-
-    </div>
-
-
-    <div class="quick-feature">
-
-      <div class="quick-feature-icon">
-        ❤️
-      </div>
-
-      <div class="quick-feature-title">
-        احفظ منتجاتك
-      </div>
-
-      <div class="quick-feature-text">
-        ارجع لها لاحقًا
-      </div>
-
-    </div>
-
-
-  </div>
-
-
-  <!-- DEALS BANNER -->
-
-  <div
-    class="deals-banner"
-    onclick="showCategory('deals')"
-  >
-
-    <div class="deals-title">
-      🔥 أقوى العروض
-    </div>
-
-    <div class="deals-text">
-      عروض مختارة بأسعار تستاهل
-    </div>
-
-    <div class="deals-button">
-      اكتشف الآن
-    </div>
-
-  </div>
-
-
-  <!-- FEATURED BANNER -->
-
-  <div
-    class="featured-banner"
-    onclick="showFeaturedProducts()"
-  >
-
-    <div class="featured-banner-title">
-      ⭐ المنتجات المميزة
-    </div>
-
-    <div class="featured-banner-text">
-      اختياراتنا الأقوى — منتجات تستاهل تشوفها
-    </div>
-
-  </div>
-
-
-  <!-- TODAY DEALS -->
-
-  <section class="discovery-section">
-
-    <div class="discovery-head">
-
-      <div>
-
-        <h3>
-          🔥 عروض اليوم
-        </h3>
-
-        <p>
-          أفضل الخصومات التي تستحق نظرة سريعة
-        </p>
-
-      </div>
-
-      <button
-        class="discovery-link"
-        type="button"
-        onclick="showCategory('deals')"
-      >
-        عرض الكل
-      </button>
-
-    </div>
-
-    <div
-      id="todayDealsGrid"
-      class="discovery-grid"
-    >
-
-      <div class="discovery-empty">
-        جاري تجهيز أفضل العروض...
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- FEATURED PRODUCTS -->
-
-  <section class="discovery-section">
-
-    <div class="discovery-head">
-
-      <div>
-
-        <h3>
-          ⭐ مميزة لك
-        </h3>
-
-        <p>
-          منتجات اخترناها بعناية
-        </p>
-
-      </div>
-
-      <button
-        class="discovery-link"
-        type="button"
-        onclick="showFeaturedProducts()"
-      >
-        عرض الكل
-      </button>
-
-    </div>
-
-    <div
-      id="featuredGrid"
-      class="discovery-grid"
-    >
-
-      <div class="discovery-empty">
-        جاري تحميل المنتجات المميزة...
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PERSONALIZED -->
-
-  <section
-    class="discovery-section"
-    id="personalizedSection"
-  >
-
-    <div class="discovery-head">
-
-      <div>
-
-        <h3>
-          🎯 مقترحة لك
-        </h3>
-
-        <p>
-          اختيارات حسب اهتماماتك
-        </p>
-
-      </div>
-
-      <button
-        class="discovery-link"
-        type="button"
-        onclick="openPreferences()"
-      >
-        تخصيص
-      </button>
-
-    </div>
-
-    <div
-      id="personalizedGrid"
-      class="discovery-grid"
-    >
-
-      <div class="discovery-empty">
-        اختر اهتماماتك وسنقترح لك منتجات أقرب لذوقك.
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- SOCIAL -->
-
-  <section class="social-section">
-
-    <h3 class="social-title">
-      تابع وَفِّرْهَا صَحّ 💜
-    </h3>
-
-    <p class="social-subtitle">
-      العروض الجديدة والخصومات توصلك أولًا
-    </p>
-
-    <div class="social-links">
-
-      <!-- ضع رابطك بدل # -->
-
-      <a
-        class="social-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <img
-          src="https://cdn.simpleicons.org/whatsapp/25D366"
-          alt="WhatsApp"
-        >
-
-        <span>
-          واتساب
-        </span>
-
-      </a>
-
-
-      <a
-        class="social-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <img
-          src="https://cdn.simpleicons.org/telegram/229ED9"
-          alt="Telegram"
-        >
-
-        <span>
-          تلجرام
-        </span>
-
-      </a>
-
-
-      <a
-        class="social-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <img
-          src="https://cdn.simpleicons.org/x/111111"
-          alt="X"
-        >
-
-        <span>
-          تويتر / X
-        </span>
-
-      </a>
-
-
-      <a
-        class="social-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <img
-          src="https://cdn.simpleicons.org/instagram/E4405F"
-          alt="Instagram"
-        >
-
-        <span>
-          إنستغرام
-        </span>
-
-      </a>
-
-
-      <a
-        class="social-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <img
-          src="https://cdn.simpleicons.org/tiktok/111111"
-          alt="TikTok"
-        >
-
-        <span>
-          تيك توك
-        </span>
-
-      </a>
-
-    </div>
-
-
-    <div class="social-note">
-
-      💡 الأفضل أن يكون زر المتجر دائمًا رابط Affiliate،
-      بينما روابط التواصل تعيد العميل إلى وَفِّرْهَا صَحّ
-      بدل أن يضيع بعد الشراء.
-
-    </div>
-
-  </section>
-
-
-  <div class="footer">
-
-    <strong>
-      وَفِّرْهَا صَحّ
-    </strong>
-
-    — لقيناها لك 🇸🇦
-
-  </div>
-
-
+  </main>
 </div>
 
-</main>
-
-
-<!-- =====================================================
-     PRODUCTS
-===================================================== -->
-
-<main
-  id="productsPage"
-  class="page"
->
-
-<div class="container">
-
-
-  <div class="products-header">
-
-    <button
-      class="back-button"
-      type="button"
-      onclick="goHome()"
-      aria-label="العودة"
-    >
-      →
-    </button>
-
-    <div class="products-heading">
-
-      <h2 id="categoryTitle">
-        المنتجات
-      </h2>
-
-      <p id="categorySubtitle">
-        أفضل المنتجات المختارة لك
-      </p>
-
+<!-- ======================= LIST ======================= -->
+<div id="list" hidden>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="topline">
+        <button class="back" data-act="home" aria-label="رجوع">→</button>
+        <div><h2 id="lTitle">المنتجات</h2><p id="lSub"></p></div>
+      </div>
+      <div class="filters">
+        <input id="lq" type="search" placeholder="ابحث داخل القائمة..." autocomplete="off">
+        <select id="lsort" aria-label="الترتيب">
+          <option value="best">الأقوى عرضًا</option>
+          <option value="cheap">الأقل سعرًا</option>
+          <option value="disc">الأعلى خصمًا</option>
+          <option value="new">الأحدث</option>
+          <option value="hot">الأكثر طلبًا</option>
+        </select>
+      </div>
+      <div class="chips" id="lchips"></div>
     </div>
-
+    <div class="list-body"><div class="grid" id="lgrid"></div></div>
   </div>
-
-
-  <div
-    id="productsList"
-    class="products-list"
-  ></div>
-
-
-  <div class="footer">
-
-    <strong>
-      وَفِّرْهَا صَحّ
-    </strong>
-
-    — عروض ومنتجات مختارة لك
-
-  </div>
-
-
 </div>
 
-</main>
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-  id="modalOverlay"
-  class="modal-overlay"
-  onclick="closeModalOutside(event)"
->
-
-  <div
-    id="modal"
-    class="modal"
-  ></div>
-
-</div>
-
-
-<!-- =====================================================
-     TOAST
-===================================================== -->
-
-<div
-  id="toast"
-  class="toast"
-></div>
-
-
-</div>
-
+<div class="overlay" id="overlay" data-act="close"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
-
 /* =====================================================
-   TELEGRAM WEB APP
+   إعدادات — عدّل هنا فقط
 ===================================================== */
-
-const tg =
-  window.Telegram &&
-  window.Telegram.WebApp
-    ? window.Telegram.WebApp
-    : null;
-
-
-if (tg) {
-
-  tg.ready();
-
-  tg.expand();
-
-  try {
-
-    tg.setHeaderColor("#5b35d5");
-
-    tg.setBackgroundColor("#f7f7fb");
-
-  } catch (e) {}
-
-}
-
-
-/* =====================================================
-   PRODUCTS
-===================================================== */
-
-let products = {
-
-  shoes: [],
-
-  dresses: [],
-
-  accessories: [],
-
-  perfumes: [],
-
-  bags: [],
-
-  watches: [],
-
-  electronics: [],
-
-  home: [],
-
-  deals: [],
-
-  beauty: [],
-
-  men: [],
-
-  kids: [],
-
-  sports: [],
-
-  gifts: []
-
+const CONFIG = {
+  API_BASE: "",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev (يفعّل التتبع وتنبيه السعر الحقيقي)
+  PRODUCTS_URL: "products.json",
+  SHARE_URL: "",             // رابط التطبيق/البوت للمشاركة، مثال: https://t.me/YourBot/app
+  SOCIAL: { whatsapp: "https://whatsapp.com/channel/0029VbDkz0vAojZ1Zn2KAO1m", telegram: "https://t.me/Eramdeals", x: "https://x.com/Eramstore2030", instagram: "https://instagram.com/eramstore2030", tiktok: "https://tiktok.com/@eramstore2030" }   // ضع الروابط، الفارغ لا يظهر
 };
 
-
-/* =====================================================
-   CATEGORY NAMES
-===================================================== */
-
-const categoryNames = {
-
-  shoes: {
-
-    title: "👟 الأحذية",
-
-    subtitle:
-      "أفضل الأحذية المختارة لك"
-
-  },
-
-  dresses: {
-
-    title: "👗 الفساتين",
-
-    subtitle:
-      "فساتين مختارة بأسعار مميزة"
-
-  },
-
-  accessories: {
-
-    title: "💍 الإكسسوارات",
-
-    subtitle:
-      "إكسسوارات تضيف لمستك"
-
-  },
-
-  perfumes: {
-
-    title: "🌸 العطور",
-
-    subtitle:
-      "عطور مختارة بروائح وأسعار مميزة"
-
-  },
-
-  bags: {
-
-    title: "👜 الشنط",
-
-    subtitle:
-      "شنط مختارة بأسعار مميزة"
-
-  },
-
-  watches: {
-
-    title: "⌚ الساعات",
-
-    subtitle:
-      "ساعات بتصاميم وأسعار مميزة"
-
-  },
-
-  electronics: {
-
-    title: "📱 الإلكترونيات",
-
-    subtitle:
-      "منتجات إلكترونية تستاهل"
-
-  },
-
-  home: {
-
-    title: "🏠 المنزل",
-
-    subtitle:
-      "منتجات مفيدة للمنزل"
-
-  },
-
-  deals: {
-
-    title: "🔥 أقوى العروض",
-
-    subtitle:
-      "أفضل العروض التي لقيناها لك"
-
-  },
-
-  beauty: {
-
-    title: "💄 العناية والجمال",
-
-    subtitle:
-      "منتجات العناية والجمال المختارة لك"
-
-  },
-
-  men: {
-
-    title: "👔 أزياء الرجال",
-
-    subtitle:
-      "اختيارات للرجال بأسعار مميزة"
-
-  },
-
-  kids: {
-
-    title: "🧸 الأطفال",
-
-    subtitle:
-      "منتجات مختارة للأطفال"
-
-  },
-
-  sports: {
-
-    title: "🏋️ الرياضة",
-
-    subtitle:
-      "معدات وملابس رياضية تستاهل"
-
-  },
-
-  gifts: {
-
-    title: "🎁 الهدايا",
-
-    subtitle:
-      "أفكار هدايا مميزة"
-
-  }
-
+/* المتاجر: لو عندك شعار رسمي ضع مساره في logo مثل "logos/noon.png" وسيظهر بدل النص */
+const STORES = {
+  noon:       { name: "Noon",       ar: "نون",       bg: "#feee00", fg: "#111",    text: "noon",       logo: "" },
+  amazon:     { name: "Amazon",     ar: "أمازون",    bg: "#232f3e", fg: "#ff9900", text: "amazon",     logo: "" },
+  temu:       { name: "Temu",       ar: "تيمو",      bg: "#fb7701", fg: "#fff",    text: "TEMU",       logo: "" },
+  aliexpress: { name: "AliExpress", ar: "علي إكسبرس", bg: "#e62e04", fg: "#fff",    text: "AliExpress", logo: "" },
+  shein:      { name: "Shein",      ar: "شي إن",     bg: "#111",    fg: "#fff",    text: "SHEIN",      logo: "" },
+  trendyol:   { name: "Trendyol",   ar: "ترنديول",   bg: "#f27a1a", fg: "#fff",    text: "trendyol",   logo: "" },
+  other:      { name: "متجر",       ar: "متجر",      bg: "#e9e6f7", fg: "#5b35d5", text: "متجر",       logo: "" }
 };
 
-
-/* =====================================================
-   LOCAL STORAGE
-===================================================== */
-
-const STORAGE_SAVED =
-  "wafartha_sah_saved_v1";
-
-const STORAGE_PREFS =
-  "wafartha_sah_preferences_v1";
-
-const STORAGE_ALERTS =
-  "wafartha_sah_alerts_v1";
-
-const STORAGE_CLICKS =
-  "wafartha_sah_clicks_v1";
-
-
-function getSavedProducts() {
-
-  try {
-
-    return JSON.parse(
-      localStorage.getItem(
-        STORAGE_SAVED
-      ) || "[]"
-    );
-
-  } catch (e) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveSavedProducts(items) {
-
-  localStorage.setItem(
-
-    STORAGE_SAVED,
-
-    JSON.stringify(items)
-
-  );
-
-}
-
-
-function getPreferences() {
-
-  try {
-
-    return JSON.parse(
-
-      localStorage.getItem(
-        STORAGE_PREFS
-      ) || "[]"
-
-    );
-
-  } catch (e) {
-
-    return [];
-
-  }
-
-}
-
-
-function savePreferences(items) {
-
-  localStorage.setItem(
-
-    STORAGE_PREFS,
-
-    JSON.stringify(items)
-
-  );
-
-}
-
-
-function getAlerts() {
-
-  try {
-
-    return JSON.parse(
-
-      localStorage.getItem(
-        STORAGE_ALERTS
-      ) || "[]"
-
-    );
-
-  } catch (e) {
-
-    return [];
-
-  }
-
-}
-
-
-function saveAlerts(items) {
-
-  localStorage.setItem(
-
-    STORAGE_ALERTS,
-
-    JSON.stringify(items)
-
-  );
-
-}
-
-
-/* =====================================================
-   PRODUCT ID
-===================================================== */
-
-function getProductId(product) {
-
-  if (product.id) {
-
-    return String(
-      product.id
-    );
-
-  }
-
-  return [
-
-    product.title || "",
-
-    product.store || "",
-
-    product.price || ""
-
-  ].join("|");
-
-}
-
-
-/* =====================================================
-   TELEGRAM USER
-===================================================== */
-
-function getTelegramUser() {
-
-  if (
-
-    tg &&
-
-    tg.initDataUnsafe &&
-
-    tg.initDataUnsafe.user
-
-  ) {
-
-    return tg.initDataUnsafe.user;
-
-  }
-
-  return null;
-
-}
-
-
-/* =====================================================
-   ANALYTICS
-===================================================== */
-
-function recordClick(product) {
-
-  const clicks = JSON.parse(
-
-    localStorage.getItem(
-      STORAGE_CLICKS
-    ) || "[]"
-
-  );
-
-
-  clicks.push({
-
-    productId:
-      getProductId(product),
-
-    title:
-      product.title || "",
-
-    store:
-      product.store || "",
-
-    timestamp:
-      new Date().toISOString(),
-
-    telegramUserId:
-      getTelegramUser()?.id || null
-
-  });
-
-
-  localStorage.setItem(
-
-    STORAGE_CLICKS,
-
-    JSON.stringify(clicks)
-
-  );
-
-}
-
-
-/* =====================================================
-   OPEN AFFILIATE LINK
-===================================================== */
-
-function openProduct(product) {
-
-  if (!product.link) {
-
-    showToast(
-      "رابط الشراء غير متوفر حاليًا"
-    );
-
-    return;
-
-  }
-
-
-  recordClick(product);
-
-
-  /*
-    الرابط الموجود في products.json
-    يجب أن يكون رابط Affiliate الخاص
-    بالمتجر، وليس رابط المنتج العادي.
-  */
-
-
-  window.open(
-
-    product.link,
-
-    "_blank",
-
-    "noopener,noreferrer"
-
-  );
-
-}
-
-
-/* =====================================================
-   LOAD PRODUCTS
-===================================================== */
-
-async function loadProducts() {
-
-  try {
-
-    const response = await fetch(
-
-      "products.json?v=" +
-      Date.now(),
-
-      {
-        cache: "no-store"
-      }
-
-    );
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        "products.json not found"
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    products = {
-
-      shoes:
-        Array.isArray(data.shoes)
-          ? data.shoes
-          : [],
-
-      dresses:
-        Array.isArray(data.dresses)
-          ? data.dresses
-          : [],
-
-      accessories:
-        Array.isArray(data.accessories)
-          ? data.accessories
-          : [],
-
-      perfumes:
-        Array.isArray(data.perfumes)
-          ? data.perfumes
-          : [],
-
-      bags:
-        Array.isArray(data.bags)
-          ? data.bags
-          : [],
-
-      watches:
-        Array.isArray(data.watches)
-          ? data.watches
-          : [],
-
-      electronics:
-        Array.isArray(data.electronics)
-          ? data.electronics
-          : [],
-
-      home:
-        Array.isArray(data.home)
-          ? data.home
-          : [],
-
-      deals:
-        Array.isArray(data.deals)
-          ? data.deals
-          : [],
-
-      beauty:
-        Array.isArray(data.beauty)
-          ? data.beauty
-          : [],
-
-      men:
-        Array.isArray(data.men)
-          ? data.men
-          : [],
-
-      kids:
-        Array.isArray(data.kids)
-          ? data.kids
-          : [],
-
-      sports:
-        Array.isArray(data.sports)
-          ? data.sports
-          : [],
-
-      gifts:
-        Array.isArray(data.gifts)
-          ? data.gifts
-          : []
-
-    };
-
-
-    console.log(
-
-      "Wafartha Sah products loaded:",
-
-      products
-
-    );
-
-
-    return true;
-
-
-  } catch (error) {
-
-    console.error(
-
-      "Wafartha Sah products error:",
-
-      error
-
-    );
-
-
-    return false;
-
-  }
-
-}
-
-
-/* =====================================================
-   HOME DISCOVERY
-===================================================== */
-
-function flattenProducts() {
-
-  const all = [];
-
-
-  Object.keys(products)
-    .forEach(category => {
-
-      (products[category] || [])
-        .forEach(product => {
-
-          all.push({
-
-            ...product,
-
-            category:
-              product.category ||
-              category
-
-          });
-
-        });
-
-    });
-
-
-  return all;
-
-}
-
-
-function getDiscountPercent(product) {
-
-  const current =
-    parseFloat(product.price);
-
-  const old =
-    parseFloat(product.old);
-
-
-  if (
-
-    !isNaN(current) &&
-
-    !isNaN(old) &&
-
-    old > current
-
-  ) {
-
-    return Math.round(
-
-      ((old - current) / old) * 100
-
-    );
-
-  }
-
-
-  return 0;
-
-}
-
-
-function renderDiscoveryCard(product) {
-
-  const item =
-    product || {};
-
-
-  const discount =
-    getDiscountPercent(item);
-
-
-  return `
-
-    <article class="discovery-card">
-
-      <img
-
-        class="discovery-image"
-
-        src="${escapeHtml(
-          item.image || ""
-        ) }"
-
-        alt="${escapeHtml(
-          item.title || "منتج"
-        ) }"
-
-        loading="lazy"
-
-      >
-
-
-      <div class="discovery-info">
-
-        <div class="discovery-store">
-
-          ${escapeHtml(
-            item.store ||
-            "متجر موصى به"
-          )}
-
-        </div>
-
-
-        <div class="discovery-title">
-
-          ${escapeHtml(
-            item.title ||
-            "منتج"
-          )}
-
-        </div>
-
-
-        <div class="discovery-price">
-
-          ${escapeHtml(
-            item.price ||
-            "0"
-          )}
-          ر.س
-
-          ${
-            discount
-              ? ` • خصم ${discount}%`
-              : ""
-          }
-
-        </div>
-
-      </div>
-
-    </article>
-
-  `;
-
-}
-
-
-function renderDiscoveryGrid(
-
-  elementId,
-
-  items,
-
-  emptyText
-
-) {
-
-  const grid =
-    document.getElementById(
-      elementId
-    );
-
-
-  if (!grid) return;
-
-
-  if (!items.length) {
-
-    grid.innerHTML = `
-
-      <div class="discovery-empty">
-
-        ${emptyText}
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  grid.innerHTML = items
-
-    .slice(0, 4)
-
-    .map(
-      renderDiscoveryCard
-    )
-
-    .join("");
-
-}
-
-
-function prepareHomeSections() {
-
-  const all =
-    flattenProducts();
-
-
-  const deals = all
-
-    .filter(product => {
-
-      return (
-
-        product.category === "deals" ||
-
-        product.dealText ||
-
-        getDiscountPercent(product) >= 20
-
-      );
-
-    })
-
-    .sort(
-
-      (a,b) =>
-
-        getDiscountPercent(b) -
-
-        getDiscountPercent(a)
-
-    );
-
-
-  renderDiscoveryGrid(
-
-    "todayDealsGrid",
-
-    deals,
-
-    "لا توجد عروض اليوم حاليًا — نبحث لك عن الأفضل 🔥"
-
-  );
-
-
-  const featured = all
-
-    .filter(product => {
-
-      return (
-
-        product.featured === true ||
-
-        product.featured === "true" ||
-
-        product.bestDeal === true
-
-      );
-
-    });
-
-
-  renderDiscoveryGrid(
-
-    "featuredGrid",
-
-    featured,
-
-    "لم تتم إضافة منتجات مميزة بعد. يمكنك تحديدها من البوت."
-
-  );
-
-
-  const prefs =
-    getPreferences();
-
-
-  const personalized =
-    prefs.length
-
-      ? all.filter(product =>
-
-          prefs.includes(
-            product.category
-          )
-
-        )
-
-      : [];
-
-
-  renderDiscoveryGrid(
-
-    "personalizedGrid",
-
-    personalized,
-
-    "اختر اهتماماتك من زر «تخصيص» لتظهر لك منتجات أقرب لذوقك."
-
-  );
-
-}
-
-
-function showFeaturedProducts() {
-
-  const featured =
-    flattenProducts()
-
-      .filter(product => {
-
-        return (
-
-          product.featured === true ||
-
-          product.featured === "true" ||
-
-          product.bestDeal === true
-
-        );
-
-      });
-
-
-  document
-
-    .getElementById(
-      "homePage"
-    )
-
-    .classList.remove(
-      "active"
-    );
-
-
-  document
-
-    .getElementById(
-      "productsPage"
-    )
-
-    .classList.add(
-      "active"
-    );
-
-
-  document
-
-    .getElementById(
-      "categoryTitle"
-    )
-
-    .textContent =
-      "⭐ المنتجات المميزة";
-
-
-  document
-
-    .getElementById(
-      "categorySubtitle"
-    )
-
-    .textContent =
-      "اختياراتنا الأقوى لك";
-
-
-  renderProducts(
-    featured
-  );
-
-}
-
-
-/* =====================================================
-   SHOW CATEGORY
-===================================================== */
-
-async function showCategory(category) {
-
-  const home =
-    document.getElementById(
-      "homePage"
-    );
-
-
-  const productsPage =
-    document.getElementById(
-      "productsPage"
-    );
-
-
-  const list =
-    document.getElementById(
-      "productsList"
-    );
-
-
-  const title =
-    document.getElementById(
-      "categoryTitle"
-    );
-
-
-  const subtitle =
-    document.getElementById(
-      "categorySubtitle"
-    );
-
-
-  const info =
-    categoryNames[category];
-
-
-  if (!info) {
-
-    return;
-
-  }
-
-
-  home.classList.remove(
-    "active"
-  );
-
-
-  productsPage.classList.add(
-    "active"
-  );
-
-
-  title.textContent =
-    info.title;
-
-
-  subtitle.textContent =
-    info.subtitle;
-
-
-  list.innerHTML = `
-
-    <div class="empty">
-
-      <div class="empty-icon">
-        ⏳
-      </div>
-
-      <h3>
-        جاري تحميل المنتجات...
-      </h3>
-
-      <p>
-        لحظة واحدة
-      </p>
-
-    </div>
-
-  `;
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
-
-
-  const loaded =
-    await loadProducts();
-
-
-  if (!loaded) {
-
-    list.innerHTML = `
-
-      <div class="empty">
-
-        <div class="empty-icon">
-          ⚠️
-        </div>
-
-        <h3>
-          تعذر تحميل المنتجات
-        </h3>
-
-        <p>
-
-          تأكد من وجود products.json
-          ثم حاول مرة أخرى.
-
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  const items =
-    products[category] || [];
-
-
-  if (!items.length) {
-
-    list.innerHTML = `
-
-      <div class="empty">
-
-        <div class="empty-icon">
-          🛍️
-        </div>
-
-        <h3>
-          قريبًا!
-        </h3>
-
-        <p>
-
-          نعمل على إضافة منتجات مميزة
-          لهذا القسم.<br>
-
-          تابعنا ليصلك كل جديد 🔥
-
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  renderProducts(
-    items
-  );
-
-}
-
-
-/* =====================================================
-   RENDER PRODUCTS
-===================================================== */
-
-function renderProducts(items) {
-
-  const list =
-    document.getElementById(
-      "productsList"
-    );
-
-
-  list.innerHTML = "";
-
-
-  items.forEach(product => {
-
-    const article =
-      document.createElement(
-        "article"
-      );
-
-
-    article.className =
-      "product";
-
-
-    const current =
-      parseFloat(product.price);
-
-
-    const old =
-      parseFloat(product.old);
-
-
-    let discountText =
-      "🔥 عرض مميز";
-
-
-    if (
-
-      !isNaN(current) &&
-
-      !isNaN(old) &&
-
-      old > current
-
-    ) {
-
-      const discount =
-        Math.round(
-
-          ((old - current) / old) * 100
-
-        );
-
-
-      discountText =
-        `🔥 خصم ${discount}%`;
-
-    }
-
-
-    const image =
-      product.image || "";
-
-
-    const store =
-      product.store ||
-      "متجر موصى به";
-
-
-    const saved =
-      getSavedProducts().some(
-
-        item =>
-
-          item.id ===
-          getProductId(product)
-
-      );
-
-
-    const bestDeal =
-      product.bestDeal === true;
-
-
-    const comparison =
-      Array.isArray(
-        product.comparison
-      )
-
-        ? product.comparison
-
-        : [];
-
-
-    article.innerHTML = `
-
-      <div class="product-image">
-
-        <div class="product-badges">
-
-          <div class="discount">
-
-            ${escapeHtml(
-              discountText
-            )}
-
-          </div>
-
-
-          ${
-            bestDeal
-
-              ? `
-
-                <div class="best-deal">
-
-                  👑 أفضل سعر
-
-                </div>
-
-              `
-
-              : ""
-
-          }
-
-        </div>
-
-
-        <button
-
-          class="save-product ${
-            saved
-              ? "saved"
-              : ""
-          }"
-
-          type="button"
-
-          aria-label="حفظ المنتج"
-
-        >
-
-          ${
-            saved
-              ? "♥"
-              : "♡"
-          }
-
-        </button>
-
-
-        <img
-
-          src="${escapeHtml(
-            image
-          )}"
-
-          alt="${escapeHtml(
-            product.title ||
-            "منتج"
-          )}"
-
-          loading="lazy"
-
-        >
-
-      </div>
-
-
-      <div class="product-info">
-
-
-        <div class="product-title">
-
-          ${escapeHtml(
-            product.title ||
-            "منتج"
-          )}
-
-        </div>
-
-
-        <div class="product-store">
-
-          🏪
-
-          ${escapeHtml(
-            store
-          )}
-
-        </div>
-
-
-        <div class="price-row">
-
-
-          <div class="current-price">
-
-            <span class="price-number">
-
-              ${escapeHtml(
-                product.price ||
-                "0"
-              )}
-
-            </span>
-
-
-            <span class="price-currency">
-
-              ر.س
-
-            </span>
-
-          </div>
-
-
-          ${
-            product.old
-
-              ? `
-
-                <div class="old-price">
-
-                  ${escapeHtml(
-                    product.old
-                  )}
-                  ر.س
-
-                </div>
-
-              `
-
-              : ""
-
-          }
-
-        </div>
-
-
-        ${
-          product.dealText
-
-            ? `
-
-              <div class="deal-status">
-
-                🔥
-                ${escapeHtml(
-                  product.dealText
-                )}
-
-              </div>
-
-            `
-
-            : ""
-
-        }
-
-
-        <div class="product-actions">
-
-
-          <button
-
-            class="buy"
-
-            type="button"
-
-          >
-
-            🛒
-
-            شراء من
-
-            ${escapeHtml(
-              store
-            )}
-
-          </button>
-
-
-          <button
-
-            class="watch-price"
-
-            type="button"
-
-          >
-
-            🔔 راقب السعر
-
-          </button>
-
-
-        </div>
-
-
-        ${
-          comparison.length
-
-            ? buildComparison(
-                comparison
-              )
-
-            : ""
-        }
-
-
-      </div>
-
-    `;
-
-
-    /* SAVE */
-
-    const saveButton =
-      article.querySelector(
-        ".save-product"
-      );
-
-
-    saveButton.addEventListener(
-
-      "click",
-
-      function(event) {
-
-        event.stopPropagation();
-
-
-        toggleSavedProduct(
-
-          product,
-
-          saveButton
-
-        );
-
-      }
-
-    );
-
-
-    /* BUY */
-
-    const buyButton =
-      article.querySelector(
-        ".buy"
-      );
-
-
-    buyButton.addEventListener(
-
-      "click",
-
-      function() {
-
-        openProduct(
-          product
-        );
-
-      }
-
-    );
-
-
-    /* WATCH PRICE */
-
-    const watchButton =
-      article.querySelector(
-        ".watch-price"
-      );
-
-
-    watchButton.addEventListener(
-
-      "click",
-
-      function() {
-
-        openPriceAlert(
-          product
-        );
-
-      }
-
-    );
-
-
-    list.appendChild(
-      article
-    );
-
-  });
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
-  });
-
-}
-
-
-/* =====================================================
-   COMPARISON
-===================================================== */
-
-function buildComparison(
-  comparison
-) {
-
-  if (!comparison.length) {
-
-    return "";
-
-  }
-
-
-  return `
-
-    <div class="compare-box">
-
-      <div class="compare-title">
-
-        🔎 مقارنة المتاجر
-
-      </div>
-
-
-      ${
-
-        comparison
-
-          .slice(0, 5)
-
-          .map(item => `
-
-            <div class="compare-row">
-
-              <span class="compare-store">
-
-                ${escapeHtml(
-
-                  item.store ||
-                  "متجر"
-
-                )}
-
-              </span>
-
-
-              <span class="compare-price">
-
-                ${
-
-                  item.price
-
-                    ? escapeHtml(
-                        item.price
-                      ) +
-                      " ر.س"
-
-                    : "—"
-
-                }
-
-              </span>
-
-
-              ${
-
-                item.link
-
-                  ? `
-
-                    <button
-
-                      class="compare-link"
-
-                      type="button"
-
-                      onclick='openComparisonLink(${JSON.stringify(
-                        item.link
-                      )})'
-
-                    >
-
-                      عرض
-
-                    </button>
-
-                  `
-
-                  : ""
-
-              }
-
-            </div>
-
-          `)
-
-          .join("")
-
-      }
-
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   COMPARISON LINK
-===================================================== */
-
-function openComparisonLink(
-  link
-) {
-
-  if (!link) {
-
-    return;
-
-  }
-
-
-  window.open(
-
-    link,
-
-    "_blank",
-
-    "noopener,noreferrer"
-
-  );
-
-}
-
-
-/* =====================================================
-   SAVE PRODUCT
-===================================================== */
-
-function toggleSavedProduct(
-
-  product,
-
-  button
-
-) {
-
-  let saved =
-    getSavedProducts();
-
-
-  const id =
-    getProductId(product);
-
-
-  const index =
-    saved.findIndex(
-
-      item =>
-
-        item.id === id
-
-    );
-
-
-  if (index >= 0) {
-
-    saved.splice(
-
-      index,
-
-      1
-
-    );
-
-
-    button.classList.remove(
-      "saved"
-    );
-
-
-    button.textContent =
-      "♡";
-
-
-    showToast(
-
-      "تمت إزالة المنتج من المحفوظات"
-
-    );
-
-  } else {
-
-    saved.push({
-
-      id,
-
-      title:
-        product.title || "",
-
-      price:
-        product.price || "",
-
-      image:
-        product.image || "",
-
-      link:
-        product.link || "",
-
-      store:
-        product.store || "",
-
-      savedAt:
-        new Date().toISOString()
-
-    });
-
-
-    button.classList.add(
-      "saved"
-    );
-
-
-    button.textContent =
-      "♥";
-
-
-    showToast(
-
-      "❤️ تم حفظ المنتج"
-
-    );
-
-  }
-
-
-  saveSavedProducts(
-    saved
-  );
-
-}
-
-
-/* =====================================================
-   OPEN SAVED
-===================================================== */
-
-function openSaved() {
-
-  const saved =
-    getSavedProducts();
-
-
-  let content = `
-
-    <div class="modal-head">
-
-      <h3 class="modal-title">
-
-        ❤️ المنتجات المحفوظة
-
-      </h3>
-
-
-      <button
-
-        class="modal-close"
-
-        onclick="closeModal()"
-
-      >
-
-        ×
-
-      </button>
-
-    </div>
-
-  `;
-
-
-  if (!saved.length) {
-
-    content += `
-
-      <div class="empty">
-
-        <div class="empty-icon">
-
-          ❤️
-
-        </div>
-
-
-        <h3>
-
-          لا توجد منتجات محفوظة
-
-        </h3>
-
-
-        <p>
-
-          احفظ المنتجات التي تعجبك
-          لتعود إليها لاحقًا.
-
-        </p>
-
-      </div>
-
-    `;
-
-  } else {
-
-    content += saved
-
-      .map(item => `
-
-        <div class="saved-item">
-
-
-          <img
-
-            src="${escapeHtml(
-
-              item.image || ""
-
-            )}"
-
-            alt=""
-
-          >
-
-
-          <div class="saved-item-info">
-
-            <div class="saved-item-title">
-
-              ${escapeHtml(
-
-                item.title ||
-                "منتج"
-
-              )}
-
-            </div>
-
-
-            <div class="saved-item-price">
-
-              ${escapeHtml(
-
-                item.price ||
-                "0"
-
-              )}
-
-              ر.س
-
-            </div>
-
-          </div>
-
-
-          <button
-
-            class="saved-item-button"
-
-            onclick='openSavedProduct(${JSON.stringify(
-              item
-            )})'
-
-          >
-
-            🛒
-
-          </button>
-
-
-        </div>
-
-      `)
-
-      .join("");
-
-  }
-
-
-  openModal(
-    content
-  );
-
-}
-
-
-/* =====================================================
-   OPEN SAVED PRODUCT
-===================================================== */
-
-function openSavedProduct(
-  product
-) {
-
-  openProduct(
-    product
-  );
-
-}
-
-
-/* =====================================================
-   PRICE ALERT
-===================================================== */
-
-function openPriceAlert(
-  product
-) {
-
-  const content = `
-
-    <div class="modal-head">
-
-      <h3 class="modal-title">
-
-        🔔 راقب سعر المنتج
-
-      </h3>
-
-
-      <button
-
-        class="modal-close"
-
-        onclick="closeModal()"
-
-      >
-
-        ×
-
-      </button>
-
-    </div>
-
-
-    <div class="alert-product">
-
-
-      <img
-
-        src="${escapeHtml(
-
-          product.image || ""
-
-        )}"
-
-        alt=""
-
-      >
-
-
-      <div class="alert-product-info">
-
-
-        <div class="alert-product-title">
-
-          ${escapeHtml(
-
-            product.title ||
-            "منتج"
-
-          )}
-
-        </div>
-
-
-        <div class="alert-current">
-
-          السعر الحالي:
-
-          ${escapeHtml(
-
-            product.price ||
-            "0"
-
-          )}
-
-          ر.س
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-
-    <p
-
-      style="
-
-        font-size:11px;
-
-        color:#777386;
-
-        line-height:1.8;
-
-        margin:0 0 10px;
-
-      "
-
-    >
-
-      حدد السعر الذي تريد الوصول إليه،
-      وسنجهز هذا الطلب للتنبيه عند ربط
-      نظام التنبيهات الحقيقي بالبوت.
-
-    </p>
-
-
-    <input
-
-      id="alertPrice"
-
-      class="alert-input"
-
-      type="number"
-
-      min="1"
-
-      placeholder="مثلاً: 99"
-
-    >
-
-
-    <button
-
-      class="alert-submit"
-
-      onclick='savePriceAlert(${JSON.stringify(
-        product
-      )})'
-
-    >
-
-      🔔 حفظ تنبيه السعر
-
-    </button>
-
-  `;
-
-
-  openModal(
-    content
-  );
-
-}
-
-
-/* =====================================================
-   SAVE PRICE ALERT
-===================================================== */
-
-function savePriceAlert(
-  product
-) {
-
-  const input =
-    document.getElementById(
-      "alertPrice"
-    );
-
-
-  const target =
-    parseFloat(
-      input?.value
-    );
-
-
-  if (
-
-    !target ||
-
-    target <= 0
-
-  ) {
-
-    showToast(
-
-      "أدخل السعر المطلوب أولًا"
-
-    );
-
-    return;
-
-  }
-
-
-  const alerts =
-    getAlerts();
-
-
-  alerts.push({
-
-    id:
-      getProductId(product),
-
-    title:
-      product.title || "",
-
-    currentPrice:
-      product.price || "",
-
-    targetPrice:
-      target,
-
-    link:
-      product.link || "",
-
-    store:
-      product.store || "",
-
-    createdAt:
-      new Date().toISOString(),
-
-    telegramUserId:
-      getTelegramUser()?.id ||
-      null
-
-  });
-
-
-  saveAlerts(
-    alerts
-  );
-
-
-  closeModal();
-
-
-  showToast(
-
-    "🔔 تم حفظ طلب مراقبة السعر"
-
-  );
-
-
-  /*
-    المرحلة القادمة:
-    إرسال هذه البيانات إلى Backend
-    لكي يتم فحص السعر وإرسال رسالة
-    Telegram للمستخدم عند تحقق الشرط.
-  */
-
-}
-
-
-/* =====================================================
-   PREFERENCES
-===================================================== */
-
-const preferenceOptions = [
-
-  {
-    id: "electronics",
-    label: "📱 إلكترونيات"
-  },
-
-  {
-    id: "accessories",
-    label: "💍 إكسسوارات"
-  },
-
-  {
-    id: "perfumes",
-    label: "🌸 عطور"
-  },
-
-  {
-    id: "beauty",
-    label: "💄 عناية وجمال"
-  },
-
-  {
-    id: "men",
-    label: "👔 رجال"
-  },
-
-  {
-    id: "kids",
-    label: "🧸 أطفال"
-  },
-
-  {
-    id: "sports",
-    label: "🏋️ رياضة"
-  },
-
-  {
-    id: "gifts",
-    label: "🎁 هدايا"
-  },
-
-  {
-    id: "shoes",
-    label: "👟 أحذية"
-  },
-
-  {
-    id: "dresses",
-    label: "👗 فساتين"
-  },
-
-  {
-    id: "bags",
-    label: "👜 شنط"
-  },
-
-  {
-    id: "watches",
-    label: "⌚ ساعات"
-  },
-
-  {
-    id: "home",
-    label: "🏠 منزل"
-  },
-
-  {
-    id: "deals",
-    label: "🔥 عروض قوية"
-  }
-
+const CATS = [
+  { id: "shoes", name: "الأحذية", icon: "👟", img: "shoes.jpg?v=3" },
+  { id: "dresses", name: "الفساتين", icon: "👗", img: "dresses.jpg?v=3" },
+  { id: "accessories", name: "الإكسسوارات", icon: "💍", img: "accessories.jpg?v=3" },
+  { id: "bags", name: "الشنط", icon: "👜", img: "bags.jpg?v=3" },
+  { id: "watches", name: "الساعات", icon: "⌚", img: "watches.jpg?v=3" },
+  { id: "electronics", name: "الإلكترونيات", icon: "📱", img: "electronics.jpg?v=3" },
+  { id: "home", name: "المنزل", icon: "🏠", img: "home.jpg?v=3" },
+  { id: "deals", name: "أقوى العروض", icon: "🔥", img: "deals.jpg?v=3" },
+  { id: "perfumes", name: "العطور", icon: "🌸", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80" },
+  { id: "beauty", name: "العناية والجمال", icon: "💄", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80" },
+  { id: "men", name: "أزياء الرجال", icon: "👔", img: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80" },
+  { id: "kids", name: "الأطفال", icon: "🧸", img: "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=700&q=80" },
+  { id: "sports", name: "الرياضة", icon: "🏋️", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" },
+  { id: "gifts", name: "الهدايا", icon: "🎁", img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80" }
 ];
 
+const SOCIAL_ICONS = {
+  whatsapp: ["واتساب", "https://cdn.simpleicons.org/whatsapp/25D366"],
+  telegram: ["تلجرام", "https://cdn.simpleicons.org/telegram/229ED9"],
+  x: ["X", "https://cdn.simpleicons.org/x/111111"],
+  instagram: ["إنستغرام", "https://cdn.simpleicons.org/instagram/E4405F"],
+  tiktok: ["تيك توك", "https://cdn.simpleicons.org/tiktok/111111"]
+};
 
 /* =====================================================
-   OPEN PREFERENCES
+   أدوات
 ===================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nf = n => (Math.round(n * 100) / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
+const safeUrl = u => (/^\s*(javascript|vbscript):/i.test(String(u || "")) ? "" : String(u || ""));
+const normAr = t => String(t || "").toLowerCase().replace(/[\u064B-\u065F\u0670\u0640]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const catName = id => CATS.find(c => c.id === id)?.name || "";
 
-function openPreferences() {
+const tg = window.Telegram?.WebApp || null;
+if (tg) {
+  tg.ready(); tg.expand();
+  try { tg.setHeaderColor("#5b35d5"); tg.setBackgroundColor("#f6f5fa"); } catch {}
+  try { tg.BackButton.onClick(() => { if (!$("#overlay").classList.contains("on")) showHome(); else closeSheet(); }); } catch {}
+}
+const tgUser = tg?.initDataUnsafe?.user || null;
 
-  const selected =
-    getPreferences();
-
-
-  const content = `
-
-    <div class="modal-head">
-
-      <h3 class="modal-title">
-
-        🎯 اهتماماتي
-
-      </h3>
-
-
-      <button
-
-        class="modal-close"
-
-        onclick="closeModal()"
-
-      >
-
-        ×
-
-      </button>
-
-    </div>
-
-
-    <p
-
-      style="
-
-        font-size:11px;
-
-        color:#777386;
-
-        line-height:1.8;
-
-        margin-top:0;
-
-      "
-
-    >
-
-      اختر الأشياء التي تهتم بها حتى
-      نستطيع تخصيص العروض لك لاحقًا.
-
-    </p>
-
-
-    <div class="preference-grid">
-
-
-      ${
-
-        preferenceOptions
-
-          .map(option => `
-
-            <button
-
-              type="button"
-
-              class="preference ${
-
-                selected.includes(
-
-                  option.id
-
-                )
-
-                  ? "selected"
-
-                  : ""
-
-              }"
-
-              data-preference="${option.id}"
-
-              onclick="togglePreference(this)"
-
-            >
-
-              ${option.label}
-
-            </button>
-
-          `)
-
-          .join("")
-
-      }
-
-
-    </div>
-
-
-    <button
-
-      class="save-preferences"
-
-      onclick="saveUserPreferences()"
-
-    >
-
-      💾 حفظ اهتماماتي
-
-    </button>
-
-  `;
-
-
-  openModal(
-    content
-  );
-
+let toastT;
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("on");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2400);
 }
 
-
 /* =====================================================
-   TOGGLE PREFERENCE
+   البيانات
 ===================================================== */
+let ALL = [], byId = new Map(), byGroup = new Map(), hotIds = [], loadedAt = 0;
 
-function togglePreference(
-  button
-) {
-
-  button.classList.toggle(
-    "selected"
-  );
-
+function storeKey(v) {
+  const n = String(v || "").toLowerCase();
+  for (const k of Object.keys(STORES)) if (k !== "other" && n.includes(k)) return k;
+  return "other";
 }
 
-
-/* =====================================================
-   SAVE PREFERENCES
-===================================================== */
-
-function saveUserPreferences() {
-
-  const selected =
-
-    Array.from(
-
-      document.querySelectorAll(
-
-        ".preference.selected"
-
-      )
-
-    )
-
-    .map(
-
-      button =>
-
-        button.dataset.preference
-
-    );
-
-
-  savePreferences(
-    selected
-  );
-
-
-  prepareHomeSections();
-
-
-  closeModal();
-
-
-  showToast(
-
-    "🎯 تم حفظ اهتماماتك"
-
-  );
-
+function norm(p, cat) {
+  const price = parseFloat(p.price) || 0, old = parseFloat(p.old) || 0;
+  return {
+    id: String(p.id || [p.title, p.store, p.price].join("|")),
+    cat: p.category || cat,
+    title: p.title || "منتج",
+    price, old: old > price ? old : 0,
+    discount: old > price ? Math.round((1 - price / old) * 100) : 0,
+    store: p.store || "", sk: storeKey(p.store || p.link),
+    image: p.image || "", link: p.link || "",
+    featured: !!p.featured || p.featured === "true", expired: !!p.expired,
+    created: p.createdAt ? Date.parse(p.createdAt) || 0 : 0,
+    group: p.groupId || ""
+  };
 }
 
+async function loadData(force) {
+  if (!force && ALL.length && Date.now() - loadedAt < 300000) return true;
+  try {
+    const r = await fetch(CONFIG.PRODUCTS_URL + "?v=" + Math.floor(Date.now() / 60000), { cache: "no-store" });
+    if (!r.ok) throw new Error("products");
+    const d = await r.json();
+    ALL = [];
+    for (const c of CATS) (Array.isArray(d[c.id]) ? d[c.id] : []).forEach(p => { const n = norm(p, c.id); if (n.price > 0) ALL.push(n); });
+    byId = new Map(ALL.map(x => [x.id, x]));
+    byGroup = new Map();
+    ALL.forEach(x => { if (x.group) { if (!byGroup.has(x.group)) byGroup.set(x.group, []); byGroup.get(x.group).push(x); } });
+    loadedAt = Date.now();
+    return true;
+  } catch (e) { console.error(e); return false; }
+}
 
-/* =====================================================
-   SEARCH
-===================================================== */
+async function loadTrending() {
+  if (!CONFIG.API_BASE) return;
+  try {
+    const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/trending");
+    hotIds = (await r.json()).ids || [];
+  } catch {}
+}
 
-async function searchProducts() {
+/* كل العروض لنفس المنتج (نفس groupId) مرتبة من الأرخص */
+function offersOf(it) {
+  const arr = it.group ? (byGroup.get(it.group) || [it]) : [it];
+  const live = arr.filter(x => !x.expired);
+  return (live.length ? live : [it]).slice().sort((a, b) => a.price - b.price);
+}
 
-  const input =
-    document.getElementById(
-      "searchInput"
-    );
-
-
-  const query =
-
-    (input.value || "")
-
-      .trim()
-
-      .toLowerCase();
-
-
-  if (!query) {
-
-    showToast(
-
-      "اكتب اسم المنتج الذي تبحث عنه"
-
-    );
-
-    return;
-
+/* دمج المنتجات المتشابهة في بطاقة واحدة (الأرخص يظهر) */
+function listing(items, keepStores) {
+  const seen = new Set(), out = [];
+  for (const it of items) {
+    if (it.expired) continue;
+    if (!keepStores && it.group) {
+      if (seen.has(it.group)) continue;
+      seen.add(it.group);
+      out.push(offersOf(it)[0]);
+    } else out.push(it);
   }
+  return out;
+}
 
+function score(x) {
+  let fresh = 0;
+  if (x.created) { const age = Date.now() - x.created, day = 86400000; fresh = age <= day ? 15 : age <= 3 * day ? 10 : age <= 7 * day ? 5 : 0; }
+  return x.discount + (x.featured ? 20 : 0) + fresh;
+}
 
-  const loaded =
-    await loadProducts();
+function sortItems(items, how) {
+  const a = items.slice();
+  const hot = id => { const i = hotIds.indexOf(id); return i < 0 ? 999 : i; };
+  if (how === "cheap") a.sort((x, y) => x.price - y.price);
+  else if (how === "disc") a.sort((x, y) => y.discount - x.discount);
+  else if (how === "new") a.sort((x, y) => y.created - x.created);
+  else if (how === "hot") a.sort((x, y) => hot(x.id) - hot(y.id) || score(y) - score(x));
+  else a.sort((x, y) => score(y) - score(x));
+  return a;
+}
 
+/* =====================================================
+   الشعارات والبطاقات
+===================================================== */
+function chip(sk, size) {
+  const s = STORES[sk] || STORES.other;
+  const inner = s.logo ? `<img src="${esc(safeUrl(s.logo))}" alt="${esc(s.name)}">` : esc(s.text);
+  return `<span class="chip ${size}" style="background:${s.bg};color:${s.fg}" title="${esc(s.ar)}">${inner}</span>`;
+}
 
-  if (!loaded) {
+const saved = () => LS.get("wsah_saved_v2", []);
+const isSaved = id => saved().includes(id);
 
-    showToast(
+function cardHTML(it) {
+  const offers = offersOf(it), n = offers.length, isBest = n > 1 && offers[0].id === it.id;
+  return `
+  <article class="card" data-act="open" data-id="${esc(it.id)}">
+    <div class="media">
+      <span class="store-tag">${chip(it.sk, "sm")}</span>
+      ${it.discount ? `<span class="disc">-${it.discount}%</span>` : ""}
+      ${isBest ? `<span class="best">👑 الأرخص</span>` : ""}
+      <button class="heart ${isSaved(it.id) ? "on" : ""}" data-act="save" data-id="${esc(it.id)}" aria-label="حفظ">${isSaved(it.id) ? "♥" : "♡"}</button>
+      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" loading="lazy" onerror="this.style.opacity=.2">
+    </div>
+    <div class="body">
+      <div class="ttl">${esc(it.title)}</div>
+      <div class="price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}</div>
+      ${n > 1 ? `<div class="cmp"><span>قارن ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => chip(o.sk, "xs")).join("")}</span></div>` : ""}
+    </div>
+  </article>`;
+}
 
-      "تعذر تحميل المنتجات"
+const gridHTML = (items, empty) => items.length ? items.map(cardHTML).join("") :
+  `<div class="empty"><b>${esc(empty?.[0] || "لا توجد منتجات")}</b><span>${esc(empty?.[1] || "جرّب قسمًا آخر أو غيّر الفلاتر.")}</span></div>`;
 
-    );
+/* =====================================================
+   الصفحة الرئيسية
+===================================================== */
+function fillRow(secId, rowId, items) {
+  $(secId).hidden = !items.length;
+  $(rowId).innerHTML = items.slice(0, 10).map(cardHTML).join("");
+}
 
-    return;
+function renderHome() {
+  const live = ALL.filter(x => !x.expired);
 
+  $("#storeStrip").innerHTML = Object.keys(STORES).filter(k => k !== "other").map(k =>
+    `<button class="store-btn" data-act="store" data-id="${k}">${chip(k, "md")}<small>${esc(STORES[k].ar)}</small></button>`).join("");
+
+  $("#cats").innerHTML = CATS.map(c => {
+    const n = c.id === "deals" ? live.filter(x => x.cat === "deals" || x.discount >= 25).length : live.filter(x => x.cat === c.id).length;
+    return `<button class="cat" data-act="cat" data-id="${c.id}">
+      <div class="cat-img"><img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" onerror="this.remove()"></div>
+      <div class="cat-row"><span class="cat-name">${c.icon} ${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</div>
+    </button>`;
+  }).join("");
+
+  fillRow("#secDeals", "#rowDeals", listing(sortItems(live.filter(x => x.discount >= 15), "disc")));
+  fillRow("#secFeat", "#rowFeat", listing(sortItems(live.filter(x => x.featured), "best")));
+  const hot = hotIds.map(id => byId.get(id)).filter(x => x && !x.expired);
+  fillRow("#secHot", "#rowHot", listing(hot));
+  const prefs = LS.get("wsah_prefs_v2", []);
+  fillRow("#secPers", "#rowPers", prefs.length ? listing(sortItems(live.filter(x => prefs.includes(x.cat)), "best")) : []);
+
+  const fresh = listing(sortItems(live, "new")).slice(0, 8);
+  $("#gridNew").innerHTML = gridHTML(fresh, ["قريبًا", "نجهّز لك أفضل المنتجات والعروض."]);
+
+  const soc = Object.entries(CONFIG.SOCIAL).filter(([, u]) => u);
+  $("#social").hidden = !soc.length;
+  $("#socRow").innerHTML = soc.map(([k, u]) =>
+    `<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(SOCIAL_ICONS[k][0])}"><img src="${SOCIAL_ICONS[k][1]}" alt=""></a>`).join("");
+}
+
+function showHome() {
+  $("#home").hidden = false; $("#list").hidden = true;
+  try { tg?.BackButton.hide(); } catch {}
+  renderHome();
+}
+
+/* =====================================================
+   صفحة القائمة (قسم / متجر / بحث)
+===================================================== */
+let view = null;
+
+function showList(opts) {
+  view = { title: opts.title, base: opts.base, store: opts.store || "", sort: opts.sort || "best", q: opts.q || "" };
+  $("#home").hidden = true; $("#list").hidden = false;
+  $("#lTitle").textContent = view.title;
+  $("#lq").value = view.q; $("#lsort").value = view.sort;
+  try { tg?.BackButton.show(); } catch {}
+  renderList();
+  window.scrollTo(0, 0);
+}
+
+function renderList() {
+  const v = view;
+  let items = v.base.filter(x => !x.expired);
+  if (v.q) {
+    const toks = normAr(v.q).split(/\s+/).filter(Boolean);
+    items = items.filter(x => { const t = normAr(`${x.title} ${x.store} ${catName(x.cat)}`); return toks.every(k => t.includes(k)); });
   }
+  const counts = {};
+  items.forEach(x => counts[x.sk] = (counts[x.sk] || 0) + 1);
+  if (v.store) items = items.filter(x => x.sk === v.store);
+  const cards = listing(sortItems(items, v.sort), !!v.store);
 
+  $("#lSub").textContent = `${cards.length} منتج`;
+  const keys = Object.keys(counts);
+  $("#lchips").innerHTML = keys.length > 0 || v.store
+    ? `<button class="fchip ${v.store ? "" : "on"}" data-act="fstore" data-id="">الكل</button>` +
+      Object.keys(STORES).filter(k => counts[k] || v.store === k).map(k =>
+        `<button class="fchip ${v.store === k ? "on" : ""}" data-act="fstore" data-id="${k}">${chip(k, "xs")}${esc(STORES[k].ar)}<em>${counts[k] || 0}</em></button>`).join("")
+    : "";
+  $("#lgrid").innerHTML = gridHTML(cards, v.q ? ["لم نجد المنتج", "جرّب كلمة أخرى أو تصفّح الأقسام."] : null);
+}
 
-  const allProducts = [];
+function openCategory(id) {
+  const live = ALL.filter(x => !x.expired);
+  if (id === "deals") return showList({ title: "🔥 أقوى العروض", base: live.filter(x => x.cat === "deals" || x.discount >= 25), sort: "disc" });
+  const c = CATS.find(x => x.id === id);
+  showList({ title: `${c.icon} ${c.name}`, base: live.filter(x => x.cat === id) });
+}
 
+/* =====================================================
+   النوافذ
+===================================================== */
+function openSheet(html) { $("#sheet").innerHTML = html; $("#overlay").classList.add("on"); }
+function closeSheet() { $("#overlay").classList.remove("on"); }
+const sheetHead = t => `<div class="sh-head"><h3>${t}</h3><button class="x" data-act="close" aria-label="إغلاق">×</button></div>`;
 
-  Object.keys(products)
+function spark(pts) {
+  if (!Array.isArray(pts) || pts.length < 2) return "";
+  const ps = pts.map(x => +x.p), mn = Math.min(...ps), mx = Math.max(...ps), r = (mx - mn) || 1;
+  const d = ps.map((p, i) => `${i ? "L" : "M"}${(i / (ps.length - 1) * 100).toFixed(1)},${(28 - ((p - mn) / r) * 26).toFixed(1)}`).join(" ");
+  return `<div class="hist"><div class="hist-h">سجل السعر<small>${nf(mn)} – ${nf(mx)} ر.س</small></div>
+    <svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.8" vector-effect="non-scaling-stroke"/></svg></div>`;
+}
 
-    .forEach(category => {
+function openProduct(id) {
+  const it = byId.get(id); if (!it) return;
+  const offers = offersOf(it), best = offers[0];
+  const rows = offers.length > 1 ? `
+    <div class="offers"><h4>🔎 مقارنة الأسعار بين المتاجر</h4>
+    ${offers.map(o => {
+      const diff = o.price - best.price;
+      return `<div class="offer ${o.id === best.id ? "top" : ""}">
+        ${chip(o.sk, "md")}
+        <div class="nm">${esc(STORES[o.sk].ar)}<small class="${diff > 0 ? "up" : ""}">${diff > 0 ? "+" + nf(diff) + " ر.س" : "👑 الأرخص"}</small></div>
+        <div class="pr">${nf(o.price)} ر.س</div>
+        <button data-act="buy" data-id="${esc(o.id)}">اشترِ</button>
+      </div>`;
+    }).join("")}</div>` : "";
 
-      products[category]
+  openSheet(`
+    ${sheetHead("تفاصيل المنتج")}
+    <div class="pimg"><span class="store-tag">${chip(it.sk, "md")}</span>
+      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
+    <div class="p-title">${esc(it.title)}</div>
+    <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.old ? `<s>${nf(it.old)}</s><span class="pct">-${it.discount}%</span>` : ""}</div>
+    ${rows}
+    <div id="histBox"></div>
+    <div class="acts">
+      <button class="btn buy" data-act="buy" data-id="${esc(it.id)}">🛒 اشترِ من ${esc(STORES[it.sk].ar)}</button>
+      <button class="btn soft" data-act="watch" data-id="${esc(it.id)}">🔔 راقب السعر</button>
+      <button class="btn soft" data-act="share" data-id="${esc(it.id)}">📤 مشاركة</button>
+    </div>
+    <p class="note">قد نحصل على عمولة عند الشراء عبر هذا الرابط دون أي تكلفة إضافية عليك. الأسعار قد تتغير في المتجر.</p>`);
 
-        .forEach(product => {
+  if (CONFIG.API_BASE) {
+    fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/history?id=" + encodeURIComponent(it.id))
+      .then(r => r.json()).then(d => { const b = $("#histBox"); if (b) b.innerHTML = spark(d.points); }).catch(() => {});
+  }
+}
 
-          allProducts.push({
+function openWatch(id) {
+  const it = byId.get(id); if (!it) return;
+  openSheet(`
+    ${sheetHead("🔔 راقب سعر المنتج")}
+    <div class="mini"><img src="${esc(safeUrl(it.image))}" alt=""><div class="i">${esc(it.title)}<b>السعر الحالي: ${nf(it.price)} ر.س</b></div></div>
+    <p class="note" style="margin:10px 0">حدد السعر الذي تريد الوصول إليه وسنرسل لك رسالة في تلجرام عند نزوله.</p>
+    <input id="target" class="fieldin" type="number" inputmode="decimal" min="1" placeholder="مثلاً: ${Math.max(1, Math.floor(it.price * 0.9))}">
+    <button class="btn main" data-act="watch-save" data-id="${esc(it.id)}">🔔 حفظ التنبيه</button>`);
+}
 
-            ...product,
-
-            category
-
-          });
-
-        });
-
+async function saveWatch(id) {
+  const it = byId.get(id), target = parseFloat($("#target")?.value);
+  if (!it || !(target > 0)) return toast("أدخل السعر المطلوب أولًا");
+  if (!CONFIG.API_BASE || !tg?.initData) {
+    const a = LS.get("wsah_alerts_v2", []); a.push({ id, target, t: Date.now() }); LS.set("wsah_alerts_v2", a);
+    closeSheet(); return toast("حُفظ على جهازك فقط — افتح التطبيق من تلجرام لتفعيل التنبيه");
+  }
+  try {
+    const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/alert", {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ id, target, initData: tg.initData })
     });
-
-
-  const results =
-
-    allProducts.filter(
-
-      product => {
-
-        const text = [
-
-          product.title || "",
-
-          product.store || "",
-
-          product.category || "",
-
-          product.description || ""
-
-        ]
-
-        .join(" ")
-
-        .toLowerCase();
-
-
-        return text.includes(
-          query
-        );
-
-      }
-
-    );
-
-
-  document
-
-    .getElementById(
-      "homePage"
-    )
-
-    .classList.remove(
-      "active"
-    );
-
-
-  document
-
-    .getElementById(
-      "productsPage"
-    )
-
-    .classList.add(
-      "active"
-    );
-
-
-  document
-
-    .getElementById(
-      "categoryTitle"
-    )
-
-    .textContent =
-      `🔎 نتائج البحث`;
-
-
-  document
-
-    .getElementById(
-      "categorySubtitle"
-    )
-
-    .textContent =
-      `${results.length} منتج مناسب لبحثك`;
-
-
-  if (!results.length) {
-
-    document
-
-      .getElementById(
-        "productsList"
-      )
-
-      .innerHTML = `
-
-        <div class="empty">
-
-          <div class="empty-icon">
-
-            🔎
-
-          </div>
-
-
-          <h3>
-
-            لم نجد المنتج
-
-          </h3>
-
-
-          <p>
-
-            جرّب كلمة أخرى أو تصفح
-            الأقسام والعروض.
-
-          </p>
-
-        </div>
-
-      `;
-
-
-    return;
-
-  }
-
-
-  renderProducts(
-    results
-  );
-
+    const d = await r.json();
+    if (!d.ok) throw new Error(d.error || "failed");
+    closeSheet();
+    toast(d.dm === false ? "تم الحفظ — افتح البوت واضغط Start لتصلك الرسائل" : "🔔 تم تفعيل التنبيه");
+  } catch (e) { toast("تعذر حفظ التنبيه، حاول لاحقًا"); }
 }
 
+function openSaved() {
+  const items = saved().map(id => byId.get(id)).filter(Boolean);
+  openSheet(`${sheetHead("❤️ المحفوظات")}` + (items.length ? items.map(it => `
+    <div class="mini"><img src="${esc(safeUrl(it.image))}" alt="">
+      <div class="i">${esc(it.title)}<b>${nf(it.price)} ر.س • ${esc(STORES[it.sk].ar)}</b></div>
+      <button class="sq" data-act="open" data-id="${esc(it.id)}" aria-label="عرض">🛒</button>
+      <button class="sq" data-act="unsave" data-id="${esc(it.id)}" aria-label="إزالة">🗑</button></div>`).join("")
+    : `<div class="empty" style="border:0"><b>لا توجد منتجات محفوظة</b><span>اضغط ♡ على أي منتج لتعود إليه لاحقًا.</span></div>`));
+}
+
+function openPrefs() {
+  const sel = LS.get("wsah_prefs_v2", []);
+  openSheet(`${sheetHead("🎯 اهتماماتي")}
+    <p class="note" style="margin:0 0 10px">اختر ما يهمّك لنقترح لك منتجات أقرب لذوقك.</p>
+    <div class="prefs">${CATS.filter(c => c.id !== "deals").map(c =>
+      `<button class="pref ${sel.includes(c.id) ? "on" : ""}" data-act="pref" data-id="${c.id}">${c.icon} ${esc(c.name)}</button>`).join("")}</div>
+    <button class="btn main" data-act="prefs-save">💾 حفظ اهتماماتي</button>`);
+}
 
 /* =====================================================
-   ENTER SEARCH
+   الإجراءات
 ===================================================== */
+function openLink(url) {
+  if (!url) return toast("رابط الشراء غير متوفر");
+  if (tg?.openLink) tg.openLink(url); else window.open(url, "_blank", "noopener,noreferrer");
+}
 
-document
+function buy(id) {
+  const it = byId.get(id); if (!it) return;
+  if (CONFIG.API_BASE) openLink(`${CONFIG.API_BASE.replace(/\/$/, "")}/go/${encodeURIComponent(it.id)}${tgUser ? "?u=" + tgUser.id : ""}`);
+  else openLink(it.link);
+}
 
-  .getElementById(
-    "searchInput"
-  )
+function toggleSave(id, el) {
+  let s = saved();
+  if (s.includes(id)) { s = s.filter(x => x !== id); el && (el.classList.remove("on"), el.textContent = "♡"); toast("أُزيل من المحفوظات"); }
+  else { s.push(id); el && (el.classList.add("on"), el.textContent = "♥"); toast("❤️ تم الحفظ"); }
+  LS.set("wsah_saved_v2", s);
+}
 
-  .addEventListener(
+function share(id) {
+  const it = byId.get(id); if (!it) return;
+  const best = offersOf(it)[0];
+  const text = `${it.title}\n💰 ${nf(best.price)} ر.س${offersOf(it).length > 1 ? " (أرخص سعر بين المتاجر)" : ""}`;
+  const url = CONFIG.SHARE_URL || location.href.split("#")[0];
+  if (tg?.openTelegramLink) tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
+  else if (navigator.share) navigator.share({ title: it.title, text, url }).catch(() => {});
+  else { navigator.clipboard?.writeText(`${text}\n${url}`); toast("تم نسخ الرابط"); }
+}
 
-    "keydown",
+function doSearch() {
+  const q = $("#q").value.trim();
+  if (!q) return toast("اكتب اسم المنتج الذي تبحث عنه");
+  showList({ title: "🔎 نتائج البحث", base: ALL, q });
+}
 
-    function(event) {
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-act]");
+  if (!el) return;
+  const a = el.dataset.act, id = el.dataset.id;
 
-      if (
+  if (a === "close") { if (el.id === "overlay" && e.target !== el) return; return closeSheet(); }
+  if (a === "save") { e.stopPropagation(); return toggleSave(id, el); }
+  if (a === "open") { if ($("#overlay").classList.contains("on")) closeSheet(); return openProduct(id); }
+  if (a === "unsave") { toggleSave(id); return openSaved(); }
+  if (a === "buy") return buy(id);
+  if (a === "watch") return openWatch(id);
+  if (a === "watch-save") return saveWatch(id);
+  if (a === "share") return share(id);
+  if (a === "saved") return openSaved();
+  if (a === "prefs") return openPrefs();
+  if (a === "pref") return el.classList.toggle("on");
+  if (a === "prefs-save") {
+    LS.set("wsah_prefs_v2", [...document.querySelectorAll(".pref.on")].map(b => b.dataset.id));
+    closeSheet(); renderHome(); return toast("🎯 تم حفظ اهتماماتك");
+  }
+  if (a === "search") return doSearch();
+  if (a === "home") return showHome();
+  if (a === "cat") return openCategory(id);
+  if (a === "store") return showList({ title: `🏬 منتجات ${STORES[id].ar}`, base: ALL.filter(x => !x.expired), store: id });
+  if (a === "featured") return showList({ title: "⭐ المنتجات المميزة", base: ALL.filter(x => x.featured) });
+  if (a === "all") return showList({ title: "🆕 كل المنتجات", base: ALL, sort: "new" });
+  if (a === "fstore") { view.store = id; return renderList(); }
+});
 
-        event.key === "Enter"
+$("#q").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
+$("#lq").addEventListener("input", e => { view.q = e.target.value; renderList(); });
+$("#lsort").addEventListener("change", e => { view.sort = e.target.value; renderList(); });
 
-      ) {
-
-        searchProducts();
-
-      }
-
+/* =====================================================
+   بدء التشغيل
+===================================================== */
+(function init() {
+  const sk = '<div class="sk"></div>'.repeat(2);
+  $("#gridNew").innerHTML = sk;
+  loadData().then(async ok => {
+    if (!ok) {
+      $("#gridNew").innerHTML = `<div class="empty"><b>تعذر تحميل المنتجات</b><span>تأكد من وجود ${esc(CONFIG.PRODUCTS_URL)} ثم أعد المحاولة.</span></div>`;
+      return;
     }
-
-  );
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-function goHome() {
-
-  document
-
-    .getElementById(
-      "productsPage"
-    )
-
-    .classList.remove(
-      "active"
-    );
-
-
-  document
-
-    .getElementById(
-      "homePage"
-    )
-
-    .classList.add(
-      "active"
-    );
-
-
-  prepareHomeSections();
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior: "smooth"
-
+    renderHome();
+    await loadTrending();
+    if (hotIds.length && !$("#home").hidden) renderHome();
   });
-
-}
-
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-function openModal(
-  html
-) {
-
-  const overlay =
-    document.getElementById(
-      "modalOverlay"
-    );
-
-
-  const modal =
-    document.getElementById(
-      "modal"
-    );
-
-
-  modal.innerHTML =
-    html;
-
-
-  overlay.classList.add(
-    "active"
-  );
-
-}
-
-
-function closeModal() {
-
-  document
-
-    .getElementById(
-      "modalOverlay"
-    )
-
-    .classList.remove(
-      "active"
-    );
-
-}
-
-
-function closeModalOutside(
-  event
-) {
-
-  if (
-
-    event.target.id ===
-    "modalOverlay"
-
-  ) {
-
-    closeModal();
-
-  }
-
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-let toastTimer = null;
-
-
-function showToast(
-  message
-) {
-
-  const toast =
-    document.getElementById(
-      "toast"
-    );
-
-
-  toast.textContent =
-    message;
-
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    toastTimer
-  );
-
-
-  toastTimer =
-
-    setTimeout(
-
-      function() {
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-
-      2500
-
-    );
-
-}
-
-
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function escapeHtml(
-  value
-) {
-
-  return String(
-    value ?? ""
-  )
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-/* =====================================================
-   INITIAL LOAD
-===================================================== */
-
-loadProducts().then(
-  function() {
-
-    prepareHomeSections();
-
-  }
-);
-
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && Date.now() - loadedAt > 300000) loadData(true).then(() => { if (!$("#home").hidden) renderHome(); else if (view) renderList(); });
+  });
+})();
 </script>
-
 </body>
 </html>
