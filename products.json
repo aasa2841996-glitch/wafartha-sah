@@ -56,7 +56,21 @@
   "accessories": [],
   "electronics": [],
   "beauty": [],
-  "men": [],
+  "men": [
+    {
+      "id": "018909bc",
+      "title": "سروال داخلي من نسيج مطاطي للرجال من بوما، عبوة من 4 قطع",
+      "price": "79",
+      "old": "108",
+      "discount": 27,
+      "link": "https://link.amazon/B0gqJz9Fc",
+      "store": "",
+      "image": "products/product-1791623579943-e8a92eeb.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-10T09:13:01.210Z"
+    }
+  ],
   "kids": [],
   "sports": [],
   "gifts": [],
