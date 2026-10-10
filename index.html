@@ -26,17 +26,14 @@ img{display:block;max-width:100%}
 .ic{width:1.15em;height:1.15em;flex:0 0 auto;stroke:currentColor;fill:none;vertical-align:middle}
 .ic.f{fill:currentColor;stroke:none}
 
-/* ---------- header ---------- */
+/* الرأس */
 .header{position:relative;overflow:hidden;color:#fff;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px 36px;
-  background:radial-gradient(110% 90% at 88% -10%,#a283ff 0%,transparent 55%),radial-gradient(90% 80% at 0% 115%,#ff7ab6 0%,transparent 52%),linear-gradient(135deg,#3b1bb0,#5b35d5 55%,#7a55ee);
-  border-radius:0 0 34px 34px}
-.header::after,.lhead::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
-  background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.5px);background-size:18px 18px;
-  -webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%)}
+background:radial-gradient(110% 90% at 88% -10%,#a283ff 0%,transparent 55%),radial-gradient(90% 80% at 0% 115%,#ff7ab6 0%,transparent 52%),linear-gradient(135deg,#3b1bb0,#5b35d5 55%,#7a55ee);
+border-radius:0 0 34px 34px}
+.header::after,.lhead::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.5px);background-size:18px 18px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%)}
 .header .wrap,.lhead .wrap{position:relative;z-index:1;padding:0}
 .hbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.hbtn{flex:0 0 auto;width:46px;height:46px;border-radius:15px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:20px;color:#fff;display:flex;align-items:center;justify-content:center}
+.hbtn{flex:0 0 auto;width:46px;height:46px;border-radius:15px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:20px;color:#fff;display:flex;align-items:center;justify-content:center}
 .hbtn:active{transform:scale(.94)}
 .logo{display:flex;align-items:center;gap:10px;min-width:0}
 .logo-mark{flex:0 0 auto;width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#ffb347,#ff5a36);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 10px 22px rgba(255,90,54,.45)}
@@ -64,14 +61,14 @@ img{display:block;max-width:100%}
 .trust b{display:block;font-size:11.5px;font-weight:900;margin-top:3px}
 .trust span{font-size:9.5px;color:var(--muted);font-weight:700}
 
-/* ---------- store chip ---------- */
+/* شعارات المتاجر */
 .chip{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-weight:900;letter-spacing:.2px;line-height:1;white-space:nowrap;overflow:hidden;font-family:Arial,sans-serif}
 .chip img{height:100%;width:auto;max-width:100%;object-fit:contain}
 .chip.md{height:30px;min-width:64px;padding:0 11px;font-size:13px;border-radius:9px}
 .chip.sm{height:25px;min-width:50px;padding:0 11px;font-size:11px;border-radius:999px;letter-spacing:.3px}
 .chip.xs{height:16px;min-width:16px;padding:0 5px;font-size:8px;border-radius:5px}
 
-/* ---------- sections ---------- */
+/* عناوين الأقسام */
 .sec{margin-top:24px}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:12px}
 .sec-head h2{margin:0;font-size:18px;font-weight:900;display:flex;align-items:center;gap:9px}
@@ -81,28 +78,35 @@ img{display:block;max-width:100%}
 .sec-head p{margin:3px 0 0;font-size:11px;color:var(--muted)}
 .more{font-size:11px;font-weight:800;color:var(--brand);background:var(--brand-soft);padding:7px 11px;border-radius:11px;white-space:nowrap}
 
-/* ---------- categories: صور واضحة بلا طبقة سوداء ---------- */
-.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.cat{position:relative;aspect-ratio:7/5;border-radius:22px;overflow:hidden;text-align:right;background:var(--g);box-shadow:0 14px 28px -14px rgba(40,20,120,.5);transition:transform .18s}
+/* شريط الأقسام والأيقونات ثلاثية الأبعاد */
+.cats{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 13px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cats::-webkit-scrollbar{display:none}
+.cat{position:relative;flex:0 0 138px;aspect-ratio:1.12;border-radius:20px;overflow:hidden;text-align:right;background:var(--g);box-shadow:0 10px 24px -14px rgba(40,20,120,.42);transition:transform .18s;scroll-snap-align:start}
 .cat:active{transform:scale(.98)}
 .cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.cat-3d{position:absolute;inset:0;display:block;background-color:#f0eaff;background-image:var(--tech-sprite);background-repeat:no-repeat;background-size:300% 200%;transition:transform .45s ease}
+.cat:hover .cat-3d{transform:scale(1.045)}
+.cat-3d::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 60%,rgba(255,255,255,.22));pointer-events:none}
+.cat-3d.p0{background-position:0% 0%}
+.cat-3d.p1{background-position:50% 0%}
+.cat-3d.p2{background-position:100% 0%}
+.cat-3d.p3{background-position:0% 100%}
+.cat-3d.p4{background-position:50% 100%}
+.cat-3d.p5{background-position:100% 100%}
 @media (hover:hover){.cat:hover img{transform:scale(1.06)}}
-.cat-l{position:absolute;inset-inline:10px;bottom:10px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:14px;padding:8px 11px;color:var(--ink);box-shadow:0 8px 18px rgba(20,10,60,.2)}
+.cat-l{position:absolute;inset-inline:10px;bottom:10px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:14px;padding:8px 11px;color:var(--ink);box-shadow:0 8px 18px rgba(20,10,60,.2)}
 .cat-name{flex:1;min-width:0;font-size:13.5px;font-weight:900;line-height:1.35}
 .cat-n{font-size:10.5px;font-weight:800;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:2px 9px}
 .cat-l .ic{color:var(--brand);font-size:15px}
 
-/* ---------- product grid & card ---------- */
+/* بطاقات المنتجات */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
 .hrow{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 14px 14px;margin:0 -14px;scrollbar-width:none}
 .hrow::-webkit-scrollbar{display:none}
 .hrow .card{flex:0 0 168px;scroll-snap-align:start}
-.card{position:relative;background:#fff;border-radius:22px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;min-width:0;
-  border:1px solid rgba(91,53,213,.08);box-shadow:0 1px 2px rgba(31,27,51,.04),0 10px 26px -10px rgba(60,40,140,.2);transition:transform .18s ease,box-shadow .18s ease}
+.card{position:relative;background:#fff;border-radius:22px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;min-width:0;border:1px solid rgba(91,53,213,.08);box-shadow:0 1px 2px rgba(31,27,51,.04),0 10px 26px -10px rgba(60,40,140,.2);transition:transform .18s ease,box-shadow .18s ease}
 .card:active{transform:scale(.985)}
-@media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(31,27,51,.05),0 20px 38px -12px rgba(60,40,140,.3)}
-  .card:hover .media>img{transform:scale(1.045)}}
+@media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(31,27,51,.05),0 20px 38px -12px rgba(60,40,140,.3)}.card:hover .media>img{transform:scale(1.045)}}
 .media{position:relative;aspect-ratio:1/1;background:radial-gradient(120% 100% at 50% 0%,#fff 0%,#f3f1fb 100%)}
 .media>img{width:100%;height:100%;object-fit:contain;padding:18px;mix-blend-mode:multiply;transition:transform .3s ease}
 .store-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:2;filter:drop-shadow(0 3px 8px rgba(20,16,40,.22))}
@@ -123,8 +127,7 @@ img{display:block;max-width:100%}
 .cmp>span:first-child{white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
 .cmp .ic{font-size:13px}
 .cmp-logos{display:flex;gap:3px}
-.cta{display:flex;align-items:center;justify-content:center;gap:6px;height:38px;border-radius:12px;font-size:12px;font-weight:900;color:#fff;
-  background:linear-gradient(135deg,#5b35d5,#7a55ee);box-shadow:0 8px 16px -6px rgba(91,53,213,.55);margin-top:auto}
+.cta{display:flex;align-items:center;justify-content:center;gap:6px;height:38px;border-radius:12px;font-size:12px;font-weight:900;color:#fff;background:linear-gradient(135deg,#5b35d5,#7a55ee);box-shadow:0 8px 16px -6px rgba(91,53,213,.55);margin-top:auto}
 .cmp+.cta{margin-top:0}
 .grid.rows{grid-template-columns:1fr}
 .rows .card{flex-direction:row}
@@ -135,10 +138,8 @@ img{display:block;max-width:100%}
 @keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
 @media (prefers-reduced-motion:reduce){.sk{animation:none}html{scroll-behavior:auto}}
 
-/* ---------- promo + compare ---------- */
-.promo{margin-top:22px;border-radius:24px;padding:18px 16px;color:#fff;position:relative;overflow:hidden;
-  background:radial-gradient(90% 120% at 100% 0%,rgba(255,122,182,.55),transparent 55%),linear-gradient(135deg,#1f1b33,#3a2a8f);
-  display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 16px 34px -14px rgba(40,20,120,.55)}
+/* المقارنة والعروض */
+.promo{margin-top:22px;border-radius:24px;padding:18px 16px;color:#fff;position:relative;overflow:hidden;background:radial-gradient(90% 120% at 100% 0%,rgba(255,122,182,.55),transparent 55%),linear-gradient(135deg,#1f1b33,#3a2a8f);display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 16px 34px -14px rgba(40,20,120,.55)}
 .promo b{font-size:17px;font-weight:900;display:block}
 .promo span{font-size:11px;opacity:.9;line-height:1.7}
 .promo button{flex:0 0 auto;background:linear-gradient(135deg,#ffb347,#ff5a36);color:#fff;font-weight:900;font-size:12px;padding:11px 15px;border-radius:13px;white-space:nowrap;box-shadow:0 10px 22px rgba(255,90,54,.4)}
@@ -157,9 +158,8 @@ img{display:block;max-width:100%}
 .cc-r.top{background:#e6f8ef;color:#0a6e4c}
 .cc-save{font-size:10.5px;font-weight:800;color:#0a8a5d}
 
-/* ---------- list page ---------- */
-.lhead{position:relative;overflow:hidden;color:#fff;padding:calc(env(safe-area-inset-top,0px) + 14px) 14px 26px;border-radius:0 0 28px 28px;
-  background:radial-gradient(110% 120% at 90% -20%,#a283ff 0%,transparent 55%),linear-gradient(135deg,#3b1bb0,#5b35d5 60%,#7a55ee)}
+/* صفحة القوائم */
+.lhead{position:relative;overflow:hidden;color:#fff;padding:calc(env(safe-area-inset-top,0px) + 14px) 14px 26px;border-radius:0 0 28px 28px;background:radial-gradient(110% 120% at 90% -20%,#a283ff 0%,transparent 55%),linear-gradient(135deg,#3b1bb0,#5b35d5 60%,#7a55ee)}
 .lbar{display:flex;align-items:center;gap:12px}
 .lt{flex:1;min-width:0}
 .lt h2{margin:0;font-size:20px;font-weight:900;line-height:1.3}
@@ -167,6 +167,87 @@ img{display:block;max-width:100%}
 .lsearch{position:relative;margin-top:14px}
 .lsearch .ic{position:absolute;top:50%;inset-inline-start:14px;transform:translateY(-50%);color:var(--brand);font-size:19px}
 .lsearch input{width:100%;height:48px;border:0;border-radius:16px;padding:0 14px 0 14px;padding-inline-start:44px;outline:none;background:#fff;font-size:13px;box-shadow:0 12px 26px rgba(20,10,70,.28)}
+.fbar{position:sticky;top:0;z-index:20;background:rgba(246,245,250,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 0 8px;border-bottom:1px solid transparent}
+.pills,.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.pills::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:800;color:#5a5670}
+.pill.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chips{margin-top:9px}
+.fchip{flex:0 0 auto;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 6px;font-size:11.5px;font-weight:800}
+.fchip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.fchip em{font-style:normal;font-size:10px;opacity:.7}
+.rbar{display:flex;align-items:center;justify-content:space-between;margin-top:10px;font-size:12px;font-weight:800;color:var(--muted)}
+.vt{display:flex;background:#fff;border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px}
+.vt button{width:34px;height:28px;border-radius:8px;color:#9b97ad;font-size:16px;display:flex;align-items:center;justify-content:center}
+.vt button.on{background:var(--brand);color:#fff}
+.list-body{padding-top:12px;padding-bottom:36px}
+.empty{grid-column:1/-1;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:36px 18px;text-align:center}
+.empty b{display:block;font-size:15px;margin-bottom:5px}
+.empty span{font-size:12px;color:var(--muted);line-height:1.8}
+
+/* نافذة المنتج */
+.overlay{position:fixed;inset:0;background:rgba(23,20,38,.5);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex}
+.sheet{width:100%;max-width:640px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:26px 26px 0 0;padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));animation:up .2s ease}
+@keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.sh-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sh-head h3{margin:0;font-size:17px;font-weight:900}
+.x{width:36px;height:36px;border-radius:50%;background:#f2f1f6;color:#555064;display:flex;align-items:center;justify-content:center;font-size:18px}
+.pimg{position:relative;aspect-ratio:4/3;background:radial-gradient(120% 100% at 50% 0%,#fff,#f1eefb);border-radius:18px;overflow:hidden}
+.pimg>img{width:100%;height:100%;object-fit:contain;padding:14px;mix-blend-mode:multiply}
+.pimg .store-tag{top:10px;inset-inline-start:10px}
+.p-title{font-size:15px;font-weight:800;line-height:1.7;margin:12px 0 4px}
+.p-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.p-price b{font-size:30px;font-weight:900;color:var(--brand)}
+.p-price s{font-size:13px;color:#b4b1c3;text-decoration-color:#ff6b57}
+.p-price .pct{background:linear-gradient(135deg,#ff5a36,#ff2e63);color:#fff;font-size:11px;font-weight:900;padding:3px 9px;border-radius:999px}
+.offers{margin-top:14px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.offers h4{margin:0;padding:11px 13px;font-size:12px;font-weight:900;background:#faf9ff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px}
+.offers h4 .ic{color:var(--brand);font-size:16px}
+.offer{display:flex;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line)}
+.offer:last-child{border-bottom:0}
+.offer.top{background:#f1fbf6}
+.offer .nm{flex:1;min-width:0;font-size:12px;font-weight:800}
+.offer .nm small{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:800;color:var(--green)}
+.offer .nm small .ic{stroke:none;fill:#f5b800;font-size:12px}
+.offer .nm small.up{color:var(--muted)}
+.offer .pr{font-size:14px;font-weight:900}
+.offer button{background:var(--brand);color:#fff;font-size:11px;font-weight:900;border-radius:10px;padding:8px 13px}
+.hist{margin-top:14px;padding:11px 13px;border:1px solid var(--line);border-radius:18px;color:var(--brand)}
+.hist-h{display:flex;justify-content:space-between;font-size:12px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.hist-h small{font-size:10px;color:var(--muted);font-weight:700}
+.hist svg{width:100%;height:46px;display:block}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.btn{min-height:48px;border-radius:15px;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:7px;padding:0 10px}
+.btn .ic{font-size:18px}
+.btn.buy{grid-column:1/-1;background:linear-gradient(135deg,#0f9d6e,#12b886);color:#fff;box-shadow:0 10px 22px -8px rgba(15,157,110,.6)}
+.btn.soft{background:var(--brand-soft);color:var(--brand)}
+.btn.main{background:var(--brand);color:#fff;width:100%;margin-top:12px}
+.note{font-size:10.5px;color:var(--muted);line-height:1.8;margin:12px 0 0}
+.fieldin{width:100%;height:48px;border:1px solid #e3e0ec;border-radius:14px;padding:0 13px;outline:none;font-size:13px}
+.mini{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.mini:last-child{border-bottom:0}
+.mini img{width:60px;height:60px;object-fit:contain;background:#faf9ff;border-radius:13px}
+.mini .i{flex:1;min-width:0;font-size:11.5px;font-weight:800;line-height:1.55}
+.mini .i b{display:block;color:var(--brand);font-size:12px}
+.mini .sq{width:38px;height:38px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:17px}
+.prefs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.pref{background:#faf9ff;border:1px solid #ebe7ff;border-radius:14px;padding:12px 6px;font-size:12px;font-weight:800;color:#4b4659}
+.pref.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.social{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;text-align:center}
+.social h3{margin:0;font-size:15px;font-weight:900}
+.social p{margin:3px 0 12px;font-size:11px;color:var(--muted)}
+.soc-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.soc-row a{width:54px;height:54px;border-radius:16px;background:#fafafd;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.soc-row img{width:24px;height:24px}
+.footer{text-align:center;padding:22px 10px 28px;color:#aaa7b5;font-size:10.5px;line-height:1.9}
+.footer strong{color:var(--brand)}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:200;background:#252337;color:#fff;border-radius:14px;padding:12px 14px;text-align:center;font-size:12px;font-weight:800;opacity:0;transform:translateY(14px);pointer-events:none;transition:.25s}
+.toast.on{opacity:1;transform:none}
+@media (min-width:640px){.cats{gap:12px}.cat{flex-basis:160px}.grid:not(.rows){grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:900px){.grid:not(.rows){grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
 .fbar{position:sticky;top:0;z-index:20;background:rgba(246,245,250,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 0 8px;border-bottom:1px solid transparent}
 .pills,.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
 .pills::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
@@ -248,8 +329,15 @@ img{display:block;max-width:100%}
 .toast{position:fixed;left:16px;right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:200;background:#252337;color:#fff;border-radius:14px;padding:12px 14px;text-align:center;font-size:12px;font-weight:800;opacity:0;transform:translateY(14px);pointer-events:none;transition:.25s}
 .toast.on{opacity:1;transform:none}
 
+@media (max-width:519px){
+  .cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .cat{aspect-ratio:4/4;border-radius:17px}
+  .cat-l{inset-inline:6px;bottom:6px;padding:7px 8px;border-radius:11px;gap:5px}
+  .cat-name{font-size:10.5px}
+  .cat-n{font-size:9px;padding:2px 6px}
+}
 @media (min-width:640px){
-  .cats{grid-template-columns:repeat(4,1fr)}
+  .cat{flex-basis:150px}
   .grid:not(.rows){grid-template-columns:repeat(3,minmax(0,1fr))}
   .hrow .card{flex-basis:200px}
 }
@@ -338,76 +426,134 @@ img{display:block;max-width:100%}
     </section>
 
     <section class="sec" id="secHot" hidden>
-      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-trend"/></svg></span>الأكثر طلبًا</h2><p>ما يفتحه الناس الآن</p></div></div>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-trend"/></svg></span>الأكثر طلبًا</h2><p>ما يفتحه الناس الآن</p></div></section>
+          <section class="sec" id="secHot" hidden>
+      <div class="sec-head">
+        <div>
+          <h2><span class="sico g"><svg class="ic"><use href="#i-trend"/></svg></span>الأكثر طلبًا</h2>
+          <p>منتجات تستحق الاكتشاف</p>
+        </div>
+      </div>
       <div class="hrow" id="rowHot"></div>
     </section>
 
     <section class="sec" id="secFeat" hidden>
-      <div class="sec-head"><div><h2><span class="sico"><svg class="ic"><use href="#i-star"/></svg></span>مميزة لك</h2><p>اختياراتنا الأقوى</p></div><button class="more" data-act="featured">عرض الكل</button></div>
+      <div class="sec-head">
+        <div>
+          <h2><span class="sico"><svg class="ic"><use href="#i-star"/></svg></span>اختيارات مميزة</h2>
+          <p>منتجات مختارة لك</p>
+        </div>
+        <button class="more" data-act="featured">عرض الكل</button>
+      </div>
       <div class="hrow" id="rowFeat"></div>
     </section>
 
     <section class="sec" id="secPers" hidden>
-      <div class="sec-head"><div><h2><span class="sico"><svg class="ic"><use href="#i-sliders"/></svg></span>مقترحة لك</h2><p>حسب اهتماماتك</p></div><button class="more" data-act="prefs">تخصيص</button></div>
+      <div class="sec-head">
+        <div>
+          <h2><span class="sico"><svg class="ic"><use href="#i-sliders"/></svg></span>مقترحة لك</h2>
+          <p>اكتشف المنتجات المناسبة لاهتماماتك</p>
+        </div>
+        <button class="more" data-act="prefs">تخصيص</button>
+      </div>
       <div class="hrow" id="rowPers"></div>
     </section>
 
     <section class="sec" id="secAll">
-      <div class="sec-head"><div><h2><span class="sico o"><svg class="ic"><use href="#i-zap"/></svg></span>وصل حديثًا</h2><p>آخر ما أضفناه</p></div><button class="more" data-act="all">عرض الكل</button></div>
+      <div class="sec-head">
+        <div>
+          <h2><span class="sico o"><svg class="ic"><use href="#i-zap"/></svg></span>أحدث المنتجات</h2>
+          <p>اكتشف آخر المنتجات المضافة</p>
+        </div>
+        <button class="more" data-act="all">عرض الكل</button>
+      </div>
       <div class="grid" id="gridNew"></div>
     </section>
 
     <section class="social" id="social" hidden>
-      <h3>تابع وَفِّرْهَا صَحّ</h3>
+      <h3>تابع وفّرها صح</h3>
       <p>العروض الجديدة والخصومات توصلك أولًا</p>
       <div class="soc-row" id="socRow"></div>
     </section>
 
     <div class="footer">
-      <strong>وَفِّرْهَا صَحّ</strong> — لقيناها لك<br>
-      قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.
+      <strong>وفّرها صح</strong> — لقيناها لك<br>
+      قد نحصل على عمولة عند الشراء عبر الروابط، دون تكلفة إضافية عليك.
     </div>
   </main>
 </div>
 
-<!-- ======================= LIST ======================= -->
+<!-- صفحة عرض المنتجات -->
 <div id="list" hidden>
   <div class="lhead">
     <div class="wrap">
       <div class="lbar">
-        <button class="hbtn" data-act="home" aria-label="رجوع"><svg class="ic"><use href="#i-back"/></svg></button>
-        <div class="lt"><h2 id="lTitle">المنتجات</h2><p id="lSub"></p></div>
-        <button class="hbtn" data-act="saved" aria-label="المحفوظات"><svg class="ic"><use href="#i-heart"/></svg></button>
+        <button class="hbtn" data-act="home" aria-label="العودة للرئيسية">
+          <svg class="ic"><use href="#i-back"/></svg>
+        </button>
+        <div class="lt">
+          <h2 id="lTitle">المنتجات</h2>
+          <p id="lSub"></p>
+        </div>
+        <button class="hbtn" data-act="saved" aria-label="المفضلة">
+          <svg class="ic"><use href="#i-heart"/></svg>
+        </button>
       </div>
+
       <div class="lsearch">
         <svg class="ic"><use href="#i-search"/></svg>
-        <input id="lq" type="search" placeholder="ابحث داخل هذه القائمة..." autocomplete="off">
+        <input id="lq" type="search"
+          placeholder="ابحث داخل هذه القائمة..."
+          autocomplete="off">
       </div>
     </div>
   </div>
 
-  <div class="fbar"><div class="wrap">
-    <div class="pills" id="lsort"></div>
-    <div class="chips" id="lchips"></div>
-    <div class="rbar"><span id="lcount"></span>
-      <div class="vt"><button data-act="view" data-id="grid" class="on" aria-label="شبكة"><svg class="ic"><use href="#i-grid"/></svg></button><button data-act="view" data-id="rows" aria-label="قائمة"><svg class="ic"><use href="#i-rows"/></svg></button></div>
+  <div class="fbar">
+    <div class="wrap">
+      <div class="pills" id="lsort"></div>
+      <div class="chips" id="lchips"></div>
+      <div class="rbar">
+        <span id="lcount"></span>
+        <div class="vt">
+          <button data-act="view" data-id="grid" class="on" aria-label="عرض شبكي">
+            <svg class="ic"><use href="#i-grid"/></svg>
+          </button>
+          <button data-act="view" data-id="rows" aria-label="عرض قائمة">
+            <svg class="ic"><use href="#i-rows"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
-  </div></div>
+  </div>
 
-  <div class="wrap list-body"><div class="grid" id="lgrid"></div></div>
+  <div class="wrap list-body">
+    <div class="grid" id="lgrid"></div>
+  </div>
 </div>
 
-<div class="overlay" id="overlay" data-act="close"><div class="sheet" id="sheet"></div></div>
-<div class="toast" id="toast" role="status"></div>
+<!-- نافذة تفاصيل المنتج -->
+<div class="overlay" id="overlay" data-act="close">
+  <div class="sheet" id="sheet"></div>
+</div>
 
+<!-- رسائل التنبيه -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-/* =====================================================
-   إعدادات — عدّل هنا فقط
-===================================================== */
+/* صورة الأيقونات ثلاثية الأبعاد مضمّنة داخل الكود */
+const TECH_SPRITE_B64 =
+"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";
+
+document.documentElement.style.setProperty(
+  "--tech-sprite",
+  `url("data:image/webp;base64,${TECH_SPRITE_B64}")`
+);
+
+/* إعدادات المتجر */
 const CONFIG = {
-  API_BASE: "",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev
+  API_BASE: "",
   PRODUCTS_URL: "products.json",
-  SHARE_URL: "",             // رابط التطبيق/البوت للمشاركة
+  SHARE_URL: "",
   SOCIAL: {
     whatsapp: "https://whatsapp.com/channel/0029VbDkz0vAojZ1Zn2KAO1m",
     telegram: "https://t.me/Eramdeals",
@@ -418,515 +564,806 @@ const CONFIG = {
 };
 
 const STORES = {
-  noon:       { name: "Noon",       ar: "نون",        bg: "#feee00", fg: "#111",    text: "noon",       logo: "" },
-  amazon:     { name: "Amazon",     ar: "أمازون",     bg: "#ff9900", fg: "#131921", text: "amazon",     logo: "" },
-  temu:       { name: "Temu",       ar: "تيمو",       bg: "#fb7701", fg: "#fff",    text: "TEMU",       logo: "" },
-  aliexpress: { name: "AliExpress", ar: "علي إكسبرس", bg: "#e62e04", fg: "#fff",    text: "AliExpress", logo: "" },
-  shein:      { name: "Shein",      ar: "شي إن",      bg: "#111",    fg: "#fff",    text: "SHEIN",      logo: "" },
-  trendyol:   { name: "Trendyol",   ar: "ترنديول",    bg: "#f27a1a", fg: "#fff",    text: "trendyol",   logo: "" },
-  other:      { name: "متجر",       ar: "متجر",       bg: "#e9e6f7", fg: "#5b35d5", text: "متجر",       logo: "" }
+  noon:       { name:"Noon", ar:"نون", bg:"#feee00", fg:"#111", text:"noon", logo:"" },
+  amazon:     { name:"Amazon", ar:"أمازون", bg:"#ff9900", fg:"#131921", text:"amazon", logo:"" },
+  temu:       { name:"Temu", ar:"تيمو", bg:"#fb7701", fg:"#fff", text:"TEMU", logo:"" },
+  aliexpress: { name:"AliExpress", ar:"علي إكسبرس", bg:"#e62e04", fg:"#fff", text:"AliExpress", logo:"" },
+  shein:      { name:"Shein", ar:"شي إن", bg:"#111", fg:"#fff", text:"SHEIN", logo:"" },
+  trendyol:   { name:"Trendyol", ar:"ترنديول", bg:"#f27a1a", fg:"#fff", text:"trendyol", logo:"" },
+  other:      { name:"متجر", ar:"متجر", bg:"#e9e6f7", fg:"#5b35d5", text:"متجر", logo:"" }
 };
 
 const CATS = [
-  { id: "shoes", name: "الأحذية", img: "shoes.jpg?v=3" },
-  { id: "dresses", name: "الفساتين", img: "dresses.jpg?v=3" },
-  { id: "accessories", name: "الإكسسوارات", img: "accessories.jpg?v=3" },
-  { id: "bags", name: "الشنط", img: "bags.jpg?v=3" },
-  { id: "watches", name: "الساعات", img: "watches.jpg?v=3" },
-  { id: "electronics", name: "الإلكترونيات", img: "electronics.jpg?v=3" },
-  { id: "home", name: "المنزل", img: "home.jpg?v=3" },
-  { id: "deals", name: "أقوى العروض", img: "deals.jpg?v=3" },
-  { id: "perfumes", name: "العطور", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80" },
-  { id: "beauty", name: "العناية والجمال", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80" },
-  { id: "men", name: "أزياء الرجال", img: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80" },
-  { id: "kids", name: "الأطفال", img: "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=700&q=80" },
-  { id: "sports", name: "الرياضة", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" },
-  { id: "gifts", name: "الهدايا", img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80" }
+  { id:"audio", name:"السماعات", icon3d:0 },
+  { id:"phones", name:"الجوالات", icon3d:1 },
+  { id:"cameras", name:"الكاميرات", icon3d:2 },
+  { id:"gaming", name:"ألعاب الفيديو", icon3d:3 },
+  { id:"keyboards", name:"كيبورد وماوس", icon3d:4 },
+  { id:"network", name:"أجهزة الشبكات", icon3d:5 },
+  { id:"shoes", name:"الأحذية", img:"shoes.jpg?v=3" },
+  { id:"dresses", name:"الفساتين", img:"dresses.jpg?v=3" },
+  { id:"accessories", name:"الإكسسوارات", img:"accessories.jpg?v=3" },
+  { id:"bags", name:"الشنط", img:"bags.jpg?v=3" },
+  { id:"watches", name:"الساعات", img:"watches.jpg?v=3" },
+  { id:"electronics", name:"الإلكترونيات", img:"electronics.jpg?v=3" },
+  { id:"home", name:"المنزل", img:"home.jpg?v=3" },
+  { id:"deals", name:"أقوى العروض", img:"deals.jpg?v=3" },
+  { id:"perfumes", name:"العطور", img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80" },
+  { id:"beauty", name:"العناية والجمال", img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80" },
+  { id:"men", name:"أزياء الرجال", img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80" },
+  { id:"kids", name:"الأطفال", img:"https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=700&q=80" },
+  { id:"sports", name:"الرياضة", img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" },
+  { id:"gifts", name:"الهدايا", img:"https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80" }
 ];
 
-const SORTS = [["best", "الأقوى عرضًا"], ["cheap", "الأقل سعرًا"], ["disc", "الأعلى خصمًا"], ["new", "الأحدث"], ["hot", "الأكثر طلبًا"]];
+const SORTS = [
+  ["best","الأقوى عرضًا"],
+  ["cheap","الأقل سعرًا"],
+  ["disc","الأعلى خصمًا"],
+  ["new","الأحدث"],
+  ["hot","الأكثر طلبًا"]
+];
 
 const SOCIAL_ICONS = {
-  whatsapp: ["واتساب", "https://cdn.simpleicons.org/whatsapp/25D366"],
-  telegram: ["تلجرام", "https://cdn.simpleicons.org/telegram/229ED9"],
-  x: ["X", "https://cdn.simpleicons.org/x/111111"],
-  instagram: ["إنستغرام", "https://cdn.simpleicons.org/instagram/E4405F"],
-  tiktok: ["تيك توك", "https://cdn.simpleicons.org/tiktok/111111"]
+  whatsapp:["واتساب","https://cdn.simpleicons.org/whatsapp/25D366"],
+  telegram:["تلجرام","https://cdn.simpleicons.org/telegram/229ED9"],
+  x:["X","https://cdn.simpleicons.org/x/111111"],
+  instagram:["إنستغرام","https://cdn.simpleicons.org/instagram/E4405F"],
+  tiktok:["تيك توك","https://cdn.simpleicons.org/tiktok/111111"]
 };
 
-/* =====================================================
-   أدوات
-===================================================== */
+/* أدوات عامة */
 const $ = (s, r = document) => r.querySelector(s);
-const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const nf = n => (Math.round(n * 100) / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c =>
+  ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c])
+);
+const nf = n => (Math.round(n * 100) / 100).toLocaleString("en-US", { maximumFractionDigits:2 });
 const safeUrl = u => (/^\s*(javascript|vbscript):/i.test(String(u || "")) ? "" : String(u || ""));
-const normAr = t => String(t || "").toLowerCase().replace(/[\u064B-\u065F\u0670\u0640]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
+const normAr = t => String(t || "").toLowerCase()
+  .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
+  .replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
 const ic = (n, c = "") => `<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
-const LS = {
-  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
-};
-const catName = id => CATS.find(c => c.id === id)?.name || "";
 
+const LS = {
+  get(k, d) {
+    try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }
+    catch { return d; }
+  },
+  set(k, v) {
+    try { localStorage.setItem(k, JSON.stringify(v)); }
+    catch {}
+  }
+};
+
+const catName = id => CATS.find(c => c.id === id)?.name || "";
 const tg = window.Telegram?.WebApp || null;
+
 if (tg) {
-  tg.ready(); tg.expand();
+  tg.ready();
+  tg.expand();
   try { tg.setHeaderColor("#5b35d5"); tg.setBackgroundColor("#f6f5fa"); } catch {}
-  try { tg.BackButton.onClick(() => { if ($("#overlay").classList.contains("on")) closeSheet(); else showHome(); }); } catch {}
 }
-const tgUser = tg?.initDataUnsafe?.user || null;
 
 let toastT;
 function toast(msg) {
-  const t = $("#toast"); t.textContent = msg; t.classList.add("on");
-  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2400);
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove("on"), 2400);
 }
 
-/* =====================================================
-   البيانات
-===================================================== */
+/* قراءة المنتجات */
 let ALL = [], byId = new Map(), byGroup = new Map(), hotIds = [], loadedAt = 0;
 
 function storeKey(v) {
   const n = String(v || "").toLowerCase();
-  for (const k of Object.keys(STORES)) if (k !== "other" && n.includes(k)) return k;
+  for (const k of Object.keys(STORES)) {
+    if (k !== "other" && n.includes(k)) return k;
+  }
   return "other";
 }
 
 function norm(p, cat) {
-  const price = parseFloat(p.price) || 0, old = parseFloat(p.old) || 0;
+  const price = parseFloat(p.price) || 0;
+  const old = parseFloat(p.old) || 0;
+
   return {
     id: String(p.id || [p.title, p.store, p.price].join("|")),
-    cat: p.category || cat, title: p.title || "منتج",
-    price, old: old > price ? old : 0,
+    cat: p.category || cat,
+    title: p.title || "منتج",
+    price,
+    old: old > price ? old : 0,
     discount: old > price ? Math.round((1 - price / old) * 100) : 0,
-    store: p.store || "", sk: storeKey(p.store || p.link),
-    image: p.image || "", link: p.link || "",
-    featured: !!p.featured || p.featured === "true", expired: !!p.expired,
+    store: p.store || "",
+    sk: storeKey(p.store || p.link),
+    image: p.image || "",
+    link: p.link || "",
+    featured: !!p.featured || p.featured === "true",
+    expired: !!p.expired,
     created: p.createdAt ? Date.parse(p.createdAt) || 0 : 0,
     group: p.groupId || ""
   };
 }
-
-/* ربط تلقائي لنفس المنتج بين متاجر مختلفة عند التشابه الكبير في الاسم */
-const tokSet = t => new Set(normAr(t).split(/[^\p{L}\p{N}]+/u).filter(w => w.length > 1));
-function autoGroup() {
-  const items = ALL.filter(x => !x.expired);
-  const toks = items.map(x => tokSet(x.title));
-  let g = 0;
-  for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
-    const a = items[i], b = items[j];
-    if (a.sk === b.sk && a.sk !== "other") continue;
-    if (a.group && b.group && a.group !== b.group) continue;
-    const A = toks[i], B = toks[j];
-    let inter = 0; A.forEach(w => { if (B.has(w)) inter++; });
-    const sim = inter / (A.size + B.size - inter || 1);
-    const nA = [...A].filter(w => /\d{3,}/.test(w)), nB = [...B].filter(w => /\d{3,}/.test(w));
-    if (nA.length && nB.length && !nA.some(w => B.has(w))) continue;
-    if (inter >= 3 && sim >= 0.5) { const gid = a.group || b.group || "auto" + (++g); a.group = gid; b.group = gid; }
-  }
+  function productSearch(p, q) {
+  const s = normAr(q);
+  return !s || normAr([
+    p.title, p.store, p.cat, catName(p.cat)
+  ].join(" ")).includes(s);
 }
 
-async function loadData(force) {
-  if (!force && ALL.length && Date.now() - loadedAt < 300000) return true;
-  try {
-    const r = await fetch(CONFIG.PRODUCTS_URL + "?v=" + Math.floor(Date.now() / 60000), { cache: "no-store" });
-    if (!r.ok) throw new Error("products");
-    const d = await r.json();
-    ALL = [];
-    for (const c of CATS) (Array.isArray(d[c.id]) ? d[c.id] : []).forEach(p => { const n = norm(p, c.id); if (n.price > 0) ALL.push(n); });
-    byId = new Map(ALL.map(x => [x.id, x]));
-    autoGroup();
-    byGroup = new Map();
-    ALL.forEach(x => { if (x.group) { if (!byGroup.has(x.group)) byGroup.set(x.group, []); byGroup.get(x.group).push(x); } });
-    loadedAt = Date.now();
-    return true;
-  } catch (e) { console.error(e); return false; }
+function bestOffer(items) {
+  return [...items].filter(p => p.price > 0)
+    .sort((a, b) => a.price - b.price)[0] || null;
 }
 
-async function loadTrending() {
-  if (!CONFIG.API_BASE) return;
-  try { hotIds = (await (await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/trending")).json()).ids || []; } catch {}
+function getCompareGroups(items = ALL) {
+  const groups = new Map();
+
+  items.forEach(p => {
+    if (!p.group || p.price <= 0) return;
+    if (!groups.has(p.group)) groups.set(p.group, []);
+    groups.get(p.group).push(p);
+  });
+
+  return [...groups.values()]
+    .filter(g => new Set(g.map(p => p.sk)).size > 1)
+    .map(g => g.sort((a, b) => a.price - b.price))
+    .sort((a, b) => a[0].price - b[0].price);
 }
 
-function offersOf(it) {
-  const arr = it.group ? (byGroup.get(it.group) || [it]) : [it];
-  const live = arr.filter(x => !x.expired);
-  return (live.length ? live : [it]).slice().sort((a, b) => a.price - b.price);
+function storeChip(key, size = "md") {
+  const s = STORES[key] || STORES.other;
+  return `<span class="chip ${size}" style="background:${s.bg};color:${s.fg}">${esc(s.text)}</span>`;
 }
 
-function listing(items, keepStores) {
-  const seen = new Set(), out = [];
-  for (const it of items) {
-    if (it.expired) continue;
-    if (!keepStores && it.group) { if (seen.has(it.group)) continue; seen.add(it.group); out.push(offersOf(it)[0]); }
-    else out.push(it);
-  }
-  return out;
-}
+function productCard(p) {
+  const saved = LS.get("wfs_saved", []).includes(p.id);
+  const img = safeUrl(p.image);
+  const disc = p.discount > 0
+    ? `<span class="disc">خصم ${p.discount}٪</span>` : "";
+  const price = p.price > 0
+    ? `<div class="price"><b>${nf(p.price)}</b><i>ر.س</i>${p.old ? `<s>${nf(p.old)}</s>` : ""}</div>`
+    : `<div class="price"><b>تحقق من السعر</b></div>`;
+  const saving = p.old > p.price
+    ? `<span class="saving">وفّرت ${nf(p.old - p.price)} ر.س</span>` : "";
 
-function score(x) {
-  let fresh = 0;
-  if (x.created) { const age = Date.now() - x.created, day = 86400000; fresh = age <= day ? 15 : age <= 3 * day ? 10 : age <= 7 * day ? 5 : 0; }
-  return x.discount + (x.featured ? 20 : 0) + fresh;
-}
-
-function sortItems(items, how) {
-  const a = items.slice();
-  const hot = id => { const i = hotIds.indexOf(id); return i < 0 ? 999 : i; };
-  if (how === "cheap") a.sort((x, y) => x.price - y.price);
-  else if (how === "disc") a.sort((x, y) => y.discount - x.discount);
-  else if (how === "new") a.sort((x, y) => y.created - x.created);
-  else if (how === "hot") a.sort((x, y) => hot(x.id) - hot(y.id) || score(y) - score(x));
-  else a.sort((x, y) => score(y) - score(x));
-  return a;
-}
-
-function comparable() {
-  return listing(sortItems(ALL.filter(x => !x.expired), "best")).filter(x => offersOf(x).length > 1);
-}
-
-/* =====================================================
-   الشعارات والبطاقات
-===================================================== */
-function chip(sk, size, label) {
-  const s = STORES[sk] || STORES.other;
-  const inner = s.logo ? `<img src="${esc(safeUrl(s.logo))}" alt="${esc(s.name)}">` : esc(sk === "other" && label ? label : s.text);
-  return `<span class="chip ${size}" style="background:${s.bg};color:${s.fg}" title="${esc(s.ar)}">${inner}</span>`;
-}
-
-const saved = () => LS.get("wsah_saved_v2", []);
-const isSaved = id => saved().includes(id);
-
-function cardHTML(it) {
-  const offers = offersOf(it), n = offers.length, isBest = n > 1 && offers[0].id === it.id;
-  const showTag = it.sk !== "other" || it.store;
-  const saving = it.old ? it.old - it.price : 0;
   return `
-  <article class="card" data-act="open" data-id="${esc(it.id)}">
-    <div class="media">
-      ${showTag ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}
-      ${it.discount ? `<span class="disc">-${it.discount}%</span>` : ""}
-      ${isBest ? `<span class="best">${ic("crown")}الأرخص</span>` : ""}
-      <button class="heart ${isSaved(it.id) ? "on" : ""}" data-act="save" data-id="${esc(it.id)}" aria-label="حفظ">${ic(isSaved(it.id) ? "heart-f" : "heart")}</button>
-      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" loading="lazy" onerror="this.style.opacity=.2">
-    </div>
-    <div class="body">
-      <div class="ttl">${esc(it.title)}</div>
-      <div class="price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}</div>
-      ${saving > 0 ? `<span class="saving">وفّرت ${nf(saving)} ر.س</span>` : ""}
-      ${n > 1 ? `<div class="cmp"><span>${ic("scale")} ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => chip(o.sk, "xs", o.store)).join("")}</span></div>` : ""}
-      <div class="cta">${n > 1 ? "قارن واشترِ" : "شاهد العرض"}${ic("chev")}</div>
-    </div>
-  </article>`;
+    <article class="card" data-open="${esc(p.id)}">
+      <div class="media">
+        ${img ? `<img src="${esc(img)}" alt="${esc(p.title)}" loading="lazy" onerror="this.style.opacity='.15'">` : ""}
+        <span class="store-tag">${storeChip(p.sk, "sm")}</span>
+        ${disc}
+        ${p.featured ? `<span class="best">${ic("star","f")} اختيار مميز</span>` : ""}
+        <button class="heart ${saved ? "on" : ""}" data-act="heart" data-id="${esc(p.id)}" aria-label="إضافة للمفضلة">${ic(saved ? "heart-f" : "heart", saved ? "f" : "")}</button>
+      </div>
+      <div class="body">
+        <div class="ttl">${esc(p.title)}</div>
+        ${price}
+        ${saving}
+        <button class="cta" data-act="open" data-id="${esc(p.id)}">${ic("bag")} عرض المنتج</button>
+      </div>
+    </article>`;
 }
 
-function cmpCardHTML(it) {
-  const offers = offersOf(it), best = offers[0], worst = offers[offers.length - 1], save = worst.price - best.price;
+function compareCard(group) {
+  const first = group[0];
+  const last = group[group.length - 1];
+  const gap = last.price - first.price;
+  const img = safeUrl(first.image);
+
   return `
-  <article class="cc" data-act="open" data-id="${esc(best.id)}">
-    <div class="cc-img"><img src="${esc(safeUrl(best.image))}" alt="${esc(best.title)}" loading="lazy" onerror="this.style.opacity=.2"></div>
-    <div class="cc-b">
-      <div class="cc-t">${esc(best.title)}</div>
-      ${offers.slice(0, 3).map((o, i) => `<div class="cc-r ${i === 0 ? "top" : ""}">${chip(o.sk, "xs", o.store)}<span class="n">${esc(STORES[o.sk].ar)}${i === 0 ? ic("crown") : ""}</span><b>${nf(o.price)} ر.س</b></div>`).join("")}
-      ${save > 0 ? `<div class="cc-save">وفّر ${nf(save)} ر.س باختيار ${esc(STORES[best.sk].ar)}</div>` : ""}
-    </div>
-  </article>`;
+    <article class="cc" data-open="${esc(first.id)}">
+      <div class="cc-img">${img ? `<img src="${esc(img)}" alt="${esc(first.title)}" loading="lazy">` : ""}</div>
+      <div class="cc-b">
+        <div class="cc-t">${esc(first.title)}</div>
+        ${group.slice(0, 3).map((p, i) => `
+          <div class="cc-r ${i === 0 ? "top" : ""}">
+            <span class="n">${storeChip(p.sk, "xs")} ${esc((STORES[p.sk] || STORES.other).ar)}</span>
+            <b>${nf(p.price)} ر.س</b>
+          </div>`).join("")}
+        ${gap > 0 ? `<div class="cc-save">وفّر حتى ${nf(gap)} ر.س</div>` : ""}
+      </div>
+    </article>`;
 }
 
-const gridHTML = (items, empty) => items.length ? items.map(cardHTML).join("") :
-  `<div class="empty"><b>${esc(empty?.[0] || "لا توجد منتجات")}</b><span>${esc(empty?.[1] || "جرّب قسمًا آخر أو غيّر الفلاتر.")}</span></div>`;
+function renderStores() {
+  $("#storeStrip").innerHTML = Object.entries(STORES)
+    .filter(([k]) => k !== "other")
+    .map(([key, s]) => `
+      <button class="store-btn" data-act="store" data-id="${key}">
+        <span class="chip" style="background:${s.bg};color:${s.fg}">${esc(s.text)}</span>
+        <small>${esc(s.ar)}</small>
+        <em>اكتشف المنتجات</em>
+      </button>`).join("");
+}
 
-/* =====================================================
-   الصفحة الرئيسية
-===================================================== */
-function fillRow(secId, rowId, items) {
-  $(secId).hidden = !items.length;
-  $(rowId).innerHTML = items.slice(0, 10).map(cardHTML).join("");
+function renderCats() {
+  $("#cats").innerHTML = CATS.map(c => {
+    const count = c.id === "deals"
+      ? ALL.filter(p => p.discount > 0).length
+      : ALL.filter(p => p.cat === c.id).length;
+
+    const visual = Number.isInteger(c.icon3d)
+      ? `<span class="cat-3d p${c.icon3d}" aria-hidden="true"></span>`
+      : c.img
+        ? `<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.style.display='none'">`
+        : "";
+
+    return `
+      <button class="cat" style="--g:#f0eaff" data-act="cat" data-id="${esc(c.id)}">
+        ${visual}
+        <span class="cat-l">
+          <span class="cat-name">${esc(c.name)}</span>
+          <span class="cat-n">${count}</span>
+        </span>
+      </button>`;
+  }).join("");
+}
+
+function renderCompare() {
+  const groups = getCompareGroups();
+  $("#secCmp").hidden = groups.length === 0;
+  $("#cmpList").innerHTML = groups.slice(0, 4).map(compareCard).join("");
 }
 
 function renderHome() {
-  const live = ALL.filter(x => !x.expired);
+  const deals = ALL.filter(p => p.discount > 0 && !p.expired)
+    .sort((a, b) => b.discount - a.discount);
+  const featured = ALL.filter(p => p.featured && !p.expired);
+  const hot = [...ALL].filter(p => !p.expired)
+    .sort((a, b) => b.created - a.created);
+  const saved = LS.get("wfs_saved", []);
+  const personal = ALL.filter(p => saved.includes(p.id) && !p.expired);
 
-  $("#storeStrip").innerHTML = Object.keys(STORES).filter(k => k !== "other").map(k => {
-    const n = live.filter(x => x.sk === k).length;
-    return `<button class="store-btn" data-act="store" data-id="${k}">${chip(k, "md")}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "قريبًا"}</em></button>`;
-  }).join("");
+  $("#secDeals").hidden = deals.length === 0;
+  $("#secHot").hidden = hot.length === 0;
+  $("#secFeat").hidden = featured.length === 0;
+  $("#secPers").hidden = personal.length === 0;
 
-  $("#cats").innerHTML = CATS.map((c, i) => {
-    const n = c.id === "deals" ? live.filter(x => x.cat === "deals" || x.discount >= 25).length : live.filter(x => x.cat === c.id).length;
-    const h = (i * 47 + 250) % 360;
-    return `<button class="cat" data-act="cat" data-id="${c.id}" style="--g:linear-gradient(135deg,hsl(${h} 70% 40%),hsl(${(h + 45) % 360} 78% 56%))">
-      <img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" onerror="this.remove()">
-      <span class="cat-l"><span class="cat-name">${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</span>
-    </button>`;
-  }).join("");
+  $("#rowDeals").innerHTML = deals.slice(0, 10).map(productCard).join("");
+  $("#rowHot").innerHTML = hot.slice(0, 10).map(productCard).join("");
+  $("#rowFeat").innerHTML = featured.slice(0, 10).map(productCard).join("");
+  $("#rowPers").innerHTML = personal.slice(0, 10).map(productCard).join("");
 
-  const cmpItems = comparable();
-  $("#secCmp").hidden = !cmpItems.length;
-  $("#cmpList").innerHTML = cmpItems.slice(0, 4).map(cmpCardHTML).join("");
+  $("#gridNew").innerHTML = hot.slice(0, 12).map(productCard).join("")
+    || `<div class="empty"><b>لا توجد منتجات حتى الآن</b><span>أضف منتجات إلى مصدر البيانات لعرضها هنا.</span></div>`;
 
-  fillRow("#secDeals", "#rowDeals", listing(sortItems(live.filter(x => x.discount >= 15), "disc")));
-  fillRow("#secFeat", "#rowFeat", listing(sortItems(live.filter(x => x.featured), "best")));
-  fillRow("#secHot", "#rowHot", listing(hotIds.map(id => byId.get(id)).filter(x => x && !x.expired)));
-  const prefs = LS.get("wsah_prefs_v2", []);
-  fillRow("#secPers", "#rowPers", prefs.length ? listing(sortItems(live.filter(x => prefs.includes(x.cat)), "best")) : []);
-
-  $("#gridNew").innerHTML = gridHTML(listing(sortItems(live, "new")).slice(0, 8), ["قريبًا", "نجهّز لك أفضل المنتجات والعروض."]);
-
-  const soc = Object.entries(CONFIG.SOCIAL).filter(([, u]) => u);
-  $("#social").hidden = !soc.length;
-  $("#socRow").innerHTML = soc.map(([k, u]) =>
-    `<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener noreferrer" aria-label="${esc(SOCIAL_ICONS[k][0])}"><img src="${SOCIAL_ICONS[k][1]}" alt=""></a>`).join("");
+  renderCats();
+  renderCompare();
+  renderSocial();
 }
 
-function showHome() {
-  $("#home").hidden = false; $("#list").hidden = true;
-  try { tg?.BackButton.hide(); } catch {}
-  renderHome();
+function renderSocial() {
+  const links = Object.entries(CONFIG.SOCIAL).filter(([, url]) => url);
+  $("#social").hidden = links.length === 0;
+  $("#socRow").innerHTML = links.map(([k, url]) => {
+    const s = SOCIAL_ICONS[k];
+    if (!s) return "";
+    return `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(s[0])}">
+      <img src="${esc(s[1])}" alt="${esc(s[0])}" loading="lazy">
+    </a>`;
+  }).join("");
 }
 
-/* =====================================================
-   صفحة القائمة
-===================================================== */
-let view = null;
-let viewMode = LS.get("wsah_view", "grid");
+/* تحميل بيانات المنتجات */
+async function loadProducts() {
+  try {
+    const res = await fetch(CONFIG.PRODUCTS_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error("تعذر تحميل ملف المنتجات");
 
-function showList(o) {
-  view = { title: o.title, base: o.base, store: o.store || "", sort: o.sort || "best", q: o.q || "" };
-  $("#home").hidden = true; $("#list").hidden = false;
-  $("#lTitle").textContent = view.title;
-  $("#lq").value = view.q;
-  try { tg?.BackButton.show(); } catch {}
+    const data = await res.json();
+    const arr = Array.isArray(data) ? data : data.products || [];
+
+    ALL = arr.map(p => norm(p, p.category || "electronics"))
+      .filter(p => p.title && !p.expired);
+
+    byId = new Map(ALL.map(p => [p.id, p]));
+    byGroup = new Map();
+
+    ALL.forEach(p => {
+      if (!p.group) return;
+      if (!byGroup.has(p.group)) byGroup.set(p.group, []);
+      byGroup.get(p.group).push(p);
+    });
+
+    renderStores();
+    renderHome();
+    renderList();
+  } catch (e) {
+    console.error(e);
+    renderStores();
+    renderCats();
+    $("#gridNew").innerHTML = `
+      <div class="empty">
+        <b>لم نتمكن من تحميل المنتجات</b>
+        <span>تأكد من وجود ملف products.json في المسار الصحيح، وأنه يحتوي على بيانات JSON صحيحة.</span>
+      </div>`;
+  }
+}
+  <script>
+/* =========================================
+   وفّرها صح — وظائف المتجر والتفاعل
+========================================= */
+
+let PAGE = "home";
+let MODE = "all";
+let ACTIVE_CAT = "";
+let ACTIVE_STORE = "";
+let ACTIVE_SORT = "best";
+let ACTIVE_VIEW = "grid";
+let LIST_QUERY = "";
+let CURRENT_ID = "";
+let PREFERRED_CATS = LS.get("wfs_prefs", []);
+let ALERTS = LS.get("wfs_alerts", []);
+let COMPARE_ONLY = false;
+
+function openPage(mode, title, sub = "") {
+  PAGE = "list";
+  MODE = mode;
+  LIST_QUERY = "";
+  $("#q").value = "";
+  $("#lq").value = "";
+  $("#home").hidden = true;
+  $("#list").hidden = false;
+  $("#lTitle").textContent = title;
+  $("#lSub").textContent = sub;
+  window.scrollTo({ top: 0, behavior: "smooth" });
   renderList();
-  window.scrollTo(0, 0);
+}
+
+function homePage() {
+  PAGE = "home";
+  $("#list").hidden = true;
+  $("#home").hidden = false;
+  $("#overlay").classList.remove("on");
+  document.body.style.overflow = "";
+  renderHome();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function listProducts() {
+  let items = [...ALL];
+
+  if (MODE === "cat") {
+    items = ACTIVE_CAT === "deals"
+      ? items.filter(p => p.discount > 0)
+      : items.filter(p => p.cat === ACTIVE_CAT);
+  }
+
+  if (MODE === "store") {
+    items = items.filter(p => p.sk === ACTIVE_STORE);
+  }
+
+  if (MODE === "saved") {
+    const ids = LS.get("wfs_saved", []);
+    items = items.filter(p => ids.includes(p.id));
+  }
+
+  if (MODE === "featured") {
+    items = items.filter(p => p.featured);
+  }
+
+  if (MODE === "deals") {
+    items = items.filter(p => p.discount > 0);
+  }
+
+  if (MODE === "search") {
+    items = items.filter(p => productSearch(p, LIST_QUERY));
+  }
+
+  if (MODE === "all") {
+    items = items.filter(p => !p.expired);
+  }
+
+  if (MODE === "compare") {
+    items = getCompareGroups().flat();
+  }
+
+  if (MODE === "prefs" && PREFERRED_CATS.length) {
+    items = items.filter(p => PREFERRED_CATS.includes(p.cat));
+  }
+
+  if (ACTIVE_STORE && MODE !== "store") {
+    items = items.filter(p => p.sk === ACTIVE_STORE);
+  }
+
+  if (ACTIVE_CAT && MODE !== "cat") {
+    items = items.filter(p => p.cat === ACTIVE_CAT);
+  }
+
+  if (LIST_QUERY) {
+    items = items.filter(p => productSearch(p, LIST_QUERY));
+  }
+
+  if (ACTIVE_SORT === "cheap") {
+    items.sort((a, b) => a.price - b.price);
+  } else if (ACTIVE_SORT === "disc") {
+    items.sort((a, b) => b.discount - a.discount);
+  } else if (ACTIVE_SORT === "new") {
+    items.sort((a, b) => b.created - a.created);
+  } else if (ACTIVE_SORT === "hot") {
+    items.sort((a, b) => Number(b.featured) - Number(a.featured));
+  } else {
+    items.sort((a, b) =>
+      Number(b.featured) - Number(a.featured) ||
+      b.discount - a.discount
+    );
+  }
+
+  return items;
 }
 
 function renderList() {
-  const v = view;
-  let items = v.base.filter(x => !x.expired);
-  if (v.q) {
-    const toks = normAr(v.q).split(/\s+/).filter(Boolean);
-    items = items.filter(x => { const t = normAr(`${x.title} ${x.store} ${catName(x.cat)}`); return toks.every(k => t.includes(k)); });
+  if (PAGE !== "list") return;
+
+  const titles = {
+    all: "كل المنتجات",
+    cat: catName(ACTIVE_CAT) || "المنتجات",
+    store: (STORES[ACTIVE_STORE] || STORES.other).ar,
+    saved: "المفضلة",
+    featured: "اختيارات مميزة",
+    deals: "عروض اليوم",
+    compare: "مقارنة الأسعار",
+    search: "نتائج البحث",
+    prefs: "مقترحة لك"
+  };
+
+  $("#lTitle").textContent = titles[MODE] || "المنتجات";
+  $("#lcount").textContent = "المنتجات: " + listProducts().length;
+  $("#lSub").textContent = "اكتشف العروض وقارن قبل الشراء";
+
+  $("#lsort").innerHTML = SORTS.map(([id, name]) =>
+    `<button class="pill ${ACTIVE_SORT === id ? "on" : ""}"
+      data-act="sort" data-id="${id}">${name}</button>`
+  ).join("");
+
+  $("#lchips").innerHTML =
+    `<button class="fchip ${!ACTIVE_STORE ? "on" : ""}"
+      data-act="filterstore" data-id="">كل المتاجر</button>` +
+    Object.entries(STORES).filter(([k]) => k !== "other").map(([k, s]) =>
+      `<button class="fchip ${ACTIVE_STORE === k ? "on" : ""}"
+        data-act="filterstore" data-id="${k}">
+        ${storeChip(k, "xs")} ${s.ar}
+      </button>`
+    ).join("");
+
+  $("#lgrid").className = "grid" + (ACTIVE_VIEW === "rows" ? " rows" : "");
+  $("#lgrid").innerHTML = listProducts().map(productCard).join("") ||
+    `<div class="empty">
+      <b>لا توجد منتجات مطابقة</b>
+      <span>جرّب كلمة بحث مختلفة أو اختر قسمًا آخر.</span>
+      <button class="btn soft" style="margin:14px auto 0"
+        data-act="all">عرض كل المنتجات</button>
+    </div>`;
+}
+
+function toggleSaved(id) {
+  let saved = LS.get("wfs_saved", []);
+  if (saved.includes(id)) {
+    saved = saved.filter(x => x !== id);
+    toast("تمت إزالة المنتج من المفضلة");
+  } else {
+    saved.push(id);
+    toast("تم حفظ المنتج في المفضلة");
   }
-  const counts = {};
-  items.forEach(x => counts[x.sk] = (counts[x.sk] || 0) + 1);
-  if (v.store) items = items.filter(x => x.sk === v.store);
-  const cards = listing(sortItems(items, v.sort), !!v.store);
 
-  $("#lSub").textContent = `${cards.length} منتج`;
-  $("#lcount").textContent = `${cards.length} نتيجة`;
-  $("#lsort").innerHTML = SORTS.map(([k, n]) => `<button class="pill ${v.sort === k ? "on" : ""}" data-act="sort" data-id="${k}">${n}</button>`).join("");
+  LS.set("wfs_saved", saved);
+  renderHome();
+  renderList();
 
-  const present = Object.keys(STORES).filter(k => counts[k] || v.store === k);
-  $("#lchips").hidden = !present.length;
-  $("#lchips").innerHTML = present.length
-    ? `<button class="fchip ${v.store ? "" : "on"}" data-act="fstore" data-id="" style="padding-inline-start:12px">كل المتاجر</button>` +
-      present.map(k => `<button class="fchip ${v.store === k ? "on" : ""}" data-act="fstore" data-id="${k}">${chip(k, "xs")}${esc(STORES[k].ar)}<em>${counts[k] || 0}</em></button>`).join("")
-    : "";
-
-  document.querySelectorAll(".vt button").forEach(b => b.classList.toggle("on", b.dataset.id === viewMode));
-  const g = $("#lgrid"); g.classList.toggle("rows", viewMode === "rows");
-  g.innerHTML = gridHTML(cards, v.q ? ["لم نجد المنتج", "جرّب كلمة أخرى أو تصفّح الأقسام."] : null);
-}
-
-function openCategory(id) {
-  const live = ALL.filter(x => !x.expired);
-  if (id === "deals") return showList({ title: "أقوى العروض", base: live.filter(x => x.cat === "deals" || x.discount >= 25), sort: "disc" });
-  showList({ title: catName(id), base: live.filter(x => x.cat === id) });
-}
-
-/* =====================================================
-   النوافذ
-===================================================== */
-function openSheet(html) { $("#sheet").innerHTML = html; $("#overlay").classList.add("on"); }
-function closeSheet() { $("#overlay").classList.remove("on"); }
-const sheetHead = t => `<div class="sh-head"><h3>${t}</h3><button class="x" data-act="close" aria-label="إغلاق">${ic("x")}</button></div>`;
-
-function spark(pts) {
-  if (!Array.isArray(pts) || pts.length < 2) return "";
-  const ps = pts.map(x => +x.p), mn = Math.min(...ps), mx = Math.max(...ps), r = (mx - mn) || 1;
-  const d = ps.map((p, i) => `${i ? "L" : "M"}${(i / (ps.length - 1) * 100).toFixed(1)},${(28 - ((p - mn) / r) * 26).toFixed(1)}`).join(" ");
-  return `<div class="hist"><div class="hist-h">سجل السعر<small>${nf(mn)} – ${nf(mx)} ر.س</small></div>
-    <svg viewBox="0 0 100 30" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.8" vector-effect="non-scaling-stroke"/></svg></div>`;
+  if (CURRENT_ID === id && $("#overlay").classList.contains("on")) {
+    openProduct(id);
+  }
 }
 
 function openProduct(id) {
-  const it = byId.get(id); if (!it) return;
-  const offers = offersOf(it), best = offers[0];
-  const rows = offers.length > 1 ? `
-    <div class="offers"><h4>${ic("scale")}مقارنة الأسعار بين المتاجر</h4>
-    ${offers.map(o => {
-      const diff = o.price - best.price;
-      return `<div class="offer ${o.id === best.id ? "top" : ""}">
-        ${chip(o.sk, "md", o.store)}
-        <div class="nm">${esc(STORES[o.sk].ar)}<small class="${diff > 0 ? "up" : ""}">${diff > 0 ? "+" + nf(diff) + " ر.س" : ic("crown") + "الأرخص"}</small></div>
-        <div class="pr">${nf(o.price)} ر.س</div>
-        <button data-act="buy" data-id="${esc(o.id)}">اشترِ</button>
-      </div>`;
-    }).join("")}</div>` : "";
+  const p = byId.get(String(id));
+  if (!p) {
+    toast("المنتج غير موجود");
+    return;
+  }
 
-  openSheet(`
-    ${sheetHead("تفاصيل المنتج")}
-    <div class="pimg"><span class="store-tag">${chip(it.sk, "md", it.store)}</span>
-      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
-    <div class="p-title">${esc(it.title)}</div>
-    <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.old ? `<s>${nf(it.old)}</s><span class="pct">-${it.discount}%</span>` : ""}</div>
-    ${rows}
-    <div id="histBox"></div>
-    <div class="acts">
-      <button class="btn buy" data-act="buy" data-id="${esc(it.id)}">${ic("bag")}اشترِ من ${esc(STORES[it.sk].ar)}</button>
-      <button class="btn soft" data-act="watch" data-id="${esc(it.id)}">${ic("bell")}راقب السعر</button>
-      <button class="btn soft" data-act="share" data-id="${esc(it.id)}">${ic("share")}مشاركة</button>
+  CURRENT_ID = p.id;
+
+  const group = p.group ? (byGroup.get(p.group) || [p]) : [p];
+  const offers = [...group].sort((a, b) => a.price - b.price);
+  const saved = LS.get("wfs_saved", []).includes(p.id);
+  const alerted = ALERTS.some(a => a.id === p.id);
+  const img = safeUrl(p.image);
+  const link = safeUrl(p.link);
+  const old = p.old > p.price
+    ? `<s>${nf(p.old)} ر.س</s>` : "";
+  const discount = p.discount
+    ? `<span class="pct">خصم ${p.discount}٪</span>` : "";
+
+  const offerRows = offers.map((o, i) => `
+    <div class="offer ${i === 0 ? "top" : ""}">
+      <span class="nm">
+        ${storeChip(o.sk, "sm")}
+        <small class="${i ? "up" : ""}">
+          ${i === 0 ? ic("star", "f") + " أقل سعر" : "سعر المتجر"}
+        </small>
+      </span>
+      <span class="pr">${nf(o.price)} ر.س</span>
+      <button data-act="buy" data-id="${esc(o.id)}">شراء</button>
     </div>
-    <p class="note">قد نحصل على عمولة عند الشراء عبر هذا الرابط دون أي تكلفة إضافية عليك. الأسعار قد تتغير في المتجر.</p>`);
+  `).join("");
 
-  if (CONFIG.API_BASE) {
-    fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/history?id=" + encodeURIComponent(it.id))
-      .then(r => r.json()).then(d => { const b = $("#histBox"); if (b) b.innerHTML = spark(d.points); }).catch(() => {});
-  }
+  $("#sheet").innerHTML = `
+    <div class="sh-head">
+      <h3>تفاصيل المنتج</h3>
+      <button class="x" data-act="close" aria-label="إغلاق">${ic("x")}</button>
+    </div>
+
+    <div class="pimg">
+      ${img ? `<img src="${esc(img)}" alt="${esc(p.title)}">` : ""}
+      <span class="store-tag">${storeChip(p.sk, "md")}</span>
+    </div>
+
+    <div class="p-title">${esc(p.title)}</div>
+
+    <div class="p-price">
+      <b>${nf(p.price)} ر.س</b>
+      ${old}
+      ${discount}
+    </div>
+
+    <div class="offers">
+      <h4>${ic("scale")} مقارنة الأسعار (${offers.length} عرض)</h4>
+      ${offerRows}
+    </div>
+
+    <div class="acts">
+      <button class="btn soft" data-act="heart" data-id="${esc(p.id)}">
+        ${ic(saved ? "heart-f" : "heart", saved ? "f" : "")}
+        ${saved ? "إزالة من المفضلة" : "حفظ المنتج"}
+      </button>
+      <button class="btn soft" data-act="alert" data-id="${esc(p.id)}">
+        ${ic("bell")} ${alerted ? "إلغاء تنبيه السعر" : "تنبيه السعر"}
+      </button>
+      <button class="btn buy" data-act="buy" data-id="${esc(p.id)}">
+        ${ic("bag")} الانتقال إلى المتجر
+      </button>
+    </div>
+
+    <p class="note">
+      الأسعار والتوافر قد يتغيران لدى المتجر. تحقق من السعر النهائي والشحن
+      قبل إتمام الطلب. قد نحصل على عمولة من بعض روابط الشراء.
+    </p>
+  `;
+
+  $("#overlay").classList.add("on");
+  document.body.style.overflow = "hidden";
 }
 
-function openWatch(id) {
-  const it = byId.get(id); if (!it) return;
-  openSheet(`
-    ${sheetHead("راقب سعر المنتج")}
-    <div class="mini"><img src="${esc(safeUrl(it.image))}" alt=""><div class="i">${esc(it.title)}<b>السعر الحالي: ${nf(it.price)} ر.س</b></div></div>
-    <p class="note" style="margin:10px 0">حدد السعر الذي تريد الوصول إليه وسنرسل لك رسالة في تلجرام عند نزوله.</p>
-    <input id="target" class="fieldin" type="number" inputmode="decimal" min="1" placeholder="مثلاً: ${Math.max(1, Math.floor(it.price * 0.9))}">
-    <button class="btn main" data-act="watch-save" data-id="${esc(it.id)}">${ic("bell")}حفظ التنبيه</button>`);
-}
+function buyProduct(id) {
+  const p = byId.get(String(id));
+  if (!p) return toast("المنتج غير موجود");
 
-async function saveWatch(id) {
-  const it = byId.get(id), target = parseFloat($("#target")?.value);
-  if (!it || !(target > 0)) return toast("أدخل السعر المطلوب أولًا");
-  if (!CONFIG.API_BASE || !tg?.initData) {
-    const a = LS.get("wsah_alerts_v2", []); a.push({ id, target, t: Date.now() }); LS.set("wsah_alerts_v2", a);
-    closeSheet(); return toast("حُفظ على جهازك فقط — افتح التطبيق من تلجرام لتفعيل التنبيه");
+  const url = safeUrl(p.link);
+  if (!/^https?:\/\//i.test(url)) {
+    toast("رابط الشراء غير متوفر لهذا المنتج");
+    return;
   }
+
   try {
-    const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/alert", {
-      method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ id, target, initData: tg.initData })
-    });
-    const d = await r.json();
-    if (!d.ok) throw new Error(d.error || "failed");
-    closeSheet();
-    toast(d.dm === false ? "تم الحفظ — افتح البوت واضغط Start لتصلك الرسائل" : "تم تفعيل التنبيه");
-  } catch (e) { toast("تعذر حفظ التنبيه، حاول لاحقًا"); }
-}
-
-function openSaved() {
-  const items = saved().map(id => byId.get(id)).filter(Boolean);
-  openSheet(`${sheetHead("المحفوظات")}` + (items.length ? items.map(it => `
-    <div class="mini"><img src="${esc(safeUrl(it.image))}" alt="">
-      <div class="i">${esc(it.title)}<b>${nf(it.price)} ر.س • ${esc(STORES[it.sk].ar)}</b></div>
-      <button class="sq" data-act="open" data-id="${esc(it.id)}" aria-label="عرض">${ic("bag")}</button>
-      <button class="sq" data-act="unsave" data-id="${esc(it.id)}" aria-label="إزالة">${ic("trash")}</button></div>`).join("")
-    : `<div class="empty" style="border:0"><b>لا توجد منتجات محفوظة</b><span>اضغط على القلب في أي منتج لتعود إليه لاحقًا.</span></div>`));
-}
-
-function openPrefs() {
-  const sel = LS.get("wsah_prefs_v2", []);
-  openSheet(`${sheetHead("اهتماماتي")}
-    <p class="note" style="margin:0 0 10px">اختر ما يهمّك لنقترح لك منتجات أقرب لذوقك.</p>
-    <div class="prefs">${CATS.filter(c => c.id !== "deals").map(c =>
-      `<button class="pref ${sel.includes(c.id) ? "on" : ""}" data-act="pref" data-id="${c.id}">${esc(c.name)}</button>`).join("")}</div>
-    <button class="btn main" data-act="prefs-save">حفظ اهتماماتي</button>`);
-}
-
-/* =====================================================
-   الإجراءات
-===================================================== */
-function openLink(url) {
-  if (!url) return toast("رابط الشراء غير متوفر");
-  if (tg?.openLink) tg.openLink(url); else window.open(url, "_blank", "noopener,noreferrer");
-}
-
-function buy(id) {
-  const it = byId.get(id); if (!it) return;
-  if (CONFIG.API_BASE) openLink(`${CONFIG.API_BASE.replace(/\/$/, "")}/go/${encodeURIComponent(it.id)}${tgUser ? "?u=" + tgUser.id : ""}`);
-  else openLink(it.link);
-}
-
-function toggleSave(id, el) {
-  let s = saved();
-  if (s.includes(id)) { s = s.filter(x => x !== id); if (el) { el.classList.remove("on"); el.innerHTML = ic("heart"); } toast("أُزيل من المحفوظات"); }
-  else { s.push(id); if (el) { el.classList.add("on"); el.innerHTML = ic("heart-f"); } toast("تم الحفظ"); }
-  LS.set("wsah_saved_v2", s);
-}
-
-function share(id) {
-  const it = byId.get(id); if (!it) return;
-  const offers = offersOf(it), best = offers[0];
-  const text = `${it.title}\n${nf(best.price)} ر.س${offers.length > 1 ? " (أرخص سعر بين المتاجر)" : ""}`;
-  const url = CONFIG.SHARE_URL || location.href.split("#")[0];
-  if (tg?.openTelegramLink) tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
-  else if (navigator.share) navigator.share({ title: it.title, text, url }).catch(() => {});
-  else { navigator.clipboard?.writeText(`${text}\n${url}`); toast("تم نسخ الرابط"); }
-}
-
-function doSearch() {
-  const q = $("#q").value.trim();
-  if (!q) return toast("اكتب اسم المنتج الذي تبحث عنه");
-  showList({ title: "نتائج البحث", base: ALL, q });
-}
-
-document.addEventListener("click", e => {
-  const el = e.target.closest("[data-act]");
-  if (!el) return;
-  const a = el.dataset.act, id = el.dataset.id;
-
-  if (a === "close") { if (el.id === "overlay" && e.target !== el) return; return closeSheet(); }
-  if (a === "save") { e.stopPropagation(); return toggleSave(id, el); }
-  if (a === "open") { if ($("#overlay").classList.contains("on")) closeSheet(); return openProduct(id); }
-  if (a === "unsave") { toggleSave(id); return openSaved(); }
-  if (a === "buy") return buy(id);
-  if (a === "watch") return openWatch(id);
-  if (a === "watch-save") return saveWatch(id);
-  if (a === "share") return share(id);
-  if (a === "saved") return openSaved();
-  if (a === "prefs") return openPrefs();
-  if (a === "pref") return el.classList.toggle("on");
-  if (a === "prefs-save") {
-    LS.set("wsah_prefs_v2", [...document.querySelectorAll(".pref.on")].map(b => b.dataset.id));
-    closeSheet(); renderHome(); return toast("تم حفظ اهتماماتك");
-  }
-  if (a === "search") return doSearch();
-  if (a === "home") return showHome();
-  if (a === "cat") return openCategory(id);
-  if (a === "store") return showList({ title: `منتجات ${STORES[id].ar}`, base: ALL.filter(x => !x.expired), store: id });
-  if (a === "featured") return showList({ title: "المنتجات المميزة", base: ALL.filter(x => x.featured) });
-  if (a === "compare") return showList({ title: "مقارنة الأسعار", base: comparable().flatMap(x => offersOf(x)), sort: "cheap" });
-  if (a === "all") return showList({ title: "كل المنتجات", base: ALL, sort: "new" });
-  if (a === "fstore") { view.store = id; return renderList(); }
-  if (a === "sort") { view.sort = id; return renderList(); }
-  if (a === "view") { viewMode = id; LS.set("wsah_view", id); return renderList(); }
-});
-
-$("#q").addEventListener("keydown", e => { if (e.key === "Enter") doSearch(); });
-$("#lq").addEventListener("input", e => { view.q = e.target.value; renderList(); });
-
-/* =====================================================
-   بدء التشغيل
-===================================================== */
-(function init() {
-  $("#gridNew").innerHTML = '<div class="sk"></div>'.repeat(2);
-  loadData().then(async ok => {
-    if (!ok) {
-      $("#gridNew").innerHTML = `<div class="empty"><b>تعذر تحميل المنتجات</b><span>تأكد من وجود ${esc(CONFIG.PRODUCTS_URL)} ثم أعد المحاولة.</span></div>`;
+    const parsed = new URL(url);
+    if (!["http:", "https:"].includes(parsed.protocol)) {
+      toast("رابط الشراء غير صالح");
       return;
     }
-    renderHome();
-    await loadTrending();
-    if (hotIds.length && !$("#home").hidden) renderHome();
-  });
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && Date.now() - loadedAt > 300000)
-      loadData(true).then(() => { if (!$("#home").hidden) renderHome(); else if (view) renderList(); });
-  });
-})();
+  } catch {
+    toast("رابط الشراء غير صالح");
+    return;
+  }
+
+  if (tg && typeof tg.openLink === "function") {
+    tg.openLink(url);
+  } else {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
+function toggleAlert(id) {
+  const p = byId.get(String(id));
+  if (!p) return;
+
+  const exists = ALERTS.some(a => a.id === p.id);
+
+  ALERTS = exists
+    ? ALERTS.filter(a => a.id !== p.id)
+    : [...ALERTS, {
+        id: p.id,
+        target: p.price,
+        created: Date.now()
+      }];
+
+  LS.set("wfs_alerts", ALERTS);
+  toast(exists
+    ? "تم إلغاء حفظ تنبيه السعر"
+    : "تم حفظ تفضيل السعر على هذا الجهاز");
+
+  openProduct(id);
+}
+
+function openPreferences() {
+  const choices = CATS.map(c => `
+    <button class="pref ${PREFERRED_CATS.includes(c.id) ? "on" : ""}"
+      data-act="prefcat" data-id="${esc(c.id)}">
+      ${esc(c.name)}
+    </button>
+  `).join("");
+
+  $("#sheet").innerHTML = `
+    <div class="sh-head">
+      <h3>خصّص عروضك</h3>
+      <button class="x" data-act="close">${ic("x")}</button>
+    </div>
+    <p class="note">اختر اهتماماتك لعرض المنتجات المناسبة لك.</p>
+    <div class="prefs">${choices}</div>
+    <button class="btn main" data-act="saveprefs">حفظ الاهتمامات</button>
+  `;
+
+  $("#overlay").classList.add("on");
+  document.body.style.overflow = "hidden";
+}
+
+function renderComparePage() {
+  openPage("compare", "مقارنة الأسعار",
+    "قارن المنتجات ذات المعرّف المشترك بين المتاجر");
+  $("#lgrid").innerHTML = getCompareGroups().map(compareCard).join("") ||
+    `<div class="empty"><b>لا توجد مقارنات كافية بعد</b>
+      <span>أضف عروضًا للمنتج نفسه مع قيمة groupId موحّدة.</span></div>`;
+}
+
+/* أزرار الموقع */
+document.addEventListener("click", event => {
+  const act = event.target.closest("[data-act]");
+  const card = event.target.closest("[data-open]");
+
+  if (act) {
+    const action = act.dataset.act;
+    const id = act.dataset.id || "";
+
+    if (action === "close") {
+      if (event.target === $("#overlay") ||
+          event.target.closest(".x")) {
+        $("#overlay").classList.remove("on");
+        document.body.style.overflow = "";
+      }
+      return;
+    }
+
+    if (action === "home") return homePage();
+
+    if (action === "saved") {
+      ACTIVE_CAT = "";
+      ACTIVE_STORE = "";
+      return openPage("saved", "المفضلة");
+    }
+
+    if (action === "prefs") return openPreferences();
+
+    if (action === "search") {
+      LIST_QUERY = $("#q").value.trim();
+      ACTIVE_CAT = "";
+      ACTIVE_STORE = "";
+      return openPage("search", "نتائج البحث");
+    }
+
+    if (action === "all") {
+      ACTIVE_CAT = "";
+      ACTIVE_STORE = "";
+      return openPage("all", "كل المنتجات");
+    }
+
+    if (action === "featured") {
+      ACTIVE_CAT = "";
+      ACTIVE_STORE = "";
+      return openPage("featured", "اختيارات مميزة");
+    }
+
+    if (action === "compare") return renderComparePage();
+
+    if (action === "cat") {
+      ACTIVE_CAT = id;
+      ACTIVE_STORE = "";
+      return openPage("cat", catName(id) || "المنتجات");
+    }
+
+    if (action === "store") {
+      ACTIVE_STORE = id;
+      ACTIVE_CAT = "";
+      return openPage("store", STORES[id]?.ar || "المتجر");
+    }
+
+    if (action === "open") return openProduct(id);
+
+    if (action === "buy") return buyProduct(id);
+
+    if (action === "heart") {
+      event.stopPropagation();
+      return toggleSaved(id);
+    }
+
+    if (action === "alert") return toggleAlert(id);
+
+    if (action === "sort") {
+      ACTIVE_SORT = id;
+      return renderList();
+    }
+
+    if (action === "filterstore") {
+      ACTIVE_STORE = id;
+      return renderList();
+    }
+
+    if (action === "view") {
+      ACTIVE_VIEW = id;
+      return renderList();
+    }
+
+    if (action === "prefcat") {
+      PREFERRED_CATS = PREFERRED_CATS.includes(id)
+        ? PREFERRED_CATS.filter(x => x !== id)
+        : [...PREFERRED_CATS, id];
+
+      return openPreferences();
+    }
+
+    if (action === "saveprefs") {
+      LS.set("wfs_prefs", PREFERRED_CATS);
+      $("#overlay").classList.remove("on");
+      document.body.style.overflow = "";
+      renderHome();
+      toast("تم حفظ اهتماماتك على هذا الجهاز");
+      return;
+    }
+  }
+
+  if (card) {
+    openProduct(card.dataset.open);
+  }
+});
+
+/* البحث الفوري */
+$("#q").addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    LIST_QUERY = $("#q").value.trim();
+    ACTIVE_CAT = "";
+    ACTIVE_STORE = "";
+    openPage("search", "نتائج البحث");
+  }
+});
+
+$("#q").addEventListener("search", () => {
+  if (!$("#q").value.trim()) homePage();
+});
+
+$("#lq").addEventListener("input", event => {
+  LIST_QUERY = event.target.value.trim();
+  renderList();
+});
+
+/* إغلاق النافذة بزر Escape */
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    $("#overlay").classList.remove("on");
+    document.body.style.overflow = "";
+  }
+});
+
+/* تحديث المفضلة عند العودة إلى الصفحة */
+window.addEventListener("pageshow", () => {
+  renderHome();
+  if (PAGE === "list") renderList();
+});
+
+/* تشغيل المتجر */
+renderStores();
+renderCats();
+loadProducts();
 </script>
 </body>
 </html>
