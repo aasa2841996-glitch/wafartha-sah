@@ -27,24 +27,46 @@ img{display:block;max-width:100%}
 .wrap{max-width:960px;margin:0 auto;padding:0 14px}
 
 /* ---------- header ---------- */
-.header{background:linear-gradient(135deg,#4b27c4,#6e49e6 60%,#8260f2);color:#fff;
-  padding:20px 14px 18px;border-radius:0 0 26px 26px;position:relative;overflow:hidden}
+.header{position:relative;overflow:hidden;color:#fff;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px 34px;
+  background:radial-gradient(110% 90% at 88% -10%,#a283ff 0%,transparent 55%),radial-gradient(90% 80% at 0% 115%,#ff7ab6 0%,transparent 52%),linear-gradient(135deg,#3b1bb0,#5b35d5 55%,#7a55ee);
+  border-radius:0 0 34px 34px}
+.header::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.5px);background-size:18px 18px;
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);mask-image:linear-gradient(180deg,#000,transparent 85%)}
 .header .wrap{position:relative;z-index:1;padding:0}
-.brand{margin:0;font-size:26px;font-weight:900;text-align:center}
-.tagline{margin:4px 0 0;text-align:center;font-size:12.5px;opacity:.92}
-.tools{display:flex;gap:8px;margin-top:14px}
-.tool{flex:1;min-height:40px;border-radius:12px;background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:800;color:#fff}
-.search{display:flex;gap:8px;margin-top:10px}
-.search input{flex:1;min-width:0;height:44px;border:0;border-radius:13px;padding:0 14px;outline:none;background:#fff;color:var(--ink);font-size:13px}
-.search button{width:48px;height:44px;border-radius:13px;background:#fff;font-size:18px}
+.hbar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hbtn{flex:0 0 auto;width:46px;height:46px;border-radius:15px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:19px;color:#fff;display:flex;align-items:center;justify-content:center}
+.hbtn:active{transform:scale(.94)}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo-mark{flex:0 0 auto;width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#ffb347,#ff5a36);
+  display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 10px 22px rgba(255,90,54,.45)}
+.brand{margin:0;font-size:23px;font-weight:900;line-height:1.2;white-space:nowrap}
+.tagline{margin:1px 0 0;font-size:10.5px;opacity:.92}
+.hero-t{margin:16px 0 0;font-size:17.5px;font-weight:900;line-height:1.55}
+.hero-t em{font-style:normal;color:#ffd166}
+.search{display:flex;gap:8px;margin-top:14px}
+.search input{flex:1;min-width:0;height:52px;border:0;border-radius:17px;padding:0 16px;outline:none;background:#fff;color:var(--ink);font-size:13.5px;box-shadow:0 14px 30px rgba(20,10,70,.3)}
+.search button{flex:0 0 auto;width:56px;height:52px;border-radius:17px;background:linear-gradient(135deg,#ffb347,#ff5a36);color:#fff;font-size:20px;box-shadow:0 14px 28px rgba(255,90,54,.4)}
+.stores-h{margin:20px 0 9px;font-size:12px;font-weight:800;opacity:.95}
 
-/* ---------- store strip ---------- */
-.stores{display:flex;gap:8px;margin-top:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.stores::-webkit-scrollbar{display:none}
-.store-btn{flex:0 0 auto;min-width:74px;background:#fff;border-radius:14px;padding:8px 6px 6px;
-  display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--ink)}
-.store-btn small{font-size:10px;font-weight:800}
+/* ---------- store strip: يمتد على كامل عرض الشريط ---------- */
+.stores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+@media (min-width:520px){.stores{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.store-btn{background:#fff;border-radius:18px;padding:11px 9px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink);
+  box-shadow:0 10px 22px rgba(20,10,70,.22);transition:transform .15s}
+.store-btn:active{transform:scale(.96)}
+.store-btn .chip{width:100%;height:40px;border-radius:12px;font-size:15px}
+.store-btn small{font-size:11.5px;font-weight:900}
+.store-btn em{font-style:normal;font-size:9.5px;color:var(--muted);font-weight:700;margin-top:-3px}
+
+/* ---------- trust strip ---------- */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);margin:-18px 0 0;position:relative;z-index:2;background:#fff;border-radius:20px;
+  border:1px solid var(--line);box-shadow:0 14px 32px -12px rgba(60,40,140,.32)}
+.trust>div{padding:12px 6px;text-align:center;border-inline-start:1px solid var(--line)}
+.trust>div:first-child{border-inline-start:0}
+.trust b{display:block;font-size:11.5px;font-weight:900;margin-top:2px}
+.trust span{font-size:9.5px;color:var(--muted);font-weight:700}
 
 /* ---------- store chip (logo) ---------- */
 .chip{display:inline-flex;align-items:center;justify-content:center;border-radius:8px;font-weight:900;
@@ -57,20 +79,23 @@ img{display:block;max-width:100%}
 /* ---------- sections ---------- */
 .sec{margin-top:22px}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:10px}
-.sec-head h2{margin:0;font-size:18px;font-weight:900}
+.sec-head h2{margin:0;font-size:18px;font-weight:900;display:flex;align-items:center;gap:8px}
+.sec-head h2::before{content:"";width:5px;height:20px;border-radius:4px;background:linear-gradient(180deg,#7a55ee,#ff5a36)}
 .sec-head p{margin:2px 0 0;font-size:11px;color:var(--muted)}
 .more{font-size:11px;font-weight:800;color:var(--brand);background:var(--brand-soft);padding:6px 10px;border-radius:10px}
 
 /* ---------- categories ---------- */
-.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.cat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-align:right;
-  box-shadow:0 5px 18px rgba(35,31,62,.06)}
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cat{position:relative;aspect-ratio:16/11;border-radius:22px;overflow:hidden;text-align:right;color:#fff;background:var(--g);
+  box-shadow:0 12px 26px -12px rgba(40,20,120,.45);transition:transform .18s}
 .cat:active{transform:scale(.98)}
-.cat-img{height:96px;background:#efedf6;position:relative;overflow:hidden}
-.cat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cat-row{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;gap:6px}
-.cat-name{font-size:13px;font-weight:900}
-.cat-n{font-size:10px;font-weight:800;color:var(--brand);background:var(--brand-soft);border-radius:8px;padding:2px 7px}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+@media (hover:hover){.cat:hover img{transform:scale(1.07)}}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,8,45,0) 35%,rgba(15,8,45,.78) 100%)}
+.cat-wm{position:absolute;inset-inline-end:-4px;top:-2px;font-size:74px;opacity:.28;line-height:1}
+.cat-in{position:absolute;inset:auto 0 0 0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:6px;padding:12px 13px}
+.cat-name{font-size:14px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.cat-n{flex:0 0 auto;background:rgba(255,255,255,.24);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:10.5px;font-weight:800;border-radius:999px;padding:3px 10px}
 
 /* ---------- product grid & card ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
@@ -110,10 +135,28 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion:reduce){.sk{animation:none}html{scroll-behavior:auto}}
 
 /* ---------- promo ---------- */
-.promo{margin-top:16px;border-radius:20px;padding:16px;color:#fff;background:linear-gradient(135deg,#ff7a1a,#ff4535);display:flex;align-items:center;justify-content:space-between;gap:10px}
-.promo b{font-size:16px;font-weight:900;display:block}
-.promo span{font-size:11px;opacity:.95}
-.promo button{background:#fff;color:#f0522f;font-weight:900;font-size:11px;padding:9px 13px;border-radius:11px;white-space:nowrap}
+.promo{margin-top:20px;border-radius:24px;padding:18px 16px;color:#fff;position:relative;overflow:hidden;
+  background:radial-gradient(90% 120% at 100% 0%,rgba(255,122,182,.55),transparent 55%),linear-gradient(135deg,#1f1b33,#3a2a8f);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 16px 34px -14px rgba(40,20,120,.55)}
+.promo b{font-size:17px;font-weight:900;display:block}
+.promo span{font-size:11px;opacity:.9;line-height:1.7}
+.promo button{flex:0 0 auto;background:linear-gradient(135deg,#ffb347,#ff5a36);color:#fff;font-weight:900;font-size:12px;padding:11px 15px;border-radius:13px;white-space:nowrap;box-shadow:0 10px 22px rgba(255,90,54,.4)}
+
+/* ---------- compare cards ---------- */
+.cmpg{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:640px){.cmpg{grid-template-columns:repeat(2,1fr)}}
+.cc{display:flex;gap:12px;background:#fff;border:1px solid rgba(91,53,213,.1);border-radius:22px;padding:12px;cursor:pointer;
+  box-shadow:0 12px 28px -14px rgba(60,40,140,.3)}
+.cc:active{transform:scale(.985)}
+.cc-img{flex:0 0 96px;height:96px;border-radius:16px;background:radial-gradient(120% 100% at 50% 0%,#fff,#f1eefb)}
+.cc-img img{width:100%;height:100%;object-fit:contain;padding:8px;mix-blend-mode:multiply}
+.cc-b{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.cc-t{font-size:12.5px;font-weight:800;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cc-r{display:flex;align-items:center;gap:8px;padding:5px 9px;border-radius:11px;background:#f6f5fb;font-size:11.5px;font-weight:700}
+.cc-r .n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc-r b{font-weight:900;white-space:nowrap}
+.cc-r.top{background:#e6f8ef;color:#0a6e4c}
+.cc-save{font-size:10.5px;font-weight:800;color:#0a8a5d}
 
 /* ---------- list page ---------- */
 .topbar{position:sticky;top:0;z-index:20;background:var(--bg);padding:calc(env(safe-area-inset-top,0px) + 10px) 0 8px}
@@ -210,32 +253,46 @@ img{display:block;max-width:100%}
 <div id="home">
   <header class="header">
     <div class="wrap">
-      <h1 class="brand">🔥 وَفِّرْهَا صَحّ 🔥</h1>
-      <p class="tagline">لقيناها لك… وقارنّا لك الأسعار بين المتاجر 💜</p>
-
-      <div class="tools">
-        <button class="tool" data-act="saved">❤️ المحفوظات</button>
-        <button class="tool" data-act="prefs">🎯 اهتماماتي</button>
+      <div class="hbar">
+        <button class="hbtn" data-act="saved" aria-label="المحفوظات">❤️</button>
+        <div class="logo">
+          <span class="logo-mark">🔥</span>
+          <div><h1 class="brand">وَفِّرْهَا صَحّ</h1><p class="tagline">لقيناها لك… ووفّرنا عليك البحث</p></div>
+        </div>
+        <button class="hbtn" data-act="prefs" aria-label="اهتماماتي">🎯</button>
       </div>
 
+      <p class="hero-t">قارن الأسعار بين المتاجر <em>قبل ما تشتري</em></p>
+
       <div class="search">
-        <input id="q" type="search" placeholder="ابحث عن منتج..." autocomplete="off" enterkeyhint="search">
+        <input id="q" type="search" placeholder="ابحث عن منتج أو ماركة..." autocomplete="off" enterkeyhint="search">
         <button data-act="search" aria-label="بحث">🔎</button>
       </div>
 
+      <div class="stores-h">🛍️ تسوّق من متجرك المفضل</div>
       <div class="stores" id="storeStrip"></div>
     </div>
   </header>
 
   <main class="wrap">
+    <div class="trust">
+      <div>⚖️<b>نقارن لك</b><span>الأرخص أولًا</span></div>
+      <div>🔔<b>تنبيه السعر</b><span>نخبرك لما ينزل</span></div>
+      <div>🔗<b>روابط رسمية</b><span>من المتجر مباشرة</span></div>
+    </div>
+    <section class="sec" id="secCmp" hidden>
+      <div class="sec-head"><div><h2>⚖️ قارن الأسعار</h2><p>نفس المنتج في أكثر من متجر — الأرخص أولًا</p></div><button class="more" data-act="compare">عرض الكل</button></div>
+      <div class="cmpg" id="cmpList"></div>
+    </section>
+
     <section class="sec">
       <div class="sec-head"><div><h2>تسوّق حسب القسم</h2><p>اختر القسم واكتشف أفضل العروض</p></div></div>
       <div class="cats" id="cats"></div>
     </section>
 
     <div class="promo">
-      <div><b>🔎 نقارن لك الأسعار</b><span>نفس المنتج في أكثر من متجر؟ نعرض لك الأرخص أولًا</span></div>
-      <button data-act="cat" data-id="deals">أقوى العروض</button>
+      <div><b>⚖️ قارن قبل ما تشتري</b><span>نفس المنتج في أكثر من متجر؟ نرتّب لك الأسعار من الأرخص ونوفّر عليك البحث</span></div>
+      <button data-act="compare">شوف المقارنات</button>
     </div>
 
     <section class="sec" id="secDeals" hidden>
@@ -405,6 +462,28 @@ function norm(p, cat) {
   };
 }
 
+/* ربط تلقائي لنفس المنتج بين متاجر مختلفة عند التشابه الكبير في الاسم (لو ما رُبط من البوت) */
+const tokSet = t => new Set(normAr(t).split(/[^\p{L}\p{N}]+/u).filter(w => w.length > 1));
+function autoGroup() {
+  const items = ALL.filter(x => !x.expired);
+  const toks = items.map(x => tokSet(x.title));
+  let g = 0;
+  for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
+    const a = items[i], b = items[j];
+    if (a.sk === b.sk && a.sk !== "other") continue;
+    if (a.group && b.group && a.group !== b.group) continue;
+    const A = toks[i], B = toks[j];
+    let inter = 0; A.forEach(w => { if (B.has(w)) inter++; });
+    const sim = inter / (A.size + B.size - inter || 1);
+    const numA = [...A].filter(w => /\d{3,}/.test(w)), numB = [...B].filter(w => /\d{3,}/.test(w));
+    if (numA.length && numB.length && !numA.some(w => B.has(w))) continue;   // موديلات مختلفة
+    if (inter >= 3 && sim >= 0.5) {
+      const gid = a.group || b.group || "auto" + (++g);
+      a.group = gid; b.group = gid;
+    }
+  }
+}
+
 async function loadData(force) {
   if (!force && ALL.length && Date.now() - loadedAt < 300000) return true;
   try {
@@ -414,6 +493,7 @@ async function loadData(force) {
     ALL = [];
     for (const c of CATS) (Array.isArray(d[c.id]) ? d[c.id] : []).forEach(p => { const n = norm(p, c.id); if (n.price > 0) ALL.push(n); });
     byId = new Map(ALL.map(x => [x.id, x]));
+    autoGroup();
     byGroup = new Map();
     ALL.forEach(x => { if (x.group) { if (!byGroup.has(x.group)) byGroup.set(x.group, []); byGroup.get(x.group).push(x); } });
     loadedAt = Date.now();
@@ -512,19 +592,45 @@ function fillRow(secId, rowId, items) {
   $(rowId).innerHTML = items.slice(0, 10).map(cardHTML).join("");
 }
 
+function comparable() {
+  const live = ALL.filter(x => !x.expired);
+  return listing(sortItems(live, "best")).filter(x => offersOf(x).length > 1);
+}
+
+function cmpCardHTML(it) {
+  const offers = offersOf(it), best = offers[0], worst = offers[offers.length - 1], save = worst.price - best.price;
+  return `
+  <article class="cc" data-act="open" data-id="${esc(best.id)}">
+    <div class="cc-img"><img src="${esc(safeUrl(best.image))}" alt="${esc(best.title)}" loading="lazy" onerror="this.style.opacity=.2"></div>
+    <div class="cc-b">
+      <div class="cc-t">${esc(best.title)}</div>
+      ${offers.slice(0, 3).map((o, i) => `<div class="cc-r ${i === 0 ? "top" : ""}">${chip(o.sk, "xs", o.store)}<span class="n">${esc(STORES[o.sk].ar)}${i === 0 ? " 👑" : ""}</span><b>${nf(o.price)} ر.س</b></div>`).join("")}
+      ${save > 0 ? `<div class="cc-save">وفّر ${nf(save)} ر.س باختيار ${esc(STORES[best.sk].ar)}</div>` : ""}
+    </div>
+  </article>`;
+}
+
 function renderHome() {
   const live = ALL.filter(x => !x.expired);
 
-  $("#storeStrip").innerHTML = Object.keys(STORES).filter(k => k !== "other").map(k =>
-    `<button class="store-btn" data-act="store" data-id="${k}">${chip(k, "md")}<small>${esc(STORES[k].ar)}</small></button>`).join("");
+  $("#storeStrip").innerHTML = Object.keys(STORES).filter(k => k !== "other").map(k => {
+    const n = live.filter(x => x.sk === k).length;
+    return `<button class="store-btn" data-act="store" data-id="${k}">${chip(k, "md")}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "قريبًا"}</em></button>`;
+  }).join("");
 
-  $("#cats").innerHTML = CATS.map(c => {
+  $("#cats").innerHTML = CATS.map((c, i) => {
     const n = c.id === "deals" ? live.filter(x => x.cat === "deals" || x.discount >= 25).length : live.filter(x => x.cat === c.id).length;
-    return `<button class="cat" data-act="cat" data-id="${c.id}">
-      <div class="cat-img"><img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" onerror="this.remove()"></div>
-      <div class="cat-row"><span class="cat-name">${c.icon} ${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</div>
+    const h = (i * 47 + 250) % 360;
+    return `<button class="cat" data-act="cat" data-id="${c.id}" style="--g:linear-gradient(135deg,hsl(${h} 70% 40%),hsl(${(h + 45) % 360} 78% 56%))">
+      <span class="cat-wm">${c.icon}</span>
+      <img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">
+      <span class="cat-in"><span class="cat-name">${c.icon} ${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</span>
     </button>`;
   }).join("");
+
+  const cmpItems = comparable();
+  $("#secCmp").hidden = !cmpItems.length;
+  $("#cmpList").innerHTML = cmpItems.slice(0, 4).map(cmpCardHTML).join("");
 
   fillRow("#secDeals", "#rowDeals", listing(sortItems(live.filter(x => x.discount >= 15), "disc")));
   fillRow("#secFeat", "#rowFeat", listing(sortItems(live.filter(x => x.featured), "best")));
@@ -753,6 +859,7 @@ document.addEventListener("click", e => {
   if (a === "cat") return openCategory(id);
   if (a === "store") return showList({ title: `🏬 منتجات ${STORES[id].ar}`, base: ALL.filter(x => !x.expired), store: id });
   if (a === "featured") return showList({ title: "⭐ المنتجات المميزة", base: ALL.filter(x => x.featured) });
+  if (a === "compare") return showList({ title: "⚖️ مقارنة الأسعار", base: comparable().flatMap(x => offersOf(x)), sort: "cheap" });
   if (a === "all") return showList({ title: "🆕 كل المنتجات", base: ALL, sort: "new" });
   if (a === "fstore") { view.store = id; return renderList(); }
 });
