@@ -52,7 +52,20 @@
       "createdAt": "2026-10-10T06:14:29.456Z"
     }
   ],
-  "deals": [],
+  "deals": [
+    {
+      "id": "78f78693",
+      "title": "هايدرو فلاسك قارورة مايكرو هايدرو 200 مل (6.7 اونصة - قارورة صغيرة معزولة مانعة للتسرب مع حزام بمشبك - باردة وساخنة حتى 7 ساعات - صغيرة ومتينة - ابيض طباشيري",
+      "price": "102",
+      "discount": 0,
+      "link": "https://link.amazon/B01BLFL4X",
+      "store": "",
+      "image": "products/product-1791628163920-604eab10.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-10T10:29:24.980Z"
+    }
+  ],
   "accessories": [],
   "electronics": [],
   "beauty": [
