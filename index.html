@@ -89,7 +89,7 @@ img{display:block;max-width:100%}
 @media (hover:hover){.cat:hover img{transform:scale(1.06)}}
 .cat-l{position:absolute;inset-inline:10px;bottom:10px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:14px;padding:8px 11px;color:var(--ink);box-shadow:0 8px 18px rgba(20,10,60,.2)}
-.cat-name{flex:1;min-width:0;font-size:13.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-name{flex:1;min-width:0;font-size:13.5px;font-weight:900;line-height:1.35}
 .cat-n{font-size:10.5px;font-weight:800;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:2px 9px}
 .cat-l .ic{color:var(--brand);font-size:15px}
 
@@ -119,8 +119,9 @@ img{display:block;max-width:100%}
 .price i{font-style:normal;font-size:11px;font-weight:800;color:var(--brand)}
 .price s{font-size:11px;font-weight:600;color:#b4b1c3;text-decoration-color:#ff6b57;text-decoration-thickness:1.5px}
 .saving{display:inline-flex;align-self:flex-start;align-items:center;background:#e8f8f0;color:#0a8a5d;font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px}
-.cmp{display:flex;align-items:center;justify-content:space-between;gap:6px;background:#f6f4ff;border:1px solid #ece8ff;border-radius:12px;padding:6px 9px;font-size:10px;font-weight:800;color:var(--brand);margin-top:auto}
-.cmp>span:first-child{white-space:nowrap}
+.cmp{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;background:#f6f4ff;border:1px solid #ece8ff;border-radius:12px;padding:6px 9px;font-size:10px;font-weight:800;color:var(--brand);margin-top:auto}
+.cmp>span:first-child{white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.cmp .ic{font-size:13px}
 .cmp-logos{display:flex;gap:3px}
 .cta{display:flex;align-items:center;justify-content:center;gap:6px;height:38px;border-radius:12px;font-size:12px;font-weight:900;color:#fff;
   background:linear-gradient(135deg,#5b35d5,#7a55ee);box-shadow:0 8px 16px -6px rgba(91,53,213,.55);margin-top:auto}
@@ -404,10 +405,16 @@ img{display:block;max-width:100%}
    إعدادات — عدّل هنا فقط
 ===================================================== */
 const CONFIG = {
-  API_BASE: "https://blue-wind-40c9.aasa2841996.workers.dev",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev
+  API_BASE: "",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev
   PRODUCTS_URL: "products.json",
   SHARE_URL: "",             // رابط التطبيق/البوت للمشاركة
-  SOCIAL: { whatsapp: "", telegram: "", x: "", instagram: "", tiktok: "" }
+  SOCIAL: {
+    whatsapp: "https://whatsapp.com/channel/0029VbDkz0vAojZ1Zn2KAO1m",
+    telegram: "https://t.me/Eramdeals",
+    x: "https://x.com/Eramstore2030",
+    instagram: "https://instagram.com/eramstore2030",
+    tiktok: "https://tiktok.com/@eramstore2030"
+  }
 };
 
 const STORES = {
@@ -609,7 +616,7 @@ function cardHTML(it) {
       <div class="ttl">${esc(it.title)}</div>
       <div class="price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}</div>
       ${saving > 0 ? `<span class="saving">وفّرت ${nf(saving)} ر.س</span>` : ""}
-      ${n > 1 ? `<div class="cmp"><span>قارن ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => chip(o.sk, "xs", o.store)).join("")}</span></div>` : ""}
+      ${n > 1 ? `<div class="cmp"><span>${ic("scale")} ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => chip(o.sk, "xs", o.store)).join("")}</span></div>` : ""}
       <div class="cta">${n > 1 ? "قارن واشترِ" : "شاهد العرض"}${ic("chev")}</div>
     </div>
   </article>`;
@@ -652,7 +659,7 @@ function renderHome() {
     const h = (i * 47 + 250) % 360;
     return `<button class="cat" data-act="cat" data-id="${c.id}" style="--g:linear-gradient(135deg,hsl(${h} 70% 40%),hsl(${(h + 45) % 360} 78% 56%))">
       <img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" onerror="this.remove()">
-      <span class="cat-l"><span class="cat-name">${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}${ic("chev")}</span>
+      <span class="cat-l"><span class="cat-name">${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</span>
     </button>`;
   }).join("");
 
