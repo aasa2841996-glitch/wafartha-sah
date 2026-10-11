@@ -1,6 +1,20 @@
 {
   "shoes": [],
-  "dresses": [],
+  "dresses": [
+    {
+      "id": "c4c678ca",
+      "title": "GlowEve CURVE طقم نسائي مقاس كبير من قطعتين: جاكيت كارديجان وفستان كامي، خفيف للربيع والصيف، دانتيل مفرغ، بياقة V وخصر برباط، أسود أنيق",
+      "price": "66.36",
+      "old": "84",
+      "discount": 21,
+      "link": "https://onelink.shein.com/56/64s45ta6rr7o?shc=2_RiXxub6gd0P",
+      "store": "Shein",
+      "image": "products/product-1791757779924-bfe3e9a0.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-11T22:29:41.743Z"
+    }
+  ],
   "perfumes": [],
   "bags": [],
   "watches": [
