@@ -51,11 +51,15 @@ img{display:block;max-width:100%}
 .stores-h{margin:20px 0 9px;font-size:12px;font-weight:800;opacity:.95}
 .stores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
 @media (min-width:520px){.stores{grid-template-columns:repeat(6,minmax(0,1fr))}}
-.store-btn{background:#fff;border-radius:18px;padding:11px 9px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink);box-shadow:0 10px 22px rgba(20,10,70,.22);transition:transform .15s}
+.store-btn{background:#fff;border-radius:22px;padding:12px 8px 11px;display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--ink);box-shadow:0 12px 24px rgba(20,10,70,.24);transition:transform .15s}
 .store-btn:active{transform:scale(.96)}
-.store-btn .chip{width:100%;height:40px;border-radius:12px;font-size:15px}
-.store-btn small{font-size:11.5px;font-weight:900}
-.store-btn em{font-style:normal;font-size:9.5px;color:var(--muted);font-weight:700;margin-top:-3px}
+.store-btn .s3d{width:min(72px,100%);height:auto}
+.store-btn small{font-size:12px;font-weight:900}
+.store-btn em{font-style:normal;font-size:9.5px;color:var(--muted);font-weight:700;margin-top:-2px}
+.s3d{display:block;width:100%;aspect-ratio:1/1;filter:drop-shadow(0 5px 8px rgba(30,15,80,.2))}
+.s3d svg,.s3d img{width:100%;height:100%;display:block;object-fit:contain}
+.s3d.sm{width:38px;height:38px;flex:0 0 auto}
+.s3d.xs{width:22px;height:22px;flex:0 0 auto;filter:drop-shadow(0 2px 3px rgba(30,15,80,.2))}
 
 .trust{display:grid;grid-template-columns:repeat(3,1fr);margin:-20px 0 0;position:relative;z-index:2;background:#fff;border-radius:20px;border:1px solid var(--line);box-shadow:0 14px 32px -12px rgba(60,40,140,.32)}
 .trust>div{padding:12px 6px;text-align:center;border-inline-start:1px solid var(--line)}
@@ -81,17 +85,18 @@ img{display:block;max-width:100%}
 .sec-head p{margin:3px 0 0;font-size:11px;color:var(--muted)}
 .more{font-size:11px;font-weight:800;color:var(--brand);background:var(--brand-soft);padding:7px 11px;border-radius:11px;white-space:nowrap}
 
-/* ---------- categories: صور واضحة بلا طبقة سوداء ---------- */
+/* ---------- categories: بطاقة بيضاء + صورة + اسم ووصف (تناسب صور 3D) ---------- */
 .cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.cat{position:relative;aspect-ratio:7/5;border-radius:22px;overflow:hidden;text-align:right;background:var(--g);box-shadow:0 14px 28px -14px rgba(40,20,120,.5);transition:transform .18s}
+.cat{background:#fff;border:1px solid rgba(91,53,213,.08);border-radius:24px;padding:10px 10px 13px;text-align:right;display:flex;flex-direction:column;gap:9px;
+  box-shadow:0 12px 26px -14px rgba(60,40,140,.35);transition:transform .18s,box-shadow .18s}
 .cat:active{transform:scale(.98)}
-.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-@media (hover:hover){.cat:hover img{transform:scale(1.06)}}
-.cat-l{position:absolute;inset-inline:10px;bottom:10px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:14px;padding:8px 11px;color:var(--ink);box-shadow:0 8px 18px rgba(20,10,60,.2)}
-.cat-name{flex:1;min-width:0;font-size:13.5px;font-weight:900;line-height:1.35}
-.cat-n{font-size:10.5px;font-weight:800;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:2px 9px}
-.cat-l .ic{color:var(--brand);font-size:15px}
+@media (hover:hover){.cat:hover{transform:translateY(-3px);box-shadow:0 20px 36px -14px rgba(60,40,140,.4)}.cat:hover .cat-img img{transform:scale(1.06)}}
+.cat-img{position:relative;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--g)}
+.cat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.cat-t{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 4px}
+.cat-name{font-size:14px;font-weight:900;line-height:1.35}
+.cat-n{flex:0 0 auto;font-size:10.5px;font-weight:800;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:2px 9px}
+.cat-sub{padding:0 4px;margin-top:-6px;font-size:10.5px;color:var(--muted);font-weight:600}
 
 /* ---------- product grid & card ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
@@ -283,6 +288,21 @@ img{display:block;max-width:100%}
 <symbol id="i-rows" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></symbol>
 <symbol id="i-store" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9v11h18V9M3 9h18M9 20v-6h6v6"/></symbol>
+<linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="g-noon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffee63"/><stop offset="1" stop-color="#f2c800"/></linearGradient>
+<linearGradient id="g-amazon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6b982"/><stop offset="1" stop-color="#c78d4d"/></linearGradient>
+<linearGradient id="g-temu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffa044"/><stop offset="1" stop-color="#f25a00"/></linearGradient>
+<linearGradient id="g-aliexpress" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5642"/><stop offset="1" stop-color="#d51e0e"/></linearGradient>
+<linearGradient id="g-shein" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4a4a"/><stop offset="1" stop-color="#0c0c0c"/></linearGradient>
+<linearGradient id="g-trendyol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9740"/><stop offset="1" stop-color="#f2680f"/></linearGradient>
+<linearGradient id="g-other" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d68f7"/><stop offset="1" stop-color="#5b35d5"/></linearGradient>
+<symbol id="s-noon" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#b89400"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-noon)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><text x="50" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="24" fill="#111">noon</text></symbol>
+<symbol id="s-amazon" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#8f5a24"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-amazon)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><path d="M10 31H90" stroke="#9c6428" stroke-width="1.6" opacity=".45"/><text x="50" y="49" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="15.5" fill="#1c1c1c">amazon</text><path d="M31 58Q50 70 69 58" stroke="#ff9900" stroke-width="4" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="s-temu" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#a83600"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-temu)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><text x="50" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="22" fill="#fff">TEMU</text></symbol>
+<symbol id="s-aliexpress" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#870f05"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-aliexpress)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><path d="M36 33Q50 15 64 33" stroke="#ffd23f" stroke-width="5.5" fill="none" stroke-linecap="round"/><text x="50" y="57" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#fff">AliExpress</text></symbol>
+<symbol id="s-shein" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#000"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-shein)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><text x="50" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="38" fill="#fff">S</text><text x="50" y="65" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="11" letter-spacing="1.5" fill="#fff">SHEIN</text></symbol>
+<symbol id="s-trendyol" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#a94503"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-trendyol)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><text x="50" y="51" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#fff">trendyol</text></symbol>
+<symbol id="s-other" viewBox="0 0 100 100"><ellipse cx="50" cy="91" rx="32" ry="5.5" fill="#1b1030" opacity=".22"/><rect x="10" y="20" width="80" height="68" rx="22" fill="#34189f"/><rect x="10" y="10" width="80" height="70" rx="22" fill="url(#g-other)"/><rect x="14" y="13" width="72" height="30" rx="16" fill="url(#gl)"/><path d="M34 34h32l3 9a8 8 0 0 1-8 7 8 8 0 0 1-8-6 8 8 0 0 1-8 6 8 8 0 0 1-8-7zM37 52v14h26V52" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></symbol>
 </defs></svg>
 
 <!-- ======================= HOME ======================= -->
@@ -408,6 +428,7 @@ const CONFIG = {
   API_BASE: "",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev
   PRODUCTS_URL: "products.json",
   SHARE_URL: "",             // رابط التطبيق/البوت للمشاركة
+  STORE_LOGO_DIR: "logos",   // ضع هنا صور المتاجر 3D بأسماء noon.png و amazon.png ... وتُستخدم تلقائيًا، وإلا تظهر الأيقونات المرسومة
   SOCIAL: {
     whatsapp: "https://whatsapp.com/channel/0029VbDkz0vAojZ1Zn2KAO1m",
     telegram: "https://t.me/Eramdeals",
@@ -428,20 +449,20 @@ const STORES = {
 };
 
 const CATS = [
-  { id: "shoes", name: "الأحذية", img: "shoes.jpg?v=3" },
-  { id: "dresses", name: "الفساتين", img: "dresses.jpg?v=3" },
-  { id: "accessories", name: "الإكسسوارات", img: "accessories.jpg?v=3" },
-  { id: "bags", name: "الشنط", img: "bags.jpg?v=3" },
-  { id: "watches", name: "الساعات", img: "watches.jpg?v=3" },
-  { id: "electronics", name: "الإلكترونيات", img: "electronics.jpg?v=3" },
-  { id: "home", name: "المنزل", img: "home.jpg?v=3" },
-  { id: "deals", name: "أقوى العروض", img: "deals.jpg?v=3" },
-  { id: "perfumes", name: "العطور", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80" },
-  { id: "beauty", name: "العناية والجمال", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80" },
-  { id: "men", name: "أزياء الرجال", img: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80" },
-  { id: "kids", name: "الأطفال", img: "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=700&q=80" },
-  { id: "sports", name: "الرياضة", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" },
-  { id: "gifts", name: "الهدايا", img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80" }
+  { id: "shoes", name: "الأحذية", sub: "أحذية رياضية وكاجوال", img: "shoes.jpg?v=3" },
+  { id: "dresses", name: "الفساتين", sub: "فساتين لكل مناسبة", img: "dresses.jpg?v=3" },
+  { id: "accessories", name: "الإكسسوارات", sub: "تفاصيل أنيقة", img: "accessories.jpg?v=3" },
+  { id: "bags", name: "الشنط", sub: "حقائب وشنط يد", img: "bags.jpg?v=3" },
+  { id: "watches", name: "الساعات", sub: "ساعات بتصاميم مميزة", img: "watches.jpg?v=3" },
+  { id: "electronics", name: "الإلكترونيات", sub: "أجهزة وتقنيات", img: "electronics.jpg?v=3" },
+  { id: "home", name: "المنزل", sub: "مستلزمات منزلية", img: "home.jpg?v=3" },
+  { id: "deals", name: "أقوى العروض", sub: "أقوى الخصومات الآن", img: "deals.jpg?v=3" },
+  { id: "perfumes", name: "العطور", sub: "عطور بروائح مميزة", img: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80" },
+  { id: "beauty", name: "العناية والجمال", sub: "عناية وجمال", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80" },
+  { id: "men", name: "أزياء الرجال", sub: "ملابس وإطلالات رجالية", img: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80" },
+  { id: "kids", name: "الأطفال", sub: "ملابس وألعاب", img: "https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?auto=format&fit=crop&w=700&q=80" },
+  { id: "sports", name: "الرياضة", sub: "نشاط ولياقة", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80" },
+  { id: "gifts", name: "الهدايا", sub: "أفكار هدايا مميزة", img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=700&q=80" }
 ];
 
 const SORTS = [["best", "الأقوى عرضًا"], ["cheap", "الأقل سعرًا"], ["disc", "الأعلى خصمًا"], ["new", "الأحدث"], ["hot", "الأكثر طلبًا"]];
@@ -590,6 +611,14 @@ function comparable() {
 /* =====================================================
    الشعارات والبطاقات
 ===================================================== */
+function store3d(k, cls = "") {
+  const svg = `<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#s-${STORES[k] ? k : "other"}"/></svg>`;
+  const own = STORES[k]?.logo, dir = CONFIG.STORE_LOGO_DIR;
+  if (own) return `<span class="s3d ${cls}"><img src="${esc(safeUrl(own))}" alt="${esc(STORES[k].name)}"></span>`;
+  if (!dir || k === "other") return `<span class="s3d ${cls}">${svg}</span>`;
+  return `<span class="s3d ${cls}"><img src="${dir}/${k}.png" alt="${esc(STORES[k].name)}" onerror="this.outerHTML=this.dataset.f" data-f="${esc(svg)}"></span>`;
+}
+
 function chip(sk, size, label) {
   const s = STORES[sk] || STORES.other;
   const inner = s.logo ? `<img src="${esc(safeUrl(s.logo))}" alt="${esc(s.name)}">` : esc(sk === "other" && label ? label : s.text);
@@ -616,7 +645,7 @@ function cardHTML(it) {
       <div class="ttl">${esc(it.title)}</div>
       <div class="price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}</div>
       ${saving > 0 ? `<span class="saving">وفّرت ${nf(saving)} ر.س</span>` : ""}
-      ${n > 1 ? `<div class="cmp"><span>${ic("scale")} ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => chip(o.sk, "xs", o.store)).join("")}</span></div>` : ""}
+      ${n > 1 ? `<div class="cmp"><span>${ic("scale")} ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => store3d(o.sk, "xs")).join("")}</span></div>` : ""}
       <div class="cta">${n > 1 ? "قارن واشترِ" : "شاهد العرض"}${ic("chev")}</div>
     </div>
   </article>`;
@@ -629,7 +658,7 @@ function cmpCardHTML(it) {
     <div class="cc-img"><img src="${esc(safeUrl(best.image))}" alt="${esc(best.title)}" loading="lazy" onerror="this.style.opacity=.2"></div>
     <div class="cc-b">
       <div class="cc-t">${esc(best.title)}</div>
-      ${offers.slice(0, 3).map((o, i) => `<div class="cc-r ${i === 0 ? "top" : ""}">${chip(o.sk, "xs", o.store)}<span class="n">${esc(STORES[o.sk].ar)}${i === 0 ? ic("crown") : ""}</span><b>${nf(o.price)} ر.س</b></div>`).join("")}
+      ${offers.slice(0, 3).map((o, i) => `<div class="cc-r ${i === 0 ? "top" : ""}">${store3d(o.sk, "xs")}<span class="n">${esc(STORES[o.sk].ar)}${i === 0 ? ic("crown") : ""}</span><b>${nf(o.price)} ر.س</b></div>`).join("")}
       ${save > 0 ? `<div class="cc-save">وفّر ${nf(save)} ر.س باختيار ${esc(STORES[best.sk].ar)}</div>` : ""}
     </div>
   </article>`;
@@ -651,15 +680,16 @@ function renderHome() {
 
   $("#storeStrip").innerHTML = Object.keys(STORES).filter(k => k !== "other").map(k => {
     const n = live.filter(x => x.sk === k).length;
-    return `<button class="store-btn" data-act="store" data-id="${k}">${chip(k, "md")}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "قريبًا"}</em></button>`;
+    return `<button class="store-btn" data-act="store" data-id="${k}">${store3d(k)}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "قريبًا"}</em></button>`;
   }).join("");
 
   $("#cats").innerHTML = CATS.map((c, i) => {
     const n = c.id === "deals" ? live.filter(x => x.cat === "deals" || x.discount >= 25).length : live.filter(x => x.cat === c.id).length;
     const h = (i * 47 + 250) % 360;
-    return `<button class="cat" data-act="cat" data-id="${c.id}" style="--g:linear-gradient(135deg,hsl(${h} 70% 40%),hsl(${(h + 45) % 360} 78% 56%))">
-      <img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" onerror="this.remove()">
-      <span class="cat-l"><span class="cat-name">${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</span>
+    return `<button class="cat" data-act="cat" data-id="${c.id}">
+      <span class="cat-img" style="--g:linear-gradient(135deg,hsl(${h} 85% 93%),hsl(${(h + 40) % 360} 85% 86%))"><img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy" onerror="this.remove()"></span>
+      <span class="cat-t"><span class="cat-name">${esc(c.name)}</span>${n ? `<span class="cat-n">${n}</span>` : ""}</span>
+      <span class="cat-sub">${esc(c.sub || "")}</span>
     </button>`;
   }).join("");
 
@@ -723,7 +753,7 @@ function renderList() {
   $("#lchips").hidden = !present.length;
   $("#lchips").innerHTML = present.length
     ? `<button class="fchip ${v.store ? "" : "on"}" data-act="fstore" data-id="" style="padding-inline-start:12px">كل المتاجر</button>` +
-      present.map(k => `<button class="fchip ${v.store === k ? "on" : ""}" data-act="fstore" data-id="${k}">${chip(k, "xs")}${esc(STORES[k].ar)}<em>${counts[k] || 0}</em></button>`).join("")
+      present.map(k => `<button class="fchip ${v.store === k ? "on" : ""}" data-act="fstore" data-id="${k}">${store3d(k, "xs")}${esc(STORES[k].ar)}<em>${counts[k] || 0}</em></button>`).join("")
     : "";
 
   document.querySelectorAll(".vt button").forEach(b => b.classList.toggle("on", b.dataset.id === viewMode));
@@ -760,7 +790,7 @@ function openProduct(id) {
     ${offers.map(o => {
       const diff = o.price - best.price;
       return `<div class="offer ${o.id === best.id ? "top" : ""}">
-        ${chip(o.sk, "md", o.store)}
+        ${store3d(o.sk, "sm")}
         <div class="nm">${esc(STORES[o.sk].ar)}<small class="${diff > 0 ? "up" : ""}">${diff > 0 ? "+" + nf(diff) + " ر.س" : ic("crown") + "الأرخص"}</small></div>
         <div class="pr">${nf(o.price)} ر.س</div>
         <button data-act="buy" data-id="${esc(o.id)}">اشترِ</button>
