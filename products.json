@@ -3,7 +3,20 @@
   "dresses": [],
   "perfumes": [],
   "bags": [],
-  "watches": [],
+  "watches": [
+    {
+      "id": "68c1b418",
+      "title": "هواوي ساعة ذكية باند 10 مع مراقبة لياقة بدنية تعمل بالذكاء الاصطناعي، تحليل احترافي للنوم، مساعد للرفاهية العاطفية، تصميم معدني انسيابي، شحن سريع، اي او اس واندرويد، اسود",
+      "price": "113.35",
+      "discount": 0,
+      "link": "https://link.amazon/B02jnN5J8",
+      "store": "",
+      "image": "products/product-1791726927125-1e67dfd7.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-11T13:55:28.146Z"
+    }
+  ],
   "home": [
     {
       "id": "7df66c33",
