@@ -579,6 +579,13 @@ const nf = n => (Math.round(n * 100) / 100).toLocaleString("en-US", { maximumFra
 const safeUrl = u => (/^\s*(javascript|vbscript):/i.test(String(u || "")) ? "" : String(u || ""));
 const normAr = t => String(t || "").toLowerCase().replace(/[\u064B-\u065F\u0670\u0640]/g, "").replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه");
 const ic = (n, c = "") => `<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+/* يجرّب عدة مسارات للصورة بالترتيب، وإن فشلت كلها يعرض البديل المرسوم */
+window.nextSrc = function (img) {
+  const list = (img.dataset.s || "").split("|"), i = (+img.dataset.i || 0) + 1;
+  if (i < list.length) { img.dataset.i = i; img.src = list[i]; } else img.outerHTML = img.dataset.f || "";
+};
+const imgChain = (list, alt, fallback) =>
+  `<img src="${esc(list[0])}" alt="${esc(alt)}" loading="lazy" data-s="${esc(list.join("|"))}" data-i="0" data-f="${esc(fallback)}" onerror="nextSrc(this)">`;
 const LS = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
@@ -716,7 +723,7 @@ function store3d(k, cls = "") {
   const own = STORES[k]?.logo, dir = CONFIG.STORE_LOGO_DIR;
   if (own) return `<span class="s3d ${cls}"><img src="${esc(safeUrl(own))}" alt="${esc(STORES[k].name)}"></span>`;
   if (!dir || k === "other") return `<span class="s3d ${cls}">${svg}</span>`;
-  return `<span class="s3d ${cls}"><img src="${dir}/${k}.png" alt="${esc(STORES[k].name)}" onerror="this.outerHTML=this.dataset.f" data-f="${esc(svg)}"></span>`;
+  return `<span class="s3d ${cls}">${imgChain([`${dir}/${k}.png`, `${k}.png`], STORES[k].name, `<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#s-${k}"/></svg>`)}</span>`;
 }
 
 function chip(sk, size, label) {
@@ -818,7 +825,7 @@ function setupHero() {
 
 function catTab(c, n) {
   const tile = `<span class="cico"><svg class="ic" aria-hidden="true"><use href="#i-c-${c.id}"/></svg></span>`, dir = CONFIG.CATS_DIR;
-  const media = dir ? `<img src="${dir}/${c.id}.png" alt="${esc(c.name)}" loading="lazy" onerror="this.outerHTML=this.dataset.f" data-f="${esc(tile)}">` : tile;
+  const media = dir ? imgChain([`${dir}/${c.id}.png`, `${c.id}.png`], c.name, tile) : tile;
   return `<button class="ctab" data-act="cat" data-id="${c.id}"><div class="cimg">${media}</div><div class="cname">${esc(c.name)}</div>${n ? `<div class="cnum">${n} منتج</div>` : ""}</button>`;
 }
 
