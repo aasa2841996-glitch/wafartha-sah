@@ -474,7 +474,7 @@ img{display:block;max-width:100%}
       <h3>وَفِّرْهَا صَحّ</h3>
       <p>لقيناها لك… ووفّرنا عليك البحث. تابعنا ليصلك كل عرض جديد أولًا بأول.</p>
       <div class="soc-row" id="socRow"></div>
-      <div class="fine">قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.<br>الأسعار والعروض قد تتغير في المتجر.</div>
+      <div class="fine">قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.<br>الأسعار والعروض قد تتغير في المتجر.<br>إصدار 5</div>
     </footer>
   </main>
 </div>
@@ -584,8 +584,8 @@ window.nextSrc = function (img) {
   const list = (img.dataset.s || "").split("|"), i = (+img.dataset.i || 0) + 1;
   if (i < list.length) { img.dataset.i = i; img.src = list[i]; } else img.outerHTML = img.dataset.f || "";
 };
-const imgChain = (list, alt, fallback) =>
-  `<img src="${esc(list[0])}" alt="${esc(alt)}" loading="lazy" data-s="${esc(list.join("|"))}" data-i="0" data-f="${esc(fallback)}" onerror="nextSrc(this)">`;
+const IMG_V = "5";   // غيّر الرقم عند تحديث الصور لإجبار المتصفح على تحميلها من جديد
+const imgChain = (list0, alt, fallback) => { const list = list0.map(u => u + "?v=" + IMG_V); return `<img src="${esc(list[0])}" alt="${esc(alt)}" loading="lazy" data-s="${esc(list.join("|"))}" data-i="0" data-f="${esc(fallback)}" onerror="nextSrc(this)">`; };
 const LS = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
@@ -723,7 +723,7 @@ function store3d(k, cls = "") {
   const own = STORES[k]?.logo, dir = CONFIG.STORE_LOGO_DIR;
   if (own) return `<span class="s3d ${cls}"><img src="${esc(safeUrl(own))}" alt="${esc(STORES[k].name)}"></span>`;
   if (!dir || k === "other") return `<span class="s3d ${cls}">${svg}</span>`;
-  return `<span class="s3d ${cls}">${imgChain([`${dir}/${k}.png`, `${k}.png`], STORES[k].name, `<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#s-${k}"/></svg>`)}</span>`;
+  return `<span class="s3d ${cls}">${imgChain([`${k}.png`, `${dir}/${k}.png`], STORES[k].name, `<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#s-${k}"/></svg>`)}</span>`;
 }
 
 function chip(sk, size, label) {
@@ -825,7 +825,7 @@ function setupHero() {
 
 function catTab(c, n) {
   const tile = `<span class="cico"><svg class="ic" aria-hidden="true"><use href="#i-c-${c.id}"/></svg></span>`, dir = CONFIG.CATS_DIR;
-  const media = dir ? imgChain([`${dir}/${c.id}.png`, `${c.id}.png`], c.name, tile) : tile;
+  const media = dir ? imgChain([`${c.id}.png`, `${dir}/${c.id}.png`], c.name, tile) : tile;
   return `<button class="ctab" data-act="cat" data-id="${c.id}"><div class="cimg">${media}</div><div class="cname">${esc(c.name)}</div>${n ? `<div class="cnum">${n} منتج</div>` : ""}</button>`;
 }
 
