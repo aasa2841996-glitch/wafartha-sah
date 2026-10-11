@@ -207,7 +207,21 @@
       "createdAt": "2026-10-10T09:13:01.210Z"
     }
   ],
-  "kids": [],
+  "kids": [
+    {
+      "id": "d209d06e",
+      "title": "طقم ولادي قطعتين: هودي كاجوال وبنطلون طويل متناسق، مناسب للمدرسة، والاستجمام، والإجازات، والرياضة، والارتداء في الخريف/الشتاء، والخارج",
+      "price": "32.5",
+      "old": "179",
+      "discount": 82,
+      "link": "https://temu.to/k/e8o0ehu64p9",
+      "store": "Temu",
+      "image": "products/product-1791722125060-dcf53fe8.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-11T12:35:26.160Z"
+    }
+  ],
   "sports": [],
   "gifts": [],
   "saved": []
