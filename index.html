@@ -453,7 +453,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 .store-btn{flex:0 0 154px;min-height:174px;padding:12px 10px;border-radius:24px}
 .store-btn>.s3d{width:84px;height:84px;flex:0 0 84px;animation:none!important;transform:none!important}
 .store-window:hover .stores{animation-play-state:paused}
-@keyframes storeTicker{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@keyframes storeTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* تكرار البطاقات يسمح بحركة مستمرة دون فراغ */
 
 /* صور الأقسام أصغر قليلًا لمنع تداخلها مع بعضها */
@@ -1005,8 +1005,10 @@ function renderHome() {
     const n = live.filter(x => x.sk === k).length;
     return `<button class="store-btn" data-act="store" data-id="${k}">${store3d(k)}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "استعرض المنتجات"}</em></button>`;
   }).join("");
-  // نكرر البطاقات لعمل شريط مستمر مثل الإعلان العلوي
-  $("#storeStrip").innerHTML = storeCards + storeCards;
+  // نكرر المجموعة نفسها مرتين؛ يتحرك الشريط بمقدار نصف عرضه لتستمر الحركة بلا فراغ
+  const storeStrip = $("#storeStrip");
+  storeStrip.innerHTML = storeCards + storeCards;
+  storeStrip.setAttribute("aria-label", "متاجر التسوق المتحركة");
 
   $("#cats").innerHTML = CATS.map(c => {
     const n = c.id === "deals" ? live.filter(x => x.cat === "deals" || x.discount >= 25).length : live.filter(x => x.cat === c.id).length;
