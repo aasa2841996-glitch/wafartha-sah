@@ -159,6 +159,10 @@ img{display:block;max-width:100%}
 .media{position:relative;aspect-ratio:4/5;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%,#fff 0%,var(--soft) 100%)}
 .media>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
 .store-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:2;filter:drop-shadow(0 3px 8px rgba(20,16,40,.22))}
+/* شعار المتجر ثلاثي الأبعاد على كل منتج */
+.store-tag .s3d{width:46px;height:46px;display:block;flex:0 0 46px;filter:drop-shadow(0 3px 7px rgba(20,16,40,.18))}
+.store-tag .s3d img,.store-tag .s3d svg{width:100%;height:100%;object-fit:contain}
+@media(max-width:520px){.store-tag .s3d{width:39px;height:39px;flex-basis:39px}}
 .disc{position:absolute;top:10px;inset-inline-end:10px;z-index:2;background:linear-gradient(135deg,#ff5a36,#ff2e63);color:#fff;font-size:11px;font-weight:900;padding:5px 9px;border-radius:999px;box-shadow:0 6px 12px -4px rgba(255,60,80,.5)}
 .best{position:absolute;bottom:10px;inset-inline-start:10px;z-index:2;display:inline-flex;align-items:center;gap:4px;background:var(--deep);color:#fff;font-size:9.5px;font-weight:800;padding:4px 9px;border-radius:999px}
 .best .ic{font-size:11px;stroke:none;fill:var(--accent)}
@@ -395,6 +399,48 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 .toast{background:#a80d45}
 .sheet{border-top:4px solid #f0185b}
 @media (hover:hover){.store-btn:hover,.ctab:hover{box-shadow:0 20px 34px -16px rgba(190,10,70,.3)}}
+
+
+/* Compact product detail sheet: keep key actions visible without scrolling */
+.overlay{padding:10px;}
+.sheet{width:min(100%,420px);max-width:420px;max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px);overflow-y:auto;padding:10px 12px 12px;border-radius:22px;}
+.sheet .sh-head{top:-10px;padding:0 0 5px;margin-bottom:4px;}
+.sheet .sh-head h3{font-size:15px;}
+.sheet .x{width:32px;height:32px;}
+.sheet .pimg{height:clamp(115px,21vh,165px);max-height:165px;aspect-ratio:auto;border-radius:14px;}
+.sheet .pimg>img{object-fit:contain;padding:5px;}
+.sheet .p-title{font-size:12.5px;line-height:1.45;margin:7px 0 4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.sheet .p-price{gap:6px;align-items:center;}
+.sheet .p-price b{font-size:23px;}
+.sheet .p-price s{font-size:11px;}
+.sheet .p-price .pct{font-size:10px;padding:2px 7px;}
+.sheet .offers{margin-top:7px;border-radius:14px;}
+.sheet .offers h4{padding:7px 9px;font-size:11px;}
+.sheet .offer{gap:7px;padding:7px 9px;}
+.sheet .offer .pr{font-size:12px;}
+.sheet .offer button{padding:6px 9px;}
+.sheet .hist{margin-top:7px;padding:7px 9px;border-radius:14px;}
+.sheet .hist svg{height:28px;}
+.sheet .acts{gap:7px;margin-top:8px;}
+.sheet .btn{min-height:40px;border-radius:13px;font-size:12px;padding:0 8px;}
+.sheet .btn .ic{font-size:16px;}
+.sheet .btn.buy{box-shadow:0 7px 14px -10px rgba(15,157,110,.65);}
+.sheet .note{font-size:9.5px;line-height:1.5;margin:7px 0 0;}
+@media(max-width:520px){
+ .overlay{padding:8px;}
+ .sheet{width:100%;max-width:390px;max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);padding:9px 10px 10px;border-radius:20px;}
+ .sheet .pimg{height:clamp(105px,19vh,145px);max-height:145px;}
+ .sheet .p-title{font-size:12px;line-height:1.4;-webkit-line-clamp:3;}
+ .sheet .p-price b{font-size:22px;}
+ .sheet .btn{min-height:38px;font-size:11.5px;}
+}
+@media(max-height:700px){
+ .sheet .pimg{height:105px;max-height:105px;}
+ .sheet .p-title{-webkit-line-clamp:2;margin:5px 0 3px;}
+ .sheet .acts{margin-top:6px;}
+ .sheet .btn{min-height:34px;}
+ .sheet .note{margin-top:5px;}
+}
 
 </style>
 </head>
@@ -823,6 +869,12 @@ function chip(sk, size, label) {
   return `<span class="chip ${size}" style="background:${s.bg};color:${s.fg}" title="${esc(s.ar)}">${inner}</span>`;
 }
 
+function storeBadge(sk, size = "sm", label = "") {
+  // استخدم شعار المتجر الخاص به، ولا تعرض شعارًا مضللًا للمتجر غير المعروف.
+  if (STORES[sk] && sk !== "other") return store3d(sk, size === "md" ? "sm" : "");
+  return chip(sk || "other", size, label);
+}
+
 const saved = () => LS.get("wsah_saved_v2", []);
 const isSaved = id => saved().includes(id);
 
@@ -838,7 +890,7 @@ function cardHTML(it) {
   return `
   <article class="card" data-act="open" data-id="${esc(it.id)}">
     <div class="media">
-      ${showTag ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}
+      ${showTag ? `<span class="store-tag">${storeBadge(it.sk, "sm", it.store)}</span>` : ""}
       ${it.discount ? `<span class="disc">-${it.discount}%</span>` : ""}
       ${isBest ? `<span class="best">${ic("crown")}الأرخص</span>` : ""}
       <button class="heart ${isSaved(it.id) ? "on" : ""}" data-act="save" data-id="${esc(it.id)}" aria-label="حفظ">${ic(isSaved(it.id) ? "heart-f" : "heart")}</button>
@@ -894,7 +946,7 @@ function heroHTML(live) {
         <h3>${esc(it.title)}</h3>
         <div class="hs-price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}${it.discount ? `<em>-${it.discount}%</em>` : ""}</div>
         <span class="hs-btn">اكتشف العرض${ic("chev")}</span></div>
-      <div class="hs-img">${it.sk !== "other" || it.store ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}<img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
+      <div class="hs-img">${it.sk !== "other" || it.store ? `<span class="store-tag">${storeBadge(it.sk, "sm", it.store)}</span>` : ""}<img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
     </article>`).join("");
 }
 
@@ -1045,7 +1097,7 @@ function openProduct(id) {
 
   openSheet(`
     ${sheetHead("تفاصيل المنتج")}
-    <div class="pimg"><span class="store-tag">${chip(it.sk, "md", it.store)}</span>
+    <div class="pimg"><span class="store-tag">${storeBadge(it.sk, "md", it.store)}</span>
       <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onload="fitMedia(this)" onerror="this.style.opacity=.2"></div>
     <div class="p-title">${esc(it.title)}</div>
     <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.old ? `<s>${nf(it.old)}</s><span class="pct">-${it.discount}%</span>` : ""}</div>
