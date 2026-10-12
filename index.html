@@ -493,29 +493,87 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 @media(prefers-reduced-motion:reduce){.stores{animation:none;}}
 
 
-/* تصحيح نهائي: بانر أقصر ومتناسق مع عرض الشاشة */
+/* ===== بانر متوازن: الصورة بعرض الهيدر والبحث فوقها ===== */
 .header{
-  position:relative !important;
-  min-height:clamp(300px, 23vw, 430px) !important;
-  padding:12px clamp(14px,4vw,78px) 22px !important;
+  position:relative;
+  width:100%;
+  min-height:clamp(300px, 34vw, 540px) !important;
+  height:auto;
+  box-sizing:border-box;
+  padding:clamp(14px, 2vw, 28px) clamp(16px, 4vw, 76px) clamp(16px, 2.2vw, 30px) !important;
+  border-radius:0 0 30px 30px;
+  overflow:hidden;
+  background-color:#f83c71;
   background-image:
-    linear-gradient(115deg,rgba(168,13,69,.04),rgba(223,7,86,.04)),
+    linear-gradient(180deg,rgba(120,0,40,.04),rgba(120,0,40,.04)),
     url("hero-wafartha-sah%20(1).png") !important;
-  background-size:100% 100% !important;
+  background-size:cover !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
 }
-.header .wrap{max-width:none !important;width:100% !important;padding:0 !important;position:relative;z-index:2}
-.header .hrow{min-height:clamp(70px,8vw,112px) !important}
-.header .sbar{margin-top:clamp(10px,1.4vw,18px) !important}
-@media(max-width:899px){
-  .header{min-height:clamp(290px,60vw,400px) !important;padding:10px 14px 18px !important}
-  .header .hrow{min-height:82px !important}
+.header::after{display:none !important}
+.header .wrap{
+  width:100%;
+  max-width:none;
+  margin:0 auto;
+  padding:0;
+  position:relative;
+  z-index:2;
 }
-@media(max-width:480px){
-  .header{min-height:300px !important}
-  .header .hrow{min-height:72px !important}
-  .header .sbar{margin-top:10px !important}
+/* الشعار داخل صورة البانر؛ لا نكرر الاسم بجانبه */
+.header .hrow{
+  justify-content:flex-start;
+  min-height:0;
+  height:0;
+  margin:0;
+  padding:0;
+}
+.header .logo{display:none !important}
+/* المفضلة والتفضيلات فوق الصورة، بمقاس مقروء */
+.header .hact{
+  position:absolute;
+  left:clamp(16px,4vw,76px);
+  top:clamp(76px, 12vw, 170px);
+  z-index:4;
+  gap:clamp(8px,1vw,14px);
+}
+.header .hact-b{font-size:clamp(11px,1vw,15px)}
+.header .hact-b .ib{
+  width:clamp(42px,4.2vw,64px);
+  height:clamp(42px,4.2vw,64px);
+}
+/* شريط البحث فوق الجزء السفلي من الصورة */
+.header .sbar{
+  position:relative;
+  z-index:3;
+  width:100%;
+  margin:0;
+  min-height:clamp(60px,5.4vw,78px);
+  padding:6px;
+  box-sizing:border-box;
+  border:3px solid rgba(255,255,255,.96);
+  border-radius:clamp(18px,2vw,28px);
+  background:rgba(255,255,255,.97);
+  box-shadow:0 12px 28px rgba(120,0,45,.18);
+}
+.header .sbar input{height:clamp(42px,4vw,58px);font-size:clamp(14px,1.4vw,20px)}
+.header .sgo{height:clamp(42px,4vw,58px);padding:0 clamp(16px,2vw,28px);border-radius:clamp(14px,1.5vw,20px);font-size:clamp(13px,1.2vw,17px)}
+.header .sbar>.ic{font-size:clamp(20px,2vw,28px);margin-inline-start:clamp(8px,1vw,14px)}
+@media(max-width:700px){
+  .header{
+    min-height:clamp(300px, 74vw, 410px) !important;
+    padding:12px 12px 16px !important;
+    background-position:center center !important;
+  }
+  .header .hact{left:12px;top:76px;gap:7px}
+  .header .hact-b .ib{width:42px;height:42px}
+  .header .sbar{min-height:58px;border-width:2px;padding:4px}
+  .header .sbar input{height:42px;font-size:13px}
+  .header .sgo{height:42px;padding:0 12px;font-size:12px}
+  .header .sbar>.ic{font-size:20px;margin-inline-start:6px}
 }
 
 </style>
