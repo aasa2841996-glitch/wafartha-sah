@@ -492,6 +492,19 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 .stores{animation:storeTicker 30s linear infinite;will-change:transform;}
 @media(prefers-reduced-motion:reduce){.stores{animation:none;}}
 
+
+/* بانر وفّرها صح أعلى الصفحة */
+.brand-banner{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:18px}
+.brand-banner img{display:block;width:100%;height:auto;max-height:170px;object-fit:contain;border-radius:18px}
+@media(max-width:520px){
+  .header{padding-top:12px}
+  .header .hrow{align-items:center;gap:8px}
+  .brand-banner img{max-height:105px}
+  .hact{gap:6px}
+  .ib{width:39px;height:39px}
+  .hact-b{font-size:9px}
+}
+
 </style>
 </head>
 <body>
@@ -564,9 +577,8 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   <header class="header">
     <div class="wrap">
       <div class="hrow">
-        <div class="logo">
-          <span class="logo-mark"><svg class="ic"><use href="#i-bag"/></svg></span>
-          <div><h1 class="brand">وَفِّرْهَا صَحّ</h1><p class="tagline">العرض الصح في المكان الصح</p></div>
+        <div class="brand-banner">
+          <img src="hero-wafartha-sah%20(1).png" alt="وفّرها صح — اكتشف أفضل العروض">
         </div>
         <div class="hact">
           <button class="hact-b" data-act="prefs" aria-label="تفضيلاتي"><span class="ib"><svg class="ic"><use href="#i-user"/></svg></span>تفضيلاتي</button>
