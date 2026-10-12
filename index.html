@@ -289,6 +289,7 @@ img{display:block;max-width:100%}
 .btn.main{background:var(--brand);color:#fff;width:100%;margin-top:12px}
 .note{font-size:10.5px;color:var(--muted);line-height:1.8;margin:12px 0 0}
 .fieldin{width:100%;height:48px;border:1px solid #dfe3f0;border-radius:14px;padding:0 13px;outline:none;font-size:13px}
+textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margin-top:10px;font-family:inherit;line-height:1.7}
 .mini{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
 .mini:last-child{border-bottom:0}
 .mini img{width:60px;height:60px;object-fit:contain;background:var(--soft);border-radius:14px;mix-blend-mode:multiply}
@@ -298,6 +299,25 @@ img{display:block;max-width:100%}
 .prefs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .pref{background:#f8f9fe;border:1px solid var(--line);border-radius:14px;padding:12px 6px;font-size:12px;font-weight:800;color:#4b5068}
 .pref.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ---------- reviews (آراء العملاء) ---------- */
+.rv-sum{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:14px 16px;box-shadow:0 14px 28px -18px rgba(var(--sh),.45)}
+.rv-avg{font-size:36px;font-weight:900;color:var(--brand);line-height:1}
+.rv-st{display:inline-flex;gap:2px;font-size:16px}
+.rv-st .on{color:#f5b800}
+.rv-st .off{color:#d5d9e8}
+.rv-cnt{font-size:11px;color:var(--muted);font-weight:700;margin-top:4px}
+.rv-sum .rv-btn{margin-inline-start:auto;display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;font-size:12px;font-weight:900;padding:10px 14px;border-radius:14px;box-shadow:0 10px 18px -10px rgba(var(--sh),.9);white-space:nowrap}
+.rv-row{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:12px 14px 6px;margin:0 -14px;scrollbar-width:none}
+.rv-row::-webkit-scrollbar{display:none}
+.rv-card{flex:0 0 250px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:22px;padding:13px 14px;box-shadow:0 14px 28px -18px rgba(var(--sh),.4)}
+.rv-card .rv-n{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:900}
+.rv-card .rv-st{font-size:13px}
+.rv-card p{margin:7px 0 0;font-size:12px;line-height:1.8;color:#3a3f5c;white-space:pre-wrap;word-break:break-word}
+.rv-pick{display:flex;justify-content:center;gap:6px;margin:6px 0 2px}
+.rv-pick button{font-size:36px;color:#d5d9e8;padding:2px}
+.rv-pick button.on{color:#f5b800}
+@media (min-width:640px){.rv-card{flex-basis:290px}}
 
 /* ---------- footer ---------- */
 .footer{margin-top:32px;background:var(--deep);color:#fff;border-radius:32px 32px 0 0;padding:26px 18px 22px;text-align:center}
@@ -460,6 +480,12 @@ img{display:block;max-width:100%}
       <div class="grid" id="gridNew"></div>
     </section>
 
+    <section class="sec" id="secRev" hidden>
+      <div class="sec-head"><div><h2><span class="sico o"><svg class="ic"><use href="#i-star"/></svg></span>آراء العملاء</h2><p>ماذا يقول من جرّب وَفِّرْهَا صَحّ</p></div></div>
+      <div class="rv-sum" id="revSum"></div>
+      <div class="rv-row" id="revRow"></div>
+    </section>
+
     <section class="sec">
       <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-check"/></svg></span>لماذا وَفِّرْهَا صَحّ؟</h2></div></div>
       <div class="why">
@@ -521,7 +547,7 @@ img{display:block;max-width:100%}
 ===================================================== */
 const CONFIG = {
   THEME: "navy",             // الألوان: "navy" (كحلي وذهبي) أو "emerald" (أخضر وذهبي) أو "violet" (بنفسجي)
-  API_BASE: "",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev
+  API_BASE: "",              // رابط الـWorker مثل: https://wafartha.yourname.workers.dev  (مطلوب لآراء العملاء)
   PRODUCTS_URL: "products.json",
   SHARE_URL: "",             // رابط التطبيق/البوت للمشاركة
   STORE_LOGO_DIR: "logos",   // مجلد صور المتاجر 3D: noon.png و amazon.png ...
@@ -1022,6 +1048,61 @@ function openPrefs() {
 }
 
 /* =====================================================
+   آراء العملاء عن المتجر
+===================================================== */
+let REV = null, revRating = 0;
+const starsHTML = n => `<span class="rv-st" aria-label="${n} من 5">${[1, 2, 3, 4, 5].map(i => `<span class="${i <= n ? "on" : "off"}">${ic("star", "f")}</span>`).join("")}</span>`;
+
+async function loadReviews() {
+  const sec = $("#secRev");
+  if (!CONFIG.API_BASE) { sec.hidden = true; return; }
+  try {
+    const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/reviews");
+    if (!r.ok) throw new Error("reviews");
+    REV = await r.json();
+    renderReviews();
+  } catch (e) { console.error(e); sec.hidden = true; }
+}
+
+function renderReviews() {
+  const sec = $("#secRev");
+  if (!REV) { sec.hidden = true; return; }
+  sec.hidden = false;
+  const n = Math.round(REV.avg || 0), has = REV.count > 0;
+  $("#revSum").innerHTML = `
+    <div><div class="rv-avg">${has ? esc(REV.avg) : "—"}</div></div>
+    <div>${starsHTML(n)}<div class="rv-cnt">${has ? esc(REV.count) + " رأي" : "كن أول من يقيّمنا"}</div></div>
+    <button class="rv-btn" data-act="rate">${ic("star", "f")}قيّم المتجر</button>`;
+  $("#revRow").innerHTML = (REV.reviews || []).filter(r => r.c).slice(0, 12).map(r =>
+    `<div class="rv-card"><div class="rv-n"><span>${esc(r.n)}</span>${starsHTML(r.r)}</div><p>${esc(r.c)}</p></div>`).join("");
+  $("#revRow").hidden = !$("#revRow").children.length;
+}
+
+function openRate() {
+  if (!CONFIG.API_BASE || !tg?.initData) return toast("افتح المتجر من داخل تلجرام لإضافة تقييمك");
+  revRating = 0;
+  openSheet(`${sheetHead("قيّم وَفِّرْهَا صَحّ")}
+    <p class="note" style="margin:0 0 6px;text-align:center">رأيك يساعدنا ويساعد غيرك على الاختيار.</p>
+    <div class="rv-pick">${[1, 2, 3, 4, 5].map(i => `<button data-act="rstar" data-id="${i}" aria-label="${i}">${ic("star", "f")}</button>`).join("")}</div>
+    <textarea id="rvText" class="fieldin" maxlength="300" placeholder="اكتب رأيك في المتجر (اختياري)"></textarea>
+    <button class="btn main" data-act="rate-save">إرسال التقييم</button>`);
+}
+
+async function saveRate() {
+  if (!(revRating >= 1)) return toast("اختر عدد النجوم أولًا");
+  try {
+    const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/review", {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ initData: tg.initData, rating: revRating, comment: $("#rvText")?.value || "" })
+    });
+    const d = await r.json();
+    if (!d.ok) throw new Error(d.error || "failed");
+    closeSheet(); toast("شكرًا لتقييمك 💜");
+    loadReviews();
+  } catch (e) { toast("تعذر إرسال التقييم، حاول لاحقًا"); }
+}
+
+/* =====================================================
    الإجراءات
 ===================================================== */
 function openLink(url) {
@@ -1083,6 +1164,9 @@ document.addEventListener("click", e => {
     LS.set("wsah_prefs_v2", [...document.querySelectorAll(".pref.on")].map(b => b.dataset.id));
     closeSheet(); renderHome(); return toast("تم حفظ تفضيلاتك");
   }
+  if (a === "rate") return openRate();
+  if (a === "rstar") { revRating = +id; document.querySelectorAll(".rv-pick button").forEach((b, i) => b.classList.toggle("on", i < revRating)); return; }
+  if (a === "rate-save") return saveRate();
   if (a === "search") return doSearch();
   if (a === "home" || a === "nav-home") return showHome();
   if (a === "nav-cats") return goCats();
@@ -1116,6 +1200,7 @@ $("#lq").addEventListener("input", e => { view.q = e.target.value; renderList();
       return;
     }
     renderHome();
+    loadReviews();
     await loadTrending();
     if (hotIds.length && !$("#home").hidden) renderHome();
   });
