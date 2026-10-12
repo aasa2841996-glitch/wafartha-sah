@@ -493,17 +493,30 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 @media(prefers-reduced-motion:reduce){.stores{animation:none;}}
 
 
-/* ===== بانر وفّرها صح: يغطي كامل مساحة الهيدر ===== */
+/* تصحيح نهائي: بانر أقصر ومتناسق مع عرض الشاشة */
 .header{
+  position:relative !important;
+  min-height:clamp(300px, 23vw, 430px) !important;
+  padding:12px clamp(14px,4vw,78px) 22px !important;
   background-image:
-    linear-gradient(115deg,rgba(168,13,69,.20),rgba(223,7,86,.18)),
+    linear-gradient(115deg,rgba(168,13,69,.04),rgba(223,7,86,.04)),
     url("hero-wafartha-sah%20(1).png") !important;
-  background-size:cover !important;
+  background-size:100% 100% !important;
   background-position:center center !important;
   background-repeat:no-repeat !important;
 }
-.header::after{opacity:.10}
-.header .wrap{position:relative;z-index:2}
+.header .wrap{max-width:none !important;width:100% !important;padding:0 !important;position:relative;z-index:2}
+.header .hrow{min-height:clamp(70px,8vw,112px) !important}
+.header .sbar{margin-top:clamp(10px,1.4vw,18px) !important}
+@media(max-width:899px){
+  .header{min-height:clamp(290px,60vw,400px) !important;padding:10px 14px 18px !important}
+  .header .hrow{min-height:82px !important}
+}
+@media(max-width:480px){
+  .header{min-height:300px !important}
+  .header .hrow{min-height:72px !important}
+  .header .sbar{margin-top:10px !important}
+}
 
 </style>
 </head>
