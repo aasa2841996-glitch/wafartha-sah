@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>وَفِّرْهَا صَحّ | اكتشف العروض وقارن الأسعار</title>
-<meta name="description" content="اكتشف عروض التسوق وقارن أسعار المنتجات بين المتاجر قبل الشراء مع وفّرها صح.">
+<meta name="description" content="اكتشف عروض التسوق وقارن أسعار المنتجات بين نون وأمازون وتيمو وشي إن وترنديول وعلي إكسبرس مع وفّرها صح.">
+<meta name="theme-color" content="#2b4fd8">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,6 +92,17 @@ img{display:block;max-width:100%}
 .mq span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.mq-track{animation:none}}
+
+/* ---------- daily offers prominent CTA ---------- */
+.daily-cta-wrap{margin-top:16px}
+.daily-cta{width:100%;min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-radius:20px;color:#fff;text-align:right;background:radial-gradient(80% 150% at 0% 0%,rgba(255,255,255,.2),transparent 60%),linear-gradient(110deg,#ff5b36,#ff2e63 60%,#e51d56);box-shadow:0 16px 28px -14px rgba(229,29,86,.6);transition:transform .15s,filter .15s}
+.daily-cta:active{transform:scale(.985);filter:brightness(.97)}
+.daily-cta .left{display:flex;align-items:center;gap:11px;min-width:0}
+.daily-cta .flame{width:40px;height:40px;flex:0 0 auto;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);font-size:22px}
+.daily-cta b{display:block;font-size:15px;font-weight:900;line-height:1.4}
+.daily-cta small{display:block;font-size:10.5px;opacity:.92;margin-top:2px}
+.daily-cta .go{width:32px;height:32px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:#e51d56;font-size:18px}
+@media(min-width:640px){.daily-cta-wrap{margin-top:20px}.daily-cta{padding:14px 20px}.daily-cta b{font-size:16px}}
 
 /* ---------- sections ---------- */
 .sec{margin-top:26px}
@@ -437,6 +449,13 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 
     <div class="mq" aria-hidden="true"><div class="mq-track" id="mqTrack"></div></div>
 
+    <div class="daily-cta-wrap">
+      <button class="daily-cta" data-act="nav-deals" aria-label="افتح عروض اليوم">
+        <span class="left"><span class="flame">🔥</span><span><b>🔥 عروض اليوم</b><small>أقوى العروض المختارة — اكتشفها قبل ما تنتهي</small></span></span>
+        <span class="go" aria-hidden="true">‹</span>
+      </button>
+    </div>
+
     <section class="sec">
       <div class="sec-head"><div><h2><span class="sico"><svg class="ic"><use href="#i-bag"/></svg></span>تسوّق من متاجرك</h2><p>اختر المتجر واستعرض المنتجات المتاحة</p></div></div>
       <div class="stores" id="storeStrip"></div>
@@ -501,7 +520,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
       <h3>وَفِّرْهَا صَحّ</h3>
       <p>لقيناها لك… ووفّرنا عليك البحث. تابعنا ليصلك كل عرض جديد أولًا بأول.</p>
       <div class="soc-row" id="socRow"></div>
-      <div class="fine">قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.<br>الأسعار والعروض قد تتغير في المتجر.<br>إصدار 5</div>
+      <div class="fine">قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.<br>الأسعار والعروض قد تتغير في المتجر.<br>إصدار 6</div>
     </footer>
   </main>
 </div>
@@ -548,7 +567,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 ===================================================== */
 const CONFIG = {
   THEME: "navy",             // الألوان: "navy" (كحلي وذهبي) أو "emerald" (أخضر وذهبي) أو "violet" (بنفسجي)
-  API_BASE: "https://blue-wind-40c9.aasa2841996.workers.dev", // رابط Cloudflare Worker لتتبع النقرات وواجهات API
+  API_BASE: "https://blue-wind-40c9.aasa2841996.workers.dev", // Cloudflare Worker لتتبع النقرات وتنبيهات السعر وواجهات API
   PRODUCTS_URL: "products.json",
   SHARE_URL: "",             // رابط التطبيق/البوت للمشاركة
   STORE_LOGO_DIR: "logos",   // مجلد صور المتاجر 3D: noon.png و amazon.png ...
@@ -785,11 +804,11 @@ function cardHTML(it) {
       ${it.discount ? `<span class="disc">-${it.discount}%</span>` : ""}
       ${isBest ? `<span class="best">${ic("crown")}الأرخص</span>` : ""}
       <button class="heart ${isSaved(it.id) ? "on" : ""}" data-act="save" data-id="${esc(it.id)}" aria-label="حفظ">${ic(isSaved(it.id) ? "heart-f" : "heart")}</button>
-      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" loading="lazy" onload="fitMedia(this)" onerror="this.style.opacity=.2">
+      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" loading="lazy" onload="fitMedia(this)" onerror="this.style.opacity=.15;this.alt='الصورة غير متاحة'">
     </div>
     <div class="body">
       <div class="ttl">${esc(it.title)}</div>
-      <div class="price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}</div>
+      <div class="price"><b>${nf(it.price)}</b><i>ر.س</i></div>
       ${saving > 0 ? `<span class="saving">وفّرت ${nf(saving)} ر.س</span>` : ""}
       ${n > 1 ? `<div class="cmp"><span>${ic("scale")} ${n} متاجر</span><span class="cmp-logos">${offers.slice(0, 4).map(o => store3d(o.sk, "xs")).join("")}</span></div>` : ""}
       <div class="cta">${n > 1 ? "قارن واشترِ" : "شاهد العرض"}${ic("chev")}</div>
@@ -801,7 +820,7 @@ function cmpCardHTML(it) {
   const offers = offersOf(it), best = offers[0], worst = offers[offers.length - 1], save = worst.price - best.price;
   return `
   <article class="cc" data-act="open" data-id="${esc(best.id)}">
-    <div class="cc-img"><img src="${esc(safeUrl(best.image))}" alt="${esc(best.title)}" loading="lazy" onerror="this.style.opacity=.2"></div>
+    <div class="cc-img"><img src="${esc(safeUrl(best.image))}" alt="${esc(best.title)}" loading="lazy" onerror="this.style.opacity=.15;this.alt='الصورة غير متاحة'"></div>
     <div class="cc-b">
       <div class="cc-t">${esc(best.title)}</div>
       ${offers.slice(0, 3).map((o, i) => `<div class="cc-r ${i === 0 ? "top" : ""}">${store3d(o.sk, "xs")}<span class="n">${esc(STORES[o.sk].ar)}${i === 0 ? ic("crown") : ""}</span><b>${nf(o.price)} ر.س</b></div>`).join("")}
@@ -835,9 +854,9 @@ function heroHTML(live) {
     <article class="hslide" data-act="open" data-id="${esc(it.id)}">
       <div class="hs-t"><span class="hs-tag">${ic("flame-o")}عرض اليوم</span>
         <h3>${esc(it.title)}</h3>
-        <div class="hs-price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}${it.discount ? `<em>-${it.discount}%</em>` : ""}</div>
+        <div class="hs-price"><b>${nf(it.price)}</b><i>ر.س</i>${it.discount ? `<em>-${it.discount}%</em>` : ""}</div>
         <span class="hs-btn">اكتشف العرض${ic("chev")}</span></div>
-      <div class="hs-img">${it.sk !== "other" || it.store ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}<img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
+      <div class="hs-img">${it.sk !== "other" || it.store ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}<img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.15;this.alt='الصورة غير متاحة'"></div>
     </article>`).join("");
 }
 
@@ -887,7 +906,10 @@ function renderHome() {
   fillRow("#secFeat", "#rowFeat", listing(sortItems(live.filter(x => x.featured), "best")));
   fillRow("#secHot", "#rowHot", listing(hotIds.map(id => byId.get(id)).filter(x => x && !x.expired)));
   const prefs = LS.get("wsah_prefs_v2", []);
-  fillRow("#secPers", "#rowPers", prefs.length ? listing(sortItems(live.filter(x => prefs.includes(x.cat)), "best")) : []);
+  const viewedCats = LS.get("wsah_viewed_cats_v1", []);
+  const interestCats = [...new Set([...prefs, ...viewedCats])];
+  const personalized = interestCats.length ? live.filter(x => interestCats.includes(x.cat)) : [];
+  fillRow("#secPers", "#rowPers", personalized.length ? listing(sortItems(personalized, "best")) : []);
 
   $("#gridNew").innerHTML = gridHTML(listing(sortItems(live, "new")).slice(0, 8), ["قريبًا", "نجهّز لك أفضل المنتجات والعروض."]);
 
@@ -973,6 +995,9 @@ function spark(pts) {
 
 function openProduct(id) {
   const it = byId.get(id); if (!it) return;
+  // حفظ آخر الفئات التي تفاعل معها المستخدم لتخصيص الاقتراحات على هذا الجهاز فقط
+  const viewedCats = LS.get("wsah_viewed_cats_v1", []);
+  LS.set("wsah_viewed_cats_v1", [it.cat, ...viewedCats.filter(c => c !== it.cat)].slice(0, 5));
   const offers = offersOf(it), best = offers[0];
   const rows = offers.length > 1 ? `
     <div class="offers"><h4>${ic("scale")}مقارنة الأسعار بين المتاجر</h4>
@@ -989,9 +1014,9 @@ function openProduct(id) {
   openSheet(`
     ${sheetHead("تفاصيل المنتج")}
     <div class="pimg"><span class="store-tag">${chip(it.sk, "md", it.store)}</span>
-      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onload="fitMedia(this)" onerror="this.style.opacity=.2"></div>
+      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onload="fitMedia(this)" onerror="this.style.opacity=.15;this.alt='الصورة غير متاحة'"></div>
     <div class="p-title">${esc(it.title)}</div>
-    <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.old ? `<s>${nf(it.old)}</s><span class="pct">-${it.discount}%</span>` : ""}</div>
+    <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.discount ? `<span class="pct">-${it.discount}%</span>` : ""}</div>
     ${rows}
     <div id="histBox"></div>
     <div class="acts">
@@ -1012,7 +1037,7 @@ function openWatch(id) {
   openSheet(`
     ${sheetHead("راقب سعر المنتج")}
     <div class="mini"><img src="${esc(safeUrl(it.image))}" alt=""><div class="i">${esc(it.title)}<b>السعر الحالي: ${nf(it.price)} ر.س</b></div></div>
-    <p class="note" style="margin:10px 0">حدد السعر الذي تريد الوصول إليه وسنرسل لك رسالة في تلجرام عند نزوله.</p>
+    <p class="note" style="margin:10px 0">حدد السعر الذي تريد الوصول إليه وسنرسل لك رسالة في تلجرام عند وصوله للسعر الذي تحدده. يجب فتح البوت والضغط على Start لتفعيل الرسائل.</p>
     <input id="target" class="fieldin" type="number" inputmode="decimal" min="1" placeholder="مثلاً: ${Math.max(1, Math.floor(it.price * 0.9))}">
     <button class="btn main" data-act="watch-save" data-id="${esc(it.id)}">${ic("bell")}حفظ التنبيه</button>`);
 }
