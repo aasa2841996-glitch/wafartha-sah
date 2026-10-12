@@ -113,43 +113,41 @@ img{display:block;max-width:100%}
 .s3d.sm{width:38px;height:38px;flex:0 0 auto}
 .s3d.xs{width:22px;height:22px;flex:0 0 auto;filter:drop-shadow(0 2px 3px rgba(var(--sh),.22))}
 
-/* ---------- moving store ticker ---------- */
-.stores{display:block;overflow:hidden;width:100%;padding:3px 0 12px;direction:ltr;mask-image:linear-gradient(to right,transparent,black 3%,black 97%,transparent)}
-.stores-track{display:flex;align-items:stretch;gap:12px;width:max-content;animation:storesTicker 32s linear infinite;will-change:transform}
-.stores:hover .stores-track,.stores:focus-within .stores-track{animation-play-state:paused}
-.store-btn{flex:0 0 190px;width:190px;min-height:210px;background:#fff;border:1px solid var(--line);border-radius:28px;padding:14px 10px 13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;direction:rtl;
+/* ---------- stores ---------- */
+.stores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (min-width:640px){.stores{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.store-btn{background:#fff;border:1px solid var(--line);border-radius:24px;padding:12px 8px 12px;display:flex;flex-direction:column;align-items:center;gap:5px;
   box-shadow:0 14px 26px -16px rgba(var(--sh),.45);transition:transform .15s}
 .store-btn:active{transform:scale(.96)}
 @media (hover:hover){.store-btn:hover{transform:translateY(-3px)}}
-.store-btn .s3d{width:108px;height:108px;flex:0 0 auto}
-.store-btn small{font-size:14px;font-weight:900}
-.store-btn em{font-style:normal;font-size:11px;color:var(--muted);font-weight:700;margin-top:-2px}
-@keyframes storesTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(max-width:600px){.stores-track{gap:10px;animation-duration:26s}.store-btn{flex-basis:148px;width:148px;min-height:174px;border-radius:22px;padding:11px 8px}.store-btn .s3d{width:82px;height:82px}.store-btn small{font-size:12.5px}.store-btn em{font-size:10px}}
-@media (prefers-reduced-motion:reduce){.stores-track{animation:none;overflow-x:auto}}
+.store-btn .s3d{width:min(84px,100%);height:auto}
+.store-btn small{font-size:12.5px;font-weight:900}
+.store-btn em{font-style:normal;font-size:10px;color:var(--muted);font-weight:700;margin-top:-2px}
 
-/* ---------- categories band (مثل المرجع) ---------- */
-.band{background:var(--band);border-radius:28px;padding:16px 0 16px;position:relative;overflow:hidden}
+/* ---------- أقسام 3D بخلفية شفافة ---------- */
+.band{background:var(--band);border-radius:28px;padding:16px 0 18px;position:relative;overflow:hidden}
 .band-head{display:flex;align-items:center;justify-content:space-between;padding:0 16px 12px;gap:10px}
 .band-head h2{margin:0;font-size:18px;font-weight:900}
 .arrows{display:flex;gap:7px}
 .arr{width:34px;height:34px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 8px 16px -8px rgba(var(--sh),.8)}
 .arr:active{transform:scale(.92)}
-.ctrack{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 16px 8px;scrollbar-width:none}
+.ctrack{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x proximity;padding:8px 16px 14px;scrollbar-width:none;align-items:stretch}
 .ctrack::-webkit-scrollbar{display:none}
-.ctab{flex:0 0 134px;scroll-snap-align:start;position:relative;background:#fff;border-radius:24px;padding:14px 8px 13px;text-align:center;box-shadow:0 12px 22px -14px rgba(var(--sh),.55);transition:transform .15s}
-.ctab:active{transform:scale(.96)}
-@media (hover:hover){.ctab:hover{transform:translateY(-3px)}}
-.ctab::before,.ctab::after{content:"+";position:absolute;color:var(--brand2);opacity:.28;font-weight:900;font-size:16px;line-height:1}
-.ctab::before{top:9px;inset-inline-start:11px}
-.ctab::after{bottom:34px;inset-inline-end:11px}
-.cimg{height:100px;display:flex;align-items:center;justify-content:center}
-.cimg img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 10px 8px rgba(var(--sh),.2))}
-.cico{width:66px;height:66px;border-radius:22px;background:linear-gradient(145deg,#fff,var(--soft));color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:31px;
-  box-shadow:inset 0 -8px 14px rgba(var(--sh),.1),inset 0 3px 0 #fff,0 12px 16px -10px rgba(var(--sh),.55)}
+/* إزالة البوكس الأبيض خلف كل صورة */
+.ctab{flex:0 0 134px;scroll-snap-align:start;position:relative;background:transparent!important;border:0!important;border-radius:0;padding:8px 6px 10px;text-align:center;box-shadow:none!important;overflow:visible;transition:transform .25s ease;isolation:isolate}
+.ctab:active{transform:scale(.97)}
+@media (hover:hover){.ctab:hover{transform:translateY(-5px)}}
+.ctab::before,.ctab::after{content:"+";position:absolute;color:var(--brand2);opacity:.34;font-weight:900;font-size:16px;line-height:1;pointer-events:none}
+.ctab::before{top:5px;inset-inline-start:8px}
+.ctab::after{top:44%;inset-inline-end:7px}
+.cimg{height:112px;display:flex;align-items:center;justify-content:center;overflow:visible;position:relative}
+.cimg img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;background:transparent!important;border:0!important;border-radius:0!important;mix-blend-mode:multiply;transform:translateY(-4px);filter:drop-shadow(0 15px 9px rgba(var(--sh),.24));transition:transform .3s ease,filter .3s ease}
+@media (hover:hover){.ctab:hover .cimg img{transform:translateY(-10px) scale(1.045);filter:drop-shadow(0 21px 12px rgba(var(--sh),.3))}}
+.cico{width:66px;height:66px;border-radius:22px;background:linear-gradient(145deg,#fff,var(--soft));color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:31px;box-shadow:0 14px 20px -12px rgba(var(--sh),.35)}
 .cname{margin-top:8px;font-size:12.5px;font-weight:800;line-height:1.4}
 .cnum{font-size:10px;color:var(--muted);font-weight:700}
-@media (min-width:640px){.ctab{flex-basis:160px}.cimg{height:116px}}
+@media (min-width:640px){.ctab{flex-basis:160px}.cimg{height:138px}}
+@media (max-width:420px){.ctab{flex-basis:125px}.cimg{height:102px}}
 
 /* ---------- product grid & card ---------- */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
@@ -982,12 +980,10 @@ function renderHome() {
   $("#heroTrack").innerHTML = heroHTML(live); setupHero();
   $("#mqTrack").innerHTML = [...MARQUEE, ...MARQUEE, ...MARQUEE, ...MARQUEE].map(t => `<span>${esc(t)}</span>`).join("");
 
-  const storeCards = Object.keys(STORES).filter(k => k !== "other").map(k => {
+  $("#storeStrip").innerHTML = Object.keys(STORES).filter(k => k !== "other").map(k => {
     const n = live.filter(x => x.sk === k).length;
     return `<button class="store-btn" data-act="store" data-id="${k}">${store3d(k)}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "استعرض المنتجات"}</em></button>`;
   }).join("");
-  // Duplicate the cards to create a seamless, continuously moving ticker.
-  $("#storeStrip").innerHTML = `<div class="stores-track">${storeCards}${storeCards}</div>`;
 
   $("#cats").innerHTML = CATS.map(c => {
     const n = c.id === "deals" ? live.filter(x => x.cat === "deals" || x.discount >= 25).length : live.filter(x => x.cat === c.id).length;
@@ -1202,33 +1198,27 @@ function renderReviews() {
 }
 
 function openRate() {
-  if (!CONFIG.API_BASE) return toast("خدمة التقييم غير متاحة حاليًا");
+  if (!CONFIG.API_BASE || !tg?.initData) return toast("افتح المتجر من داخل تلجرام لإضافة تقييمك");
   revRating = 0;
   openSheet(`${sheetHead("قيّم وَفِّرْهَا صَحّ")}
-    <p class="note" style="margin:0 0 6px;text-align:center">اختر عدد النجوم واكتب رأيك مباشرة هنا.</p>
-    <div class="rv-pick" role="group" aria-label="اختر تقييمك من نجمة إلى خمس نجوم">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-act="rstar" data-id="${i}" aria-label="${i} نجوم">${ic("star", "f")}</button>`).join("")}</div>
-    <input id="rvName" class="fieldin" maxlength="40" placeholder="اسمك (اختياري)" autocomplete="name" style="margin-top:8px">
-    <textarea id="rvText" class="fieldin" maxlength="300" placeholder="اكتب رأيك في المتجر" required></textarea>
-    <input id="rvWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0" value="">
+    <p class="note" style="margin:0 0 6px;text-align:center">رأيك يساعدنا ويساعد غيرك على الاختيار.</p>
+    <div class="rv-pick">${[1, 2, 3, 4, 5].map(i => `<button data-act="rstar" data-id="${i}" aria-label="${i}">${ic("star", "f")}</button>`).join("")}</div>
+    <textarea id="rvText" class="fieldin" maxlength="300" placeholder="اكتب رأيك في المتجر (اختياري)"></textarea>
     <button class="btn main" data-act="rate-save">إرسال التقييم</button>`);
 }
 
 async function saveRate() {
   if (!(revRating >= 1)) return toast("اختر عدد النجوم أولًا");
-  const comment = $("#rvText")?.value.trim() || "";
-  const name = $("#rvName")?.value.trim() || "";
-  if (!comment) return toast("اكتب رأيك قبل الإرسال");
-  if (( $("#rvWebsite")?.value || "" ).trim()) return;
   try {
     const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/review", {
       method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ initData: tg?.initData || "", name, rating: revRating, comment, website: $("#rvWebsite")?.value || "" })
+      body: JSON.stringify({ initData: tg.initData, rating: revRating, comment: $("#rvText")?.value || "" })
     });
     const d = await r.json();
-    if (!r.ok || !d.ok) throw new Error(d.error || "failed");
+    if (!d.ok) throw new Error(d.error || "failed");
     closeSheet(); toast("شكرًا لتقييمك 💜");
-    await loadReviews();
-  } catch (e) { toast(e.message || "تعذر إرسال التقييم، حاول لاحقًا"); }
+    loadReviews();
+  } catch (e) { toast("تعذر إرسال التقييم، حاول لاحقًا"); }
 }
 
 /* =====================================================
