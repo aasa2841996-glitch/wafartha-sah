@@ -1196,27 +1196,33 @@ function renderReviews() {
 }
 
 function openRate() {
-  if (!CONFIG.API_BASE || !tg?.initData) return toast("افتح المتجر من داخل تلجرام لإضافة تقييمك");
+  if (!CONFIG.API_BASE) return toast("خدمة التقييم غير متاحة حاليًا");
   revRating = 0;
   openSheet(`${sheetHead("قيّم وَفِّرْهَا صَحّ")}
-    <p class="note" style="margin:0 0 6px;text-align:center">رأيك يساعدنا ويساعد غيرك على الاختيار.</p>
-    <div class="rv-pick">${[1, 2, 3, 4, 5].map(i => `<button data-act="rstar" data-id="${i}" aria-label="${i}">${ic("star", "f")}</button>`).join("")}</div>
-    <textarea id="rvText" class="fieldin" maxlength="300" placeholder="اكتب رأيك في المتجر (اختياري)"></textarea>
+    <p class="note" style="margin:0 0 6px;text-align:center">اختر عدد النجوم واكتب رأيك مباشرة هنا.</p>
+    <div class="rv-pick" role="group" aria-label="اختر تقييمك من نجمة إلى خمس نجوم">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-act="rstar" data-id="${i}" aria-label="${i} نجوم">${ic("star", "f")}</button>`).join("")}</div>
+    <input id="rvName" class="fieldin" maxlength="40" placeholder="اسمك (اختياري)" autocomplete="name" style="margin-top:8px">
+    <textarea id="rvText" class="fieldin" maxlength="300" placeholder="اكتب رأيك في المتجر" required></textarea>
+    <input id="rvWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0" value="">
     <button class="btn main" data-act="rate-save">إرسال التقييم</button>`);
 }
 
 async function saveRate() {
   if (!(revRating >= 1)) return toast("اختر عدد النجوم أولًا");
+  const comment = $("#rvText")?.value.trim() || "";
+  const name = $("#rvName")?.value.trim() || "";
+  if (!comment) return toast("اكتب رأيك قبل الإرسال");
+  if (( $("#rvWebsite")?.value || "" ).trim()) return;
   try {
     const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/review", {
       method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ initData: tg.initData, rating: revRating, comment: $("#rvText")?.value || "" })
+      body: JSON.stringify({ initData: tg?.initData || "", name, rating: revRating, comment, website: $("#rvWebsite")?.value || "" })
     });
     const d = await r.json();
-    if (!d.ok) throw new Error(d.error || "failed");
+    if (!r.ok || !d.ok) throw new Error(d.error || "failed");
     closeSheet(); toast("شكرًا لتقييمك 💜");
-    loadReviews();
-  } catch (e) { toast("تعذر إرسال التقييم، حاول لاحقًا"); }
+    await loadReviews();
+  } catch (e) { toast(e.message || "تعذر إرسال التقييم، حاول لاحقًا"); }
 }
 
 /* =====================================================
