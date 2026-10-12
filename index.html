@@ -379,20 +379,6 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 .sgo,.cta,.arr{background:linear-gradient(115deg,#ff7655 0%,#ff315f 52%,#df0756 100%);box-shadow:0 12px 22px -10px rgba(210,10,75,.48)}
 .hero-track{box-shadow:0 22px 40px -22px rgba(210,10,75,.42)}
 .hslide{background:radial-gradient(80% 120% at 0% 0%,rgba(255,255,255,.24),transparent 60%),radial-gradient(60% 90% at 100% 100%,rgba(255,190,120,.24),transparent 60%),linear-gradient(115deg,#ff7655 0%,#ff315f 52%,#df0756 100%)}
-
-/* Main branded banner replaces the logo and search area at the top */
-.header.header-banner{padding:0;background:#fff;box-shadow:none}
-.top-hero-banner{position:relative;width:100%;overflow:hidden;cursor:pointer;line-height:0;background:#fff}
-.top-hero-banner>img{display:block;width:100%;height:clamp(190px,28.7vw,390px);object-fit:cover;object-position:center}
-.banner-actions{position:absolute;left:clamp(12px,4vw,78px);bottom:14px;display:flex;gap:10px;line-height:normal}
-.banner-actions .hact-b{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.35)}
-.banner-actions .ib{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.5);backdrop-filter:blur(8px)}
-@media(max-width:600px){.top-hero-banner>img{height:170px;object-position:center}.banner-actions{left:10px;bottom:8px;gap:6px}.banner-actions .hact-b{font-size:11px}.banner-actions .ib{width:34px;height:34px}}
-
-/* Brand hero banner: وفّرها صح */
-.hslide.hslide-brand{padding:0;min-height:clamp(170px,27vw,330px);background:#ff8a9c url("hero-wafartha-sah.png") center/cover no-repeat;cursor:pointer}
-.hslide.hslide-brand::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.03),transparent 55%);pointer-events:none}
-@media(max-width:520px){.hslide.hslide-brand{min-height:155px;background-position:center}.hero-track{border-radius:20px}}
 .hs-tag{background:#fff0b7;color:#922344}
 .hs-btn{color:#d90c50}
 .hdots i.on{background:#ef185b}
@@ -575,12 +561,22 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
     <span class="t2"><svg class="ic"><use href="#i-flame-o"/></svg>وفّرها صح — اكتشف العرض قبل ما تشتري</span>
   </div></div>
 
-  <header class="header header-banner">
-    <div class="top-hero-banner" role="button" tabindex="0" data-act="nav-cats" aria-label="تصفح عروض وفّرها صح">
-      <img src="hero-wafartha-sah.png" alt="وفّرها صح — اكتشف أفضل العروض وقارن الأسعار" fetchpriority="high">
-      <div class="banner-actions">
-        <button class="hact-b" data-act="prefs" aria-label="تفضيلاتي"><span class="ib"><svg class="ic"><use href="#i-user"/></svg></span>تفضيلاتي</button>
-        <button class="hact-b" data-act="saved" aria-label="المفضلة"><span class="ib"><svg class="ic"><use href="#i-heart"/></svg><i class="badge" data-badge hidden>0</i></span>المفضلة</button>
+  <header class="header">
+    <div class="wrap">
+      <div class="hrow">
+        <div class="logo">
+          <span class="logo-mark"><svg class="ic"><use href="#i-bag"/></svg></span>
+          <div><h1 class="brand">وَفِّرْهَا صَحّ</h1><p class="tagline">العرض الصح في المكان الصح</p></div>
+        </div>
+        <div class="hact">
+          <button class="hact-b" data-act="prefs" aria-label="تفضيلاتي"><span class="ib"><svg class="ic"><use href="#i-user"/></svg></span>تفضيلاتي</button>
+          <button class="hact-b" data-act="saved" aria-label="المفضلة"><span class="ib"><svg class="ic"><use href="#i-heart"/></svg><i class="badge" data-badge hidden>0</i></span>المفضلة</button>
+        </div>
+      </div>
+      <div class="sbar">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="ابحث عن جوال، سماعة، عطر..." autocomplete="off" enterkeyhint="search">
+        <button class="sgo" data-act="search">ابحث الآن</button>
       </div>
     </div>
   </header>
