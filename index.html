@@ -493,17 +493,17 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 @media(prefers-reduced-motion:reduce){.stores{animation:none;}}
 
 
-/* بانر وفّرها صح أعلى الصفحة */
-.brand-banner{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:18px}
-.brand-banner img{display:block;width:100%;height:auto;max-height:170px;object-fit:contain;border-radius:18px}
-@media(max-width:520px){
-  .header{padding-top:12px}
-  .header .hrow{align-items:center;gap:8px}
-  .brand-banner img{max-height:105px}
-  .hact{gap:6px}
-  .ib{width:39px;height:39px}
-  .hact-b{font-size:9px}
+/* ===== بانر وفّرها صح: يغطي كامل مساحة الهيدر ===== */
+.header{
+  background-image:
+    linear-gradient(115deg,rgba(168,13,69,.20),rgba(223,7,86,.18)),
+    url("hero-wafartha-sah%20(1).png") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
 }
+.header::after{opacity:.10}
+.header .wrap{position:relative;z-index:2}
 
 </style>
 </head>
@@ -577,8 +577,9 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   <header class="header">
     <div class="wrap">
       <div class="hrow">
-        <div class="brand-banner">
-          <img src="hero-wafartha-sah%20(1).png" alt="وفّرها صح — اكتشف أفضل العروض">
+        <div class="logo">
+          <span class="logo-mark"><svg class="ic"><use href="#i-bag"/></svg></span>
+          <div><h1 class="brand">وَفِّرْهَا صَحّ</h1><p class="tagline">العرض الصح في المكان الصح</p></div>
         </div>
         <div class="hact">
           <button class="hact-b" data-act="prefs" aria-label="تفضيلاتي"><span class="ib"><svg class="ic"><use href="#i-user"/></svg></span>تفضيلاتي</button>
