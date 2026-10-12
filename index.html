@@ -147,16 +147,16 @@ img{display:block;max-width:100%}
 @media (min-width:640px){.ctab{flex-basis:160px}.cimg{height:116px}}
 
 /* ---------- product grid & card ---------- */
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
-.hrow2{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 14px 14px;margin:0 -14px;scrollbar-width:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.hrow2{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 14px 14px;margin:0 -14px;scrollbar-width:none}
 .hrow2::-webkit-scrollbar{display:none}
 .hrow2 .card{flex:0 0 168px;scroll-snap-align:start}
 .card{position:relative;background:#fff;border-radius:24px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;min-width:0;
   border:1px solid var(--line);box-shadow:0 14px 28px -16px rgba(var(--sh),.4);transition:transform .18s ease,box-shadow .18s ease}
 .card:active{transform:scale(.985)}
 @media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 22px 38px -16px rgba(var(--sh),.5)}.card:hover .media>img{transform:scale(1.045)}}
-.media{position:relative;aspect-ratio:1/1;background:radial-gradient(120% 100% at 50% 0%,#fff 0%,var(--soft) 100%)}
-.media>img{width:100%;height:100%;object-fit:contain;padding:18px;mix-blend-mode:multiply;transition:transform .3s ease}
+.media{position:relative;aspect-ratio:4/5;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%,#fff 0%,var(--soft) 100%)}
+.media>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
 .store-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:2;filter:drop-shadow(0 3px 8px rgba(20,16,40,.22))}
 .disc{position:absolute;top:10px;inset-inline-end:10px;z-index:2;background:linear-gradient(135deg,#ff5a36,#ff2e63);color:#fff;font-size:11px;font-weight:900;padding:5px 9px;border-radius:999px;box-shadow:0 6px 12px -4px rgba(255,60,80,.5)}
 .best{position:absolute;bottom:10px;inset-inline-start:10px;z-index:2;display:inline-flex;align-items:center;gap:4px;background:var(--deep);color:#fff;font-size:9.5px;font-weight:800;padding:4px 9px;border-radius:999px}
@@ -179,7 +179,7 @@ img{display:block;max-width:100%}
 .cmp+.cta{margin-top:0}
 .grid.rows{grid-template-columns:1fr}
 .rows .card{flex-direction:row}
-.rows .media{flex:0 0 138px;aspect-ratio:auto;min-height:150px}
+.rows .media{flex:0 0 138px;align-self:flex-start}
 .rows .ttl{min-height:0}
 .sk{background:linear-gradient(90deg,#e8ebf5 25%,#f5f6fb 37%,#e8ebf5 63%);background-size:400% 100%;animation:sk 1.3s infinite;border-radius:var(--r);min-height:260px}
 @keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
@@ -257,8 +257,8 @@ img{display:block;max-width:100%}
 .sh-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .sh-head h3{margin:0;font-size:17px;font-weight:900}
 .x{width:36px;height:36px;border-radius:50%;background:#f0f2f8;color:#555b75;display:flex;align-items:center;justify-content:center;font-size:18px}
-.pimg{position:relative;aspect-ratio:4/3;background:radial-gradient(120% 100% at 50% 0%,#fff,var(--soft));border-radius:20px;overflow:hidden}
-.pimg>img{width:100%;height:100%;object-fit:contain;padding:14px;mix-blend-mode:multiply}
+.pimg{position:relative;aspect-ratio:1/1;background:radial-gradient(120% 100% at 50% 0%,#fff,var(--soft));border-radius:20px;overflow:hidden}
+.pimg>img{width:100%;height:100%;object-fit:cover;display:block}
 .pimg .store-tag{top:10px;inset-inline-start:10px}
 .p-title{font-size:15px;font-weight:800;line-height:1.7;margin:12px 0 4px}
 .p-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -610,6 +610,13 @@ window.nextSrc = function (img) {
   const list = (img.dataset.s || "").split("|"), i = (+img.dataset.i || 0) + 1;
   if (i < list.length) { img.dataset.i = i; img.src = list[i]; } else img.outerHTML = img.dataset.f || "";
 };
+/* يضبط صندوق الصورة على أبعاد الصورة نفسها (مع حدّ أدنى وأقصى حتى لا تتشوه الشبكة) */
+window.fitMedia = function (img) {
+  const w = img.naturalWidth, h = img.naturalHeight, box = img.parentElement;
+  if (!w || !h || !box) return;
+  const max = box.classList.contains("pimg") ? 1.4 : 1.25;
+  box.style.aspectRatio = Math.min(Math.max(w / h, 0.7), max).toFixed(3);
+};
 const IMG_V = "5";   // غيّر الرقم عند تحديث الصور لإجبار المتصفح على تحميلها من جديد
 const imgChain = (list0, alt, fallback) => { const list = list0.map(u => u + "?v=" + IMG_V); return `<img src="${esc(list[0])}" alt="${esc(alt)}" loading="lazy" data-s="${esc(list.join("|"))}" data-i="0" data-f="${esc(fallback)}" onerror="nextSrc(this)">`; };
 const LS = {
@@ -777,7 +784,7 @@ function cardHTML(it) {
       ${it.discount ? `<span class="disc">-${it.discount}%</span>` : ""}
       ${isBest ? `<span class="best">${ic("crown")}الأرخص</span>` : ""}
       <button class="heart ${isSaved(it.id) ? "on" : ""}" data-act="save" data-id="${esc(it.id)}" aria-label="حفظ">${ic(isSaved(it.id) ? "heart-f" : "heart")}</button>
-      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" loading="lazy" onerror="this.style.opacity=.2">
+      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" loading="lazy" onload="fitMedia(this)" onerror="this.style.opacity=.2">
     </div>
     <div class="body">
       <div class="ttl">${esc(it.title)}</div>
@@ -981,7 +988,7 @@ function openProduct(id) {
   openSheet(`
     ${sheetHead("تفاصيل المنتج")}
     <div class="pimg"><span class="store-tag">${chip(it.sk, "md", it.store)}</span>
-      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
+      <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onload="fitMedia(this)" onerror="this.style.opacity=.2"></div>
     <div class="p-title">${esc(it.title)}</div>
     <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.old ? `<s>${nf(it.old)}</s><span class="pct">-${it.discount}%</span>` : ""}</div>
     ${rows}
