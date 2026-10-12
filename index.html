@@ -576,6 +576,52 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   .header .sbar>.ic{font-size:20px;margin-inline-start:6px}
 }
 
+
+/* ===== توسيع محتوى المتجر كامل الشاشة: عرض اليوم والأقسام ===== */
+.wrap{
+  width:100% !important;
+  max-width:none !important;
+  padding-left:clamp(14px, 3.2vw, 58px) !important;
+  padding-right:clamp(14px, 3.2vw, 58px) !important;
+  box-sizing:border-box !important;
+}
+.topbar .wrap{padding-left:clamp(14px, 3.2vw, 58px) !important;padding-right:clamp(14px, 3.2vw, 58px) !important}
+.header .wrap{padding-left:0 !important;padding-right:0 !important}
+
+/* بطاقة عرض اليوم تمتد بعرض المحتوى وتكبر بشكل متوازن */
+.hero{width:100%;margin-top:clamp(14px, 1.8vw, 26px)}
+.hero-track{width:100%;border-radius:clamp(18px, 2vw, 30px)}
+.hslide{
+  min-height:clamp(260px, 25vw, 390px);
+  padding:clamp(22px, 3.5vw, 48px);
+  gap:clamp(18px, 3vw, 42px);
+  box-sizing:border-box;
+}
+.hs-t{gap:clamp(10px,1.3vw,18px)}
+.hs-t h3{font-size:clamp(18px, 2vw, 30px);line-height:1.5}
+.hs-t p{font-size:clamp(12px,1.15vw,16px)}
+.hs-price b{font-size:clamp(30px,3vw,46px)}
+.hs-img{flex-basis:clamp(150px, 22vw, 320px);max-width:clamp(150px, 22vw, 320px);border-radius:clamp(18px,2vw,30px)}
+.hs-logos{flex-basis:clamp(150px,22vw,320px);max-width:clamp(150px,22vw,320px);height:clamp(130px,15vw,220px)}
+.hs-logos .s3d{width:clamp(64px,7vw,105px);height:clamp(64px,7vw,105px)}
+.hs-logos .s3d:nth-child(2){width:clamp(76px,8vw,120px);height:clamp(76px,8vw,120px)}
+
+/* شرائط الأقسام وبطاقات المتاجر تستخدم عرض الشاشة بدل حد 1000px */
+.sec{width:100%;box-sizing:border-box}
+.mq{width:100%;box-sizing:border-box}
+.stores,.store-grid,.cats,.category-grid,.product-grid,.cards-row{
+  max-width:none;
+}
+@media(max-width:700px){
+  .wrap{padding-left:12px !important;padding-right:12px !important}
+  .header .wrap{padding-left:0 !important;padding-right:0 !important}
+  .hslide{min-height:245px;padding:18px 14px;gap:12px}
+  .hs-t h3{font-size:16px}
+  .hs-img{flex-basis:34%;max-width:150px}
+  .hs-logos{flex-basis:34%;max-width:150px}
+  .hs-price b{font-size:27px}
+}
+
 </style>
 </head>
 <body>
