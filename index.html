@@ -613,6 +613,36 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
       <div class="hrow2" id="rowDeals"></div>
     </section>
 
+    <section class="sec" id="secUnder50" hidden>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-zap"/></svg></span>منتجات بأقل من 50 ريال</h2><p>خيارات اقتصادية تستحق الاكتشاف</p></div><button class="more" data-act="under50">عرض الكل<svg class="ic"><use href="#i-chev"/></svg></button></div>
+      <div class="hrow2" id="rowUnder50"></div>
+    </section>
+
+    <section class="sec" id="sec50to100" hidden>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-zap"/></svg></span>منتجات من 50 إلى 100 ريال</h2><p>اختيارات عملية بميزانية بسيطة</p></div><button class="more" data-act="priceband" data-id="50to100">عرض الكل<svg class="ic"><use href="#i-chev"/></svg></button></div>
+      <div class="hrow2" id="row50to100"></div>
+    </section>
+
+    <section class="sec" id="sec100to500" hidden>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-zap"/></svg></span>منتجات من 100 إلى 500 ريال</h2><p>توازن بين السعر والقيمة</p></div><button class="more" data-act="priceband" data-id="100to500">عرض الكل<svg class="ic"><use href="#i-chev"/></svg></button></div>
+      <div class="hrow2" id="row100to500"></div>
+    </section>
+
+    <section class="sec" id="sec500to1000" hidden>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-zap"/></svg></span>منتجات من 500 إلى 1000 ريال</h2><p>خيارات متوسطة السعر</p></div><button class="more" data-act="priceband" data-id="500to1000">عرض الكل<svg class="ic"><use href="#i-chev"/></svg></button></div>
+      <div class="hrow2" id="row500to1000"></div>
+    </section>
+
+    <section class="sec" id="sec1000to5000" hidden>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-zap"/></svg></span>منتجات من 1000 إلى 5000 ريال</h2><p>أجهزة ومشتريات بقيمة أعلى</p></div><button class="more" data-act="priceband" data-id="1000to5000">عرض الكل<svg class="ic"><use href="#i-chev"/></svg></button></div>
+      <div class="hrow2" id="row1000to5000"></div>
+    </section>
+
+    <section class="sec" id="secOver5000" hidden>
+      <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-zap"/></svg></span>منتجات بأكثر من 5000 ريال</h2><p>للمشتريات الكبيرة والمنتجات المميزة</p></div><button class="more" data-act="priceband" data-id="over5000">عرض الكل<svg class="ic"><use href="#i-chev"/></svg></button></div>
+      <div class="hrow2" id="rowOver5000"></div>
+    </section>
+
     <section class="sec" id="secHot" hidden>
       <div class="sec-head"><div><h2><span class="sico g"><svg class="ic"><use href="#i-trend"/></svg></span>الأكثر طلبًا</h2><p>ما يفتحه الناس الآن</p></div></div>
       <div class="hrow2" id="rowHot"></div>
@@ -1047,6 +1077,13 @@ function renderHome() {
   $("#cmpList").innerHTML = cmpItems.slice(0, 4).map(cmpCardHTML).join("");
 
   fillRow("#secDeals", "#rowDeals", listing(sortItems(live.filter(x => x.discount >= 15), "disc")));
+  const under50 = listing(sortItems(live.filter(x => x.price > 0 && x.price < 50), "cheap"));
+  fillRow("#secUnder50", "#rowUnder50", under50);
+  fillRow("#sec50to100", "#row50to100", listing(sortItems(live.filter(x => x.price >= 50 && x.price < 100), "cheap")));
+  fillRow("#sec100to500", "#row100to500", listing(sortItems(live.filter(x => x.price >= 100 && x.price < 500), "cheap")));
+  fillRow("#sec500to1000", "#row500to1000", listing(sortItems(live.filter(x => x.price >= 500 && x.price < 1000), "cheap")));
+  fillRow("#sec1000to5000", "#row1000to5000", listing(sortItems(live.filter(x => x.price >= 1000 && x.price <= 5000), "cheap")));
+  fillRow("#secOver5000", "#rowOver5000", listing(sortItems(live.filter(x => x.price > 5000), "cheap")));
   fillRow("#secFeat", "#rowFeat", listing(sortItems(live.filter(x => x.featured), "best")));
   fillRow("#secHot", "#rowHot", listing(hotIds.map(id => byId.get(id)).filter(x => x && !x.expired)));
   const prefs = LS.get("wsah_prefs_v2", []);
@@ -1360,6 +1397,18 @@ document.addEventListener("click", e => {
   if (a === "store") return showList({ title: `منتجات ${STORES[id].ar}`, base: ALL.filter(x => !x.expired), store: id });
   if (a === "featured") return showList({ title: "المنتجات المميزة", base: ALL.filter(x => x.featured) });
   if (a === "compare") return showList({ title: "مقارنة الأسعار", base: comparable().flatMap(x => offersOf(x)), sort: "cheap" });
+  if (a === "under50") return showList({ title: "منتجات بأقل من 50 ريال", base: ALL.filter(x => !x.expired && x.price > 0 && x.price < 50), sort: "cheap" });
+  if (a === "priceband") {
+    const bands = {
+      "50to100": { title: "منتجات من 50 إلى 100 ريال", min: 50, max: 100 },
+      "100to500": { title: "منتجات من 100 إلى 500 ريال", min: 100, max: 500 },
+      "500to1000": { title: "منتجات من 500 إلى 1000 ريال", min: 500, max: 1000 },
+      "1000to5000": { title: "منتجات من 1000 إلى 5000 ريال", min: 1000, max: 5000 },
+      "over5000": { title: "منتجات بأكثر من 5000 ريال", min: 5000, max: Infinity }
+    };
+    const b = bands[id]; if (!b) return;
+    return showList({ title: b.title, base: ALL.filter(x => !x.expired && x.price > 0 && (id === "over5000" ? x.price > b.min : x.price >= b.min && x.price < b.max)), sort: "cheap" });
+  }
   if (a === "all") return showList({ title: "كل المنتجات", base: ALL, sort: "new" });
   if (a === "fstore") { view.store = id; return renderList(); }
   if (a === "sort") { view.sort = id; return renderList(); }
