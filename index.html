@@ -159,10 +159,6 @@ img{display:block;max-width:100%}
 .media{position:relative;aspect-ratio:4/5;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%,#fff 0%,var(--soft) 100%)}
 .media>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
 .store-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:2;filter:drop-shadow(0 3px 8px rgba(20,16,40,.22))}
-/* شعار المتجر ثلاثي الأبعاد على كل منتج */
-.store-tag .s3d{width:46px;height:46px;display:block;flex:0 0 46px;filter:drop-shadow(0 3px 7px rgba(20,16,40,.18))}
-.store-tag .s3d img,.store-tag .s3d svg{width:100%;height:100%;object-fit:contain}
-@media(max-width:520px){.store-tag .s3d{width:39px;height:39px;flex-basis:39px}}
 .disc{position:absolute;top:10px;inset-inline-end:10px;z-index:2;background:linear-gradient(135deg,#ff5a36,#ff2e63);color:#fff;font-size:11px;font-weight:900;padding:5px 9px;border-radius:999px;box-shadow:0 6px 12px -4px rgba(255,60,80,.5)}
 .best{position:absolute;bottom:10px;inset-inline-start:10px;z-index:2;display:inline-flex;align-items:center;gap:4px;background:var(--deep);color:#fff;font-size:9.5px;font-weight:800;padding:4px 9px;border-radius:999px}
 .best .ic{font-size:11px;stroke:none;fill:var(--accent)}
@@ -827,12 +823,6 @@ function chip(sk, size, label) {
   return `<span class="chip ${size}" style="background:${s.bg};color:${s.fg}" title="${esc(s.ar)}">${inner}</span>`;
 }
 
-function storeBadge(sk, size = "sm", label = "") {
-  // استخدم شعار المتجر الخاص به، ولا تعرض شعارًا مضللًا للمتجر غير المعروف.
-  if (STORES[sk] && sk !== "other") return store3d(sk, size === "md" ? "sm" : "");
-  return chip(sk || "other", size, label);
-}
-
 const saved = () => LS.get("wsah_saved_v2", []);
 const isSaved = id => saved().includes(id);
 
@@ -848,7 +838,7 @@ function cardHTML(it) {
   return `
   <article class="card" data-act="open" data-id="${esc(it.id)}">
     <div class="media">
-      ${showTag ? `<span class="store-tag">${storeBadge(it.sk, "sm", it.store)}</span>` : ""}
+      ${showTag ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}
       ${it.discount ? `<span class="disc">-${it.discount}%</span>` : ""}
       ${isBest ? `<span class="best">${ic("crown")}الأرخص</span>` : ""}
       <button class="heart ${isSaved(it.id) ? "on" : ""}" data-act="save" data-id="${esc(it.id)}" aria-label="حفظ">${ic(isSaved(it.id) ? "heart-f" : "heart")}</button>
@@ -904,7 +894,7 @@ function heroHTML(live) {
         <h3>${esc(it.title)}</h3>
         <div class="hs-price"><b>${nf(it.price)}</b><i>ر.س</i>${it.old ? `<s>${nf(it.old)}</s>` : ""}${it.discount ? `<em>-${it.discount}%</em>` : ""}</div>
         <span class="hs-btn">اكتشف العرض${ic("chev")}</span></div>
-      <div class="hs-img">${it.sk !== "other" || it.store ? `<span class="store-tag">${storeBadge(it.sk, "sm", it.store)}</span>` : ""}<img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
+      <div class="hs-img">${it.sk !== "other" || it.store ? `<span class="store-tag">${chip(it.sk, "sm", it.store)}</span>` : ""}<img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.2"></div>
     </article>`).join("");
 }
 
@@ -1055,7 +1045,7 @@ function openProduct(id) {
 
   openSheet(`
     ${sheetHead("تفاصيل المنتج")}
-    <div class="pimg"><span class="store-tag">${storeBadge(it.sk, "md", it.store)}</span>
+    <div class="pimg"><span class="store-tag">${chip(it.sk, "md", it.store)}</span>
       <img src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onload="fitMedia(this)" onerror="this.style.opacity=.2"></div>
     <div class="p-title">${esc(it.title)}</div>
     <div class="p-price"><b>${nf(it.price)} ر.س</b>${it.old ? `<s>${nf(it.old)}</s><span class="pct">-${it.discount}%</span>` : ""}</div>
