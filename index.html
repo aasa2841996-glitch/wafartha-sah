@@ -379,10 +379,6 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 .sgo,.cta,.arr{background:linear-gradient(115deg,#ff7655 0%,#ff315f 52%,#df0756 100%);box-shadow:0 12px 22px -10px rgba(210,10,75,.48)}
 .hero-track{box-shadow:0 22px 40px -22px rgba(210,10,75,.42)}
 .hslide{background:radial-gradient(80% 120% at 0% 0%,rgba(255,255,255,.24),transparent 60%),radial-gradient(60% 90% at 100% 100%,rgba(255,190,120,.24),transparent 60%),linear-gradient(115deg,#ff7655 0%,#ff315f 52%,#df0756 100%)}
-/* Brand hero banner: وفّرها صح */
-.hslide.hslide-brand{padding:0;min-height:clamp(170px,27vw,330px);background:#ff8a9c url("hero-wafartha-sah.png") center/cover no-repeat;cursor:pointer}
-.hslide.hslide-brand::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.03),transparent 55%);pointer-events:none}
-@media(max-width:520px){.hslide.hslide-brand{min-height:155px;background-position:center}.hero-track{border-radius:20px}}
 .hs-tag{background:#fff0b7;color:#922344}
 .hs-btn{color:#d90c50}
 .hdots i.on{background:#ef185b}
@@ -1015,9 +1011,8 @@ function fillRow(secId, rowId, items) {
 }
 
 function heroHTML(live) {
-  const brandBanner = `<article class="hslide hslide-brand" data-act="nav-cats" role="button" aria-label="تصفح عروض وفّرها صح" title="تصفح العروض"></article>`;
   const picks = listing(sortItems(live.filter(x => x.discount >= 10 || x.featured), "best")).slice(0, 3);
-  if (!picks.length) return brandBanner + `
+  if (!picks.length) return `
     <article class="hslide" data-act="nav-cats">
       <div class="hs-t"><span class="hs-tag">${ic("flame-o")}وفّرها صح</span>
         <h3>قارن الأسعار بين المتاجر قبل ما تشتري</h3>
@@ -1025,7 +1020,7 @@ function heroHTML(live) {
         <span class="hs-btn">تصفّح الفئات${ic("chev")}</span></div>
       <div class="hs-logos">${store3d("noon")}${store3d("amazon")}${store3d("temu")}</div>
     </article>`;
-  return brandBanner + picks.map(it => `
+  return picks.map(it => `
     <article class="hslide" data-act="open" data-id="${esc(it.id)}">
       <div class="hs-t"><span class="hs-tag">${ic("flame-o")}عرض اليوم</span>
         <h3>${esc(it.title)}</h3>
