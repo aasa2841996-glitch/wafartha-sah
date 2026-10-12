@@ -1422,6 +1422,22 @@ $("#lq").addEventListener("input", e => { view.q = e.target.value; renderList();
    بدء التشغيل
 ===================================================== */
 (function init() {
+  /* تسجيل زيارة يومية مجهولة للمتجر عبر Worker */
+  try {
+    const dayKey = new Date().toISOString().slice(0, 10);
+    const tokenKey = "wsah_visit_session_" + dayKey;
+    let visitToken = sessionStorage.getItem(tokenKey);
+    if (!visitToken) {
+      visitToken = (crypto.randomUUID ? crypto.randomUUID() : "v_" + Math.random().toString(36).slice(2) + Date.now().toString(36));
+      sessionStorage.setItem(tokenKey, visitToken);
+    }
+    fetch(CONFIG.API_BASE + "/api/visit", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ sessionId: visitToken, path: location.pathname })
+    }).catch(() => {});
+  } catch (e) { /* لا نوقف الموقع إذا تعذر تسجيل الزيارة */ }
+
   applyTheme(CONFIG.THEME);
   setNav("home"); updateBadges();
   $("#heroTrack").innerHTML = '<div class="sk" style="flex:0 0 100%;min-height:210px"></div>';
