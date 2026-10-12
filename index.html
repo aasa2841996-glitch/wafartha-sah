@@ -709,6 +709,31 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   }
 }
 
+
+/* ===== إصلاح فعلي لشبكة المنتجات الداخلية (.grid) ===== */
+@media (min-width: 900px){
+  .grid:not(.rows){grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:12px !important}
+}
+@media (min-width: 1200px){
+  .grid:not(.rows){grid-template-columns:repeat(5,minmax(0,1fr)) !important;gap:12px !important}
+}
+@media (min-width: 1600px){
+  .grid:not(.rows){grid-template-columns:repeat(6,minmax(0,1fr)) !important;gap:12px !important}
+}
+@media (min-width: 900px){
+  .grid:not(.rows) .card{border-radius:18px !important}
+  .grid:not(.rows) .media{aspect-ratio: 1 / 1 !important}
+  .grid:not(.rows) .store-tag{top:8px;inset-inline-start:8px}
+  .grid:not(.rows) .store-tag .s3d{width:38px;height:38px;flex-basis:38px}
+  .grid:not(.rows) .ttl{font-size:12px !important;line-height:1.45 !important;min-height:35px !important}
+  .grid:not(.rows) .price b{font-size:19px !important}
+  .grid:not(.rows) .cta{height:34px !important;font-size:11px !important;border-radius:11px !important}
+  .grid:not(.rows) .card > :not(.media){padding-inline:10px}
+}
+@media (max-width: 899px){
+  .grid:not(.rows){grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:9px !important}
+}
+
 </style>
 </head>
 <body>
