@@ -735,32 +735,40 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 }
 
 
-/* ===== توحيد ارتفاع بطاقات المنتجات في واجهة المتجر الرئيسية فقط ===== */
+
+/* ===== إصلاح ارتفاع بطاقات المنتجات في صفوف الواجهة الرئيسية ===== */
 #home .hrow2{
   align-items:stretch !important;
 }
-#home .hrow2 > .card{
-  display:flex !important;
-  flex-direction:column !important;
-  height:100% !important;
+#home .hrow2 .card{
+  align-self:stretch !important;
+  height:auto !important;
+  min-height:100% !important;
   box-sizing:border-box !important;
 }
-#home .hrow2 > .card .media{
+#home .hrow2 .card .media{
   flex:0 0 auto !important;
 }
-#home .hrow2 > .card .ttl{
-  min-height:3.0em !important;
-  line-height:1.45 !important;
+#home .hrow2 .card .ttl{
+  height:3em !important;
+  min-height:3em !important;
+  max-height:3em !important;
+  line-height:1.5em !important;
+  overflow:hidden !important;
   display:-webkit-box !important;
   -webkit-line-clamp:2 !important;
   -webkit-box-orient:vertical !important;
-  overflow:hidden !important;
 }
-#home .hrow2 > .card .price{
+#home .hrow2 .card .price{
   margin-top:auto !important;
+  min-height:30px !important;
 }
-#home .hrow2 > .card .cta{
+#home .hrow2 .card .save{
+  min-height:32px !important;
+}
+#home .hrow2 .card .cta{
   margin-top:auto !important;
+  flex-shrink:0 !important;
 }
 
 </style>
