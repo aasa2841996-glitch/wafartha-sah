@@ -27,6 +27,7 @@ img{display:block;max-width:100%}
 .wrap{max-width:1000px;margin:0 auto;padding:0 14px}
 .ic{width:1.15em;height:1.15em;flex:0 0 auto;stroke:currentColor;fill:none;vertical-align:middle}
 .ic.f{fill:currentColor;stroke:none}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ---------- announcement bar ---------- */
 .topbar{background:var(--deep);color:#fff;font-size:11px;font-weight:700;padding:calc(env(safe-area-inset-top,0px) + 8px) 14px 8px}
@@ -40,12 +41,6 @@ img{display:block;max-width:100%}
   background:radial-gradient(70% 130% at 100% 0%,rgba(255,255,255,.2),transparent 55%),radial-gradient(60% 100% at 0% 100%,rgba(255,255,255,.1),transparent 60%),linear-gradient(135deg,var(--brand),var(--brand2))}
 .header::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1.5px);background-size:20px 20px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 80%);mask-image:linear-gradient(180deg,#000,transparent 80%)}
 .header .wrap{position:relative;z-index:1;padding:0}
-.hrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{display:flex;align-items:center;gap:11px;min-width:0}
-.logo-mark{flex:0 0 auto;width:50px;height:50px;border-radius:16px;background:#fff;color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 12px 24px -8px rgba(0,0,0,.35)}
-.logo-mark .ic{stroke:none;fill:currentColor}
-.brand{margin:0;font-size:24px;font-weight:900;line-height:1.2;white-space:nowrap}
-.tagline{margin:1px 0 0;font-size:11px;opacity:.92}
 .hact{display:flex;gap:10px}
 .hact-b{display:flex;flex-direction:column;align-items:center;gap:4px;color:#fff;font-size:10.5px;font-weight:800}
 .ib{position:relative;width:46px;height:46px;border-radius:15px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:20px}
@@ -367,13 +362,6 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   --accent:#ffb54a; --accent2:#ff725e; --bg:#fff7f8; --band:#ffe6ec;
   --sh:190,20,75; --line:#f6dfe6; --green:#0e9f6e; --hot:#e90d53;
 }
-.header{
-  background:radial-gradient(70% 130% at 100% 0%,rgba(255,255,255,.22),transparent 55%),
-  radial-gradient(60% 100% at 0% 100%,rgba(255,190,120,.18),transparent 60%),
-  linear-gradient(115deg,#ff7655 0%,#ff315f 48%,#df0756 100%);
-}
-.header::after{opacity:.22}
-.logo-mark{color:#ed185b;box-shadow:0 12px 24px -8px rgba(130,0,50,.28)}
 .sbar{box-shadow:0 18px 34px -14px rgba(190,10,70,.26)}
 .sbar>.ic{color:#ed185b}
 .sgo,.cta,.arr{background:linear-gradient(115deg,#ff7655 0%,#ff315f 52%,#df0756 100%);box-shadow:0 12px 22px -10px rgba(210,10,75,.48)}
@@ -446,15 +434,14 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 
 
 
-/* ===== تعديل: شريط متاجر متحرك + صور أقسام متناسقة ===== */
-/* المتاجر تتحرك أفقيًا مثل شريط الإعلان العلوي، وليست شعاراتها هي التي تدور */
+/* ===== شريط المتاجر المتحرك + صور أقسام متناسقة ===== */
+/* نكرر مجموعة المتاجر 4 مرات والشريط يتحرك بمقدار نصف عرضه فتستمر الحركة بلا فراغ حتى على الشاشات العريضة */
 .store-window{width:100%;overflow:hidden;position:relative;padding:2px 0 12px;direction:ltr}
-.stores{display:flex;flex-wrap:nowrap;gap:12px;width:max-content;animation:storeTicker 30s linear infinite;direction:rtl;will-change:transform}
+.stores{display:flex;flex-wrap:nowrap;gap:12px;width:max-content;animation:storeTicker 60s linear infinite;direction:rtl;will-change:transform}
 .store-btn{flex:0 0 154px;min-height:174px;padding:12px 10px;border-radius:24px}
 .store-btn>.s3d{width:84px;height:84px;flex:0 0 84px;animation:none!important;transform:none!important}
 .store-window:hover .stores{animation-play-state:paused}
 @keyframes storeTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-/* تكرار البطاقات يسمح بحركة مستمرة دون فراغ */
 
 /* صور الأقسام أصغر قليلًا لمنع تداخلها مع بعضها */
 .ctab{flex:0 0 148px;padding:4px 5px 10px;overflow:visible}
@@ -467,7 +454,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 
 
 
-/* ===== تحسين نهائي: أقسام 3D بخلفية مدمجة دون بقع بيضاء ===== */
+/* ===== أقسام 3D بخلفية مدمجة دون بقع بيضاء ===== */
 .band{
   background:
     radial-gradient(ellipse at 18% 38%, rgba(255,255,255,.88) 0%, rgba(255,255,255,0) 44%),
@@ -487,93 +474,71 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   filter:drop-shadow(0 18px 13px rgba(72,94,150,.22));
 }
 @media(hover:hover){.ctab:hover .cimg img{filter:drop-shadow(0 23px 16px rgba(72,94,150,.28));}}
-/* إبقاء حركة المتاجر المتصلة كما هي */
-.store-window{overflow:hidden;}
-.stores{animation:storeTicker 30s linear infinite;will-change:transform;}
-@media(prefers-reduced-motion:reduce){.stores{animation:none;}}
 
 
-/* ===== بانر متوازن: الصورة بعرض الهيدر والبحث فوقها ===== */
+/* =====================================================
+   هيدر البانر: صورة كاملة العرض + شريط بحث عائم فوق حافتها
+   (الشعار داخل الصورة، والبحث والأزرار في صف مستقل لا يغطي الشعار)
+===================================================== */
 .header{
   position:relative;
-  width:100%;
-  min-height:clamp(300px, 34vw, 540px) !important;
-  height:auto;
-  box-sizing:border-box;
-  padding:clamp(14px, 2vw, 28px) clamp(16px, 4vw, 76px) clamp(16px, 2.2vw, 30px) !important;
-  border-radius:0 0 30px 30px;
-  overflow:hidden;
-  background-color:#f83c71;
-  background-image:
-    linear-gradient(180deg,rgba(120,0,40,.04),rgba(120,0,40,.04)),
-    url("hero-wafartha-sah%20(1).png") !important;
-  background-size:cover !important;
-  background-position:center center !important;
-  background-repeat:no-repeat !important;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
+  overflow:visible;
+  padding:0 !important;
+  min-height:0 !important;
+  background:none !important;
+  border-radius:0;
+  display:block;
+  color:inherit;
 }
 .header::after{display:none !important}
-.header .wrap{
+.hbanner{
+  display:block;
   width:100%;
-  max-width:none;
-  margin:0 auto;
-  padding:0;
-  position:relative;
-  z-index:2;
+  overflow:hidden;
+  background:#ffd9e2;
+  border-radius:0 0 clamp(20px,3vw,34px) clamp(20px,3vw,34px);
+  box-shadow:0 22px 40px -26px rgba(190,10,70,.5);
 }
-/* الشعار داخل صورة البانر؛ لا نكرر الاسم بجانبه */
-.header .hrow{
-  justify-content:flex-start;
-  min-height:0;
-  height:0;
-  margin:0;
-  padding:0;
-}
-.header .logo{display:none !important}
-/* المفضلة والتفضيلات فوق الصورة، بمقاس مقروء */
-.header .hact{
-  position:absolute;
-  left:clamp(16px,4vw,76px);
-  top:clamp(76px, 12vw, 170px);
-  z-index:4;
-  gap:clamp(8px,1vw,14px);
-}
-.header .hact-b{font-size:clamp(11px,1vw,15px)}
-.header .hact-b .ib{
-  width:clamp(42px,4.2vw,64px);
-  height:clamp(42px,4.2vw,64px);
-}
-/* شريط البحث فوق الجزء السفلي من الصورة */
-.header .sbar{
+.hbanner img{display:block;width:100%;height:auto;max-width:none}
+.header .wrap{
   position:relative;
   z-index:3;
-  width:100%;
-  margin:0;
-  min-height:clamp(60px,5.4vw,78px);
-  padding:6px;
-  box-sizing:border-box;
-  border:3px solid rgba(255,255,255,.96);
-  border-radius:clamp(18px,2vw,28px);
-  background:rgba(255,255,255,.97);
-  box-shadow:0 12px 28px rgba(120,0,45,.18);
+  margin-top:calc(-1 * clamp(20px,3.2vw,36px));
 }
-.header .sbar input{height:clamp(42px,4vw,58px);font-size:clamp(14px,1.4vw,20px)}
-.header .sgo{height:clamp(42px,4vw,58px);padding:0 clamp(16px,2vw,28px);border-radius:clamp(14px,1.5vw,20px);font-size:clamp(13px,1.2vw,17px)}
-.header .sbar>.ic{font-size:clamp(20px,2vw,28px);margin-inline-start:clamp(8px,1vw,14px)}
+.hbar{display:flex;align-items:center;gap:clamp(8px,1vw,14px)}
+.hbar .sbar{
+  flex:1;min-width:0;margin:0;
+  min-height:clamp(56px,5vw,72px);
+  border:2px solid rgba(255,255,255,.98);
+  border-radius:clamp(18px,2vw,26px);
+  box-shadow:0 18px 38px -14px rgba(190,10,70,.42);
+}
+.hbar .sbar input{height:clamp(42px,3.8vw,54px);font-size:clamp(13.5px,1.25vw,17px)}
+.hbar .sgo{height:clamp(42px,3.8vw,54px);padding:0 clamp(16px,2vw,28px);border-radius:clamp(14px,1.4vw,19px);font-size:clamp(12.5px,1.1vw,15px)}
+.hbar .sbar>.ic{font-size:clamp(20px,1.8vw,26px)}
+/* أزرار تفضيلاتي والمفضلة: أيقونات بيضاء بجانب البحث (النص مخفي بصريًا وaria-label يبقى) */
+.hbar .hact{gap:clamp(8px,1vw,12px);flex:0 0 auto}
+.hbar .hact-b{font-size:0;color:#ed185b}
+.hbar .ib{
+  width:clamp(48px,4.4vw,62px);height:clamp(48px,4.4vw,62px);
+  border-radius:clamp(16px,1.8vw,22px);
+  background:#fff;color:#ed185b;
+  border:2px solid rgba(255,255,255,.98);
+  box-shadow:0 18px 38px -14px rgba(190,10,70,.42);
+  font-size:clamp(20px,1.9vw,26px);
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+.hbar .badge{font-size:10.5px;border-color:#fff}
+/* اقتراحات بحث سريعة */
+.qs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-top:12px;padding:2px 2px 4px}
+.qs::-webkit-scrollbar{display:none}
+.qs button{flex:0 0 auto;padding:8px 15px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12.5px;font-weight:800;color:#a80d45;box-shadow:0 8px 16px -12px rgba(190,10,70,.4)}
+.qs button:active{transform:scale(.96)}
+@media(hover:hover){.qs button:hover{background:#fff0f4;border-color:#f0185b}}
 @media(max-width:700px){
-  .header{
-    min-height:clamp(300px, 74vw, 410px) !important;
-    padding:12px 12px 16px !important;
-    background-position:center center !important;
-  }
-  .header .hact{left:12px;top:76px;gap:7px}
-  .header .hact-b .ib{width:42px;height:42px}
-  .header .sbar{min-height:58px;border-width:2px;padding:4px}
-  .header .sbar input{height:42px;font-size:13px}
-  .header .sgo{height:42px;padding:0 12px;font-size:12px}
-  .header .sbar>.ic{font-size:20px;margin-inline-start:6px}
+  .hbar .ib{width:46px;height:46px;border-radius:16px;font-size:20px}
+  .hbar .sbar{min-height:56px}
+  .hbar .sgo{padding:0 14px}
 }
 
 
@@ -586,7 +551,6 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   box-sizing:border-box !important;
 }
 .topbar .wrap{padding-left:clamp(14px, 3.2vw, 58px) !important;padding-right:clamp(14px, 3.2vw, 58px) !important}
-.header .wrap{padding-left:0 !important;padding-right:0 !important}
 
 /* بطاقة عرض اليوم تمتد بعرض المحتوى وتكبر بشكل متوازن */
 .hero{width:100%;margin-top:clamp(14px, 1.8vw, 26px)}
@@ -606,15 +570,10 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 .hs-logos .s3d{width:clamp(64px,7vw,105px);height:clamp(64px,7vw,105px)}
 .hs-logos .s3d:nth-child(2){width:clamp(76px,8vw,120px);height:clamp(76px,8vw,120px)}
 
-/* شرائط الأقسام وبطاقات المتاجر تستخدم عرض الشاشة بدل حد 1000px */
 .sec{width:100%;box-sizing:border-box}
 .mq{width:100%;box-sizing:border-box}
-.stores,.store-grid,.cats,.category-grid,.product-grid,.cards-row{
-  max-width:none;
-}
 @media(max-width:700px){
   .wrap{padding-left:12px !important;padding-right:12px !important}
-  .header .wrap{padding-left:0 !important;padding-right:0 !important}
   .hslide{min-height:245px;padding:18px 14px;gap:12px}
   .hs-t h3{font-size:16px}
   .hs-img{flex-basis:34%;max-width:150px}
@@ -623,94 +582,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 }
 
 
-/* ===== بطاقات المنتجات الداخلية: حجم أصغر لعرض منتجات أكثر ===== */
-.products-grid,
-.product-grid,
-.products,
-.product-list,
-.items-grid,
-.deals-grid,
-#productsGrid,
-#dealsGrid,
-.section-products .grid,
-.products-section .grid,
-.category-products .grid {
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr)) !important;
-  gap:12px !important;
-}
-.product-card,
-.product-item,
-.product,
-.deal-card,
-.item-card {
-  min-width:0 !important;
-  border-radius:18px !important;
-}
-.product-card img,
-.product-item img,
-.product img,
-.deal-card img,
-.item-card img {
-  height:clamp(150px, 15vw, 220px) !important;
-  object-fit:cover !important;
-}
-.product-card .content,
-.product-item .content,
-.product .content,
-.deal-card .content,
-.item-card .content {
-  padding:10px 12px !important;
-}
-.product-card h3,
-.product-item h3,
-.product h3,
-.deal-card h3,
-.item-card h3 {
-  font-size:14px !important;
-  line-height:1.45 !important;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-}
-.product-card .price,
-.product-item .price,
-.product .price,
-.deal-card .price,
-.item-card .price {
-  font-size:17px !important;
-}
-.product-card button,
-.product-item button,
-.product button,
-.deal-card button,
-.item-card button {
-  min-height:38px !important;
-  padding:8px 10px !important;
-  font-size:13px !important;
-}
-@media(min-width:1500px){
-  .products-grid,.product-grid,.products,.product-list,.items-grid,.deals-grid,
-  #productsGrid,#dealsGrid,.section-products .grid,.products-section .grid,.category-products .grid{
-    grid-template-columns:repeat(auto-fill,minmax(205px,1fr)) !important;
-  }
-}
-@media(max-width:700px){
-  .products-grid,.product-grid,.products,.product-list,.items-grid,.deals-grid,
-  #productsGrid,#dealsGrid,.section-products .grid,.products-section .grid,.category-products .grid{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:9px !important;
-  }
-  .product-card img,.product-item img,.product img,.deal-card img,.item-card img{
-    height:150px !important;
-  }
-  .product-card h3,.product-item h3,.product h3,.deal-card h3,.item-card h3{
-    font-size:12px !important;
-  }
-}
-
-
-/* ===== إصلاح فعلي لشبكة المنتجات الداخلية (.grid) ===== */
+/* ===== شبكة المنتجات الداخلية (.grid) ===== */
 @media (min-width: 900px){
   .grid:not(.rows){grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:12px !important}
 }
@@ -736,7 +608,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
 
 
 
-/* ===== إصلاح ارتفاع بطاقات المنتجات في صفوف الواجهة الرئيسية ===== */
+/* ===== ارتفاع بطاقات المنتجات في صفوف الواجهة الرئيسية ===== */
 #home .hrow2{
   align-items:stretch !important;
 }
@@ -763,7 +635,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   margin-top:auto !important;
   min-height:30px !important;
 }
-#home .hrow2 .card .save{
+#home .hrow2 .card .saving{
   min-height:32px !important;
 }
 #home .hrow2 .card .cta{
@@ -841,21 +713,31 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
   </div></div>
 
   <header class="header">
+    <h1 class="sr-only">وَفِّرْهَا صَحّ — العرض الصح في المكان الصح</h1>
+    <picture class="hbanner">
+      <source media="(max-width:700px)" srcset="hero-wafartha-sah-m.webp" type="image/webp" width="1100" height="532">
+      <img src="hero-wafartha-sah.webp" width="1800" height="600" alt="وَفِّرْهَا صَحّ — اكتشف العروض وقارن الأسعار" fetchpriority="high" decoding="async">
+    </picture>
     <div class="wrap">
-      <div class="hrow">
-        <div class="logo">
-          <span class="logo-mark"><svg class="ic"><use href="#i-bag"/></svg></span>
-          <div><h1 class="brand">وَفِّرْهَا صَحّ</h1><p class="tagline">العرض الصح في المكان الصح</p></div>
+      <div class="hbar">
+        <div class="sbar">
+          <svg class="ic"><use href="#i-search"/></svg>
+          <input id="q" type="search" placeholder="ابحث عن جوال، سماعة، عطر..." autocomplete="off" enterkeyhint="search" aria-label="ابحث في المتجر">
+          <button class="sgo" data-act="search">ابحث الآن</button>
         </div>
         <div class="hact">
           <button class="hact-b" data-act="prefs" aria-label="تفضيلاتي"><span class="ib"><svg class="ic"><use href="#i-user"/></svg></span>تفضيلاتي</button>
           <button class="hact-b" data-act="saved" aria-label="المفضلة"><span class="ib"><svg class="ic"><use href="#i-heart"/></svg><i class="badge" data-badge hidden>0</i></span>المفضلة</button>
         </div>
       </div>
-      <div class="sbar">
-        <svg class="ic"><use href="#i-search"/></svg>
-        <input id="q" type="search" placeholder="ابحث عن جوال، سماعة، عطر..." autocomplete="off" enterkeyhint="search">
-        <button class="sgo" data-act="search">ابحث الآن</button>
+      <div class="qs" aria-label="عمليات بحث شائعة">
+        <button data-act="qs" data-id="جوال">📱 جوال</button>
+        <button data-act="qs" data-id="سماعة">🎧 سماعة</button>
+        <button data-act="qs" data-id="عطر">🌸 عطر</button>
+        <button data-act="qs" data-id="ساعة">⌚ ساعة</button>
+        <button data-act="qs" data-id="حذاء">👟 حذاء</button>
+        <button data-act="qs" data-id="شنطة">👜 شنطة</button>
+        <button data-act="qs" data-id="مكياج">💄 مكياج</button>
       </div>
     </div>
   </header>
@@ -962,7 +844,7 @@ textarea.fieldin{height:auto;min-height:92px;padding:12px 13px;resize:none;margi
       <h3>وَفِّرْهَا صَحّ</h3>
       <p>لقيناها لك… ووفّرنا عليك البحث. تابعنا ليصلك كل عرض جديد أولًا بأول.</p>
       <div class="soc-row" id="socRow"></div>
-      <div class="fine">قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.<br>الأسعار والعروض قد تتغير في المتجر.<br>إصدار 5</div>
+      <div class="fine">قد نحصل على عمولة عند الشراء عبر الروابط، دون أي تكلفة إضافية عليك.<br>الأسعار والعروض قد تتغير في المتجر.<br>إصدار 6</div>
     </footer>
   </main>
 </div>
@@ -1341,9 +1223,9 @@ function renderHome() {
     const n = live.filter(x => x.sk === k).length;
     return `<button class="store-btn" data-act="store" data-id="${k}">${store3d(k)}<small>${esc(STORES[k].ar)}</small><em>${n ? n + " منتج" : "استعرض المنتجات"}</em></button>`;
   }).join("");
-  // نكرر المجموعة نفسها مرتين؛ يتحرك الشريط بمقدار نصف عرضه لتستمر الحركة بلا فراغ
+  // نكرر المجموعة 4 مرات؛ يتحرك الشريط بمقدار نصف عرضه (نسختان) فتستمر الحركة بلا فراغ حتى على الشاشات العريضة
   const storeStrip = $("#storeStrip");
-  storeStrip.innerHTML = storeCards + storeCards;
+  storeStrip.innerHTML = storeCards.repeat(4);
   storeStrip.setAttribute("aria-label", "متاجر التسوق المتحركة");
 
   $("#cats").innerHTML = CATS.map(c => {
@@ -1668,6 +1550,7 @@ document.addEventListener("click", e => {
   if (a === "rstar") { revRating = +id; document.querySelectorAll(".rv-pick button").forEach((b, i) => b.classList.toggle("on", i < revRating)); return; }
   if (a === "rate-save") return saveRate();
   if (a === "search") return doSearch();
+  if (a === "qs") { $("#q").value = id; return doSearch(); }
   if (a === "home" || a === "nav-home") return showHome();
   if (a === "nav-cats") return goCats();
   if (a === "nav-deals" || (a === "cat" && id === "deals")) return openCategory("deals");
@@ -1701,20 +1584,22 @@ $("#lq").addEventListener("input", e => { view.q = e.target.value; renderList();
    بدء التشغيل
 ===================================================== */
 (function init() {
-  /* تسجيل زيارة يومية مجهولة للمتجر عبر Worker */
+  /* تسجيل زيارة يومية مجهولة للمتجر عبر Worker (يتجاهل الخطأ إن لم يوجد المسار) */
   try {
-    const dayKey = new Date().toISOString().slice(0, 10);
-    const tokenKey = "wsah_visit_session_" + dayKey;
-    let visitToken = sessionStorage.getItem(tokenKey);
-    if (!visitToken) {
-      visitToken = (crypto.randomUUID ? crypto.randomUUID() : "v_" + Math.random().toString(36).slice(2) + Date.now().toString(36));
-      sessionStorage.setItem(tokenKey, visitToken);
+    if (CONFIG.API_BASE) {
+      const dayKey = new Date().toISOString().slice(0, 10);
+      const tokenKey = "wsah_visit_session_" + dayKey;
+      let visitToken = sessionStorage.getItem(tokenKey);
+      if (!visitToken) {
+        visitToken = (crypto.randomUUID ? crypto.randomUUID() : "v_" + Math.random().toString(36).slice(2) + Date.now().toString(36));
+        sessionStorage.setItem(tokenKey, visitToken);
+      }
+      fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/visit", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ sessionId: visitToken, path: location.pathname })
+      }).catch(() => {});
     }
-    fetch(CONFIG.API_BASE + "/api/visit", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ sessionId: visitToken, path: location.pathname })
-    }).catch(() => {});
   } catch (e) { /* لا نوقف الموقع إذا تعذر تسجيل الزيارة */ }
 
   applyTheme(CONFIG.THEME);
