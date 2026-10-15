@@ -185,22 +185,7 @@
       "createdAt": "2026-10-13T13:16:41.095Z"
     }
   ],
-  "perfumes": [
-    {
-      "id": "e54af70e",
-      "title": "عطر \"ساكريفايس\" من أجمل للنساء - أو دو بارفان سعة 50 مل - عطر زهري برائحة تدوم طويلاً - هدية مثالية للنساء",
-      "price": "80.5",
-      "old": "103.5",
-      "discount": 22,
-      "link": "https://link.amazon/B05lTWzzn",
-      "store": "",
-      "image": "products/product-1792052627348-cde39cab.jpg",
-      "featured": false,
-      "expired": false,
-      "createdAt": "2026-10-15T08:23:48.434Z",
-      "originalTitle": "Ajmal Sacrifice Perfume for Women  Eau de Parfum 50ml  Floral Perfume with Long Lasting Fragrance  Perfect Gift for Women"
-    }
-  ],
+  "perfumes": [],
   "bags": [],
   "watches": [
     {
