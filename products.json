@@ -185,7 +185,21 @@
       "createdAt": "2026-10-13T13:16:41.095Z"
     }
   ],
-  "perfumes": [],
+  "perfumes": [
+    {
+      "id": "d9097c45",
+      "title": "عطر تشامبس اليسيس للنساء من جورلاين - او دي بارفان ، 75 مل",
+      "originalTitle": "Guerlain Champs Elysees Eau de Parfum  75 ml",
+      "price": "433.91",
+      "discount": 0,
+      "link": "https://link.amazon/B0gF0GiDt",
+      "store": "",
+      "image": "products/product-1792054909914-b242567d.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-15T09:01:51.031Z"
+    }
+  ],
   "bags": [],
   "watches": [
     {
