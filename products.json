@@ -592,7 +592,21 @@
       "createdAt": "2026-10-17T18:47:25.176Z"
     }
   ],
-  "accessories": [],
+  "accessories": [
+    {
+      "id": "65bb53a7",
+      "title": "مقبض جوال ماج سيف مع حزام أصبع، حامل حلقي مغناطيسي للايفون، مقبض جوال مغناطيسي قابل للإزالة من ازوني",
+      "originalTitle": "For Magsafe Phone Grip with Finger Strap Azonee Magnetic Ring Holder Kickstand for iPhone Removable Magnetic Phone Grip",
+      "price": "39.89",
+      "discount": 0,
+      "link": "https://link.amazon/B0axu1He5",
+      "store": "",
+      "image": "products/product-1792423790720-0806f570.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-19T15:29:52.245Z"
+    }
+  ],
   "electronics": [
     {
       "id": "d51e2e74",
