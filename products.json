@@ -681,6 +681,18 @@
       "featured": false,
       "expired": false,
       "createdAt": "2026-10-20T08:47:28.018Z"
+    },
+    {
+      "id": "c93982d7",
+      "title": "اكتشف عروضًا مذهلة!",
+      "price": "99",
+      "discount": 0,
+      "link": "https://temu.to/k/esb41lvyh26",
+      "store": "Temu",
+      "image": "products/product-1792501982647-85deb57b.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-20T13:13:05.585Z"
     }
   ],
   "accessories": [
