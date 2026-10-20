@@ -639,7 +639,7 @@
       "link": "https://link.amazon/B01U0O7Fy",
       "store": "",
       "image": "products/product-1792262715430-37998a04.jpg",
-      "featured": false,
+      "featured": true,
       "expired": false,
       "createdAt": "2026-10-17T18:45:16.375Z"
     },
