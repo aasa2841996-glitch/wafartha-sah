@@ -1487,7 +1487,7 @@ async function saveRate() {
   try {
     const r = await fetch(CONFIG.API_BASE.replace(/\/$/, "") + "/api/review", {
       method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ initData: tg?.initData || "", name: $("#rvName")?.value.trim() || "عميل", rating: revRating, comment })
+      body: JSON.stringify({ initData: tg?.initData || "", name: $("#rvName")?.value.trim() || "", rating: revRating, comment })
     });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.ok) throw new Error(d.error || "تعذر إرسال التقييم");
