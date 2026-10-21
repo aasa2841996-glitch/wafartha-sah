@@ -1,5 +1,12 @@
 /* =====================================================================
-   وَفِّرْهَا صَحّ — Bot + API  v6.3   (Cloudflare Worker)
+   وَفِّرْهَا صَحّ — Bot + API  v6.4   (Cloudflare Worker)
+
+   جديد في 6.4: قاعدة بيانات D1 للنقرات والزيارات وسجل الأسعار والتنبيهات والآراء
+   - KV في الخطة المجانية يسمح بـ1000 كتابة يوميًا فقط، وكانت كل زيارة تستهلك 3 كتابات وكل نقرة كتابة،
+     فيتوقف التسجيل (ومعه إضافة المنتجات من البوت) عند حوالي 300 زائر يوميًا. D1 يسمح بـ100 ألف كتابة يوميًا.
+   - الجداول تُنشأ تلقائيًا. بدون الربط DB يعمل كل شيء على KV كما كان.
+   - بعد ربط DB أرسل /migrate للبوت مرة واحدة لنقل البيانات القديمة من KV.
+   - نسخة المنتجات المؤقتة صارت في الذاكرة وD1 بدل KV، ولا تُكتب أي بيانات لرسائل غير المدير.
 
    جديد في 6.3: حاجز إلزامي يمنع حفظ/نشر أي عنوان غير عربي، وترجمة المنتجات القديمة قبل إعادة النشر:
    - الاسم يُترجم إلى العربية قبل المعاينة، وفي المعاينة أزرار «✏️ عدّل الاسم» و«🔄 أعد الترجمة» ثم «✅ نشر»
@@ -42,6 +49,7 @@
 
    Bindings / Variables:
    - STATE          (KV Namespace)              مطلوب
+   - DB             (D1 Database)               مستحسن — قاعدة البيانات (انظر worker/README.md)
    - BOT_TOKEN      (Secret)                    مطلوب
    - ADMIN_ID       (Variable)  يقبل أكثر من رقم بفاصلة
    - GITHUB_TOKEN   (Secret)
@@ -163,7 +171,7 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
 
     try {
-      if (request.method === "GET" && p === "/") return new Response("Wafartha Sah Bot v6.2 ✅");
+      if (request.method === "GET" && p === "/") return new Response(`Wafartha Sah Bot v6.4 ✅ — ${env.DB ? "D1" : "KV"}`);
 
       if (request.method === "GET" && p === "/set-webhook") {
         if (env.WEBHOOK_SECRET && url.searchParams.get("key") !== env.WEBHOOK_SECRET)
@@ -206,24 +214,12 @@ export default {
         const sessionId = String(body.sessionId || "");
         if (!/^[a-zA-Z0-9_-]{16,80}$/.test(sessionId))
           return json({ ok: false, error: "invalid_session" }, 400);
-        const day = new Date().toISOString().slice(0, 10);
-        const key = `visit:${day}:${sessionId}`;
-        if (await env.STATE.get(key)) return json({ ok: true, counted: false });
-        await env.STATE.put(key, "1", { expirationTtl: 172800 });
-        const dayKey = `visits:day:${day}`;
-        await env.STATE.put(dayKey, String(Number(await env.STATE.get(dayKey) || 0) + 1), { expirationTtl: 400 * 86400 });
-        await env.STATE.put("visits:total", String(Number(await env.STATE.get("visits:total") || 0) + 1));
-        return json({ ok: true, counted: true });
+        return json({ ok: true, counted: await recordVisit(env, sessionId) });
       }
 
       if (request.method === "GET" && p === "/api/visit-stats") {
         const days = Math.max(1, Math.min(30, Number(url.searchParams.get("days")) || 7));
-        const rows = [];
-        for (let i = days - 1; i >= 0; i--) {
-          const date = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
-          rows.push({ date, visits: Number(await env.STATE.get(`visits:day:${date}`) || 0) });
-        }
-        return json({ ok: true, total: Number(await env.STATE.get("visits:total") || 0), days: rows });
+        return json({ ok: true, ...(await visitStats(env, days)) });
       }
 
       /* منتجات أقسام الميزانية — مصدرها المنتجات الحالية في products.json */
@@ -241,8 +237,7 @@ export default {
 
       if (request.method === "GET" && p === "/api/history") {
         const id = url.searchParams.get("id") || "";
-        const raw = id ? await env.STATE.get(`ph:${id}`) : null;
-        return json({ points: raw ? JSON.parse(raw) : [] });
+        return json({ points: id ? await getHistory(env, id) : [] });
       }
 
       if (request.method === "GET" && p === "/api/x/status") {
@@ -283,9 +278,7 @@ export default {
           identity = `web:${ipHash}`;
           name = String(body.name || "").trim().replace(/[<>]/g, "").slice(0, 30) || "زائر المتجر";
         }
-        const list = (await getReviews(env)).filter(x => x.u !== identity && x.u !== String(user?.id || ""));
-        list.push({ u: identity, n: name, r: rating, c: comment, t: Date.now() });
-        await env.STATE.put("reviews", JSON.stringify(list.slice(-200)));
+        await saveReview(env, { u: identity, n: name, r: rating, c: comment, t: Date.now() }, String(user?.id || ""));
         ctx.waitUntil(notifyAdminReview(env, name, rating, comment).catch(console.error));
         return json({ ok: true });
       }
@@ -316,6 +309,7 @@ export default {
 
   async scheduled(event, env, ctx) {
     ctx.waitUntil(checkPrices(env).catch(console.error));
+    ctx.waitUntil(cleanupDb(env).catch(console.error));
   }
 };
 
@@ -570,14 +564,34 @@ async function readProducts(env) {
 
 const getProducts = async env => (await readProducts(env)).data;
 
-/* نسخة مؤقتة لتخفيف الضغط على GitHub (للنقرات والـAPI) */
+/* نسخة مؤقتة لتخفيف الضغط على GitHub (للنقرات والـAPI):
+   الذاكرة أولًا (60 ثانية) ثم D1 أو KV (120 ثانية) ثم GitHub */
+let memProducts = null, memProductsAt = 0;
+
 async function getProductsCached(env) {
-  const raw = await env.STATE.get("pc:data");
-  if (raw) return JSON.parse(raw);
-  const data = await getProducts(env);
-  try { await env.STATE.put("pc:data", JSON.stringify(data), { expirationTtl: 120 }); }
-  catch (e) { console.error("cache put failed", e); } /* KV حد القيمة 25MB */
+  if (memProducts && Date.now() - memProductsAt < 60000) return memProducts;
+  const d1 = await db(env);
+  const raw = d1
+    ? (await d1.prepare("SELECT v FROM meta WHERE k = 'pc:data' AND exp > ?").bind(Date.now()).first())?.v
+    : await env.STATE.get("pc:data");
+  let data;
+  if (raw) data = JSON.parse(raw);
+  else {
+    data = await getProducts(env);
+    try {
+      if (d1) await d1.prepare("INSERT OR REPLACE INTO meta (k, v, exp) VALUES ('pc:data', ?, ?)").bind(JSON.stringify(data), Date.now() + 120000).run();
+      else await env.STATE.put("pc:data", JSON.stringify(data), { expirationTtl: 120 });
+    } catch (e) { console.error("cache put failed", e); } /* حد الصف في D1 2MB وحد القيمة في KV 25MB */
+  }
+  memProducts = data; memProductsAt = Date.now();
   return data;
+}
+
+async function invalidateProductsCache(env) {
+  memProducts = null;
+  const d1 = await db(env);
+  if (d1) await d1.prepare("DELETE FROM meta WHERE k = 'pc:data'").run();
+  else await env.STATE.delete("pc:data");
 }
 
 /* حفظ آمن مع إعادة المحاولة */
@@ -588,7 +602,7 @@ async function updateProducts(env, mutator, message = "Update products") {
     try {
       await githubPut(env, productsPath(env),
         bytesToBase64(new TextEncoder().encode(JSON.stringify(data, null, 2))), message, sha);
-      await env.STATE.delete("pc:data");
+      await invalidateProductsCache(env);
       return result;
     } catch (e) {
       if ((e.status === 409 || e.status === 422) && attempt < 4) {
@@ -984,23 +998,121 @@ function extractMeta(html, baseLink) {
    Stats / History / Alerts
 ========================= */
 
+/* =========================
+   قاعدة البيانات D1 (الربط DB)
+   إن وُجدت تُحفظ فيها النقرات والزيارات وسجل الأسعار والتنبيهات والآراء،
+   وإلا تبقى في KV كما في الإصدارات السابقة.
+========================= */
+
+const SCHEMA = [
+  "CREATE TABLE IF NOT EXISTS clicks (day TEXT NOT NULL, product_id TEXT NOT NULL, store TEXT NOT NULL DEFAULT '', n INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, product_id))",
+  "CREATE TABLE IF NOT EXISTS visit_days (day TEXT PRIMARY KEY, n INTEGER NOT NULL DEFAULT 0)",
+  "CREATE TABLE IF NOT EXISTS visit_sessions (day TEXT NOT NULL, session_id TEXT NOT NULL, PRIMARY KEY (day, session_id))",
+  "CREATE TABLE IF NOT EXISTS price_history (product_id TEXT NOT NULL, t INTEGER NOT NULL, price REAL NOT NULL, PRIMARY KEY (product_id, t))",
+  "CREATE TABLE IF NOT EXISTS alerts (product_id TEXT NOT NULL, user_id TEXT NOT NULL, target REAL NOT NULL, PRIMARY KEY (product_id, user_id))",
+  "CREATE TABLE IF NOT EXISTS reviews (identity TEXT PRIMARY KEY, name TEXT NOT NULL, rating INTEGER NOT NULL, comment TEXT NOT NULL, t INTEGER NOT NULL)",
+  "CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT NOT NULL, exp INTEGER NOT NULL DEFAULT 0)"
+];
+
+/* صفوف النقرات المنقولة من KV: day = 'legacy' للإجماليات القديمة،
+   و product_id يبدأ بـ ~ لإجماليات المتاجر (~s:اسم) والأيام (~d) التي لا ترتبط بمنتج */
+const LEGACY_DAY = "legacy";
+
+let schemaReady = null;
+async function db(env) {
+  if (!env.DB) return null;
+  if (!schemaReady) schemaReady = env.DB.batch(SCHEMA.map(q => env.DB.prepare(q))).catch(e => { schemaReady = null; throw e; });
+  await schemaReady;
+  return env.DB;
+}
+
+const dayStr = (ago = 0) => new Date(Date.now() - ago * 86400000).toISOString().slice(0, 10);
+
 async function getStats(env) {
-  const raw = await env.STATE.get("stats");
-  return raw ? JSON.parse(raw) : { c: {}, s: {}, d: {} };
+  const d1 = await db(env);
+  if (!d1) {
+    const raw = await env.STATE.get("stats");
+    return raw ? JSON.parse(raw) : { c: {}, s: {}, d: {} };
+  }
+  const [c, s, d] = await d1.batch([
+    d1.prepare("SELECT product_id k, SUM(n) n FROM clicks WHERE product_id NOT LIKE '~%' GROUP BY product_id"),
+    d1.prepare("SELECT store k, SUM(n) n FROM clicks WHERE store != '' GROUP BY store"),
+    d1.prepare("SELECT day k, SUM(n) n FROM clicks WHERE day >= ? AND day != ? GROUP BY day").bind(dayStr(30), LEGACY_DAY)
+  ]);
+  const obj = r => Object.fromEntries(r.results.map(x => [x.k, x.n]));
+  return { c: obj(c), s: obj(s), d: obj(d) };
 }
 
 async function recordClick(env, p) {
+  const st = p.store || "أخرى", day = dayStr();
+  const d1 = await db(env);
+  if (d1) {
+    await d1.prepare("INSERT INTO clicks (day, product_id, store, n) VALUES (?, ?, ?, 1) ON CONFLICT (day, product_id) DO UPDATE SET n = n + 1, store = excluded.store")
+      .bind(day, String(p.id), st).run();
+    return;
+  }
   const s = await getStats(env);
   s.c[p.id] = (s.c[p.id] || 0) + 1;
-  const st = p.store || "أخرى";
   s.s[st] = (s.s[st] || 0) + 1;
-  const day = new Date().toISOString().slice(0, 10);
   s.d[day] = (s.d[day] || 0) + 1;
   Object.keys(s.d).sort().slice(0, -30).forEach(k => delete s.d[k]);
   await env.STATE.put("stats", JSON.stringify(s));
 }
 
+/* زيارة واحدة لكل جلسة في اليوم — يرجع true إن احتُسبت */
+async function recordVisit(env, sessionId) {
+  const day = dayStr();
+  const d1 = await db(env);
+  if (d1) {
+    const r = await d1.prepare("INSERT OR IGNORE INTO visit_sessions (day, session_id) VALUES (?, ?)").bind(day, sessionId).run();
+    if (!r.meta.changes) return false;
+    await d1.prepare("INSERT INTO visit_days (day, n) VALUES (?, 1) ON CONFLICT (day) DO UPDATE SET n = n + 1").bind(day).run();
+    return true;
+  }
+  const key = `visit:${day}:${sessionId}`;
+  if (await env.STATE.get(key)) return false;
+  await env.STATE.put(key, "1", { expirationTtl: 172800 });
+  const dayKey = `visits:day:${day}`;
+  await env.STATE.put(dayKey, String(Number(await env.STATE.get(dayKey) || 0) + 1), { expirationTtl: 400 * 86400 });
+  await env.STATE.put("visits:total", String(Number(await env.STATE.get("visits:total") || 0) + 1));
+  return true;
+}
+
+/* إجمالي الزيارات وزيارات آخر عدد من الأيام (الأقدم أولًا) */
+async function visitStats(env, days) {
+  const dates = Array.from({ length: days }, (_, i) => dayStr(days - 1 - i));
+  const d1 = await db(env);
+  if (d1) {
+    const [rows, total] = await d1.batch([
+      d1.prepare("SELECT day, n FROM visit_days WHERE day >= ? AND day != ?").bind(dates[0], LEGACY_DAY),
+      d1.prepare("SELECT COALESCE(SUM(n), 0) n FROM visit_days")
+    ]);
+    const byDay = Object.fromEntries(rows.results.map(x => [x.day, x.n]));
+    return { total: total.results[0].n, days: dates.map(date => ({ date, visits: byDay[date] || 0 })) };
+  }
+  const out = [];
+  for (const date of dates) out.push({ date, visits: Number(await env.STATE.get(`visits:day:${date}`) || 0) });
+  return { total: Number(await env.STATE.get("visits:total") || 0), days: out };
+}
+
+async function getHistory(env, id) {
+  const d1 = await db(env);
+  if (!d1) return JSON.parse((await env.STATE.get(`ph:${id}`)) || "[]");
+  const { results } = await d1.prepare("SELECT t, price p FROM price_history WHERE product_id = ? ORDER BY t DESC LIMIT 40").bind(String(id)).all();
+  return results.reverse();
+}
+
 async function pushHistory(env, id, price) {
+  const d1 = await db(env);
+  if (d1) {
+    const last = await d1.prepare("SELECT t, price p FROM price_history WHERE product_id = ? ORDER BY t DESC LIMIT 1").bind(String(id)).first();
+    if (last && Number(last.p) === Number(price) && Date.now() - last.t < 86400000) return;
+    await d1.batch([
+      d1.prepare("INSERT OR REPLACE INTO price_history (product_id, t, price) VALUES (?, ?, ?)").bind(String(id), Date.now(), Number(price)),
+      d1.prepare("DELETE FROM price_history WHERE product_id = ?1 AND t < (SELECT t FROM price_history WHERE product_id = ?1 ORDER BY t DESC LIMIT 1 OFFSET 39)").bind(String(id))
+    ]);
+    return;
+  }
   const k = `ph:${id}`;
   const arr = JSON.parse((await env.STATE.get(k)) || "[]");
   const last = arr[arr.length - 1];
@@ -1010,6 +1122,11 @@ async function pushHistory(env, id, price) {
 }
 
 async function addAlert(env, id, userId, target) {
+  const d1 = await db(env);
+  if (d1) {
+    await d1.prepare("INSERT OR REPLACE INTO alerts (product_id, user_id, target) VALUES (?, ?, ?)").bind(String(id), String(userId), Number(target)).run();
+    return;
+  }
   const k = `al:${id}`;
   const arr = JSON.parse((await env.STATE.get(k)) || "[]").filter(a => a.u !== String(userId));
   arr.push({ u: String(userId), t: Number(target) });
@@ -1019,6 +1136,19 @@ async function addAlert(env, id, userId, target) {
 const goUrl = (env, p) => (baseUrl(env) ? `${baseUrl(env)}/go/${p.id}` : p.link);
 
 async function checkAlerts(env, p, price) {
+  const d1 = await db(env);
+  if (d1) {
+    const { results } = await d1.prepare("SELECT user_id u, target t FROM alerts WHERE product_id = ? AND target >= ?").bind(String(p.id), Number(price)).all();
+    for (const a of results) {
+      try {
+        await sendMessage(a.u,
+          `🔔 نزل السعر!\n\n${p.title}\n💰 الآن: ${price} ريال (هدفك ${a.t})`, env,
+          { reply_markup: { inline_keyboard: [[{ text: "🛒 اشتر الآن", url: goUrl(env, p) }]] } });
+        await d1.prepare("DELETE FROM alerts WHERE product_id = ? AND user_id = ?").bind(String(p.id), a.u).run();
+      } catch (e) { console.error("alert send failed", e); }
+    }
+    return;
+  }
   const k = `al:${p.id}`;
   const raw = await env.STATE.get(k);
   if (!raw) return;
@@ -1079,8 +1209,106 @@ async function checkPrices(env) {
 ========================= */
 
 async function getReviews(env) {
+  const d1 = await db(env);
+  if (d1) {
+    const { results } = await d1.prepare("SELECT identity u, name n, rating r, comment c, t FROM reviews ORDER BY t DESC LIMIT 200").all();
+    return results.reverse();
+  }
   const raw = await env.STATE.get("reviews");
   return raw ? JSON.parse(raw) : [];
+}
+
+/* رأي واحد لكل شخص: يستبدل رأيه السابق (oldId هو معرّف تلجرام بالصيغة القديمة قبل tg:) */
+async function saveReview(env, review, oldId = "") {
+  const d1 = await db(env);
+  if (d1) {
+    await d1.batch([
+      d1.prepare("DELETE FROM reviews WHERE identity = ?").bind(oldId || review.u),
+      d1.prepare("INSERT OR REPLACE INTO reviews (identity, name, rating, comment, t) VALUES (?, ?, ?, ?, ?)").bind(review.u, review.n, review.r, review.c, review.t)
+    ]);
+    return;
+  }
+  const list = (await getReviews(env)).filter(x => x.u !== review.u && x.u !== oldId);
+  list.push(review);
+  await env.STATE.put("reviews", JSON.stringify(list.slice(-200)));
+}
+
+async function deleteReview(env, t) {
+  const d1 = await db(env);
+  if (d1) return d1.prepare("DELETE FROM reviews WHERE t = ?").bind(Number(t)).run();
+  const list = (await getReviews(env)).filter(x => String(x.t) !== String(t));
+  await env.STATE.put("reviews", JSON.stringify(list));
+}
+
+/* =========================
+   صيانة D1 ونقل البيانات القديمة من KV
+========================= */
+
+async function cleanupDb(env) {
+  const d1 = await db(env);
+  if (!d1) return;
+  await d1.batch([
+    d1.prepare("DELETE FROM visit_sessions WHERE day < ?").bind(dayStr(2)),
+    d1.prepare("DELETE FROM meta WHERE exp > 0 AND exp < ?").bind(Date.now())
+  ]);
+}
+
+async function kvListAll(env, prefix) {
+  const keys = [];
+  let cursor;
+  do {
+    const page = await env.STATE.list({ prefix, cursor });
+    keys.push(...page.keys.map(k => k.name));
+    cursor = page.list_complete ? null : page.cursor;
+  } while (cursor);
+  return keys;
+}
+
+/* نقل لمرة واحدة: يقرأ KV ولا يحذف منه شيئًا. كل جدول يُنقل باستعلام واحد عبر json_each */
+async function migrateKvToD1(env) {
+  const d1 = await db(env);
+  if (!d1) return "⚠️ قاعدة البيانات غير مربوطة بعد.\nأضف الربط DB في إعدادات الـWorker ثم أعد المحاولة.";
+  const done = await d1.prepare("SELECT v FROM meta WHERE k = 'migrated'").first();
+  if (done) return `✅ البيانات القديمة نُقلت من قبل (${done.v}).`;
+
+  const raw = await env.STATE.get("stats");
+  const s = raw ? JSON.parse(raw) : { c: {}, s: {}, d: {} };
+  const clicks = [
+    ...Object.entries(s.c || {}).map(([id, n]) => [LEGACY_DAY, String(id), "", n]),
+    ...Object.entries(s.s || {}).map(([st, n]) => [LEGACY_DAY, `~s:${st}`, st, n]),
+    ...Object.entries(s.d || {}).map(([day, n]) => [day, "~d", "", n])
+  ];
+
+  const visitDays = [];
+  for (const k of await kvListAll(env, "visits:day:"))
+    visitDays.push([k.slice("visits:day:".length), Number(await env.STATE.get(k) || 0)]);
+  const legacyVisits = Number(await env.STATE.get("visits:total") || 0) - visitDays.reduce((n, [, v]) => n + v, 0);
+  if (legacyVisits > 0) visitDays.push([LEGACY_DAY, legacyVisits]);
+
+  const history = [];
+  for (const k of await kvListAll(env, "ph:"))
+    for (const x of JSON.parse(await env.STATE.get(k) || "[]")) history.push([k.slice(3), x.t, x.p]);
+
+  const alerts = [];
+  for (const k of await kvListAll(env, "al:"))
+    for (const a of JSON.parse(await env.STATE.get(k) || "[]")) alerts.push([k.slice(3), String(a.u), a.t]);
+
+  const reviewsRaw = await env.STATE.get("reviews");
+  const reviews = (reviewsRaw ? JSON.parse(reviewsRaw) : []).map(x => [String(x.u), x.n, x.r, x.c || "", x.t]);
+
+  const each = cols => cols.map((_, i) => `json_extract(value, '$[${i}]')`).join(", ");
+  await d1.batch([
+    d1.prepare(`INSERT OR IGNORE INTO clicks (day, product_id, store, n) SELECT ${each([1, 2, 3, 4])} FROM json_each(?)`).bind(JSON.stringify(clicks)),
+    d1.prepare(`INSERT INTO visit_days (day, n) SELECT ${each([1, 2])} FROM json_each(?) WHERE true ON CONFLICT (day) DO UPDATE SET n = n + excluded.n`).bind(JSON.stringify(visitDays)),
+    d1.prepare(`INSERT OR IGNORE INTO price_history (product_id, t, price) SELECT ${each([1, 2, 3])} FROM json_each(?)`).bind(JSON.stringify(history)),
+    d1.prepare(`INSERT OR IGNORE INTO alerts (product_id, user_id, target) SELECT ${each([1, 2, 3])} FROM json_each(?)`).bind(JSON.stringify(alerts)),
+    d1.prepare(`INSERT OR IGNORE INTO reviews (identity, name, rating, comment, t) SELECT ${each([1, 2, 3, 4, 5])} FROM json_each(?)`).bind(JSON.stringify(reviews)),
+    d1.prepare("INSERT INTO meta (k, v) VALUES ('migrated', ?)").bind(new Date().toISOString().slice(0, 16).replace("T", " "))
+  ]);
+  return `✅ تم نقل البيانات القديمة إلى قاعدة البيانات\n\n` +
+    `🛒 سجلات النقرات: ${clicks.length}\n👥 أيام الزيارات: ${visitDays.length}\n` +
+    `📈 نقاط سجل الأسعار: ${history.length}\n🔔 تنبيهات الأسعار: ${alerts.length}\n💬 الآراء: ${reviews.length}\n\n` +
+    `البيانات القديمة باقية في KV كنسخة احتياطية.`;
 }
 
 const reviewsSummary = list => ({
@@ -1150,15 +1378,15 @@ async function handleUpdate(update, env) {
   const chatId = message?.chat?.id ?? callback?.message?.chat?.id ?? callback?.from?.id;
 
   try {
+    /* رسائل غير المدير لا تُكتب في KV حتى لا تستهلك حد الكتابة اليومي */
+    if (callback && !isAdmin(callback.from.id, env)) return answerCallback(callback.id, env, "غير مصرح ❌");
+    if (!callback && (!message?.from || !isAdmin(message.from.id, env))) return;
     if (await isDuplicateUpdate(update, env)) return;
 
     if (callback) {
-      if (!isAdmin(callback.from.id, env)) return answerCallback(callback.id, env, "غير مصرح ❌");
       await answerCallback(callback.id, env);
       return handleCallback(callback, env);
     }
-
-    if (!message?.from || !isAdmin(message.from.id, env)) return;
 
     const userId = String(message.from.id);
     const text = message.text?.trim();
@@ -1166,6 +1394,7 @@ async function handleUpdate(update, env) {
     if (text === "/start" || text === "/menu") { await clearState(userId, env); return showMenu({ chatId }, env); }
     if (text === "/add") return startAdd({ chatId }, userId, env);
     if (text === "/stats") return showStats({ chatId }, env);
+    if (text === "/migrate") return sendMessage(chatId, await migrateKvToD1(env), env);
     if (text === "/cancel") {
       await clearState(userId, env);
       await sendMessage(chatId, "تم إلغاء العملية ❌", env);
@@ -1285,12 +1514,11 @@ async function showStats(ref, env) {
   const days = Object.entries(s.d).sort().slice(-7);
   const total7 = days.reduce((n, [, v]) => n + v, 0);
   const all = allProducts(products);
-  const visitTotal = Number(await env.STATE.get("visits:total") || 0);
-  const visitDays = [];
-  for (let i = 6; i >= 0; i--) {
-    const date = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
-    visitDays.push({ date, visits: Number(await env.STATE.get(`visits:day:${date}`) || 0) });
-  }
+  const { total: visitTotal, days: visitDays } = await visitStats(env, 7);
+  const d1 = await db(env);
+  const storage = !d1 ? "🗄️ التخزين: KV (حد 1000 كتابة يوميًا) — اربط D1 لرفع الحد"
+    : (await d1.prepare("SELECT 1 FROM meta WHERE k = 'migrated'").first()) ? "🗄️ التخزين: قاعدة البيانات D1 ✅"
+    : "🗄️ التخزين: D1 — أرسل /migrate لنقل البيانات القديمة";
   const visit7 = visitDays.reduce((n, x) => n + x.visits, 0);
   const text =
     `📊 الإحصائيات\n\n` +
@@ -1300,7 +1528,8 @@ async function showStats(ref, env) {
     `🛒 نقرات روابط المنتجات آخر 7 أيام: ${total7}\n\n` +
     `📦 المنتجات: ${all.length} • النشطة: ${all.filter(x => !x.product.expired).length}\n\n` +
     (top.length ? `🏆 الأكثر نقرًا:\n${top.map(([id, n], i) => `${i + 1}. ${title(id)} — ${n}`).join("\n")}\n\n` : "لا توجد نقرات مسجلة بعد.\n\n") +
-    (stores.length ? `🏬 النقرات حسب المتجر:\n${stores.map(([k, n]) => `• ${k}: ${n}`).join("\n")}` : "");
+    (stores.length ? `🏬 النقرات حسب المتجر:\n${stores.map(([k, n]) => `• ${k}: ${n}`).join("\n")}\n\n` : "") +
+    storage;
   await ui(ref, text, [[{ text: "🔙 القائمة", callback_data: "back_menu" }]], env);
 }
 
@@ -2315,8 +2544,7 @@ async function handleCallback(callback, env) {
     case "st": return listByStore(ref, args[0], Number(args[1]) || 0, env);
     case "reviews": return showReviews(ref, env);
     case "rvd": {
-      const list = (await getReviews(env)).filter(x => String(x.t) !== String(args[0]));
-      await env.STATE.put("reviews", JSON.stringify(list));
+      await deleteReview(env, args[0]);
       return showReviews(ref, env);
     }
     case "stats": return showStats(ref, env);
