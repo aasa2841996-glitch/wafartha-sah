@@ -1052,6 +1052,19 @@
       "featured": false,
       "expired": false,
       "createdAt": "2026-10-20T08:13:36.203Z"
+    },
+    {
+      "id": "4cbdcd70",
+      "title": "مكواة بخار للملابس محمولة باليد",
+      "price": "98",
+      "old": "319",
+      "discount": 69,
+      "link": "https://s.noon.com/FRojoJnV3wg",
+      "store": "Noon",
+      "image": "products/product-1792651832613-190b7ebd.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-22T06:50:34.349Z"
     }
   ],
   "men": [
