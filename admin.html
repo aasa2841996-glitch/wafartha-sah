@@ -416,7 +416,8 @@ $("#lbtn").onclick = async () => {
   } catch (e) { token = ""; $("#lerr").textContent = e.status ? "المفتاح غير صحيح أو ما عنده صلاحية على wafartha-sah" : e.message; }
   finally { b.disabled = false; b.textContent = "دخول"; }
 };
-$("#logout").onclick = () => { if (ops.length && !confirm("فيه تغييرات غير منشورة، تبي تطلع؟")) return; store.clear(); token = ""; ops = []; history.replaceState(null, "", location.pathname); showLogin(); };
+$("#logout").onclick = () => {
+  if (!confirm(ops.length ? "فيه تغييرات غير منشورة بتضيع.\nوالخروج يمسح المفتاح من الجهاز، وبتحتاج تلصقه مرة ثانية.\nمتأكد تبي تطلع؟" : "الخروج يمسح المفتاح من الجهاز، وبتحتاج تلصقه مرة ثانية.\nمتأكد تبي تطلع؟")) return; store.clear(); token = ""; ops = []; history.replaceState(null, "", location.pathname); showLogin(); };
 $("#reload").onclick = () => { if (ops.length) return toast("انشر أو تراجع عن التغييرات أول"); load(); };
 $("#q").oninput = render; $("#fstore").onchange = render;
 $("#cats").onclick = e => { const b = e.target.closest("[data-cat]"); if (b) { cat = b.dataset.cat; render(); } };
