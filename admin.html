@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src https: data: blob:; connect-src https://api.github.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>لوحة وفّرها صح</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#fff7f8; --card:#fff; --ink:#2a1420; --muted:#8a6f7b; --line:#f3dce3;
+  --brand:#f0185b; --brand-d:#a80d45; --soft:#fff0f4; --ok:#14865a; --warn:#b26a00; --bad:#c8102e;
+  --sh:0 1px 2px rgba(120,20,60,.06),0 6px 18px rgba(120,20,60,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#170b11; --card:#22121a; --ink:#f8e9ef; --muted:#b597a4; --line:#3a2029;
+    --brand:#ff4c80; --brand-d:#ff86a8; --soft:#2d1621; --ok:#3fcf8e; --warn:#f0b24a; --bad:#ff6b7f;
+    --sh:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#170b11; --card:#22121a; --ink:#f8e9ef; --muted:#b597a4; --line:#3a2029;
+  --brand:#ff4c80; --brand-d:#ff86a8; --soft:#2d1621; --ok:#3fcf8e; --warn:#f0b24a; --bad:#ff6b7f;
+  --sh:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+
+/* top bar */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:10px;height:58px}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#ff7a5c);display:grid;place-items:center;color:#fff;font-weight:700}
+.bar h1{font-size:17px;margin:0;flex:1}
+.bar h1 small{display:block;font-size:12px;color:var(--muted);font-weight:500}
+.icon-btn{border:1px solid var(--line);background:var(--card);border-radius:12px;height:38px;min-width:38px;padding:0 10px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:var(--sh)}
+.stat b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+
+/* toolbar */
+.tools{display:flex;gap:8px;margin-bottom:10px}
+.search{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 12px;height:44px}
+.search input{border:0;outline:0;background:transparent;flex:1;min-width:0}
+select.sel{height:44px;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:0 10px;max-width:42%}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip i{font-style:normal;opacity:.7;margin-inline-start:4px}
+
+/* list */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:10px;padding-bottom:120px}
+.item{display:flex;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--sh);text-align:start;width:100%;min-width:0}
+.item.exp{opacity:.55}
+.thumb{width:78px;height:78px;flex:none;border-radius:12px;background:var(--soft);object-fit:cover}
+.meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.ttl{font-weight:600;font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}
+.price{font-weight:700;color:var(--brand-d);font-variant-numeric:tabular-nums}
+.old{color:var(--muted);text-decoration:line-through;font-variant-numeric:tabular-nums}
+.tag{font-size:11px;border-radius:6px;padding:1px 6px;background:var(--soft);color:var(--brand-d)}
+.tag.ok{color:var(--ok)} .tag.warn{color:var(--warn)} .tag.bad{color:var(--bad)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+
+/* fab + save bar */
+.fab{position:fixed;inset-inline-start:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:15;height:54px;padding:0 20px;border:0;border-radius:18px;background:var(--brand);color:#fff;font-weight:700;box-shadow:0 8px 24px rgba(240,24,91,.35)}
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--ink);color:var(--bg);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.savebar .wrap{display:flex;align-items:center;gap:10px;padding:0}
+.savebar span{flex:1;font-size:14px}
+.btn{height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);padding:0 16px;font-weight:600}
+.btn.pri{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.danger{color:var(--bad)}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.savebar .btn{border:0}
+.savebar .ghost{background:transparent;color:var(--bg);border:1px solid color-mix(in srgb,var(--bg) 35%,transparent)}
+
+/* sheet */
+.overlay{position:fixed;inset:0;z-index:30;background:rgba(20,5,12,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--card);width:100%;max-width:620px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+@media(min-width:700px){.overlay{align-items:center}.sheet{border-radius:22px}}
+.sheet h2{margin:0 0 12px;font-size:18px;display:flex;align-items:center;justify-content:space-between}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.field label{font-size:13px;color:var(--muted);font-weight:500}
+.field input,.field select,.field textarea{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;outline:0;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand)}
+.field textarea{min-height:84px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr 90px;gap:8px}
+.switches{display:flex;gap:8px;margin-bottom:12px}
+.sw{flex:1;display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.sw input{width:20px;height:20px;accent-color:var(--brand)}
+.imgbox{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.imgbox img{width:96px;height:96px;border-radius:14px;object-fit:cover;background:var(--soft)}
+.imgbox .col{display:flex;flex-direction:column;gap:6px;flex:1}
+.actions{display:flex;gap:8px;margin-top:6px}
+.actions .pri{flex:1}
+.hint{font-size:12px;color:var(--muted);margin:-6px 0 12px}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+.lcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--sh);width:100%;max-width:420px}
+.lcard h2{margin:12px 0 4px}
+.lcard p{color:var(--muted);margin:0 0 16px;font-size:14px}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin:6px 0}
+
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;box-shadow:var(--sh);max-width:90vw}
+.spin{width:18px;height:18px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:s .7s linear infinite;display:inline-block}
+@keyframes s{to{transform:rotate(360deg)}}
+@media(max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr 1fr}.two .d{grid-column:span 2}}
+</style>
+</head>
+<body>
+
+<!-- تسجيل الدخول -->
+<section id="login" class="login hidden">
+  <div class="lcard">
+    <div class="logo">و</div>
+    <h2>لوحة إدارة وفّرها صح</h2>
+    <p>الصق مفتاح GitHub الخاص باللوحة. يُحفظ على هذا الجهاز فقط ولا يُرسل لأي مكان غير GitHub.</p>
+    <div class="field">
+      <label for="tok">مفتاح GitHub</label>
+      <input id="tok" type="password" autocomplete="off" placeholder="github_pat_..." dir="ltr">
+    </div>
+    <label class="sw" style="margin-bottom:12px"><span>تذكّرني على هذا الجهاز</span><input id="remember" type="checkbox" checked></label>
+    <div class="err" id="lerr"></div>
+    <button class="btn pri" id="lbtn" style="width:100%">دخول</button>
+  </div>
+</section>
+
+<!-- التطبيق -->
+<section id="app" class="hidden">
+  <header>
+    <div class="wrap bar">
+      <div class="logo">و</div>
+      <h1>وفّرها صح <small id="sub">لوحة إدارة المنتجات</small></h1>
+      <button class="icon-btn" id="reload" title="تحديث">↻</button>
+      <button class="icon-btn" id="logout" title="خروج">خروج</button>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="stats">
+      <div class="stat"><b id="s-all">0</b><span>كل المنتجات</span></div>
+      <div class="stat"><b id="s-act">0</b><span>نشطة</span></div>
+      <div class="stat"><b id="s-fea">0</b><span>مميزة</span></div>
+      <div class="stat"><b id="s-exp">0</b><span>منتهية</span></div>
+    </div>
+    <div class="tools">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="ابحث بالاسم أو الرابط"></label>
+      <select class="sel" id="fstore" aria-label="المتجر"></select>
+    </div>
+    <div class="chips" id="fstate"></div>
+    <div class="chips" id="cats"></div>
+    <div class="grid" id="list"></div>
+  </main>
+  <button class="fab" id="add">＋ منتج جديد</button>
+  <div class="savebar hidden" id="savebar">
+    <div class="wrap">
+      <span id="pending">تغييرات غير منشورة</span>
+      <button class="btn ghost" id="discard">تراجع</button>
+      <button class="btn pri" id="save">نشر التغييرات</button>
+    </div>
+  </div>
+</section>
+
+<!-- نافذة التعديل -->
+<div class="overlay hidden" id="ov">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h2><span id="ftitle">تعديل منتج</span><button class="icon-btn" id="fclose" aria-label="إغلاق">✕</button></h2>
+    <div class="imgbox">
+      <img id="fimg" alt="">
+      <div class="col">
+        <label class="btn" style="display:inline-flex;align-items:center;justify-content:center">تغيير الصورة<input id="ffile" type="file" accept="image/*" class="hidden"></label>
+        <span class="hint" style="margin:0" id="fimgnote">تُضغط الصورة تلقائيًا قبل الرفع.</span>
+      </div>
+    </div>
+    <div class="field"><label for="ft">اسم المنتج</label><textarea id="ft"></textarea></div>
+    <div class="two">
+      <div class="field"><label for="fp">السعر الحالي</label><input id="fp" inputmode="decimal" dir="ltr"></div>
+      <div class="field"><label for="fo">السعر قبل الخصم</label><input id="fo" inputmode="decimal" dir="ltr"></div>
+      <div class="field d"><label for="fd">الخصم %</label><input id="fd" inputmode="numeric" dir="ltr"></div>
+    </div>
+    <p class="hint">الخصم يُحسب تلقائيًا من السعرين، وتقدر تعدّله بيدك.</p>
+    <div class="field"><label for="fl">رابط الأفلييت</label><input id="fl" type="url" dir="ltr" placeholder="https://"></div>
+    <div class="two" style="grid-template-columns:1fr 1fr">
+      <div class="field"><label for="fs">المتجر</label><select id="fs"></select></div>
+      <div class="field"><label for="fc">القسم</label><select id="fc"></select></div>
+    </div>
+    <div class="switches">
+      <label class="sw"><span>⭐ مميز</span><input id="ff" type="checkbox"></label>
+      <label class="sw"><span>منتهي / مخفي</span><input id="fe" type="checkbox"></label>
+    </div>
+    <div class="actions">
+      <button class="btn danger" id="fdel">حذف</button>
+      <button class="btn pri" id="fok">حفظ</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast hidden" id="toast"></div>
+
+<script>
+"use strict";
+const OWNER = "aasa2841996-glitch", REPO = "wafartha-sah", BRANCH = "main", FILE = "products.json";
+const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
+const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
+const TK = "wfs_admin_token";
+
+const CATS = [
+  ["electronics","الإلكترونيات"],["shoes","الأحذية"],["dresses","الفساتين"],["bags","الشنط"],["watches","الساعات"],
+  ["accessories","الإكسسوارات"],["perfumes","العطور"],["beauty","العناية والجمال"],["men","أزياء الرجال"],
+  ["kids","الأطفال"],["home","المنزل"],["sports","الرياضة"],["gifts","الهدايا"],["deals","أقوى العروض"],["saved","محفوظ"]
+];
+const CATNAME = Object.fromEntries(CATS);
+const STORES = ["AliExpress","Amazon","Noon","Shein","Temu","Trendyol"];
+
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {
+  get(){ try { return localStorage.getItem(TK) || sessionStorage.getItem(TK) || ""; } catch { return mem; } },
+  set(v, keep){ mem = v; try { (keep ? localStorage : sessionStorage).setItem(TK, v); } catch {} },
+  clear(){ mem = ""; try { localStorage.removeItem(TK); sessionStorage.removeItem(TK); } catch {} }
+};
+let mem = "";
+
+let token = "", data = null, sha = "", ops = [], cat = "all", state = "all", editing = null, newImage = null;
+
+/* ---------- GitHub ---------- */
+async function gh(path, opt = {}) {
+  const r = await fetch(API + path, {
+    ...opt,
+    headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28", ...(opt.headers || {}) }
+  });
+  if (!r.ok) { const e = new Error((await r.json().catch(() => ({}))).message || r.status); e.status = r.status; throw e; }
+  return r.status === 204 ? null : r.json();
+}
+const b64enc = str => { const b = new TextEncoder().encode(str); let s = ""; for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(s); };
+const b64dec = b64 => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, "")), c => c.charCodeAt(0)));
+
+async function fetchProducts() {
+  const f = await gh(`/contents/${FILE}?ref=${BRANCH}&t=${Date.now()}`, { cache: "no-store" });
+  return { json: JSON.parse(b64dec(f.content)), sha: f.sha };
+}
+
+/* ---------- عمليات التعديل (تُطبَّق على أحدث نسخة عند النشر حتى لا نمسح شغل البوت) ---------- */
+function findById(d, id) {
+  for (const k of Object.keys(d)) { if (!Array.isArray(d[k])) continue; const i = d[k].findIndex(p => p.id === id); if (i > -1) return [k, i]; }
+  return null;
+}
+function applyOp(d, op) {
+  const at = findById(d, op.id);
+  if (op.type === "delete") { if (at) d[at[0]].splice(at[1], 1); return; }
+  if (at && at[0] !== op.cat) { d[at[0]].splice(at[1], 1); }
+  if (!Array.isArray(d[op.cat])) d[op.cat] = [];
+  const now = findById(d, op.id);
+  if (now) d[now[0]][now[1]] = { ...d[now[0]][now[1]], ...op.product };
+  else d[op.cat].unshift(op.product);
+}
+function view() { const d = structuredClone(data); ops.forEach(o => applyOp(d, o)); return d; }
+function push(op) { ops = ops.filter(o => o.id !== op.id); ops.push(op); render(); }
+
+async function publish() {
+  const btn = $("#save"); btn.disabled = true; btn.innerHTML = '<span class="spin"></span>';
+  try {
+    for (let tries = 0; tries < 3; tries++) {
+      const fresh = await fetchProducts();
+      ops.forEach(o => applyOp(fresh.json, o));
+      const n = ops.length;
+      try {
+        const res = await gh(`/contents/${FILE}`, { method: "PUT", body: JSON.stringify({
+          message: `Admin panel: ${n} تعديل`, branch: BRANCH, sha: fresh.sha, content: b64enc(JSON.stringify(fresh.json, null, 2))
+        })});
+        data = fresh.json; sha = res.content.sha; ops = []; render();
+        toast("تم النشر ✅ يظهر في الموقع خلال دقيقة"); return;
+      } catch (e) { if (e.status !== 409 && e.status !== 422) throw e; }
+    }
+    throw new Error("تعارض مع تعديل آخر، جرّب مرة ثانية");
+  } catch (e) { toast("ما انحفظ: " + e.message); }
+  finally { btn.disabled = false; btn.textContent = "نشر التغييرات"; }
+}
+
+/* ---------- الصور ---------- */
+const imgUrl = p => !p ? "" : /^https?:/i.test(p) ? p : RAW + String(p).replace(/^\/+/, "");
+async function compress(file) {
+  const bmp = await createImageBitmap(file);
+  const max = 1000, k = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const c = document.createElement("canvas"); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+  const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(bmp, 0, 0, c.width, c.height);
+  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
+  const buf = new Uint8Array(await blob.arrayBuffer()); let s = "";
+  for (let i = 0; i < buf.length; i += 0x8000) s += String.fromCharCode.apply(null, buf.subarray(i, i + 0x8000));
+  return { b64: btoa(s), url: URL.createObjectURL(blob) };
+}
+async function uploadImage(b64) {
+  const name = `products/product-${Date.now()}-${Math.random().toString(16).slice(2, 10)}.jpg`;
+  await gh(`/contents/${name}`, { method: "PUT", body: JSON.stringify({ message: `Admin panel: صورة منتج`, branch: BRANCH, content: b64 }) });
+  return name;
+}
+
+/* ---------- العرض ---------- */
+function all(d) { const out = []; for (const k of Object.keys(d)) if (Array.isArray(d[k])) d[k].forEach(p => out.push([k, p])); return out; }
+function render() {
+  const d = view(), items = all(d);
+  const q = $("#q").value.trim().toLowerCase(), st = $("#fstore").value;
+  $("#s-all").textContent = items.length;
+  $("#s-act").textContent = items.filter(([, p]) => !p.expired).length;
+  $("#s-fea").textContent = items.filter(([, p]) => p.featured).length;
+  $("#s-exp").textContent = items.filter(([, p]) => p.expired).length;
+
+  const counts = {}; items.forEach(([k]) => counts[k] = (counts[k] || 0) + 1);
+  $("#cats").innerHTML = [["all", "الكل", items.length], ...CATS.filter(([id]) => id !== "saved" || counts.saved).map(([id, n]) => [id, n, counts[id] || 0])]
+    .map(([id, n, c]) => `<button class="chip ${cat === id ? "on" : ""}" data-cat="${id}">${esc(n)}<i>${c}</i></button>`).join("");
+  $("#fstate").innerHTML = [["all","كل الحالات"],["active","النشطة"],["featured","⭐ المميزة"],["expired","المنتهية"],["noimg","بدون صورة"],["nolink","بدون رابط"]]
+    .map(([id, n]) => `<button class="chip ${state === id ? "on" : ""}" data-state="${id}">${n}</button>`).join("");
+
+  let list = items.filter(([k, p]) => (cat === "all" || k === cat)
+    && (!st || (p.store || "") === st)
+    && (!q || (p.title || "").toLowerCase().includes(q) || (p.link || "").toLowerCase().includes(q) || (p.originalTitle || "").toLowerCase().includes(q))
+    && (state === "all" || (state === "active" && !p.expired) || (state === "featured" && p.featured) || (state === "expired" && p.expired) || (state === "noimg" && !p.image) || (state === "nolink" && !p.link)));
+  list.sort((a, b) => String(b[1].createdAt || "").localeCompare(String(a[1].createdAt || "")));
+
+  $("#list").innerHTML = list.length ? list.map(([k, p]) => `
+    <button class="item ${p.expired ? "exp" : ""}" data-id="${esc(p.id)}">
+      <img class="thumb" loading="lazy" src="${esc(imgUrl(p.image))}" alt="" onerror="this.style.visibility='hidden'">
+      <div class="meta">
+        <div class="ttl">${esc(p.title || "بدون اسم")}</div>
+        <div class="row"><span class="price">${esc(p.price || "—")} ر.س</span>${p.old && +p.old > +p.price ? `<span class="old">${esc(p.old)}</span>` : ""}${+p.discount ? `<span class="tag">-${esc(p.discount)}%</span>` : ""}</div>
+        <div class="row"><span class="tag">${esc(CATNAME[k] || k)}</span><span class="tag">${esc(p.store || "بدون متجر")}</span>${p.featured ? '<span class="tag warn">⭐ مميز</span>' : ""}${p.expired ? '<span class="tag bad">منتهي</span>' : ""}${!p.link ? '<span class="tag bad">بدون رابط</span>' : ""}</div>
+      </div>
+    </button>`).join("") : `<div class="empty">ما فيه منتجات هنا</div>`;
+
+  $("#savebar").classList.toggle("hidden", !ops.length);
+  $("#add").style.bottom = ops.length ? "calc(84px + env(safe-area-inset-bottom))" : "";
+  $("#pending").textContent = `${ops.length} تغيير غير منشور`;
+}
+
+/* ---------- نافذة التعديل ---------- */
+function openForm(id) {
+  const d = view(), at = id ? findById(d, id) : null;
+  const p = at ? d[at[0]][at[1]] : { id: "", title: "", price: "", old: "", discount: 0, link: "", store: "", image: "", featured: false, expired: false };
+  editing = { id: p.id, cat: at ? at[0] : (cat !== "all" ? cat : "deals"), orig: p }; newImage = null;
+  $("#ftitle").textContent = id ? "تعديل منتج" : "منتج جديد";
+  $("#fdel").classList.toggle("hidden", !id);
+  $("#ft").value = p.title || ""; $("#fp").value = p.price || ""; $("#fo").value = p.old || ""; $("#fd").value = p.discount || 0;
+  $("#fl").value = p.link || ""; $("#ff").checked = !!p.featured; $("#fe").checked = !!p.expired;
+  $("#fs").innerHTML = ["", ...new Set([...STORES, p.store].filter(Boolean))].map(s => `<option value="${esc(s)}" ${s === (p.store || "") ? "selected" : ""}>${esc(s || "— اختر —")}</option>`).join("");
+  $("#fc").innerHTML = CATS.map(([c, n]) => `<option value="${c}" ${c === editing.cat ? "selected" : ""}>${n}</option>`).join("");
+  $("#fimg").src = imgUrl(p.image); $("#fimgnote").textContent = "تُضغط الصورة تلقائيًا قبل الرفع.";
+  $("#ov").classList.remove("hidden"); document.body.style.overflow = "hidden";
+}
+function closeForm() { $("#ov").classList.add("hidden"); document.body.style.overflow = ""; editing = null; }
+function autoDisc() { const p = parseFloat($("#fp").value), o = parseFloat($("#fo").value); if (p > 0 && o > p) $("#fd").value = Math.round((o - p) / o * 100); else if (p && o && o <= p) $("#fd").value = 0; }
+function guessStore(link) {
+  const l = link.toLowerCase();
+  return l.includes("aliexpress") ? "AliExpress" : /amazon|amzn/.test(l) ? "Amazon" : l.includes("noon") ? "Noon" : l.includes("shein") ? "Shein" : l.includes("temu") ? "Temu" : l.includes("trendyol") || l.includes("ty.gl") ? "Trendyol" : "";
+}
+
+async function saveForm() {
+  const title = $("#ft").value.trim();
+  if (!title) return toast("اكتب اسم المنتج");
+  const btn = $("#fok"); btn.disabled = true;
+  try {
+    let image = editing.orig.image || "";
+    if (newImage) { btn.innerHTML = '<span class="spin"></span>'; image = await uploadImage(newImage.b64); }
+    const product = {
+      ...editing.orig,
+      id: editing.id || Math.random().toString(16).slice(2, 10),
+      title, price: $("#fp").value.trim(), old: $("#fo").value.trim(), discount: parseInt($("#fd").value) || 0,
+      link: $("#fl").value.trim(), store: $("#fs").value, image,
+      featured: $("#ff").checked, expired: $("#fe").checked,
+      createdAt: editing.orig.createdAt || new Date().toISOString()
+    };
+    push({ type: "upsert", id: product.id, cat: $("#fc").value, product });
+    closeForm(); toast("انحفظ محليًا، اضغط «نشر التغييرات»");
+  } catch (e) { toast("فشل رفع الصورة: " + e.message); }
+  finally { btn.disabled = false; btn.textContent = "حفظ"; }
+}
+
+/* ---------- عام ---------- */
+let tt; function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.remove("hidden"); clearTimeout(tt); tt = setTimeout(() => t.classList.add("hidden"), 3200); }
+
+async function load() {
+  $("#sub").innerHTML = '<span class="spin" style="width:12px;height:12px"></span> جاري التحميل';
+  try { const r = await fetchProducts(); data = r.json; sha = r.sha; $("#sub").textContent = "لوحة إدارة المنتجات"; render(); }
+  catch (e) {
+    if (e.status === 401 || e.status === 403 || e.status === 404) { store.clear(); showLogin("المفتاح غير صالح أو ما عنده صلاحية على المستودع"); }
+    else { $("#sub").textContent = "تعذّر التحميل"; toast(e.message); }
+  }
+}
+function showLogin(msg = "") { $("#app").classList.add("hidden"); $("#login").classList.remove("hidden"); $("#lerr").textContent = msg; }
+function showApp() { $("#login").classList.add("hidden"); $("#app").classList.remove("hidden"); load(); }
+
+$("#lbtn").onclick = async () => {
+  const v = $("#tok").value.trim(); if (!v) return;
+  const b = $("#lbtn"); b.disabled = true; b.innerHTML = '<span class="spin"></span>'; token = v;
+  try {
+    const r = await gh("");
+    if (!r.permissions || !r.permissions.push) throw Object.assign(new Error("المفتاح يقرأ فقط، يحتاج صلاحية Contents: Read and write"), { status: 0 });
+    store.set(v, $("#remember").checked); $("#tok").value = ""; showApp();
+  } catch (e) { token = ""; $("#lerr").textContent = e.status ? "المفتاح غير صحيح أو ما عنده صلاحية على wafartha-sah" : e.message; }
+  finally { b.disabled = false; b.textContent = "دخول"; }
+};
+$("#tok").addEventListener("keydown", e => { if (e.key === "Enter") $("#lbtn").click(); });
+$("#logout").onclick = () => { if (ops.length && !confirm("فيه تغييرات غير منشورة، تبي تطلع؟")) return; store.clear(); token = ""; ops = []; showLogin(); };
+$("#reload").onclick = () => { if (ops.length) return toast("انشر أو تراجع عن التغييرات أول"); load(); };
+$("#q").oninput = render; $("#fstore").onchange = render;
+$("#cats").onclick = e => { const b = e.target.closest("[data-cat]"); if (b) { cat = b.dataset.cat; render(); } };
+$("#fstate").onclick = e => { const b = e.target.closest("[data-state]"); if (b) { state = b.dataset.state; render(); } };
+$("#list").onclick = e => { const b = e.target.closest("[data-id]"); if (b) openForm(b.dataset.id); };
+$("#add").onclick = () => openForm(null);
+$("#fclose").onclick = closeForm;
+$("#ov").onclick = e => { if (e.target.id === "ov") closeForm(); };
+$("#fp").oninput = autoDisc; $("#fo").oninput = autoDisc;
+$("#fl").onchange = () => { const s = guessStore($("#fl").value); if (s && !$("#fs").value) $("#fs").value = s; };
+$("#ffile").onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  try { newImage = await compress(f); $("#fimg").src = newImage.url; $("#fimgnote").textContent = "صورة جديدة جاهزة، بتنرفع لما تضغط حفظ."; }
+  catch { toast("ما قدرت أقرأ الصورة"); }
+  e.target.value = "";
+};
+$("#fok").onclick = saveForm;
+$("#fdel").onclick = () => { if (!confirm("تحذف المنتج؟")) return; push({ type: "delete", id: editing.id }); closeForm(); toast("انحذف محليًا، اضغط «نشر التغييرات»"); };
+$("#save").onclick = publish;
+$("#discard").onclick = () => { if (confirm("تتراجع عن كل التغييرات غير المنشورة؟")) { ops = []; render(); } };
+window.addEventListener("beforeunload", e => { if (ops.length) { e.preventDefault(); e.returnValue = ""; } });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && editing) closeForm(); });
+
+$("#fstore").innerHTML = `<option value="">كل المتاجر</option>` + STORES.map(s => `<option>${s}</option>`).join("");
+token = store.get();
+token ? showApp() : showLogin();
+</script>
+</body>
+</html>
