@@ -128,13 +128,16 @@ select.sel{height:44px;border:1px solid var(--line);background:var(--card);borde
     <div class="logo">و</div>
     <h2>لوحة إدارة وفّرها صح</h2>
     <p>الصق مفتاح GitHub الخاص باللوحة. يُحفظ على هذا الجهاز فقط ولا يُرسل لأي مكان غير GitHub.</p>
+    <form id="lform" autocomplete="on" onsubmit="return false">
+    <input type="text" name="username" autocomplete="username" value="wafartha-admin" readonly style="position:absolute;opacity:0;height:0;width:0;pointer-events:none" tabindex="-1" aria-hidden="true">
     <div class="field">
       <label for="tok">مفتاح GitHub</label>
-      <input id="tok" type="password" autocomplete="off" placeholder="github_pat_..." dir="ltr">
+      <input id="tok" name="password" type="password" autocomplete="current-password" placeholder="github_pat_..." dir="ltr">
     </div>
     <label class="sw" style="margin-bottom:12px"><span>تذكّرني على هذا الجهاز</span><input id="remember" type="checkbox" checked></label>
     <div class="err" id="lerr"></div>
-    <button class="btn pri" id="lbtn" style="width:100%">دخول</button>
+    <button class="btn pri" id="lbtn" type="submit" style="width:100%">دخول</button>
+    </form>
   </div>
 </section>
 
@@ -400,6 +403,7 @@ async function load() {
 function showLogin(msg = "") { $("#app").classList.add("hidden"); $("#login").classList.remove("hidden"); $("#lerr").textContent = msg; }
 function showApp() { $("#login").classList.add("hidden"); $("#app").classList.remove("hidden"); load(); }
 
+$("#lform").onsubmit = e => { e.preventDefault(); return false; };
 $("#lbtn").onclick = async () => {
   const v = $("#tok").value.trim(); if (!v) return;
   const b = $("#lbtn"); b.disabled = true; b.innerHTML = '<span class="spin"></span>'; token = v;
@@ -410,7 +414,6 @@ $("#lbtn").onclick = async () => {
   } catch (e) { token = ""; $("#lerr").textContent = e.status ? "المفتاح غير صحيح أو ما عنده صلاحية على wafartha-sah" : e.message; }
   finally { b.disabled = false; b.textContent = "دخول"; }
 };
-$("#tok").addEventListener("keydown", e => { if (e.key === "Enter") $("#lbtn").click(); });
 $("#logout").onclick = () => { if (ops.length && !confirm("فيه تغييرات غير منشورة، تبي تطلع؟")) return; store.clear(); token = ""; ops = []; showLogin(); };
 $("#reload").onclick = () => { if (ops.length) return toast("انشر أو تراجع عن التغييرات أول"); load(); };
 $("#q").oninput = render; $("#fstore").onchange = render;
