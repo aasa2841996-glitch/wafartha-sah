@@ -937,6 +937,9 @@ body{background:#f6f7fb!important}
 .pro-logo{font-size:30px!important;gap:7px!important}
 @media(min-width:760px){.pro-logo{font-size:36px!important}}
 #secSeason{display:none!important}
+.ctab{background:linear-gradient(180deg,#fff,#f3f4ff)!important}
+.cimg{height:70px!important;margin-bottom:2px}
+.cimg img{width:66px!important;height:66px!important;object-fit:contain!important;mix-blend-mode:normal!important;filter:drop-shadow(0 8px 8px rgba(60,40,160,.22))!important;margin:0 auto}
 </style>
 </head>
 <body>
@@ -1528,7 +1531,7 @@ function setupHero() {
 
 function catTab(c, n) {
   const tile = `<span class="cico"><svg class="ic" aria-hidden="true"><use href="#i-c-${c.id}"/></svg></span>`, dir = CONFIG.CATS_DIR;
-  const media = dir ? imgChain([`${c.id}.png`, `${dir}/${c.id}.png`], c.name, tile) : tile;
+  const media = dir ? imgChain([`cats3d/${c.id}.png`, `${c.id}.png`, `${dir}/${c.id}.png`], c.name, tile) : tile;
   return `<button class="ctab" data-act="cat" data-id="${c.id}"><div class="cimg">${media}</div><div class="cname">${esc(c.name)}</div>${n ? `<div class="cnum">${n} منتج</div>` : ""}</button>`;
 }
 
