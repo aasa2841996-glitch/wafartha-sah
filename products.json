@@ -172,6 +172,19 @@
   ],
   "dresses": [
     {
+      "id": "7702835a",
+      "title": "هابيلوكس سويتر كارديجان خفيف الوزن للنساء",
+      "price": "310.59",
+      "old": "",
+      "discount": 0,
+      "link": "https://link.amazon/B02RKSfRq",
+      "store": "Amazon",
+      "image": "products/product-1792872748691-952871ca.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-10-24T20:12:33.989Z"
+    },
+    {
       "id": "c4c678ca",
       "title": "GlowEve CURVE طقم نسائي مقاس كبير من قطعتين: جاكيت كارديجان وفستان كامي، خفيف للربيع والصيف، دانتيل مفرغ، بياقة V وخصر برباط، أسود أنيق",
       "price": "66.36",
