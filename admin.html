@@ -396,7 +396,7 @@ async function load() {
   $("#sub").innerHTML = '<span class="spin" style="width:12px;height:12px"></span> جاري التحميل';
   try { const r = await fetchProducts(); data = r.json; sha = r.sha; $("#sub").textContent = "لوحة إدارة المنتجات"; render(); }
   catch (e) {
-    if (e.status === 401 || e.status === 403 || e.status === 404) { store.clear(); showLogin("المفتاح غير صالح أو ما عنده صلاحية على المستودع"); }
+    if (e.status === 401 || e.status === 403 || e.status === 404) { store.clear(); history.replaceState(null, "", location.pathname); showLogin("المفتاح غير صالح أو ما عنده صلاحية على المستودع"); }
     else { $("#sub").textContent = "تعذّر التحميل"; toast(e.message); }
   }
 }
@@ -410,11 +410,13 @@ $("#lbtn").onclick = async () => {
   try {
     const r = await gh("");
     if (!r.permissions || !r.permissions.push) throw Object.assign(new Error("المفتاح يقرأ فقط، يحتاج صلاحية Contents: Read and write"), { status: 0 });
-    store.set(v, $("#remember").checked); $("#tok").value = ""; showApp();
+    store.set(v, $("#remember").checked); $("#tok").value = "";
+    if ($("#remember").checked) history.replaceState(null, "", "#k=" + encodeURIComponent(v));
+    showApp();
   } catch (e) { token = ""; $("#lerr").textContent = e.status ? "المفتاح غير صحيح أو ما عنده صلاحية على wafartha-sah" : e.message; }
   finally { b.disabled = false; b.textContent = "دخول"; }
 };
-$("#logout").onclick = () => { if (ops.length && !confirm("فيه تغييرات غير منشورة، تبي تطلع؟")) return; store.clear(); token = ""; ops = []; showLogin(); };
+$("#logout").onclick = () => { if (ops.length && !confirm("فيه تغييرات غير منشورة، تبي تطلع؟")) return; store.clear(); token = ""; ops = []; history.replaceState(null, "", location.pathname); showLogin(); };
 $("#reload").onclick = () => { if (ops.length) return toast("انشر أو تراجع عن التغييرات أول"); load(); };
 $("#q").oninput = render; $("#fstore").onchange = render;
 $("#cats").onclick = e => { const b = e.target.closest("[data-cat]"); if (b) { cat = b.dataset.cat; render(); } };
@@ -439,8 +441,11 @@ window.addEventListener("beforeunload", e => { if (ops.length) { e.preventDefaul
 document.addEventListener("keydown", e => { if (e.key === "Escape" && editing) closeForm(); });
 
 $("#fstore").innerHTML = `<option value="">كل المتاجر</option>` + STORES.map(s => `<option>${s}</option>`).join("");
-token = store.get();
-token ? showApp() : showLogin();
+/* دخول سريع: الرابط المحفوظ فيه المفتاح بعد # (ما يُرسل لأي سيرفر) */
+const fromHash = (location.hash.match(/^#k=([^&]+)/) || [])[1];
+if (fromHash) { token = decodeURIComponent(fromHash); store.set(token, true); }
+else token = store.get();
+if (token) { history.replaceState(null, "", "#k=" + encodeURIComponent(token)); showApp(); } else showLogin();
 </script>
 </body>
 </html>
