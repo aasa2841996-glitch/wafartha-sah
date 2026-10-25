@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>قائمة النشر</title>
+<style>
+:root{--bg:#fff7f6;--card:#fff;--ink:#2b1d1d;--mut:#8a7676;--line:#f0dcd9;--pri:#ff5a5f;--pri2:#ff8a65;--ok:#1a9d5c;--warn:#d98200;--bad:#d6334a;--chip:#fff0ee}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1c1515;--card:#271c1c;--ink:#f6eceb;--mut:#b49c9a;--line:#3a2a2a;--chip:#331f1f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Segoe UI",Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+.hide{display:none!important}
+.wrap{max-width:1250px;margin:0 auto;padding:12px 16px 80px}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0}
+header h1{font-size:18px;margin:0;flex:1}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--pri)}
+.btn.pri{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border:0;font-weight:600}
+.btn.bad{color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:default}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.chip{background:var(--chip);border-radius:999px;padding:5px 12px;font-size:13px}
+.chip b{font-size:15px}
+.tabs{display:flex;gap:6px;margin:8px 0}
+.tab{padding:8px 14px;border-radius:10px;cursor:pointer;border:1px solid var(--line);background:var(--card)}
+.tab.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.bar input,.bar select{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 10px}
+.bar input[type=search]{min-width:200px;flex:1}
+.bulk{background:var(--chip);border-radius:12px;padding:8px 10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tablebox{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
+th{background:var(--chip);font-size:12px;color:var(--mut);position:sticky;top:0;z-index:1}
+td input.cell,td select.cell{width:100%;border:1px solid transparent;background:transparent;border-radius:8px;padding:6px}
+td input.cell:hover,td select.cell:hover{border-color:var(--line)}
+td input.cell:focus,td select.cell:focus{border-color:var(--pri);outline:0;background:var(--card)}
+td input.num{width:78px;text-align:center}
+td input.name{min-width:240px}
+.thumb{width:48px;height:48px;border-radius:10px;object-fit:cover;background:var(--chip);display:block;cursor:pointer;border:1px dashed var(--line)}
+.st{font-size:12px;border-radius:8px;padding:2px 8px;display:inline-block}
+.st.ready{background:#dff6e9;color:var(--ok)}.st.needs{background:#fff1d6;color:var(--warn)}.st.pending{background:#e6eefc;color:#3b6fd4}.st.publishing{background:#eee;color:#666}
+.miss{font-size:11px;color:var(--bad)}
+.pager{display:flex;gap:8px;align-items:center;justify-content:center;margin:12px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:14px;z-index:50}
+.box{background:var(--card);border-radius:16px;padding:16px;max-width:760px;width:100%;max-height:92vh;overflow:auto}
+.box h2{margin:0 0 8px;font-size:17px}
+textarea{width:100%;min-height:210px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px;direction:ltr;text-align:left}
+.hint{color:var(--mut);font-size:12px;margin:6px 0}
+.login{max-width:360px;margin:12vh auto;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:center}
+.login input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:11px;margin:12px 0;text-align:center}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#222;color:#fff;border-radius:12px;padding:10px 16px;z-index:99;max-width:90vw;opacity:0;transition:.25s;pointer-events:none}
+#toast.on{opacity:1}
+.prog{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--pri2));transition:width .3s}
+a.lnk{color:var(--pri);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div id="login" class="login hide">
+  <div style="font-size:34px">🔐</div>
+  <h2 style="margin:6px 0">لوحة تحكم وَفِّرْهَا صَحّ</h2>
+  <input id="pw" type="password" placeholder="كلمة المرور" autocomplete="current-password">
+  <button class="btn pri" id="loginBtn" style="width:100%">دخول</button>
+  <div class="hint" id="loginErr"></div>
+</div>
+
+<div id="app" class="wrap hide">
+  <header>
+    <h1>🛍️ لوحة تحكم وَفِّرْهَا صَحّ</h1>
+    <button class="btn pri" id="addBtn">➕ إضافة منتجات</button>
+    <button class="btn" id="procBtn">⚡ معالجة الروابط الآن</button>
+    <button class="btn" id="pubBtn">📤 انشر التالي الآن</button>
+    <button class="btn" id="cfgBtn">⚙️ الجدولة</button>
+    <a class="btn" href="admin.html" style="text-decoration:none">🛒 لوحة المنتجات</a>
+    <button class="btn" id="outBtn">خروج</button>
+  </header>
+  <div class="stats" id="stats"></div>
+  <div class="prog hide" id="prog"><i></i></div>
+
+  <div class="tabs">
+    <div class="tab on" data-tab="queue">📥 قائمة النشر</div>
+    <div class="tab" data-tab="products">🛒 المنتجات المنشورة</div>
+  </div>
+
+  <!-- قائمة النشر -->
+  <section id="tabQueue">
+    <div class="bar">
+      <input type="search" id="qSearch" placeholder="بحث بالاسم أو الرابط…">
+      <select id="qStatus">
+        <option value="">كل الحالات</option><option value="needs">ناقصة</option><option value="ready">جاهزة</option>
+        <option value="pending">قيد المعالجة</option>
+      </select>
+      <select id="qCat"></select>
+      <select id="qStore"></select>
+    </div>
+    <div class="bulk hide" id="qBulk">
+      <b id="qSel">0</b> محدد
+      <select id="bCat"></select>
+      <button class="btn" id="bSetCat">تطبيق القسم</button>
+      <button class="btn" id="bAccept">✅ اعتمد السعر المقروء</button>
+      <button class="btn" id="bConv">× معامل السعر</button>
+      <button class="btn bad" id="bDel">🗑️ حذف</button>
+    </div>
+    <div class="tablebox"><table>
+      <thead><tr><th><input type="checkbox" id="qAll"></th><th>صورة</th><th>الاسم العربي</th><th>السعر</th><th>قبل الخصم</th><th>مقروء من المتجر</th><th>القسم</th><th>المتجر</th><th>الحالة</th><th></th></tr></thead>
+      <tbody id="qBody"></tbody>
+    </table></div>
+    <div class="pager" id="qPager"></div>
+  </section>
+
+  <!-- المنتجات المنشورة -->
+  <section id="tabProducts" class="hide">
+    <div class="bar">
+      <input type="search" id="pSearch" placeholder="بحث في المنتجات المنشورة…">
+      <select id="pCat"></select>
+      <button class="btn" id="pReload">🔄 تحديث</button>
+    </div>
+    <div class="tablebox"><table>
+      <thead><tr><th>صورة</th><th>الاسم</th><th>السعر</th><th>قبل الخصم</th><th>القسم</th><th>المتجر</th><th>منتهي</th><th></th></tr></thead>
+      <tbody id="pBody"></tbody>
+    </table></div>
+    <div class="pager" id="pPager"></div>
+  </section>
+</div>
+
+<!-- نافذة الإضافة -->
+<div class="modal hide" id="addModal"><div class="box">
+  <h2>➕ إضافة منتجات</h2>
+  <div class="hint">ألصق من إكسل أو Google Sheets (أعمدة: الرابط، السعر، السعر السابق، الاسم، القسم — بأي ترتيب)، أو روابط فقط (رابط في كل سطر)، أو ارفع ملف CSV. الاسم والقسم اختياريان وتكملهما اللوحة تلقائيًا.</div>
+  <div class="hint">صيغة السطر البسيطة أيضًا تعمل: <code dir="ltr">https://… 49 99 | اسم المنتج #المنزل</code></div>
+  <textarea id="addText" placeholder="الصق هنا…"></textarea>
+  <div class="bar">
+    <input type="file" id="csvFile" accept=".csv,.tsv,.txt">
+    <span class="hint" id="addInfo"></span>
+  </div>
+  <div class="bar" style="justify-content:flex-end">
+    <button class="btn" id="addCancel">إلغاء</button>
+    <button class="btn pri" id="addGo">إضافة للقائمة</button>
+  </div>
+</div></div>
+
+<!-- نافذة الجدولة -->
+<div class="modal hide" id="cfgModal"><div class="box" style="max-width:440px">
+  <h2>⚙️ جدولة النشر</h2>
+  <label><input type="checkbox" id="cfgActive"> النشر التلقائي يعمل</label>
+  <div class="bar"><span>فاصل النشر بين كل منتج:</span><input type="number" id="cfgInt" min="5" max="1440" style="width:90px"><span>دقيقة</span></div>
+  <div class="hint" id="cfgInfo"></div>
+  <div class="bar" style="justify-content:flex-end">
+    <button class="btn" id="cfgCancel">إغلاق</button>
+    <button class="btn pri" id="cfgSave">حفظ</button>
+  </div>
+</div></div>
+
+<input type="file" id="imgPick" accept="image/*" class="hide">
+<div id="toast"></div>
+
+<script>
+const API_BASE = "https://blue-wind-40c9.aasa2841996.workers.dev";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let KEY = "";
+try { KEY = localStorage.getItem("adm:key") || ""; } catch {}
+let S = { items: [], cfg: {}, window: {}, categories: [], queueMax: 0 };
+let P = [];
+let sel = new Set();
+const page = { q: 1, p: 1 }; const PER = 50;
+let catMap = {};
+
+function toast(m, ms = 2600) { const t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("on"), ms); }
+
+async function api(act, body, method = "POST", raw = false) {
+  const r = await fetch(`${API_BASE}/api/admin/${act}`, {
+    method, headers: { "content-type": "application/json", "x-admin-key": KEY },
+    body: method === "POST" ? JSON.stringify(body || {}) : undefined
+  });
+  if (raw) return r;
+  let j = {}; try { j = await r.json(); } catch {}
+  if (r.status === 401) { logout(true); throw new Error("كلمة المرور غير صحيحة"); }
+  if (!r.ok && !j.error) throw new Error("خطأ " + r.status);
+  return j;
+}
+
+/* ---------- الدخول ---------- */
+function showLogin(msg) { $("#app").classList.add("hide"); $("#login").classList.remove("hide"); $("#loginErr").textContent = msg || ""; }
+function logout(silent) { KEY = ""; try { localStorage.removeItem("adm:key"); } catch {} showLogin(silent ? "انتهت الجلسة أو كلمة المرور غير صحيحة" : ""); }
+async function tryLogin() {
+  try {
+    const j = await api("state", {}, "GET");
+    if (!j.ok) throw new Error(j.error || "تعذر الدخول");
+    $("#login").classList.add("hide"); $("#app").classList.remove("hide");
+    applyState(j); buildFilters(); render();
+    loadProducts();
+  } catch (e) { showLogin(e.message); }
+}
+$("#loginBtn").onclick = () => { KEY = $("#pw").value.trim(); if (!KEY) return; try { localStorage.setItem("adm:key", KEY); } catch {} tryLogin(); };
+$("#pw").addEventListener("keydown", e => { if (e.key === "Enter") $("#loginBtn").click(); });
+$("#outBtn").onclick = () => logout(false);
+
+/* ---------- الحالة ---------- */
+function applyState(j) { S = j; catMap = Object.fromEntries(j.categories); }
+async function refresh() { const j = await api("state", {}, "GET"); applyState(j); render(); }
+
+function buildFilters() {
+  const opts = (first, extra = "") => `<option value="">${first}</option>` + S.categories.map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join("") + extra;
+  $("#qCat").innerHTML = opts("كل الأقسام", `<option value="__none">بلا قسم</option>`);
+  $("#pCat").innerHTML = opts("كل الأقسام");
+  $("#bCat").innerHTML = opts("اختر القسم").replace(">اختر القسم<", " disabled selected>اختر القسم<");
+  const stores = [...new Set(S.items.map(i => i.store).filter(Boolean))];
+  $("#qStore").innerHTML = `<option value="">كل المتاجر</option>` + stores.map(s => `<option>${esc(s)}</option>`).join("");
+}
+
+function catSelect(val, cls = "cell") {
+  return `<select class="${cls}" data-f="category"><option value="">— اختر —</option>` +
+    S.categories.map(([k, l]) => `<option value="${k}" ${k === val ? "selected" : ""}>${esc(l)}</option>`).join("") + `</select>`;
+}
+
+/* ---------- قائمة النشر ---------- */
+function filtered() {
+  const t = $("#qSearch").value.trim().toLowerCase(), st = $("#qStatus").value, c = $("#qCat").value, sr = $("#qStore").value;
+  return S.items.filter(i =>
+    (!st || i.status === st) && (!sr || i.store === sr) &&
+    (!c || (c === "__none" ? !i.category : i.category === c)) &&
+    (!t || (i.title + " " + i.link + " " + i.originalTitle).toLowerCase().includes(t)));
+}
+const statusLabel = { ready: "جاهز", needs: "ناقص", pending: "قيد المعالجة", publishing: "ينشر…" };
+
+function render() {
+  const n = s => S.items.filter(i => i.status === s).length;
+  const { from, to } = S.window || {};
+  $("#stats").innerHTML =
+    `<span class="chip">✅ جاهزة <b>${n("ready")}</b></span><span class="chip">📝 ناقصة <b>${n("needs")}</b></span>` +
+    `<span class="chip">⏳ قيد المعالجة <b>${n("pending")}</b></span><span class="chip">🛒 منشورة <b>${P.length || "…"}</b></span>` +
+    `<span class="chip">⏱️ كل ${S.cfg.intervalMin || "?"} د ${S.cfg.active ? "▶️" : "⏸️"}</span><span class="chip">🕘 ${from}:00–${to}:00 (السعودية)</span>`;
+  const list = filtered();
+  const pages = Math.max(1, Math.ceil(list.length / PER));
+  page.q = Math.min(page.q, pages);
+  const rows = list.slice((page.q - 1) * PER, page.q * PER);
+  $("#qBody").innerHTML = rows.map(i => `
+    <tr data-id="${i.id}">
+      <td><input type="checkbox" class="rowsel" ${sel.has(i.id) ? "checked" : ""}></td>
+      <td>${i.has_img ? `<img class="thumb" data-qimg="${i.id}" title="اضغط لتغيير الصورة" alt="">` : `<div class="thumb" data-up="${i.id}" style="display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut)">+ صورة</div>`}</td>
+      <td><input class="cell name" data-f="title" value="${esc(i.title)}" placeholder="الاسم العربي">
+          ${i.originalTitle ? `<div class="hint" dir="auto" style="margin:0">${esc(i.originalTitle.slice(0, 70))}</div>` : ""}</td>
+      <td><input class="cell num" data-f="price" inputmode="decimal" value="${esc(i.price)}" placeholder="—"></td>
+      <td><input class="cell num" data-f="old" inputmode="decimal" value="${esc(i.old)}" placeholder="—"></td>
+      <td>${i.scrapedPrice ? `<button class="btn" data-use="${i.id}" title="اعتمد هذا السعر">${esc(i.scrapedPrice)} ✓</button>` : `<span class="hint">—</span>`}</td>
+      <td>${catSelect(i.category)}</td>
+      <td>${esc(i.store || "؟")}</td>
+      <td><span class="st ${i.status}">${statusLabel[i.status] || i.status}</span>${i.missing?.length && i.status === "needs" ? `<div class="miss">${esc(i.missing.join("، "))}</div>` : ""}</td>
+      <td><a class="lnk" href="${esc(i.link)}" target="_blank" rel="noopener">🔗</a></td>
+    </tr>`).join("") || `<tr><td colspan="10" style="text-align:center;padding:30px;color:var(--mut)">لا توجد عناصر. اضغط «➕ إضافة منتجات».</td></tr>`;
+  $("#qPager").innerHTML = pages > 1 ? `<button class="btn" id="qPrev">◀</button><span>صفحة ${page.q} من ${pages} (${list.length})</span><button class="btn" id="qNext">▶</button>` : `<span class="hint">${list.length} عنصر</span>`;
+  $("#qPrev")?.addEventListener("click", () => { page.q--; render(); });
+  $("#qNext")?.addEventListener("click", () => { page.q++; render(); });
+  $("#qAll").checked = rows.length && rows.every(r => sel.has(r.id));
+  updateBulk();
+  loadThumbs();
+}
+
+const thumbCache = new Map();
+async function loadThumbs() {
+  for (const img of document.querySelectorAll("img[data-qimg]")) {
+    const id = img.dataset.qimg;
+    if (thumbCache.has(id)) { img.src = thumbCache.get(id); continue; }
+    try {
+      const r = await api(`qimg?id=${encodeURIComponent(id)}`, null, "GET", true);
+      if (!r.ok) continue;
+      const url = URL.createObjectURL(await r.blob());
+      thumbCache.set(id, url); img.src = url;
+    } catch {}
+  }
+}
+
+function updateBulk() { $("#qSel").textContent = sel.size; $("#qBulk").classList.toggle("hide", sel.size === 0); }
+
+$("#qBody").addEventListener("change", async e => {
+  const tr = e.target.closest("tr"); if (!tr) return;
+  const id = tr.dataset.id;
+  if (e.target.classList.contains("rowsel")) { e.target.checked ? sel.add(id) : sel.delete(id); updateBulk(); return; }
+  const f = e.target.dataset.f; if (!f) return;
+  try {
+    const j = await api("update", { id, [f]: e.target.value });
+    if (!j.ok) throw new Error(j.error);
+    const k = S.items.findIndex(x => x.id === id); if (k > -1) S.items[k] = { ...S.items[k], ...j.item };
+    toast("✓ تم الحفظ", 900); render();
+  } catch (err) { toast("❌ " + err.message); }
+});
+$("#qBody").addEventListener("click", async e => {
+  const use = e.target.closest("[data-use]");
+  if (use) { await bulk("accept_scraped", [use.dataset.use]); return; }
+  const im = e.target.closest("[data-qimg],[data-up]");
+  if (im) { pickImage(im.dataset.qimg || im.dataset.up); }
+});
+$("#qAll").onchange = e => {
+  const rows = filtered().slice((page.q - 1) * PER, page.q * PER);
+  rows.forEach(r => e.target.checked ? sel.add(r.id) : sel.delete(r.id)); render();
+};
+["qSearch", "qStatus", "qCat", "qStore"].forEach(id => $("#" + id).addEventListener("input", () => { page.q = 1; render(); }));
+
+async function bulk(op, ids, value) {
+  try {
+    const j = await api("bulk", { op, ids, value });
+    toast(`✓ تم على ${j.changed} عنصر`); await refresh();
+  } catch (e) { toast("❌ " + e.message); }
+}
+const selIds = () => [...sel];
+$("#bSetCat").onclick = () => { const v = $("#bCat").value; if (!v) return toast("اختر القسم أولًا"); bulk("category", selIds(), v); };
+$("#bAccept").onclick = () => bulk("accept_scraped", selIds());
+$("#bConv").onclick = () => {
+  const f = Number(prompt("اكتب المعامل لضرب الأسعار به (مثال: لتحويل دولار إلى ريال اكتب 3.75)", "3.75"));
+  if (f > 0) bulk("price_percent", selIds(), f);
+};
+$("#bDel").onclick = async () => {
+  if (!confirm(`حذف ${sel.size} عنصر من القائمة؟`)) return;
+  await bulk("delete", selIds()); sel.clear(); render();
+};
+
+/* ---------- صور ---------- */
+let imgTarget = null;
+function pickImage(id) { imgTarget = id; $("#imgPick").value = ""; $("#imgPick").click(); }
+$("#imgPick").onchange = async e => {
+  const file = e.target.files[0]; if (!file || !imgTarget) return;
+  try {
+    const data = await shrink(file);
+    const j = await api("setimg", { id: imgTarget, data, ext: "jpg" });
+    if (!j.ok) throw new Error(j.error);
+    thumbCache.delete(imgTarget);
+    const k = S.items.findIndex(x => x.id === imgTarget); if (k > -1) S.items[k] = { ...S.items[k], ...j.item };
+    toast("✓ حُفظت الصورة"); render();
+  } catch (err) { toast("❌ " + err.message); }
+};
+function shrink(file) {
+  return new Promise((res, rej) => {
+    const img = new Image(), u = URL.createObjectURL(file);
+    img.onload = () => {
+      const m = 1600, k = Math.min(1, m / Math.max(img.width, img.height));
+      const c = document.createElement("canvas"); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      res(c.toDataURL("image/jpeg", 0.92).split(",")[1]); URL.revokeObjectURL(u);
+    };
+    img.onerror = () => rej(new Error("ملف الصورة غير صالح"));
+    img.src = u;
+  });
+}
+
+/* ---------- الإضافة ---------- */
+function catFromText(t) {
+  t = String(t || "").replace(/^#/, "").trim().toLowerCase(); if (!t) return "";
+  for (const [k, l] of S.categories) {
+    const plain = l.replace(/[^\p{L}\s]/gu, "").trim().toLowerCase();
+    if (k === t || plain === t || (plain && (plain.includes(t) || t.includes(plain)))) return k;
+  }
+  return "";
+}
+function splitCsv(line, sep) {
+  if (sep === "\t") return line.split("\t");
+  const out = []; let cur = "", q = false;
+  for (const ch of line) { if (ch === '"') q = !q; else if (ch === sep && !q) { out.push(cur); cur = ""; } else cur += ch; }
+  out.push(cur); return out;
+}
+const NUMRE = /^[\d٠-٩۰-۹][\d٠-٩۰-۹.,٫٬]*$/;
+function parseInput(text) {
+  const items = [];
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.trim(); if (!line) continue;
+    const link = (line.match(/https?:\/\/[^\s|\t,"]+/) || [])[0]; if (!link) continue;
+    const row = { link: link.replace(/[),.،؛»”]+$/, ""), price: "", old: "", name: "", category: "" };
+    const sep = line.includes("\t") ? "\t" : (line.includes("|") ? null : (/,/.test(line.replace(link, "")) ? "," : null));
+    if (sep) {
+      const nums = [];
+      for (let c of splitCsv(line, sep)) {
+        c = c.trim().replace(/^"|"$/g, ""); if (!c || c.includes(link)) continue;
+        if (c.startsWith("#")) { row.category = catFromText(c); continue; }
+        if (NUMRE.test(c)) { nums.push(c); continue; }
+        const cat = catFromText(c);
+        if (cat && c.length < 24 && !row.category) { row.category = cat; continue; }
+        if (!row.name) row.name = c;
+      }
+      [row.price, row.old] = [nums[0] || "", nums[1] || ""];
+    } else {
+      let t = line.replace(link, " ");
+      t = t.replace(/#(\S+)/g, (_, g) => { row.category = catFromText(g) || row.category; return " "; });
+      const bar = t.indexOf("|");
+      if (bar > -1) { row.name = t.slice(bar + 1).replace(/\|/g, " ").trim(); t = t.slice(0, bar); }
+      const nums = t.match(/[\d٠-٩۰-۹][\d٠-٩۰-۹.,٫٬]*/g) || [];
+      [row.price, row.old] = [nums[0] || "", nums[1] || ""];
+    }
+    items.push(row);
+  }
+  return items;
+}
+$("#addBtn").onclick = () => { $("#addModal").classList.remove("hide"); $("#addText").focus(); };
+$("#addCancel").onclick = () => $("#addModal").classList.add("hide");
+$("#addText").addEventListener("input", () => { const n = parseInput($("#addText").value).length; $("#addInfo").textContent = n ? `${n} رابط مقروء` : ""; });
+$("#csvFile").onchange = async e => { const f = e.target.files[0]; if (!f) return; $("#addText").value = await f.text(); $("#addText").dispatchEvent(new Event("input")); };
+$("#addGo").onclick = async () => {
+  const items = parseInput($("#addText").value);
+  if (!items.length) return toast("لم أجد أي رابط");
+  $("#addGo").disabled = true;
+  try {
+    let added = 0, skipped = 0, invalid = 0, overflow = 0;
+    for (let i = 0; i < items.length; i += 200) {
+      const j = await api("add", { items: items.slice(i, i + 200) });
+      added += j.added; skipped += j.skipped; invalid += j.invalid; overflow += j.overflow;
+    }
+    toast(`✓ أُضيف ${added}` + (skipped ? ` • مكرر ${skipped}` : "") + (invalid ? ` • غير صالح ${invalid}` : "") + (overflow ? ` • تجاوز الحد ${overflow}` : ""), 5000);
+    $("#addText").value = ""; $("#addInfo").textContent = ""; $("#addModal").classList.add("hide");
+    await refresh(); buildFilters();
+    if (added && confirm("بدء قراءة الروابط الآن (الاسم والصورة)؟")) runProcess();
+  } catch (e) { toast("❌ " + e.message); }
+  $("#addGo").disabled = false;
+};
+
+/* ---------- المعالجة والنشر ---------- */
+let running = false;
+async function runProcess() {
+  if (running) return; running = true;
+  const pr = $("#prog"), bar = pr.querySelector("i"); pr.classList.remove("hide");
+  $("#procBtn").disabled = true;
+  try {
+    const total = S.items.filter(i => i.status === "pending").length || 1;
+    let guard = 0, busy = 0;
+    while (guard++ < 600) {
+      const j = await api("process", {});
+      if (j.busy) { if (++busy > 6) break; await new Promise(r => setTimeout(r, 4000)); continue; }
+      bar.style.width = Math.min(100, Math.round((1 - j.pending / total) * 100)) + "%";
+      if (!j.pending || !j.done) break;
+      if (guard % 4 === 0) refresh();
+    }
+    toast("✓ انتهت القراءة"); await refresh(); buildFilters();
+  } catch (e) { toast("❌ " + e.message); }
+  pr.classList.add("hide"); bar.style.width = "0"; $("#procBtn").disabled = false; running = false;
+}
+$("#procBtn").onclick = runProcess;
+$("#pubBtn").onclick = async () => {
+  if (!confirm("نشر التالي من الجاهزة الآن في القناة؟")) return;
+  $("#pubBtn").disabled = true;
+  try {
+    const j = await api("publish_next", {});
+    toast(j.published ? "✓ نُشر: " + j.published : (j.error || "لا يوجد عنصر جاهز"), 4000);
+    await refresh(); loadProducts();
+  } catch (e) { toast("❌ " + e.message); }
+  $("#pubBtn").disabled = false;
+};
+
+/* ---------- الجدولة ---------- */
+$("#cfgBtn").onclick = () => {
+  $("#cfgActive").checked = Boolean(S.cfg.active); $("#cfgInt").value = S.cfg.intervalMin || 60;
+  const ready = S.items.filter(i => i.status === "ready").length, per = Number($("#cfgInt").value) || 60;
+  $("#cfgInfo").textContent = `الجاهزة الآن: ${ready}. بهذا الفاصل تحتاج حوالي ${Math.ceil(ready * per / 60 / ((S.window.to - S.window.from) || 14))} يوم للنشر (النشر من ${S.window.from}:00 إلى ${S.window.to}:00 بتوقيت السعودية).`;
+  $("#cfgModal").classList.remove("hide");
+};
+$("#cfgCancel").onclick = () => $("#cfgModal").classList.add("hide");
+$("#cfgSave").onclick = async () => {
+  try { await api("cfg", { active: $("#cfgActive").checked, intervalMin: Number($("#cfgInt").value) }); toast("✓ حُفظت الجدولة"); $("#cfgModal").classList.add("hide"); await refresh(); }
+  catch (e) { toast("❌ " + e.message); }
+};
+
+/* ---------- المنتجات المنشورة ---------- */
+async function loadProducts() { try { const j = await api("products", {}); P = j.products || []; renderProducts(); render(); } catch (e) { toast("❌ " + e.message); } }
+function pFiltered() {
+  const t = $("#pSearch").value.trim().toLowerCase(), c = $("#pCat").value;
+  return P.filter(p => (!c || p.category === c) && (!t || p.title.toLowerCase().includes(t)));
+}
+function imgSrc(p) { return /^https?:/i.test(p) ? p : p ? "./" + p : ""; }
+function renderProducts() {
+  const list = pFiltered(), pages = Math.max(1, Math.ceil(list.length / PER));
+  page.p = Math.min(page.p, pages);
+  $("#pBody").innerHTML = list.slice((page.p - 1) * PER, page.p * PER).map(p => `
+    <tr data-id="${p.id}">
+      <td><img class="thumb" src="${esc(imgSrc(p.image))}" alt="" onerror="this.style.visibility='hidden'"></td>
+      <td><input class="cell name" data-f="title" value="${esc(p.title)}"></td>
+      <td><input class="cell num" data-f="price" inputmode="decimal" value="${esc(p.price)}"></td>
+      <td><input class="cell num" data-f="old" inputmode="decimal" value="${esc(p.old)}"></td>
+      <td>${catSelect(p.category)}</td>
+      <td>${esc(p.store || "")}</td>
+      <td><input type="checkbox" data-f="expired" ${p.expired ? "checked" : ""}></td>
+      <td><a class="lnk" href="${esc(p.link)}" target="_blank" rel="noopener">🔗</a> <button class="btn bad" data-del="${p.id}">🗑️</button></td>
+    </tr>`).join("") || `<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--mut)">لا توجد منتجات.</td></tr>`;
+  $("#pPager").innerHTML = pages > 1 ? `<button class="btn" id="pPrev">◀</button><span>صفحة ${page.p} من ${pages} (${list.length})</span><button class="btn" id="pNext">▶</button>` : `<span class="hint">${list.length} منتج</span>`;
+  $("#pPrev")?.addEventListener("click", () => { page.p--; renderProducts(); });
+  $("#pNext")?.addEventListener("click", () => { page.p++; renderProducts(); });
+}
+$("#pBody").addEventListener("change", async e => {
+  const tr = e.target.closest("tr"), f = e.target.dataset.f; if (!tr || !f) return;
+  const v = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  try {
+    const j = await api("pupdate", { id: tr.dataset.id, [f]: v });
+    if (!j.ok) throw new Error(j.error);
+    toast("✓ تم الحفظ", 900); await loadProducts();
+  } catch (err) { toast("❌ " + err.message); }
+});
+$("#pBody").addEventListener("click", async e => {
+  const d = e.target.closest("[data-del]"); if (!d) return;
+  if (!confirm("حذف المنتج نهائيًا من المتجر؟")) return;
+  try { await api("pdelete", { ids: [d.dataset.del] }); toast("✓ حُذف"); await loadProducts(); } catch (err) { toast("❌ " + err.message); }
+});
+["pSearch", "pCat"].forEach(id => $("#" + id).addEventListener("input", () => { page.p = 1; renderProducts(); }));
+$("#pReload").onclick = loadProducts;
+
+/* ---------- التبويبات ---------- */
+document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
+  $("#tabQueue").classList.toggle("hide", t.dataset.tab !== "queue");
+  $("#tabProducts").classList.toggle("hide", t.dataset.tab !== "products");
+});
+
+if (KEY) tryLogin(); else showLogin();
+</script>
+</body>
+</html>
