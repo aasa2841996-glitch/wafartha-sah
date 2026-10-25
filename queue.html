@@ -166,6 +166,8 @@ a.lnk{color:var(--pri);text-decoration:none}
     <label class="hint">قبل الخصم <input id="eOld" inputmode="decimal" style="width:110px"></label>
   </div>
   <div class="bar"><label class="hint">القسم</label> <span id="eCatBox"></span></div>
+  <div class="bar"><label class="hint">المتجر</label>
+    <select id="eStore"><option value="">— غير معروف —</option><option>Amazon</option><option>Noon</option><option>Temu</option><option>AliExpress</option><option>Shein</option><option>Trendyol</option></select></div>
   <div class="bar" style="justify-content:flex-end">
     <button class="btn" id="eCancel">إلغاء</button>
     <button class="btn pri" id="eSave">حفظ</button>
@@ -347,6 +349,7 @@ function openEdit(id) {
   $("#eOrig").textContent = i.originalTitle || (/[\u0600-\u06FF]/.test(i.title || "") ? "" : i.title || "");
   $("#ePrice").value = i.price || ""; $("#eOld").value = i.old || "";
   $("#eCatBox").innerHTML = catSelect(i.category, "");
+  $("#eStore").value = i.store || "";
   $("#editModal").classList.remove("hide"); $("#eTitle").focus(); $("#eTitle").select();
 }
 $("#eCancel").onclick = () => $("#editModal").classList.add("hide");
@@ -354,7 +357,7 @@ $("#eSave").onclick = async () => {
   if (!editId) return;
   const b = $("#eSave"); b.disabled = true;
   try {
-    const j = await api("update", { id: editId, title: $("#eTitle").value.trim(), price: $("#ePrice").value.trim(), old: $("#eOld").value.trim(), category: $("#eCatBox select").value });
+    const j = await api("update", { id: editId, title: $("#eTitle").value.trim(), price: $("#ePrice").value.trim(), old: $("#eOld").value.trim(), category: $("#eCatBox select").value, store: $("#eStore").value });
     if (!j.ok) throw new Error(j.error);
     const k = S.items.findIndex(x => x.id === editId); if (k > -1) S.items[k] = { ...S.items[k], ...j.item };
     $("#editModal").classList.add("hide"); toast(j.item?.status === "ready" ? "✓ صار جاهز للنشر" : "✓ تم الحفظ"); render();
