@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src https: data: blob:; connect-src https://api.github.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src https: data: blob:; connect-src https://api.github.com https://blue-wind-40c9.aasa2841996.workers.dev; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>لوحة وفّرها صح</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,6 +122,7 @@ select.sel{height:44px;border:1px solid var(--line);background:var(--card);borde
 .savebar{background:#13204a!important;color:#fff!important}
 .savebar .ghost{color:#fff!important;border-color:rgba(255,255,255,.35)!important}
 .tag{background:var(--soft);color:var(--brand-d)}
+.btn.wa{width:100%;margin:0 0 10px;background:#25d366;border-color:#25d366;color:#06301a}
 </style>
 </head>
 <body>
@@ -207,6 +208,7 @@ select.sel{height:44px;border:1px solid var(--line);background:var(--card);borde
       <label class="sw"><span>⭐ مميز</span><input id="ff" type="checkbox"></label>
       <label class="sw"><span>منتهي / مخفي</span><input id="fe" type="checkbox"></label>
     </div>
+    <button class="btn wa" id="fwa" type="button">📢 نشر في قناة واتساب</button>
     <div class="actions">
       <button class="btn danger" id="fdel">حذف</button>
       <button class="btn pri" id="fok">حفظ</button>
@@ -222,6 +224,7 @@ const OWNER = "aasa2841996-glitch", REPO = "wafartha-sah", BRANCH = "main", FILE
 const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
 const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
 const TK = "wfs_admin_token";
+const WORKER = "https://blue-wind-40c9.aasa2841996.workers.dev";
 
 const CATS = [
   ["electronics","الإلكترونيات"],["shoes","الأحذية"],["dresses","الفساتين"],["bags","الشنط"],["watches","الساعات"],
@@ -358,6 +361,7 @@ function openForm(id) {
   editing = { id: p.id, cat: at ? at[0] : (cat !== "all" ? cat : "deals"), orig: p }; newImage = null;
   $("#ftitle").textContent = id ? "تعديل منتج" : "منتج جديد";
   $("#fdel").classList.toggle("hidden", !id);
+  $("#fwa").classList.toggle("hidden", !id);
   $("#ft").value = p.title || ""; $("#fp").value = p.price || ""; $("#fo").value = p.old || ""; $("#fd").value = p.discount || 0;
   $("#fl").value = p.link || ""; $("#ff").checked = !!p.featured; $("#fe").checked = !!p.expired;
   $("#fs").innerHTML = ["", ...new Set([...STORES, p.store].filter(Boolean))].map(s => `<option value="${esc(s)}" ${s === (p.store || "") ? "selected" : ""}>${esc(s || "— اختر —")}</option>`).join("");
@@ -441,6 +445,25 @@ $("#ffile").onchange = async e => {
 $("#fok").onclick = saveForm;
 $("#fdel").onclick = () => { if (!confirm("تحذف المنتج؟")) return; push({ type: "delete", id: editing.id }); closeForm(); toast("انحذف محليًا، اضغط «نشر التغييرات»"); };
 $("#save").onclick = publish;
+$("#fwa").onclick = async () => {
+  if (!editing || !editing.id) return;
+  if (ops.some(o => o.id === editing.id)) return toast("انشر تعديلات هذا المنتج أول، وبعدين انشره في واتساب");
+  if (!confirm("ينزل المنتج الحين في قناة واتساب. متأكد؟")) return;
+  const b = $("#fwa"); b.disabled = true; b.innerHTML = '<span class="spin"></span>';
+  try {
+    const r = await fetch(WORKER + "/api/publish", {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: "Bearer " + token },
+      body: JSON.stringify({ id: editing.id })
+    });
+    const res = await r.json().catch(() => ({}));
+    if (res.ok) toast(res.image ? "انتشر في واتساب مع الصورة ✅" : "انتشر في واتساب كنص ✅");
+    else if (r.status === 404 && res.error === "not_found") toast("المنتج ما وصل للبوت للحين، انتظر دقيقة وجرّب");
+    else if (r.status === 401) toast("البوت ما قبل المفتاح، تأكد أن البوت محدّث (v6.4)");
+    else toast("ما انتشر: " + (res.error || r.status));
+  } catch { toast("تعذر الاتصال بالبوت، تأكد أن البوت محدّث (v6.4)"); }
+  finally { b.disabled = false; b.textContent = "📢 نشر في قناة واتساب"; }
+};
 $("#discard").onclick = () => { if (confirm("تتراجع عن كل التغييرات غير المنشورة؟")) { ops = []; render(); } };
 window.addEventListener("beforeunload", e => { if (ops.length) { e.preventDefault(); e.returnValue = ""; } });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && editing) closeForm(); });
