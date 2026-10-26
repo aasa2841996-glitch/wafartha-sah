@@ -74,6 +74,7 @@ a.lnk{color:var(--pri);text-decoration:none}
     <button class="btn pri" id="addBtn">➕ إضافة منتجات</button>
     <button class="btn" id="procBtn">⚡ معالجة الروابط الآن</button>
     <button class="btn" id="pubBtn">📤 انشر التالي الآن</button>
+    <button class="btn" id="pubAllBtn">🚀 انشر كل الجاهز</button>
     <button class="btn" id="cfgBtn">⚙️ الجدولة</button>
     <a class="btn" href="admin.html" style="text-decoration:none">🛒 لوحة المنتجات</a>
     <button class="btn" id="outBtn">خروج</button>
@@ -491,6 +492,30 @@ $("#pubBtn").onclick = async () => {
     await refresh(); loadProducts();
   } catch (e) { toast("❌ " + e.message); }
   $("#pubBtn").disabled = false;
+};
+
+$("#pubAllBtn").onclick = async () => {
+  const ready = S.items.filter(i => i.status === "ready").length;
+  if (!ready) return toast("ما فيه منتجات جاهزة");
+  if (!confirm(`نشر ${ready} منتج الحين ورا بعض؟\nكلها بتنزل في القناة مرة وحدة.`)) return;
+  const b = $("#pubAllBtn"); b.disabled = true; $("#pubBtn").disabled = true;
+  const pr = $("#prog"), bar = pr.querySelector("i"); pr.classList.remove("hide");
+  let ok = 0, lastErr = "";
+  for (let n = 0; n < ready; n++) {
+    b.textContent = `🚀 ينشر ${n + 1} من ${ready}…`;
+    try {
+      const j = await api("publish_next", {});
+      if (j.published) ok++;
+      else if (j.error && /المعالجة تعمل/.test(j.error)) { n--; await new Promise(r => setTimeout(r, 5000)); continue; }
+      else { lastErr = j.error || "ما فيه جاهز"; break; }
+    } catch (e) { lastErr = e.message; break; }
+    bar.style.width = Math.round((n + 1) / ready * 100) + "%";
+    await new Promise(r => setTimeout(r, 1500));
+  }
+  pr.classList.add("hide"); bar.style.width = "0";
+  b.disabled = false; $("#pubBtn").disabled = false; b.textContent = "🚀 انشر كل الجاهز";
+  toast(`✓ نُشر ${ok} من ${ready}` + (lastErr ? ` • توقف: ${lastErr}` : ""), 7000);
+  await refresh(); loadProducts();
 };
 
 /* ---------- الجدولة ---------- */
