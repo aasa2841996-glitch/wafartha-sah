@@ -615,6 +615,19 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-10-26T20:25:53.900Z"
+    },
+    {
+      "id": "8c17208f",
+      "title": "رباط كيبلات قابل لإعادة الاستخدام والتعديل 15 سم نايلون بشريط فيلكرو لتنظيم الأسلاك",
+      "price": "12.99",
+      "discount": 0,
+      "link": "https://link.amazon/B0iWNZ4an",
+      "store": "Amazon",
+      "image": "products/product-1793046573666-0ec37aad.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-10-26T20:29:35.052Z"
     }
   ],
   "deals": [
