@@ -962,6 +962,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-10-26T20:27:11.023Z"
+    },
+    {
+      "id": "6af190c0",
+      "title": "جي سوكس محول USB C ذكر الى انثى بزاوية قائمة 90 درجة",
+      "price": "39.09",
+      "old": "45.99",
+      "discount": 15,
+      "link": "https://link.amazon/B0dj0ccbk",
+      "store": "Amazon",
+      "image": "products/product-1793046515328-4b336548.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-10-26T20:28:36.917Z"
     }
   ],
   "beauty": [
