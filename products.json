@@ -1527,6 +1527,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-10-28T07:00:19.386Z"
+    },
+    {
+      "id": "7b8e3fcd",
+      "title": "طقم تيشيرت بأكمام قصيرة وياقة قائمة أمامية مفتوحة أنيق وبسيط للأولاد",
+      "price": "21.12",
+      "old": "125",
+      "discount": 83,
+      "link": "https://temu.to/k/ehn52hbaz7v",
+      "store": "Temu",
+      "image": "products/product-1793174419331-f86a0b04.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-10-28T08:00:21.901Z"
     }
   ],
   "sports": [],
