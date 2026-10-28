@@ -1513,6 +1513,20 @@
       "featured": false,
       "expired": false,
       "createdAt": "2026-10-21T08:43:34.152Z"
+    },
+    {
+      "id": "9688c08d",
+      "title": "بدلة أطفال للأولاد للخريف والشتاء، بنقشة مربعات",
+      "price": "29.88",
+      "old": "177",
+      "discount": 83,
+      "link": "https://temu.to/k/e3o0xtu80ij",
+      "store": "Temu",
+      "image": "products/product-1793170817272-befa08f1.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-10-28T07:00:19.386Z"
     }
   ],
   "sports": [],
