@@ -1569,6 +1569,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-10-28T08:00:21.901Z"
+    },
+    {
+      "id": "968022d7",
+      "title": "فستان شتوي للبنات من SHEIN باللونين المتوازي مع قوس مخملي",
+      "originalTitle": "SHEIN Baby Girl Knit Contrast Color Cute Bow Collar Knit Autumn Winter Dress",
+      "price": "37.57",
+      "old": "56.93",
+      "discount": 34,
+      "link": "https://onelink.shein.com/59/66yrb1wi88rt?ismg_ol=IxJEWvxWF05_01_KOC-C",
+      "store": "Shein",
+      "image": "products/product-1793617341401-5ca62a9d.jpg",
+      "featured": false,
+      "expired": false,
+      "createdAt": "2026-11-02T11:02:24.122Z"
     }
   ],
   "sports": [],
