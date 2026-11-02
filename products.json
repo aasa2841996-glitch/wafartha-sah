@@ -1686,6 +1686,21 @@
       "featured": false,
       "expired": false,
       "createdAt": "2026-11-02T11:16:04.622Z"
+    },
+    {
+      "id": "80cdac71",
+      "title": "بليزر قصير بأزرار وبنطلون قصير لطفل من SHEIN",
+      "originalTitle": "SHEIN Baby Boy, Navy Blue Horse Print Summer Jacquard Polo Collar Short-Sleeved Short Pants Two Pieces Set.",
+      "price": "30.86",
+      "old": "44.09",
+      "discount": 30,
+      "link": "https://us.shein.com/SHEIN-Baby-Boy-Navy-Blue-Horse-Print-Summer-Jacquard-Polo-Collar-Short-Sleeved-Short-Pants-Two-Pieces-Set-p-531166145.html",
+      "store": "Shein",
+      "image": "products/product-1793636120611-65ecadaa.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-02T16:15:23.725Z"
     }
   ],
   "sports": [],
