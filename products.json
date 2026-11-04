@@ -2124,6 +2124,22 @@
     }
   ],
   "sports": [],
-  "gifts": [],
+  "gifts": [
+    {
+      "id": "c2df808c",
+      "title": "ملحقات شعر عيد الميلاد 4 قطع",
+      "originalTitle": "4pcs/Set Christmas Hair Clips, Suitable For Christmas Gift Outfit Matching, Holiday Hair Accessories",
+      "price": "8.66",
+      "old": "11.55",
+      "discount": 25,
+      "link": "https://us.shein.com/4pcs-Set-Christmas-Hair-Clips-Suitable-For-Christmas-Gift-Outfit-Matching-Holiday-Hair-Accessories-p-572282958.html?url_from=affiliate_koc_4749594488",
+      "store": "Shein",
+      "image": "products/product-1793790617378-82c93cfb.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-04T11:10:19.960Z"
+    }
+  ],
   "saved": []
 }
