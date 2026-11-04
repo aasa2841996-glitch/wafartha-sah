@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="وفّرها صح">
+<title>وَفِّرْهَا صَحّ — عروض حقيقية، توفير أكثر</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g1:#0e8a1e; --g2:#2bb83c; --deep:#06301a; --mint:#e8f7ea; --bg:#f5f8f5; --card:#fff;
+  --ink:#14231a; --muted:#6b7a70; --line:#e4ece5; --hot:#ef3b3b; --gold:#ffb020;
+  --sh:0 4px 18px rgba(8,60,25,.10); --r:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cairo",system-ui,sans-serif}
+body{padding-bottom:calc(86px + env(safe-area-inset-bottom));min-height:100vh}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{max-width:100%}
+.wrap{max-width:560px;margin:0 auto;padding:0 12px}
+
+/* رأس الصفحة */
+.top{position:sticky;top:0;z-index:30;background:rgba(245,248,245,.94);backdrop-filter:blur(10px);padding-top:env(safe-area-inset-top)}
+.brand{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 0 4px}
+.brand img{width:46px;height:46px;border-radius:12px;box-shadow:var(--sh)}
+.brand .nm{display:flex;flex-direction:column;line-height:1.1;text-align:center}
+.brand .nm b{font-size:24px;font-weight:900;color:var(--g1)}
+.brand .nm b i{font-style:normal;color:var(--deep)}
+.brand .nm small{font-size:11.5px;color:var(--muted);font-weight:600}
+.search{margin:8px 0 10px;display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 14px;box-shadow:var(--sh);border:1px solid var(--line)}
+.search input{flex:1;border:0;outline:0;font:inherit;font-size:15px;background:none;padding:8px 0;min-width:0}
+.search svg{width:22px;height:22px;color:var(--deep)}
+.backbar{display:flex;align-items:center;gap:8px;padding:10px 0 4px}
+.backbar button{width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:var(--sh);font-size:20px}
+.backbar h2{margin:0;font-size:18px;font-weight:800}
+
+/* البانر */
+.hero{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--sh);margin-top:4px}
+.slides{display:flex;transition:transform .5s ease;direction:ltr}
+.slide{min-width:100%;direction:rtl;padding:22px 20px;color:#fff;min-height:168px;display:flex;flex-direction:column;justify-content:center;gap:10px;position:relative;overflow:hidden}
+.slide::after{content:attr(data-emoji);position:absolute;left:10px;bottom:-6px;font-size:96px;opacity:.9;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+.slide h3{margin:0;font-size:24px;font-weight:900;line-height:1.35;max-width:62%}
+.slide p{margin:0;font-size:13px;opacity:.92;max-width:62%}
+.slide .cta{align-self:flex-start;background:#b6ff3b;color:#073a16;font-weight:900;border-radius:999px;padding:9px 20px;font-size:15px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.s1{background:linear-gradient(135deg,#033d1b,#0f9a2a)}
+.s2{background:linear-gradient(135deg,#7a1130,#e0344f)}
+.s3{background:linear-gradient(135deg,#0b2a66,#2a6bff)}
+.dots{display:flex;justify-content:center;gap:7px;margin:10px 0 2px}
+.dots i{width:8px;height:8px;border-radius:50%;background:#cfd8d1;transition:.3s}
+.dots i.on{background:var(--g1);width:22px;border-radius:6px}
+
+/* الأقسام العامة */
+.sec{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:12px 12px 14px;margin-top:14px;border:1px solid var(--line)}
+.sec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sec-h h3{margin:0;font-size:17px;font-weight:900;display:flex;align-items:center;gap:6px}
+.sec-h button{color:var(--g1);font-weight:800;font-size:13px}
+.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 6px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+
+/* المتاجر */
+.store{flex:0 0 auto;width:92px;text-align:center;background:#fff;border-radius:16px;padding:10px 6px;box-shadow:0 3px 10px rgba(8,60,25,.10);border:1px solid var(--line)}
+.store .lg{height:54px;display:grid;place-items:center}
+.store .lg img{max-height:54px;max-width:74px;object-fit:contain}
+.store .sbadge{max-width:80px;min-width:60px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:11.5px;padding:0 6px;margin:0 auto}
+.store b{display:block;font-size:13px;margin-top:6px}
+.store small{color:var(--muted);font-size:11px}
+
+/* الفئات */
+.cat{flex:0 0 auto;width:78px;text-align:center;background:var(--mint);border-radius:16px;padding:10px 4px 8px}
+.cat .ci{height:46px;display:grid;place-items:center;font-size:32px}
+.cat .ci img{max-height:46px;max-width:60px;object-fit:contain}
+.cat b{font-size:12px;font-weight:800;display:block;margin-top:4px}
+
+/* بطاقات المنتجات */
+.pc{background:#fff;border-radius:16px;box-shadow:0 3px 12px rgba(8,60,25,.10);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+.row .pc{flex:0 0 160px;scroll-snap-align:start}
+.pimg{position:relative;aspect-ratio:1/1;background:#f2f5f2;display:grid;place-items:center;overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:8px;right:8px;background:var(--hot);color:#fff;font-size:11.5px;font-weight:800;border-radius:999px;padding:2px 9px}
+.fav{position:absolute;bottom:8px;left:8px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:17px;color:#9aa;display:grid;place-items:center}
+.fav.on{color:var(--hot)}
+.stag{position:absolute;top:8px;left:8px;background:#fff;border-radius:8px;padding:1px 7px;font-size:10.5px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.pb{padding:8px 10px 10px;display:flex;flex-direction:column;gap:5px;flex:1}
+.pt{font-size:12.5px;line-height:1.5;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px}
+.pp{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.pp b{font-size:17px;font-weight:900;color:var(--ink)}
+.pp s{font-size:12px;color:var(--muted)}
+.buy{margin-top:auto;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font-weight:800;border-radius:12px;padding:9px 6px;font-size:13.5px;box-shadow:0 4px 10px rgba(14,138,30,.28)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+/* بلاطات سريعة */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 4px 10px;text-align:center;box-shadow:0 3px 10px rgba(8,60,25,.08)}
+.tile i{display:block;font-size:34px;font-style:normal;margin-bottom:2px}
+.tile b{font-size:12.5px;font-weight:800}
+
+/* قوائم */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px}
+.chip.on{background:var(--g1);color:#fff;border-color:var(--g1)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cgrid .cat{width:auto}
+.empty{text-align:center;color:var(--muted);padding:40px 10px;font-weight:600}
+.list a,.list button.li{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin-bottom:9px;font-weight:700;font-size:15px;color:inherit;text-decoration:none;box-shadow:0 2px 8px rgba(8,60,25,.06)}
+.list .em{font-size:22px}
+.list small{margin-right:auto;color:var(--muted);font-weight:600}
+
+/* الشريط السفلي */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(8,60,25,.08)}
+.nav .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;gap:2px}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;font-weight:700;color:var(--muted);padding:6px 0;border-radius:14px}
+.nav button svg{width:26px;height:26px}
+.nav button.on{color:var(--g1);background:var(--mint)}
+.nav .mid{position:relative;top:-14px;color:var(--g1)}
+.nav .mid .ball{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));display:grid;place-items:center;box-shadow:0 6px 16px rgba(14,138,30,.4);border:4px solid #fff}
+.nav .mid .ball svg{color:#fff;width:28px;height:28px}
+.nav .mid.on{background:none}
+.toast{position:fixed;bottom:104px;left:50%;transform:translateX(-50%) translateY(20px);background:#143d20;color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:60;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin:22px 0 4px}
+.soc{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.soc a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;color:var(--ink);text-decoration:none}
+.skel{height:180px;border-radius:16px;background:linear-gradient(90deg,#eef2ee,#f8faf8,#eef2ee);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">
+    <img src="icon-192.png" alt="">
+    <div class="nm"><b>وفّرها <i>صح</i></b><small>عروض حقيقية .. توفير أكثر</small></div>
+  </div>
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="ابحث عن منتج أو متجر أو عرض..." enterkeyhint="search" autocomplete="off">
+  </div>
+</div></header>
+
+<main class="wrap" id="app"><div class="skel" style="margin-top:10px"></div></main>
+
+<nav class="nav"><div class="in">
+  <button data-go="home" id="n-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>الرئيسية</button>
+  <button data-go="cats" id="n-cats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>الأقسام</button>
+  <button data-go="new" id="n-new" class="mid"><span class="ball"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 5 5.5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 .3 2 1 2.5 2 2.5C11 8 11 5 12 2z"/></svg></span>العروض</button>
+  <button data-go="favs" id="n-favs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 018-2.7A4.5 4.5 0 0120 10c0 5.8-8 11-8 11z"/></svg>المفضلة</button>
+  <button data-go="me" id="n-me"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-6 8-6s7 1.5 8 6"/></svg>حسابي</button>
+</div></nav>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ======== إعدادات ======== */
+const API = "https://blue-wind-40c9.aasa2841996.workers.dev";
+const SHEIN_CODE = "27ADZXK";
+const LINKS = {
+  telegram: "https://t.me/wfeerha",
+  whatsapp: "https://whatsapp.com/channel/0029VbDkz0vAojZ1Zn2KAO1m",
+  x: "https://x.com/Eramstore2030"
+};
+const CATS = [
+  ["electronics","الإلكترونيات","📱"],["shoes","الأحذية","👟"],["dresses","الفساتين","👗"],["bags","الشنط","👜"],
+  ["watches","الساعات","⌚"],["accessories","الإكسسوارات","💍"],["perfumes","العطور","🌸"],["beauty","العناية والجمال","💄"],
+  ["men","أزياء الرجال","👔"],["kids","الأطفال","🧸"],["home","المنزل","🏠"],["sports","الرياضة","🏋️"],
+  ["gifts","الهدايا","🎁"],["deals","أقوى العروض","🔥"]
+];
+const STORES = [
+  ["aliexpress","AliExpress","علي إكسبرس","#e62e04","#fff"],
+  ["amazon","Amazon","أمازون","#ff9900","#131921"],
+  ["shein","SHEIN","شي إن","#111","#fff"],
+  ["temu","TEMU","تيمو","#fb7701","#fff"],
+  ["noon","noon","نون","#feee00","#111"],
+  ["trendyol","Trendyol","ترنديول","#f27a1a","#fff"]
+];
+
+/* ======== أدوات ======== */
+const $ = (s, r=document) => r.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const nf = n => (Math.round(n*100)/100).toLocaleString("en-US",{maximumFractionDigits:2});
+const safeUrl = u => (/^\s*(javascript|vbscript):/i.test(String(u||"")) ? "" : String(u||""));
+const normAr = t => String(t||"").toLowerCase().replace(/[ً-ٰٟـ]/g,"").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه");
+const LS = {
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+};
+const toast = (t) => { const el=$("#toast"); el.textContent=t; el.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>el.classList.remove("show"),1800); };
+const storeKey = v => { const n=String(v||"").toLowerCase(); for (const s of STORES) if (n.includes(s[0])) return s[0]; return "other"; };
+
+/* ======== البيانات ======== */
+let ALL = [], byId = new Map(), hotIds = [];
+function norm(p, cat) {
+  const price = parseFloat(p.price)||0, old = parseFloat(p.old)||0;
+  return {
+    id: String(p.id || [p.title,p.store,p.price].join("|")),
+    cat: p.category || cat, title: p.title || "منتج", price, old: old>price?old:0,
+    discount: old>price ? Math.round((1-price/old)*100) : 0,
+    store: p.store||"", sk: storeKey(p.store||p.link), image: p.image||"", link: p.link||"",
+    featured: !!p.featured || p.featured==="true", expired: !!p.expired,
+    created: p.createdAt ? (Date.parse(p.createdAt)||0) : 0
+  };
+}
+async function load() {
+  try {
+    const r = await fetch("products.json?v="+Math.floor(Date.now()/60000), {cache:"no-store"});
+    const d = await r.json();
+    ALL = [];
+    for (const c of CATS) (Array.isArray(d[c[0]])?d[c[0]]:[]).forEach(p => { const n=norm(p,c[0]); if (n.price>0 && !n.expired) ALL.push(n); });
+    byId = new Map(ALL.map(x=>[x.id,x]));
+  } catch(e) { console.error(e); }
+  try { hotIds = (await (await fetch(API+"/api/trending")).json()).ids || []; } catch {}
+}
+const score = x => { let f=0; if (x.created){const a=Date.now()-x.created,d=864e5; f=a<=d?15:a<=3*d?10:a<=7*d?5:0;} return x.discount+(x.featured?20:0)+f; };
+const sorters = {
+  best:(a,b)=>score(b)-score(a), cheap:(a,b)=>a.price-b.price, disc:(a,b)=>b.discount-a.discount, fresh:(a,b)=>b.created-a.created
+};
+const sorted = (arr,how="best") => arr.slice().sort(sorters[how]||sorters.best);
+
+/* ======== مفضلة ======== */
+const saved = () => LS.get("wf_saved", []);
+function toggleFav(id, el) {
+  let s = saved();
+  if (s.includes(id)) { s = s.filter(x=>x!==id); el?.classList.remove("on"); toast("أُزيل من المفضلة"); }
+  else { s.push(id); el?.classList.add("on"); toast("أُضيف للمفضلة ♥"); }
+  LS.set("wf_saved", s);
+}
+function buy(id) {
+  const it = byId.get(id); if (!it) return;
+  const url = API + "/go/" + encodeURIComponent(it.id);
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+/* ======== قوالب ======== */
+function storeBadge(sk, store) {
+  const s = STORES.find(x=>x[0]===sk);
+  return s ? `<span class="stag">${esc(s[2])}</span>` : (store ? `<span class="stag">${esc(store)}</span>` : "");
+}
+function card(it) {
+  const fav = saved().includes(it.id);
+  return `<article class="pc">
+    <div class="pimg">
+      <img loading="lazy" src="${esc(safeUrl(it.image))}" alt="${esc(it.title)}" onerror="this.style.opacity=.15">
+      ${it.discount>=5?`<span class="badge">خصم ${it.discount}%</span>`:""}
+      ${storeBadge(it.sk,it.store)}
+      <button class="fav ${fav?"on":""}" data-act="fav" data-id="${esc(it.id)}" aria-label="مفضلة">♥</button>
+    </div>
+    <div class="pb">
+      <div class="pt">${esc(it.title)}</div>
+      <div class="pp"><b>${nf(it.price)} ر.س</b>${it.old?`<s>${nf(it.old)} ر.س</s>`:""}</div>
+      <button class="buy" data-act="buy" data-id="${esc(it.id)}">اشترِ الآن ↗</button>
+    </div>
+  </article>`;
+}
+const catTile = c => `<button class="cat" data-act="cat" data-id="${c[0]}"><div class="ci"><img src="categories/${c[0]}.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'${c[2]}'}))"></div><b>${c[1]}</b></button>`;
+const storeTile = s => {
+  const n = ALL.filter(x=>x.sk===s[0]).length;
+  return `<button class="store" data-act="store" data-id="${s[0]}">
+    <div class="lg"><img src="logos/${s[0]}.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'sbadge',textContent:'${s[1]}',style:'background:${s[3]};color:${s[4]}'}))"></div>
+    <b>${s[1]}</b><small>${s[2]}</small></button>`;
+};
+
+/* ======== الشاشات ======== */
+let view = {name:"home"}, slideTimer = null;
+const app = $("#app");
+
+function home() {
+  const best = sorted(ALL);
+  const maxDisc = ALL.reduce((m,x)=>Math.max(m,x.discount),0);
+  const todays = best.slice(0,14);
+  const fresh = sorted(ALL,"fresh").slice(0,12);
+  return `
+  <div class="hero"><div class="slides" id="slides">
+    <div class="slide s1" data-emoji="🛍️"><h3>أقوى العروض من أشهر المتاجر في مكان واحد</h3><p>نقارن لك ونختار الأفضل</p><button class="cta" data-act="list" data-k="best">تصفّح العروض</button></div>
+    <div class="slide s2" data-emoji="💥"><h3>تخفيضات تصل إلى ${maxDisc||70}%</h3><p>صفقات تتجدد على مدار اليوم</p><button class="cta" data-act="list" data-k="big">شاهد التخفيضات</button></div>
+    <div class="slide s3" data-emoji="🎁"><h3>رمز شي إن ${SHEIN_CODE}</h3><p>اكتبه عند الشراء واستفد من عرض العملاء الجدد</p><button class="cta" data-act="copy">انسخ الرمز</button></div>
+  </div></div>
+  <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+
+  <section class="sec"><div class="sec-h"><h3>🏬 تسوّق من متاجرك المفضلة</h3></div>
+    <div class="row">${STORES.map(storeTile).join("")}</div></section>
+
+  <section class="sec"><div class="sec-h"><h3>🧩 تصفح حسب الفئة</h3><button data-go="cats">عرض كل الفئات ‹</button></div>
+    <div class="row">${CATS.map(catTile).join("")}</div></section>
+
+  <section class="sec"><div class="sec-h"><h3>🔥 عروض اليوم</h3><button data-act="list" data-k="best">عرض المزيد ‹</button></div>
+    ${todays.length?`<div class="row">${todays.map(card).join("")}</div>`:`<div class="empty">لا توجد عروض حالياً</div>`}</section>
+
+  <section class="sec"><div class="sec-h"><h3>⚡ اكتشف أكثر</h3></div>
+    <div class="tiles">
+      <button class="tile" data-act="copy"><i>🎟️</i><b>رمز شي إن</b></button>
+      <button class="tile" data-act="list" data-k="big"><i>💥</i><b>تخفيضات كبرى</b></button>
+      <button class="tile" data-act="list" data-k="hot"><i>🔥</i><b>الأكثر طلباً</b></button>
+      <button class="tile" data-act="list" data-k="pick"><i>⭐</i><b>اختيارات مميزة</b></button>
+      <button class="tile" data-act="list" data-k="u100"><i>💰</i><b>عروض تحت 100 ر.س</b></button>
+      <button class="tile" data-act="list" data-k="new"><i>🆕</i><b>وصل حديثاً</b></button>
+    </div></section>
+
+  ${fresh.length?`<section class="sec"><div class="sec-h"><h3>🆕 وصل حديثاً</h3><button data-act="list" data-k="new">عرض المزيد ‹</button></div>
+    <div class="row">${fresh.map(card).join("")}</div></section>`:""}
+
+  <div class="foot">وَفِّرْهَا صَحّ — روابط المتاجر الرسمية<br>قد نحصل على عمولة عند الشراء عبر روابطنا دون أي تكلفة عليك</div>`;
+}
+
+const LISTS = {
+  best:{t:"🔥 عروض اليوم", f:a=>a},
+  big:{t:"💥 تخفيضات كبرى", f:a=>a.filter(x=>x.discount>=40), s:"disc"},
+  hot:{t:"🔥 الأكثر طلباً", f:a=>{ const h=id=>{const i=hotIds.indexOf(id);return i<0?999:i}; return a.slice().sort((x,y)=>h(x.id)-h(y.id)||score(y)-score(x)); }, s:"none"},
+  pick:{t:"⭐ اختيارات مميزة", f:a=>a.filter(x=>x.featured).length?a.filter(x=>x.featured):a.filter(x=>x.discount>=30)},
+  u100:{t:"💰 عروض تحت 100 ر.س", f:a=>a.filter(x=>x.price<=100)},
+  new:{t:"🆕 وصل حديثاً", f:a=>a, s:"fresh"}
+};
+
+function listView(title, items, sort) {
+  const chips = [["best","الأقوى عرضاً"],["cheap","الأقل سعراً"],["disc","الأعلى خصماً"],["fresh","الأحدث"]];
+  const cur = view.sort || "best";
+  const arr = sort==="none" ? items : sorted(items, cur);
+  return `<div class="backbar"><button data-act="back" aria-label="رجوع">›</button><h2>${esc(title)} <small style="color:var(--muted);font-size:13px">(${arr.length})</small></h2></div>
+  ${sort==="none"?"":`<div class="chips">${chips.map(c=>`<button class="chip ${cur===c[0]?"on":""}" data-act="sort" data-k="${c[0]}">${c[1]}</button>`).join("")}</div>`}
+  ${arr.length?`<div class="grid">${arr.slice(0,120).map(card).join("")}</div>`:`<div class="empty">لا توجد منتجات هنا حالياً</div>`}`;
+}
+
+function render() {
+  clearInterval(slideTimer);
+  $("#q").value = view.name==="search" ? (view.q||"") : $("#q").value;
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("on"));
+  let html = "", nav = "n-home";
+  switch (view.name) {
+    case "home": html = home(); nav = "n-home"; break;
+    case "cats":
+      html = `<div class="backbar"><h2>🧩 الأقسام</h2></div><div class="cgrid">${CATS.map(c=>catTile(c)).join("")}</div>
+      <div class="sec-h" style="margin-top:18px"><h3>🏬 المتاجر</h3></div><div class="row">${STORES.map(storeTile).join("")}</div>`;
+      nav = "n-cats"; break;
+    case "cat": {
+      const c = CATS.find(x=>x[0]===view.id)||CATS[0];
+      html = listView(c[2]+" "+c[1], ALL.filter(x=>x.cat===view.id)); nav = "n-cats"; break; }
+    case "store": {
+      const s = STORES.find(x=>x[0]===view.id)||STORES[0];
+      html = listView("🏬 "+s[2], ALL.filter(x=>x.sk===view.id)); nav = "n-home"; break; }
+    case "list": {
+      const L = LISTS[view.k]||LISTS.best;
+      view.sort = view.sort || L.s;
+      html = listView(L.t, L.f(ALL), L.s==="none"?"none":undefined); nav = view.k==="new"||view.k==="best"?"n-new":"n-home"; break; }
+    case "new": html = listView("🔥 أحدث العروض", ALL, undefined); nav = "n-new"; break;
+    case "favs": {
+      const ids = saved(); const items = ids.map(id=>byId.get(id)).filter(Boolean);
+      html = `<div class="backbar"><h2>♥ المفضلة</h2></div>` + (items.length?`<div class="grid">${items.map(card).join("")}</div>`:`<div class="empty">لا توجد منتجات في المفضلة بعد.<br>اضغط ♥ على أي منتج لحفظه هنا.</div>`);
+      nav = "n-favs"; break; }
+    case "search": {
+      const q = normAr(view.q||"").trim();
+      const words = q.split(/\s+/).filter(Boolean);
+      const items = ALL.filter(x=>{ const t=normAr(x.title+" "+x.store); return words.every(w=>t.includes(w)); });
+      html = listView("نتائج: "+(view.q||""), items); nav = "n-home"; break; }
+    case "me": {
+      html = `<div class="backbar"><h2>👤 حسابي</h2></div><div class="list">
+        <button class="li" data-go="favs"><span class="em">♥</span>المفضلة<small>${saved().length}</small></button>
+        <button class="li" data-act="copy"><span class="em">🎟️</span>رمز شي إن<small>${SHEIN_CODE}</small></button>
+        <a href="${LINKS.telegram}" target="_blank" rel="noopener"><span class="em">📣</span>قناة تلجرام</a>
+        <a href="${LINKS.whatsapp}" target="_blank" rel="noopener"><span class="em">💬</span>قناة واتساب</a>
+        <a href="${LINKS.x}" target="_blank" rel="noopener"><span class="em">🐦</span>حسابنا على X</a>
+        <a href="index.html?web=1"><span class="em">🌐</span>الموقع الكامل</a>
+        <a href="privacy.html"><span class="em">🔒</span>الخصوصية والإفصاح</a>
+      </div><div class="foot">وَفِّرْهَا صَحّ</div>`;
+      nav = "n-me"; break; }
+  }
+  app.innerHTML = html;
+  $("#"+nav)?.classList.add("on");
+  window.scrollTo(0,0);
+  if (view.name==="home") startSlides();
+}
+
+function startSlides() {
+  const sl = $("#slides"), dots = [...document.querySelectorAll("#dots i")];
+  if (!sl) return;
+  let i = 0;
+  const show = n => { i = (n+3)%3; sl.style.transform = `translateX(${-i*100}%)`; dots.forEach((d,k)=>d.classList.toggle("on",k===i)); };
+  slideTimer = setInterval(()=>show(i+1), 4200);
+}
+
+/* ======== التنقل ======== */
+function nav(v, push=true) {
+  view = v;
+  if (push) history.pushState(v, "");
+  render();
+}
+window.addEventListener("popstate", e => { view = e.state || {name:"home"}; render(); });
+history.replaceState({name:"home"}, "");
+
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]");
+  if (g) { $("#q").value=""; nav({name:g.dataset.go}); return; }
+  const a = e.target.closest("[data-act]"); if (!a) return;
+  const act = a.dataset.act, id = a.dataset.id;
+  if (act==="buy") buy(id);
+  else if (act==="fav") { e.stopPropagation(); toggleFav(id, a); }
+  else if (act==="cat") nav({name:"cat", id});
+  else if (act==="store") nav({name:"store", id});
+  else if (act==="list") nav({name:"list", k:a.dataset.k});
+  else if (act==="sort") { view = {...view, sort:a.dataset.k}; render(); }
+  else if (act==="back") history.length>1 ? history.back() : nav({name:"home"},false);
+  else if (act==="copy") { try { navigator.clipboard.writeText(SHEIN_CODE); } catch {} toast("تم نسخ الرمز "+SHEIN_CODE+" ✅"); }
+});
+
+let qt;
+$("#q").addEventListener("input", e => {
+  clearTimeout(qt);
+  const v = e.target.value.trim();
+  qt = setTimeout(() => {
+    if (v.length>=2) { const was = view.name==="search"; view = {name:"search", q:v}; was ? history.replaceState(view,"") : history.pushState(view,""); render(); }
+    else if (!v && view.name==="search") nav({name:"home"});
+  }, 280);
+});
+
+/* ======== تشغيل ======== */
+if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
+load().then(render);
+</script>
+</body>
+</html>
