@@ -297,21 +297,8 @@ function home() {
   <section class="sec"><div class="sec-h"><h3>🧩 تصفح حسب الفئة</h3><button data-go="cats">عرض كل الفئات ‹</button></div>
     <div class="row">${CATS.map(catTile).join("")}</div></section>
 
-  <section class="sec"><div class="sec-h"><h3>🔥 عروض اليوم</h3><button data-act="list" data-k="best">عرض المزيد ‹</button></div>
-    ${todays.length?`<div class="row">${todays.map(card).join("")}</div>`:`<div class="empty">لا توجد عروض حالياً</div>`}</section>
-
-  <section class="sec"><div class="sec-h"><h3>⚡ اكتشف أكثر</h3></div>
-    <div class="tiles">
-      <button class="tile" data-act="copy"><i>🎟️</i><b>رمز شي إن</b></button>
-      <button class="tile" data-act="list" data-k="big"><i>💥</i><b>تخفيضات كبرى</b></button>
-      <button class="tile" data-act="list" data-k="hot"><i>🔥</i><b>الأكثر طلباً</b></button>
-      <button class="tile" data-act="list" data-k="pick"><i>⭐</i><b>اختيارات مميزة</b></button>
-      <button class="tile" data-act="list" data-k="u100"><i>💰</i><b>عروض تحت 100 ر.س</b></button>
-      <button class="tile" data-act="list" data-k="new"><i>🆕</i><b>وصل حديثاً</b></button>
-    </div></section>
-
-  ${fresh.length?`<section class="sec"><div class="sec-h"><h3>🆕 وصل حديثاً</h3><button data-act="list" data-k="new">عرض المزيد ‹</button></div>
-    <div class="row">${fresh.map(card).join("")}</div></section>`:""}
+  <section class="sec"><div class="sec-h"><h3>🛒 كل المنتجات <small style="color:var(--muted);font-size:13px">(${best.length})</small></h3></div>
+    ${best.length?`<div class="grid">${best.slice(0,300).map(card).join("")}</div>`:`<div class="empty">لا توجد عروض حالياً</div>`}</section>
 
   <div class="foot">وَفِّرْهَا صَحّ — روابط المتاجر الرسمية<br>قد نحصل على عمولة عند الشراء عبر روابطنا دون أي تكلفة عليك</div>`;
 }
