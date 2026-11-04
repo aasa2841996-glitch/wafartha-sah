@@ -94,6 +94,7 @@ img{max-width:100%}
 .pp{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
 .pp b{font-size:17px;font-weight:900;color:var(--ink)}
 .pp s{font-size:12px;color:var(--muted)}
+.wab{margin-top:6px;background:#25d366;color:#fff;font-weight:800;border-radius:12px;padding:8px 6px;font-size:12.5px}
 .buy{margin-top:auto;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;font-weight:800;border-radius:12px;padding:9px 6px;font-size:13.5px;box-shadow:0 4px 10px rgba(14,138,30,.28)}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 
@@ -237,6 +238,12 @@ function buy(id) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
+function wa(id) {
+  const it = byId.get(id); if (!it) return;
+  const msg = "السلام عليكم، أبغى هذا المنتج:\n" + it.title + "\nالسعر: " + nf(it.price) + " ر.س\n" + API + "/go/" + encodeURIComponent(it.id);
+  window.open("https://wa.me/966560232725?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
+}
+
 /* ======== قوالب ======== */
 function storeBadge(sk, store) {
   const s = STORES.find(x=>x[0]===sk);
@@ -255,6 +262,7 @@ function card(it) {
       <div class="pt">${esc(it.title)}</div>
       <div class="pp"><b>${nf(it.price)} ر.س</b>${it.old?`<s>${nf(it.old)} ر.س</s>`:""}</div>
       <button class="buy" data-act="buy" data-id="${esc(it.id)}">اشترِ الآن ↗</button>
+      <button class="wab" data-act="wa" data-id="${esc(it.id)}">💬 اطلبه عبر واتساب</button>
     </div>
   </article>`;
 }
@@ -398,6 +406,7 @@ document.addEventListener("click", e => {
   const a = e.target.closest("[data-act]"); if (!a) return;
   const act = a.dataset.act, id = a.dataset.id;
   if (act==="buy") buy(id);
+  else if (act==="wa") wa(id);
   else if (act==="fav") { e.stopPropagation(); toggleFav(id, a); }
   else if (act==="cat") nav({name:"cat", id});
   else if (act==="store") nav({name:"store", id});
