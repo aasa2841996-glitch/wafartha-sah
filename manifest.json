@@ -4,7 +4,7 @@
   "description": "اكتشف العروض وقارن الأسعار قبل الشراء",
   "lang": "ar",
   "dir": "rtl",
-  "start_url": "./",
+  "start_url": "app.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
