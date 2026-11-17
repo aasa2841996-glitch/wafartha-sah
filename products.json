@@ -1949,6 +1949,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-17T13:00:20.000Z"
+    },
+    {
+      "id": "c7057249",
+      "title": "خلاط كهربائي احترافي 1200 واط مع مطحنة حبوب وتوابل، خلاط فواكه وعصير وسموذي، 2.5 لتر، 7 سرعات",
+      "price": "71.89",
+      "old": "299",
+      "discount": 76,
+      "link": "https://s.noon.com/pnC7Z1cM1qs",
+      "store": "Noon",
+      "image": "products/product-1794920434649-a1cee025.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-17T13:00:36.260Z"
     }
   ],
   "accessories": [
