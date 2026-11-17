@@ -5649,6 +5649,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-15T15:00:18.474Z"
+    },
+    {
+      "id": "43d65d9b",
+      "title": "مجموعة سلة هدايا ماكينة القهوة مع صندوق هدايا محمول باليد",
+      "price": "99",
+      "old": "239",
+      "discount": 59,
+      "link": "https://s.noon.com/fWSrOoAdqRU",
+      "store": "Noon",
+      "image": "products/product-1794934834415-533280e7.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-17T17:00:36.027Z"
     }
   ],
   "saved": []
