@@ -981,6 +981,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-17T08:00:19.842Z"
+    },
+    {
+      "id": "54cf382b",
+      "title": "ماء عطر يارا 100ملليلتر",
+      "price": "46",
+      "old": "149",
+      "discount": 69,
+      "link": "https://s.noon.com/cXm4jB_nmzc",
+      "store": "Noon",
+      "image": "products/product-1794924028731-e9c22fcc.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-17T14:00:30.080Z"
     }
   ],
   "bags": [
