@@ -2187,6 +2187,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-18T08:00:36.233Z"
+    },
+    {
+      "id": "fa77fbdb",
+      "title": "غلاية كهربائية 1.7 L 2200 W HD9350/92 فولاذ مقاوم للصدأ",
+      "price": "112",
+      "old": "209",
+      "discount": 46,
+      "link": "https://s.noon.com/JkMOI_HtQHw",
+      "store": "Noon",
+      "image": "products/product-1794996028803-f5112b4a.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-18T10:00:30.442Z"
     }
   ],
   "accessories": [
