@@ -2145,6 +2145,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-18T08:00:19.952Z"
+    },
+    {
+      "id": "049c34b6",
+      "title": "كابل شحن من يو إس بي أي إلى يو إس بي سي، عبوة مكونة من قطعتين بطول ٢ متر باللون الأسود",
+      "price": "44.97",
+      "old": "89",
+      "discount": 49,
+      "link": "https://s.noon.com/cPzDZbIfQWM",
+      "store": "Noon",
+      "image": "products/product-1794988834893-3f5e8e1f.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-18T08:00:36.233Z"
     }
   ],
   "accessories": [
