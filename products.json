@@ -746,6 +746,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-11T07:00:18.825Z"
+    },
+    {
+      "id": "7b4e7a9e",
+      "title": "فستان طويل مناسب لجميع الفصول، فستان نسائي جديد Y2K بلون موحد ورقبة مربعة ورباط خلفي",
+      "price": "47.48",
+      "old": "300.99",
+      "discount": 84,
+      "link": "https://www.temu.com/kuiper/uk1.html?subj=goods-detail&_bg_fs=1&_p_mat2_type=a4002&_p_jump_id=1040&_x_vst_scene=adg&goods_id=601100488488769&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4087806962kol_affiliate&_x_ads_csite=userpage_union&g_site=120&g_lg=ar&g_region=174&g_ccy=SAR",
+      "store": "Temu",
+      "image": "products/product-1794992416648-27ac2fbe.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-18T09:00:18.954Z"
     }
   ],
   "perfumes": [
