@@ -2089,6 +2089,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-17T16:00:19.326Z"
+    },
+    {
+      "id": "2c9abcc7",
+      "title": "ماكينة صنع قهوة من مجموعة دايلي 0.6 L 760 W HD7432/20 أسود",
+      "price": "113",
+      "old": "239",
+      "discount": 53,
+      "link": "https://s.noon.com/hUzjq4sWHtI",
+      "store": "Noon",
+      "image": "products/product-1794981628097-9c70106b.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-18T06:00:29.462Z"
     }
   ],
   "accessories": [
