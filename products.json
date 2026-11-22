@@ -315,6 +315,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-22T10:00:31.101Z"
+    },
+    {
+      "id": "82fe7075",
+      "title": "حذاء رجالي عصري وكاجوال بارتفاع متوسط لجميع المواسم",
+      "price": "108.8",
+      "old": "309.95",
+      "discount": 65,
+      "link": "https://www.temu.com/kuiper/uk1.html?subj=goods-detail&_bg_fs=1&_p_mat2_type=a4002&_p_jump_id=1040&_x_vst_scene=adg&goods_id=601103415523906&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4087806962kol_affiliate&_x_ads_csite=userpage_union&g_site=120&g_lg=ar&g_region=174&g_ccy=SAR",
+      "store": "Temu",
+      "image": "products/product-1795359616736-65ae3d11.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-22T15:00:18.346Z"
     }
   ],
   "dresses": [
