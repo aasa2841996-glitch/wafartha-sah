@@ -1310,6 +1310,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-19T19:00:19.011Z"
+    },
+    {
+      "id": "d22bd2d1",
+      "title": "حقيبة تخزين صندوق السيارة | قابلة للتطبيق عالميًا، سعة كبيرة لمختلف الأغراض",
+      "price": "41.74",
+      "old": "137.99",
+      "discount": 70,
+      "link": "https://www.temu.com/kuiper/uk1.html?subj=goods-detail&_bg_fs=1&_p_mat2_type=a4002&_p_jump_id=1040&_x_vst_scene=adg&goods_id=606471525872319&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4087806962kol_affiliate&_x_ads_csite=userpage_union&g_site=120&g_lg=ar&g_region=174&g_ccy=SAR",
+      "store": "Temu",
+      "image": "products/product-1795334417225-18d2418a.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-22T08:00:18.859Z"
     }
   ],
   "watches": [
