@@ -3740,6 +3740,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-24T09:00:18.184Z"
+    },
+    {
+      "id": "766d8e8c",
+      "title": "1 وسادة مقعد أمامي و 1 إكسسوار سيارات ممتاز مصنوع من الجلد الصناعي",
+      "price": "129.01",
+      "old": "219.95",
+      "discount": 41,
+      "link": "https://www.temu.com/kuiper/uk1.html?subj=goods-detail&_bg_fs=1&_p_mat2_type=a4002&_p_jump_id=1040&_x_vst_scene=adg&goods_id=601103935349978&_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4087806962kol_affiliate&_x_ads_csite=userpage_union&g_site=120&g_lg=ar&g_region=174&g_ccy=SAR",
+      "store": "Temu",
+      "image": "products/product-1795539619420-500527c6.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-24T17:00:21.316Z"
     }
   ],
   "electronics": [
