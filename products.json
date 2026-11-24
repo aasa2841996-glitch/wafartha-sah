@@ -3494,6 +3494,20 @@
       "expired": false,
       "priceManual": true,
       "createdAt": "2026-11-24T15:00:30.835Z"
+    },
+    {
+      "id": "01ee063b",
+      "title": "مكنسة كهربائية تحت الماء V16 بيستون للحيوانات (أسود غير لامع/نحاسي)",
+      "price": "3299",
+      "old": "3496",
+      "discount": 6,
+      "link": "https://s.noon.com/0GHc5Vg8he8",
+      "store": "Noon",
+      "image": "products/product-1795536038495-0130aa15.jpg",
+      "featured": false,
+      "expired": false,
+      "priceManual": true,
+      "createdAt": "2026-11-24T16:00:40.249Z"
     }
   ],
   "accessories": [
